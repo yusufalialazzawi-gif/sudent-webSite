@@ -96,10 +96,14 @@ export default function AdminLayout() {
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
           <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-brand-amber-500 flex items-center justify-center font-bold text-white text-base shadow">
-              S
+            <img
+              src="/logo.jpg"
+              alt="المجد للقبولات الجامعية"
+              className="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow border border-brand-amber-500/40"
+            />
+            <span className="font-bold text-sm text-white tracking-wide font-cairo">
+              {currentLanguage === 'ar' ? 'المجد للقبولات' : 'Al-Majd Admin'}
             </span>
-            <span className="font-bold text-lg text-white tracking-wide">Sora Admin</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -134,12 +138,16 @@ export default function AdminLayout() {
         {/* Brand Header */}
         <div className="p-6 border-b border-brand-navy-800/80 flex items-center justify-between">
           <Link to="/admin" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-amber-500 to-amber-400 flex items-center justify-center font-extrabold text-white text-xl shadow-lg">
-              S
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="المجد للقبولات الجامعية"
+              className="w-10 h-10 rounded-xl object-contain bg-white p-0.5 shadow-md border border-brand-amber-500/40"
+            />
             <div>
-              <div className="font-extrabold text-lg text-white leading-tight tracking-wide">SORA EDU</div>
-              <div className="text-xs text-amber-400 font-medium">Control Portal 2026</div>
+              <div className="font-extrabold text-base text-white leading-tight tracking-wide font-cairo">
+                {currentLanguage === 'ar' ? 'المجد للقبولات' : 'Al-Majd Portal'}
+              </div>
+              <div className="text-[11px] text-amber-400 font-medium">Control Portal 2026</div>
             </div>
           </Link>
           <button
@@ -218,7 +226,7 @@ export default function AdminLayout() {
         <header className="hidden md:flex items-center justify-between h-16 px-8 bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20">
           <div className="flex items-center gap-4">
             <div className="text-slate-400 text-xs">
-              <span className="font-semibold text-slate-700">Sora Education Admin</span> / {location.pathname.replace('/admin', '') || 'Dashboard'}
+              <span className="font-semibold text-slate-700 font-cairo">المجد للقبولات الجامعية</span> / {location.pathname.replace('/admin', '') || 'Dashboard'}
             </div>
           </div>
 

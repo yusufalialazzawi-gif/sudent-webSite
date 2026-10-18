@@ -117,7 +117,7 @@ export default function ScholarshipDetailPage() {
               التقديم على المنحة
             </h3>
             <p className="text-slate-600 text-xs leading-relaxed">
-              تضمن لك Sora Education التقديم الرسمي الصحيح ومراجعة ملفك لزيادة فرص القبول.
+              تضمن لك مؤسسة المجد للقبولات الجامعية التقديم الرسمي الصحيح ومراجعة ملفك لزيادة فرص القبول.
             </p>
             <Link
               to={`/apply?scholarship=${encodeURIComponent(title)}`}

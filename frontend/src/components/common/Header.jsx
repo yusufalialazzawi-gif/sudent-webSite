@@ -108,15 +108,20 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Brand Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-navy-900 to-brand-navy-800 flex items-center justify-center text-white shadow-md border border-brand-amber-500/30 group-hover:shadow-glow transition-all">
-              <GraduationCap className="w-6 h-6 text-brand-amber-500 group-hover:scale-110 transition-transform" />
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="المجد للقبولات الجامعية"
+              className="h-12 w-auto object-contain rounded-lg shadow-sm border border-slate-100 group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tight text-brand-navy-950 flex items-center gap-1 font-cairo">
-                SORA <span className="text-brand-amber-500">EDUCATION</span>
+              <span className="text-xl font-black tracking-tight text-brand-navy-800 flex items-center gap-1.5 font-cairo leading-tight">
+                {currentLang === 'ar' ? 'المجد' : currentLang === 'tr' ? 'El-Mecd' : 'Al-Majd'}{' '}
+                <span className="text-brand-amber-500 text-sm font-bold">
+                  {currentLang === 'ar' ? 'للقبولات الجامعية' : currentLang === 'tr' ? 'Üniversite Kabulleri' : 'University Admissions'}
+                </span>
               </span>
-              <span className="text-[10px] text-slate-500 font-medium -mt-1 tracking-wider uppercase">
-                {currentLang === 'ar' ? 'الدراسة في تركيا' : currentLang === 'tr' ? 'Türkiye’de Eğitim' : 'Study in Turkey'}
+              <span className="text-[10px] text-slate-500 font-medium tracking-wider uppercase">
+                {currentLang === 'ar' ? 'الدراسة في تركيا 🇹🇷' : currentLang === 'tr' ? 'Türkiye’de Üniversite Eğitimi' : 'Study in Turkey 🇹🇷'}
               </span>
             </div>
           </Link>

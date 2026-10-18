@@ -15,15 +15,15 @@ export default function WhatsAppFloating() {
 
   let defaultMsg =
     settings.whatsapp_message_ar ||
-    'مرحباً Sora Education، أرغب بالاستفسار عن التسجيل في الجامعات التركية.';
+    'مرحباً مؤسسة المجد للقبولات الجامعية، أود الاستفسار عن القبولات والمنح في الجامعات التركية.';
   if (currentLang === 'tr') {
     defaultMsg =
       settings.whatsapp_message_tr ||
-      'Merhaba Sora Education, Türkiye üniversiteleri başvurusu hakkında bilgi almak istiyorum.';
+      'Merhaba El-Mecd Üniversite Kabulleri, Türkiye üniversiteleri başvurusu ve burslar hakkında bilgi almak istiyorum.';
   } else if (currentLang === 'en') {
     defaultMsg =
       settings.whatsapp_message_en ||
-      'Hello Sora Education, I would like to inquire about university admissions in Turkey.';
+      'Hello Al-Majd University Admissions, I would like to inquire about university placements and scholarships in Turkey.';
   }
 
   const encodedMsg = encodeURIComponent(defaultMsg);

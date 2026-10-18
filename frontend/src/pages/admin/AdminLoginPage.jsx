@@ -79,14 +79,14 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl p-8 shadow-2xl backdrop-blur-xl relative z-10">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-amber-500 to-amber-400 text-white shadow-lg shadow-brand-amber-500/20 mb-4">
-            <ShieldCheck size={36} />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white p-1 shadow-xl shadow-brand-amber-500/10 mb-4 border border-brand-amber-500/40">
+            <img src="/logo.jpg" alt="المجد للقبولات الجامعية" className="w-full h-full object-contain rounded-xl" />
           </div>
-          <h1 className="text-2xl font-black text-white tracking-wide">
-            {currentLanguage === 'ar' ? 'لوحة تحكم المنصة التعليمية' : currentLanguage === 'tr' ? 'Eğitim Platformu Yönetimi' : 'Education Platform Portal'}
+          <h1 className="text-2xl font-black text-white tracking-wide font-cairo">
+            {currentLanguage === 'ar' ? 'المجد للقبولات الجامعية' : currentLanguage === 'tr' ? 'El-Mecd Üniversite Kabulleri' : 'Al-Majd Admissions Portal'}
           </h1>
           <p className="text-sm text-slate-400 mt-2">
-            {currentLanguage === 'ar' ? 'قم بتسجيل الدخول للوصول إلى إدارة الجامعات والطلبات والمحتوى' : 'Sign in to manage universities, student applications, and content'}
+            {currentLanguage === 'ar' ? 'بوابة الإدارة المركزية لمتابعة ملفات الطلاب والجامعات' : 'Central admissions and university catalog management portal'}
           </p>
         </div>
 

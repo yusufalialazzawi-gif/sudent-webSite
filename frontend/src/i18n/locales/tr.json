@@ -41,7 +41,7 @@
     "resultsFound": "{{count}} sonuç bulundu"
   },
   "stats": {
-    "title": "Rakamlarla Sora Education",
+    "title": "Rakamlarla El-Mecd",
     "subtitle": "Her Yıl Yüzlerce Öğrencinin Tercihi",
     "graduateAdmissions": "Lisansüstü Kabul",
     "consultations": "Öğrenci Danışmanlığı",
@@ -119,7 +119,7 @@
   },
   "testimonials": {
     "title": "Öğrenci Başarı Hikayeleri",
-    "subtitle": "Sora Education ile Türkiye’de üniversiteye yerleşen öğrencilerimizin deneyimleri."
+    "subtitle": "El-Mecd ile Türkiye’de üniversiteye yerleşen öğrencilerimizin deneyimleri."
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
@@ -160,11 +160,11 @@
     "successRef": "Başvuru Takip Numaranız:"
   },
   "footer": {
-    "description": "Sora Education, uluslararası öğrencilerin Türkiye’de kaliteli ve burslu üniversite eğitimi almalarını sağlayan lider eğitim danışmanlığı kuruluşudur.",
+    "description": "El-Mecd Üniversite Kabulleri, uluslararası öğrencilerin Türkiye’de kaliteli ve burslu üniversite eğitimi almalarını sağlayan lider eğitim danışmanlığı kuruluşudur.",
     "quickLinks": "Hızlı Bağlantılar",
     "universities": "Popüler Üniversiteler",
     "services": "Öğrenci Hizmetleri",
-    "rights": "Tüm Hakları Saklıdır © 2026 Sora Education",
+    "rights": "Tüm Hakları Saklıdır © 2026 El-Mecd Üniversite Kabulleri",
     "privacy": "Gizlilik Politikası",
     "terms": "Kullanım Koşulları"
   },

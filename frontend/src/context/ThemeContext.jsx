@@ -5,14 +5,14 @@ const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const [settings, setSettings] = useState({
-    site_name: 'Sora Education | الدراسة في تركيا',
-    contact_phone: '+90 551 467 8371',
-    contact_whatsapp: '905514678371',
-    contact_email: 'info@soraedu-tr.com',
+    site_name: 'المجد للقبولات الجامعية | الدراسة في تركيا',
+    contact_phone: '+90 538 096 4646',
+    contact_whatsapp: '905380964646',
+    contact_email: 'info@almajed-edu.com',
     whatsapp_enabled: 'true',
     whatsapp_position: 'bottom-right',
-    theme_primary_color: '#0f172a',
-    theme_accent_color: '#f37721',
+    theme_primary_color: '#1a367c', // Al-Majd Royal Navy Blue
+    theme_accent_color: '#c89d3c',  // Al-Majd Metallic Gold
   });
 
   useEffect(() => {

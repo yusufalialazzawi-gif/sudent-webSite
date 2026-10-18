@@ -117,7 +117,7 @@ export default function AdminSettingsPage() {
                 <label className="block font-bold text-slate-700 mb-1">اسم المؤسسة (Brand Name)</label>
                 <input
                   type="text"
-                  value={settingsState.site_name || 'Sora Education'}
+                  value={settingsState.site_name || 'المجد للقبولات الجامعية | الدراسة في تركيا'}
                   onChange={(e) => handleChange('site_name', e.target.value)}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                 />
@@ -171,7 +171,7 @@ export default function AdminSettingsPage() {
                 <label className="block font-bold text-slate-700 mb-1">Türkçe Karşılama Mesajı 🇹🇷</label>
                 <input
                   type="text"
-                  value={settingsState.whatsapp_message_tr || 'Merhaba Sora Education, üniversite kabul süreçleri hakkında bilgi almak istiyorum.'}
+                  value={settingsState.whatsapp_message_tr || 'Merhaba El-Mecd Üniversite Kabulleri, Türkiye üniversiteleri başvurusu ve burslar hakkında bilgi almak istiyorum.'}
                   onChange={(e) => handleChange('whatsapp_message_tr', e.target.value)}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                 />
@@ -181,7 +181,7 @@ export default function AdminSettingsPage() {
                 <label className="block font-bold text-slate-700 mb-1">English Welcome Message 🇬🇧</label>
                 <input
                   type="text"
-                  value={settingsState.whatsapp_message_en || 'Hello Sora Education, I would like to inquire about university admissions and scholarships in Turkey.'}
+                  value={settingsState.whatsapp_message_en || 'Hello Al-Majd University Admissions, I would like to inquire about university placements and scholarships in Turkey.'}
                   onChange={(e) => handleChange('whatsapp_message_en', e.target.value)}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                 />

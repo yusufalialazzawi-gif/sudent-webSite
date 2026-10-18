@@ -39,12 +39,22 @@ export default function Footer() {
           {/* Col 1: Brand & Bio */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-navy-800 flex items-center justify-center text-white border border-brand-amber-500/30">
-                <GraduationCap className="w-5 h-5 text-brand-amber-500" />
+              <img
+                src="/logo.jpg"
+                alt="المجد للقبولات الجامعية"
+                className="w-12 h-12 rounded-xl object-contain bg-white p-1 border border-brand-amber-500/30"
+              />
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-tight text-white font-cairo">
+                  {currentLang === 'ar' ? 'المجد' : currentLang === 'tr' ? 'El-Mecd' : 'Al-Majd'}{' '}
+                  <span className="text-brand-amber-400">
+                    {currentLang === 'ar' ? 'للقبولات الجامعية' : currentLang === 'tr' ? 'Kabulleri' : 'Admissions'}
+                  </span>
+                </span>
+                <span className="text-[10px] text-slate-400 font-medium">
+                  {currentLang === 'ar' ? 'بوابتك الأكاديمية للدراسة في تركيا' : currentLang === 'tr' ? 'Türkiye Üniversite Başvuru Portalı' : 'Turkey University Admissions Portal'}
+                </span>
               </div>
-              <span className="text-xl font-black tracking-tight text-white font-cairo">
-                SORA <span className="text-brand-amber-500">EDUCATION</span>
-              </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
               {t('footer.description')}
