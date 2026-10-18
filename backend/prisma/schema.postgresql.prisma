@@ -1,0 +1,411 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String
+  fullName     String
+  role         String     @default("CONTENT_EDITOR") // SUPER_ADMIN, CONTENT_EDITOR, ADMISSIONS_STAFF
+  isActive     Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  assignedApplications StudentApplication[] @relation("AssignedStaff")
+  applicationNotes     ApplicationNote[]
+  statusChanges        ApplicationStatusHistory[]
+  auditLogs            AuditLog[]
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String
+  entity    String
+  entityId  String?
+  details   String?
+  ipAddress String?
+  createdAt DateTime @default(now())
+}
+
+model University {
+  id              String                  @id @default(uuid())
+  slug            String                  @unique
+  type            String                  @default("PRIVATE") // PRIVATE, PUBLIC
+  city            String
+  establishedYear Int?
+  campusType      String?                 // URBAN, SUBURBAN, MULTI_CAMPUS
+  ranking         Int?
+  websiteUrl      String?
+  logoUrl         String?
+  coverImageUrl   String?
+  featured        Boolean                 @default(false)
+  published       Boolean                 @default(true)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  translations    UniversityTranslation[]
+  programs        AcademicProgram[]
+  scholarships    Scholarship[]
+}
+
+model UniversityTranslation {
+  id                    String     @id @default(uuid())
+  universityId          String
+  university            University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  lang                  String     // ar, tr, en
+  name                  String
+  overview              String
+  admissionRequirements String?
+  accommodationInfo     String?
+  accreditationInfo     String?
+  address               String?
+
+  @@unique([universityId, lang])
+}
+
+model ProgramCategory {
+  id       String            @id @default(uuid())
+  slug     String            @unique
+  nameAr   String
+  nameTr   String
+  nameEn   String
+  icon     String?
+  programs AcademicProgram[]
+}
+
+model AcademicProgram {
+  id                 String               @id @default(uuid())
+  universityId       String
+  university         University           @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  categoryId         String?
+  category           ProgramCategory?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  slug               String
+  degreeLevel        String               @default("BACHELOR") // ASSOCIATE, BACHELOR, MASTER_WITH_THESIS, MASTER_NON_THESIS, PHD
+  studyLanguage      String               @default("ENGLISH")  // ENGLISH, TURKISH, MIXED
+  durationYears      Int                  @default(4)
+  annualTuition      Float
+  discountedTuition  Float?
+  currency           String               @default("USD")      // USD, TRY, EUR
+  academicYear       String               @default("2026-2027")
+  applicationStatus  String               @default("OPEN")     // OPEN, CLOSING_SOON, CLOSED
+  published          Boolean              @default(true)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  translations       ProgramTranslation[]
+
+  @@unique([universityId, slug])
+}
+
+model ProgramTranslation {
+  id                   String          @id @default(uuid())
+  programId            String
+  program              AcademicProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+  lang                 String          // ar, tr, en
+  name                 String
+  facultyName          String?
+  description          String?
+  requirements         String?
+  careerOpportunities  String?
+
+  @@unique([programId, lang])
+}
+
+model Service {
+  id                String               @id @default(uuid())
+  slug              String               @unique
+  icon              String?
+  pricePolicy       String?              // "FREE_CONSULTATION", "FIXED", "VARIABLE"
+  estimatedDuration String?
+  featured          Boolean              @default(false)
+  published         Boolean              @default(true)
+  sortOrder         Int                  @default(0)
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+
+  translations      ServiceTranslation[]
+}
+
+model ServiceTranslation {
+  id                String   @id @default(uuid())
+  serviceId         String
+  service           Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  lang              String   // ar, tr, en
+  title             String
+  description       String
+  benefits          String?  // JSON string or bullet points
+  eligibility       String?
+  procedureSteps    String?  // JSON string of steps
+  requiredDocuments String?  // JSON string of docs
+
+  @@unique([serviceId, lang])
+}
+
+model Course {
+  id                   String               @id @default(uuid())
+  slug                 String               @unique
+  studyMode            String               @default("ONLINE") // ONLINE, IN_PERSON, HYBRID
+  durationWeeks        Int                  @default(8)
+  schedule             String?
+  price                Float                @default(0)
+  currency             String               @default("USD")
+  capacity             Int                  @default(25)
+  registeredCount      Int                  @default(0)
+  status               String               @default("ACTIVE") // ACTIVE, UPCOMING, FULL, COMPLETED
+  registrationDeadline DateTime?
+  imageUrl             String?
+  published            Boolean              @default(true)
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+
+  translations         CourseTranslation[]
+  registrations        CourseRegistration[]
+}
+
+model CourseTranslation {
+  id           String   @id @default(uuid())
+  courseId     String
+  course       Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lang         String   // ar, tr, en
+  title        String
+  description  String
+  instructor   String?
+  curriculum   String?  // JSON string
+  requirements String?
+
+  @@unique([courseId, lang])
+}
+
+model CourseRegistration {
+  id        String   @id @default(uuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  fullName  String
+  email     String
+  phone     String
+  notes     String?
+  status    String   @default("CONFIRMED")
+  createdAt DateTime @default(now())
+}
+
+model Scholarship {
+  id                 String                   @id @default(uuid())
+  slug               String                   @unique
+  scholarshipType    String                   @default("PARTIAL") // FULL, PARTIAL, DISCOUNT
+  discountPercentage Int?
+  universityId       String?
+  university         University?              @relation(fields: [universityId], references: [id], onDelete: SetNull)
+  openingDate        DateTime?
+  deadline           DateTime?
+  status             String                   @default("ACTIVE") // ACTIVE, UPCOMING, EXPIRED
+  imageUrl           String?
+  published          Boolean                  @default(true)
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  translations       ScholarshipTranslation[]
+}
+
+model ScholarshipTranslation {
+  id                  String      @id @default(uuid())
+  scholarshipId       String
+  scholarship         Scholarship @relation(fields: [scholarshipId], references: [id], onDelete: Cascade)
+  lang                String      // ar, tr, en
+  title               String
+  description         String
+  eligibilityCriteria String?
+  requiredDocuments   String?
+  benefitsSummary     String?
+
+  @@unique([scholarshipId, lang])
+}
+
+model Article {
+  id               String               @id @default(uuid())
+  slug             String               @unique
+  category         String               @default("GUIDE") // GUIDE, LIVING, UNIVERSITIES, SCHOLARSHIPS
+  authorName       String               @default("Sora Education Expert")
+  featuredImageUrl String?
+  readTimeMinutes  Int                  @default(5)
+  published        Boolean              @default(true)
+  publishedAt      DateTime             @default(now())
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  translations     ArticleTranslation[]
+}
+
+model ArticleTranslation {
+  id              String   @id @default(uuid())
+  articleId       String
+  article         Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  lang            String   // ar, tr, en
+  title           String
+  excerpt         String
+  content         String
+  metaTitle       String?
+  metaDescription String?
+
+  @@unique([articleId, lang])
+}
+
+model StudentApplication {
+  id                  String                     @id @default(uuid())
+  applicationNumber   String                     @unique
+  fullName            String
+  email               String
+  phone               String
+  nationality         String
+  passportNumber      String?
+  degreeLevel         String                     // BACHELOR, MASTER, PHD, ASSOCIATE
+  desiredProgram      String
+  preferredCity       String?
+  preferredUniversity String?
+  studyLanguage       String                     @default("ENGLISH")
+  currentEducation    String?
+  notes               String?
+  status              String                     @default("NEW") // NEW, CONTACTED, AWAITING_DOCS, UNDER_REVIEW, SUBMITTED_TO_UNI, ADMISSION_RECEIVED, REJECTED, CLOSED
+  assignedStaffId     String?
+  assignedStaff       User?                      @relation("AssignedStaff", fields: [assignedStaffId], references: [id], onDelete: SetNull)
+  consentPrivacy      Boolean                    @default(true)
+  createdAt           DateTime                   @default(now())
+  updatedAt           DateTime                   @updatedAt
+
+  documents           ApplicationDocument[]
+  statusHistory       ApplicationStatusHistory[]
+  internalNotes       ApplicationNote[]
+}
+
+model ApplicationDocument {
+  id            String             @id @default(uuid())
+  applicationId String
+  application   StudentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  documentType  String             // PASSPORT, TRANSCRIPT, DIPLOMA, OTHER
+  fileName      String
+  originalName  String
+  mimeType      String
+  fileSize      Int
+  filePath      String
+  createdAt     DateTime           @default(now())
+}
+
+model ApplicationStatusHistory {
+  id             String             @id @default(uuid())
+  applicationId  String
+  application    StudentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  previousStatus String?
+  newStatus      String
+  changedById    String?
+  changedBy      User?              @relation(fields: [changedById], references: [id], onDelete: SetNull)
+  notes          String?
+  createdAt      DateTime           @default(now())
+}
+
+model ApplicationNote {
+  id            String             @id @default(uuid())
+  applicationId String
+  application   StudentApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  authorId      String
+  author        User               @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  noteText      String
+  createdAt     DateTime           @default(now())
+}
+
+model ContactInquiry {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  status    String   @default("NEW") // NEW, READ, REPLIED
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  studentName String
+  nationality String
+  program     String
+  university  String
+  rating      Int      @default(5)
+  quoteAr     String
+  quoteTr     String
+  quoteEn     String
+  avatarUrl   String?
+  verified    Boolean  @default(true)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model FAQ {
+  id           String           @id @default(uuid())
+  category     String           @default("GENERAL") // GENERAL, ADMISSION, RESIDENCE, HOUSING, COSTS
+  sortOrder    Int              @default(0)
+  published    Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+
+  translations FAQTranslation[]
+}
+
+model FAQTranslation {
+  id       String @id @default(uuid())
+  faqId    String
+  faq      FAQ    @relation(fields: [faqId], references: [id], onDelete: Cascade)
+  lang     String // ar, tr, en
+  question String
+  answer   String
+
+  @@unique([faqId, lang])
+}
+
+model MediaAsset {
+  id         String   @id @default(uuid())
+  fileName   String
+  originalName String
+  mimeType   String
+  fileSize   Int
+  url        String
+  assetType  String   @default("IMAGE") // IMAGE, LOGO, BANNER, AVATAR, DOCUMENT
+  altTextAr  String?
+  altTextTr  String?
+  altTextEn  String?
+  usageCount Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model PageSection {
+  id          String   @id @default(uuid())
+  pageName    String   // home, about, contact, etc.
+  sectionKey  String   // hero, search, stats, etc.
+  sectionType String   // HERO, SEARCH, UNI_GRID, PROGRAM_GRID, SERVICE_GRID, STATS, TESTIMONIALS, BLOG, FAQ, CTA
+  titleAr     String?
+  titleTr     String?
+  titleEn     String?
+  subtitleAr  String?
+  subtitleTr  String?
+  subtitleEn  String?
+  contentJson String?  // JSON string for configurable section props
+  sortOrder   Int      @default(0)
+  isEnabled   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([pageName, sectionKey])
+}
+
+model SiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  group     String   @default("GENERAL") // GENERAL, THEME, CONTACT, WHATSAPP, SEO, SECURITY
+  updatedAt DateTime @updatedAt
+}

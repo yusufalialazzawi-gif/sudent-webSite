@@ -1,0 +1,29 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production builds
+dist/
+build/
+
+# Local environment variables
+.env
+.env.local
+
+# SQLite development databases
+*.db
+*.db-journal
+
+# Uploads directory (retain directory, ignore dynamic student uploads)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/uploads/private/*
+!backend/uploads/private/.gitkeep
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
