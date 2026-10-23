@@ -176,22 +176,6 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
           <Building2 className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
         </div>
 
-        {/* 3. Dropdown: اختار دولة الاعتراف */}
-        <div className="relative">
-          <select
-            value={selectedCountry}
-            onChange={handleCountryChange}
-            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
-          >
-            <option value="">اختار دولة الاعتراف</option>
-            {ARAB_COUNTRIES.map((country) => (
-              <option key={country} value={country}>
-                الاعتراف في: {country} 🇹🇷 🏛️
-              </option>
-            ))}
-          </select>
-          <Globe className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
-        </div>
 
         {/* Action Button: بحث مباشر */}
         <div className="pt-1">

@@ -18,11 +18,11 @@ import {
 export const HOME_SECTIONS = [
   { key: 'hero', Component: HomeHero },
   { key: 'stats', Component: HomeStats },
-  { key: 'admission_slider', Component: HomeAdmissionSlider },
   { key: 'universities_preview', Component: HomeUniversitiesPreview },
-  { key: 'graduate_spotlight', Component: HomeGraduateSpotlight },
+  { key: 'admission_slider', Component: HomeAdmissionSlider },
   { key: 'programs_preview', Component: HomeProgramsPreview },
   { key: 'services_preview', Component: HomeServicesPreview },
+  { key: 'graduate_spotlight', Component: HomeGraduateSpotlight },
   { key: 'notary_equivalency', Component: HomeNotarySection },
   { key: 'scholarships_preview', Component: HomeScholarshipsPreview },
   { key: 'testimonials', Component: HomeTestimonials },
