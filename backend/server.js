@@ -14,6 +14,17 @@ const __dirname = path.dirname(__filename);
 
 // Load environment variables
 dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = `file:${path.resolve(__dirname, 'prisma/dev.db')}`;
+}
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'majid_student_super_secure_jwt_secret_2026_xyz';
+}
+if (!process.env.UPLOAD_DIR) {
+  process.env.UPLOAD_DIR = path.resolve(__dirname, 'uploads');
+}
 
 // Import middlewares
 import { errorHandler } from './src/middleware/errorHandler.js';
