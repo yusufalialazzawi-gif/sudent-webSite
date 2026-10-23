@@ -492,18 +492,25 @@ export default function UniversityAdmissionSlider() {
                     <div className="grid grid-cols-2 gap-2.5 pt-2 border-t border-white/10">
                       <Link
                         to={`/universities/${uni.slug}`}
-                        className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-center text-xs font-bold text-slate-200 hover:text-white transition-all"
+                        className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-center text-xs font-bold text-slate-200 hover:text-white transition-all flex items-center justify-center"
                       >
                         {currentLang === 'ar' ? 'التفاصيل' : currentLang === 'tr' ? 'İncele' : 'Details'}
                       </Link>
 
-                      <Link
-                        to={`/apply?university=${encodeURIComponent(uniName)}&type=${uni.type}`}
-                        className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-400 hover:to-brand-amber-500 text-center text-xs font-black text-slate-950 transition-all shadow-md shadow-brand-amber-500/20 flex items-center justify-center gap-1"
+                      <a
+                        href={`https://wa.me/905313971022?text=${encodeURIComponent(
+                          `مرحباً شركة المجد للخدمات الطلابية، أود التقديم والتسجيل في ${uniName} (${isState ? 'حكومية' : 'خاصة'}).`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-400 hover:to-brand-amber-500 text-center text-xs font-black text-slate-950 transition-all shadow-md shadow-brand-amber-500/20 flex items-center justify-center gap-1.5"
                       >
+                        <svg className="w-3.5 h-3.5 fill-slate-950 shrink-0" viewBox="0 0 24 24">
+                          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
+                        </svg>
                         <span>{currentLang === 'ar' ? 'قدّم طلبك' : currentLang === 'tr' ? 'Hemen Başvur' : 'Apply Now'}</span>
                         <ArrowRight className="w-3.5 h-3.5 flip-in-rtl" />
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>

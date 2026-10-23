@@ -26,6 +26,7 @@ import {
   MessageSquare,
   BadgeCheck,
   VideoOff,
+  GraduationCap,
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { api } from '../../services/api';
