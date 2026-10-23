@@ -56,27 +56,9 @@ export function HomeHero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-start flex flex-col items-center lg:items-start">
-            {/* Small Top Badge */}
-            <div className="inline-flex items-center gap-2 bg-brand-amber-500/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-amber-500/30 text-brand-amber-400 text-xs sm:text-sm font-bold shadow-inner mx-auto lg:mx-0">
-              <Sparkles className="w-4 h-4 text-brand-amber-400 shrink-0" />
-              <span>شركة المجد للخدمات الطلابية 🇹🇷</span>
-            </div>
-
-            {/* Clear, Concise Punchy Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-cairo leading-[1.3] text-center lg:text-start">
-              <span className="text-white drop-shadow">
-                قبولك الجامعي في تركيا{' '}
-              </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber-400 via-amber-300 to-brand-amber-500">
-                بأسهل وأسرع الطرق
-              </span>
-            </h1>
-
-            {/* Clean Concise Description */}
-            <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl font-normal text-center lg:text-start drop-shadow">
-              وكيلكم الرسمي المعتمد لأفضل الجامعات التركية الحكومية والخاصة مع خصومات ومنح حصرية تصل إلى 75% واستشارات مجانية متكاملة.
-            </p>
+          <div className="lg:col-span-7 space-y-4 text-center lg:text-start flex flex-col items-center lg:items-start">
+            {/* Accessible SEO H1 */}
+            <h1 className="sr-only">شركة المجد للخدمات الطلابية - قبولك الجامعي في تركيا بأسهل وأسرع الطرق</h1>
 
             {/* 4 Quick Action Buttons Side-by-Side (2x2 on Mobile, 4 in row on Desktop) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-2 w-full max-w-2xl">
