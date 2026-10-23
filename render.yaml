@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: sora-education
+    name: majid-student
     env: node
     plan: free
     buildCommand: npm run build

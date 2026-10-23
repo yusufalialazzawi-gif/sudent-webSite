@@ -1,7 +1,7 @@
 {
-  "name": "sora-education-platform",
+  "name": "majid-student-platform",
   "version": "1.0.0",
-  "description": "Premium Multilingual Turkey Education Platform",
+  "description": "Majid Student — Premium Educational Consulting & University Admissions Platform",
   "private": true,
   "scripts": {
     "install:all": "npm --prefix backend install && npm --prefix frontend install",

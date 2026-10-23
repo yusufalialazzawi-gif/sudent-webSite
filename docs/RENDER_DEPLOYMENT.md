@@ -36,7 +36,7 @@ Açılan ekranda şu alanları doldurun:
 
 | Alan | Değer |
 | :--- | :--- |
-| **Name** | `sora-education` (veya istediğiniz bir isim) |
+| **Name** | `majid-student` |
 | **Region** | `Frankfurt (EU Central)` *(Türkiye'ye en yakın ve en hızlı lokasyon)* |
 | **Branch** | `main` |
 | **Root Directory** | *(Boş bırakın)* |
