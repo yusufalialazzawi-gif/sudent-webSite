@@ -1,222 +1,206 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, MapPin, GraduationCap, Globe, Building2, SlidersHorizontal, ArrowRight } from 'lucide-react';
+import { MapPin, Building2, Globe, Search, ArrowRight, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { api } from '../../services/api';
 
+const ARAB_COUNTRIES = [
+  'العراق',
+  'مصر',
+  'الأردن',
+  'سوريا',
+  'اليمن',
+  'السعودية',
+  'فلسطين',
+  'الكويت',
+  'قطر',
+  'الإمارات',
+  'ليبيا',
+  'السودان',
+  'الجزائر',
+  'المغرب',
+  'تونس',
+  'لبنان',
+  'سلطنة عمان',
+  'البحرين',
+];
+
 export default function QuickSearch({ initialValues = {}, onSearch = null, isEmbedded = false }) {
   const { t } = useTranslation();
-  const { currentLang, isRtl } = useLanguage();
+  const { currentLang } = useLanguage();
   const navigate = useNavigate();
 
-  const [searchOptions, setSearchOptions] = useState({
-    cities: ['Istanbul', 'Ankara', 'Izmir', 'Antalya'],
-    categories: [],
-    degrees: [],
-    studyLanguages: [],
-  });
+  const [cities, setCities] = useState([
+    'Istanbul',
+    'Ankara',
+    'Izmir',
+    'Antalya',
+    'Bursa',
+    'Sakarya',
+    'Trabzon',
+    'Konya',
+    'Eskişehir',
+    'Gaziantep',
+  ]);
+  const [universities, setUniversities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(initialValues.city || '');
+  const [selectedUniSlug, setSelectedUniSlug] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
 
-  const [keyword, setKeyword] = useState(initialValues.search || '');
-  const [city, setCity] = useState(initialValues.city || '');
-  const [degreeLevel, setDegreeLevel] = useState(initialValues.degreeLevel || '');
-  const [studyLanguage, setStudyLanguage] = useState(initialValues.studyLanguage || '');
-  const [type, setType] = useState(initialValues.type || '');
-  const [loading, setLoading] = useState(false);
+  const whatsappNumber = '905313971022';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    'مرحباً شركة المجد للخدمات الطلابية، أود الاستفسار عن القبولات والجامعات المتاحة في تركيا.'
+  )}`;
 
   useEffect(() => {
-    const fetchOptions = async () => {
+    const loadData = async () => {
       try {
-        const res = await api.getSearchOptions();
-        if (res.success && res.data) {
-          setSearchOptions(res.data);
+        const [optRes, uniRes] = await Promise.all([
+          api.getSearchOptions(),
+          api.getUniversities({ limit: 80, lang: currentLang }),
+        ]);
+
+        if (optRes?.success && optRes?.data?.cities?.length) {
+          setCities(optRes.data.cities);
+        }
+        if (uniRes?.success && uniRes?.data) {
+          setUniversities(uniRes.data);
         }
       } catch (err) {
         console.warn('Could not load search options:', err.message);
       }
     };
-    fetchOptions();
-  }, []);
+    loadData();
+  }, [currentLang]);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const queryParams = new URLSearchParams();
-    if (keyword) queryParams.set('search', keyword);
-    if (city) queryParams.set('city', city);
-    if (degreeLevel) queryParams.set('degreeLevel', degreeLevel);
-    if (studyLanguage) queryParams.set('language', studyLanguage);
-    if (type) queryParams.set('type', type);
-
-    if (onSearch) {
-      onSearch({ search: keyword, city, degreeLevel, language: studyLanguage, type });
-    } else {
-      navigate(`/universities?${queryParams.toString()}`);
+  const handleCityChange = (e) => {
+    const city = e.target.value;
+    setSelectedCity(city);
+    if (city) {
+      if (onSearch) {
+        onSearch({ city });
+      } else {
+        navigate(`/universities?city=${encodeURIComponent(city)}`);
+      }
     }
   };
 
-  const handleReset = () => {
-    setKeyword('');
-    setCity('');
-    setDegreeLevel('');
-    setStudyLanguage('');
-    setType('');
-    if (onSearch) {
-      onSearch({});
-    } else {
-      navigate('/universities');
+  const handleUniChange = (e) => {
+    const slug = e.target.value;
+    setSelectedUniSlug(slug);
+    if (slug) {
+      navigate(`/universities/${slug}`);
     }
+  };
+
+  const handleCountryChange = (e) => {
+    const country = e.target.value;
+    setSelectedCountry(country);
+    if (country) {
+      const msg = `مرحباً شركة المجد للخدمات الطلابية، أود معرفة الجامعات التركية المعتمدة والمعترف بها في دولة (${country}).`;
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  };
+
+  const handleDirectSearch = (e) => {
+    e.preventDefault();
+    const query = new URLSearchParams();
+    if (selectedCity) query.set('city', selectedCity);
+    navigate(`/universities?${query.toString()}`);
   };
 
   return (
     <div
-      className={`rounded-2xl transition-all duration-300 ${
+      className={`rounded-3xl transition-all duration-300 ${
         isEmbedded
           ? 'bg-white p-5 border border-slate-200 shadow-sm'
-          : 'bg-brand-navy-900/95 backdrop-blur-xl p-6 sm:p-8 rounded-3xl shadow-2xl border-2 border-brand-amber-500/40 text-white'
+          : 'bg-[#182a4d]/95 backdrop-blur-xl p-5 sm:p-7 rounded-3xl shadow-2xl border-2 border-brand-amber-500/40 text-white'
       }`}
     >
-      <div className="flex items-center justify-between mb-5">
-        <h3 className={`font-bold font-cairo flex items-center gap-2 ${isEmbedded ? 'text-slate-900 text-lg' : 'text-white text-xl'}`}>
-          <SlidersHorizontal className="w-5 h-5 text-brand-amber-500" />
-          <span>{t('search.title')}</span>
-        </h3>
-        {(keyword || city || degreeLevel || studyLanguage || type) && (
-          <button
-            onClick={handleReset}
-            className={`text-xs font-semibold hover:underline ${isEmbedded ? 'text-slate-500' : 'text-slate-400 hover:text-white'}`}
-          >
-            {t('search.clearBtn')}
-          </button>
-        )}
+      {/* Top Green WhatsApp Direct Button */}
+      <div className="mb-4">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base py-3 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all hover:scale-[1.02]"
+        >
+          {/* Authentic WhatsApp SVG Icon */}
+          <svg className="w-5 h-5 fill-white shrink-0" viewBox="0 0 24 24">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
+          </svg>
+          <span className="font-cairo">تواصل عبر الواتس اب</span>
+        </a>
       </div>
 
-      <form onSubmit={handleSearchSubmit} className="space-y-4">
-        {/* Keyword Search Input */}
+      <form onSubmit={handleDirectSearch} className="space-y-3.5">
+        {/* 1. Dropdown: ابحث عن مدينة */}
         <div className="relative">
-          <input
-            type="text"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            placeholder={t('search.keywordPlaceholder')}
-            className={`w-full px-4 py-3.5 rounded-xl text-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-amber-500 pe-11 ${
-              isEmbedded
-                ? 'bg-slate-50 border border-slate-200 text-slate-900'
-                : 'bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:bg-white/15'
-            }`}
-          />
-          <Search className="w-5 h-5 absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <select
+            value={selectedCity}
+            onChange={handleCityChange}
+            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
+          >
+            <option value="">ابحث عن مدينة</option>
+            {cities.map((c) => (
+              <option key={c} value={c}>
+                مدينة {c}
+              </option>
+            ))}
+          </select>
+          <MapPin className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
         </div>
 
-        {/* Multi-Select Filters - Generous 2-column layout to prevent text clipping */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-          {/* Degree Level */}
-          <div className="space-y-1">
-            <label className={`text-[11px] font-bold uppercase tracking-wider block ${isEmbedded ? 'text-slate-500' : 'text-slate-300'}`}>
-              {t('search.degree')}
-            </label>
-            <div className="relative">
-              <select
-                value={degreeLevel}
-                onChange={(e) => setDegreeLevel(e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 pe-8 cursor-pointer ${
-                  isEmbedded
-                    ? 'bg-slate-50 border border-slate-200 text-slate-800'
-                    : 'bg-white/10 border border-white/20 text-white focus:bg-brand-navy-950 [&>option]:bg-brand-navy-900 [&>option]:text-white'
-                }`}
-              >
-                <option value="">{t('search.allDegrees')}</option>
-                {searchOptions.degrees?.map((d) => (
-                  <option key={d.value} value={d.value}>
-                    {currentLang === 'tr' ? d.labelTr : currentLang === 'en' ? d.labelEn : d.labelAr}
-                  </option>
-                ))}
-              </select>
-              <GraduationCap className="w-4 h-4 absolute end-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-            </div>
-          </div>
-
-          {/* Study Language */}
-          <div className="space-y-1">
-            <label className={`text-[11px] font-bold uppercase tracking-wider block ${isEmbedded ? 'text-slate-500' : 'text-slate-300'}`}>
-              {t('search.language')}
-            </label>
-            <div className="relative">
-              <select
-                value={studyLanguage}
-                onChange={(e) => setStudyLanguage(e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 pe-8 cursor-pointer ${
-                  isEmbedded
-                    ? 'bg-slate-50 border border-slate-200 text-slate-800'
-                    : 'bg-white/10 border border-white/20 text-white focus:bg-brand-navy-950 [&>option]:bg-brand-navy-900 [&>option]:text-white'
-                }`}
-              >
-                <option value="">{t('search.allLanguages')}</option>
-                <option value="ENGLISH">{currentLang === 'ar' ? 'اللغة الإنجليزية' : currentLang === 'tr' ? 'İngilizce' : 'English'}</option>
-                <option value="TURKISH">{currentLang === 'ar' ? 'اللغة التركية' : currentLang === 'tr' ? 'Türkçe' : 'Turkish'}</option>
-                <option value="MIXED">{currentLang === 'ar' ? 'مختلط (30% إنجليزي)' : currentLang === 'tr' ? 'Karma (%30 İngilizce)' : 'Mixed (30% English)'}</option>
-              </select>
-              <Globe className="w-4 h-4 absolute end-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-            </div>
-          </div>
-
-          {/* City */}
-          <div className="space-y-1">
-            <label className={`text-[11px] font-bold uppercase tracking-wider block ${isEmbedded ? 'text-slate-500' : 'text-slate-300'}`}>
-              {t('search.city')}
-            </label>
-            <div className="relative">
-              <select
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 pe-8 cursor-pointer ${
-                  isEmbedded
-                    ? 'bg-slate-50 border border-slate-200 text-slate-800'
-                    : 'bg-white/10 border border-white/20 text-white focus:bg-brand-navy-950 [&>option]:bg-brand-navy-900 [&>option]:text-white'
-                }`}
-              >
-                <option value="">{t('search.allCities')}</option>
-                {searchOptions.cities?.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-              <MapPin className="w-4 h-4 absolute end-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-            </div>
-          </div>
-
-          {/* University Type (Public / Private) */}
-          <div className="space-y-1">
-            <label className={`text-[11px] font-bold uppercase tracking-wider block ${isEmbedded ? 'text-slate-500' : 'text-slate-300'}`}>
-              {t('search.type')}
-            </label>
-            <div className="relative">
-              <select
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 pe-8 cursor-pointer ${
-                  isEmbedded
-                    ? 'bg-slate-50 border border-slate-200 text-slate-800'
-                    : 'bg-white/10 border border-white/20 text-white focus:bg-brand-navy-950 [&>option]:bg-brand-navy-900 [&>option]:text-white'
-                }`}
-              >
-                <option value="">{t('search.allTypes')}</option>
-                <option value="PRIVATE">{t('universities.private')}</option>
-                <option value="PUBLIC">{t('universities.public')}</option>
-              </select>
-              <Building2 className="w-4 h-4 absolute end-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-            </div>
-          </div>
+        {/* 2. Dropdown: ابحث عن الجامعات المتاح التقديم عليها */}
+        <div className="relative">
+          <select
+            value={selectedUniSlug}
+            onChange={handleUniChange}
+            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
+          >
+            <option value="">ابحث عن الجامعات المتاح التقديم عليها</option>
+            {universities.map((u) => {
+              const uName =
+                u.translations?.find((tr) => tr.lang === currentLang)?.name ||
+                u.translations?.find((tr) => tr.lang === 'ar')?.name ||
+                u.name ||
+                u.slug;
+              return (
+                <option key={u.id || u.slug} value={u.slug}>
+                  {uName} {u.type === 'PUBLIC' ? '(حكومية)' : '(خاصة)'}
+                </option>
+              );
+            })}
+          </select>
+          <Building2 className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
         </div>
 
-        {/* Submit Search Button */}
-        <div className="pt-2">
+        {/* 3. Dropdown: اختار دولة الاعتراف */}
+        <div className="relative">
+          <select
+            value={selectedCountry}
+            onChange={handleCountryChange}
+            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
+          >
+            <option value="">اختار دولة الاعتراف</option>
+            {ARAB_COUNTRIES.map((country) => (
+              <option key={country} value={country}>
+                الاعتراف في: {country} 🇹🇷 🏛️
+              </option>
+            ))}
+          </select>
+          <Globe className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
+        </div>
+
+        {/* Action Button: بحث مباشر */}
+        <div className="pt-1">
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-600 hover:to-brand-amber-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-amber-500/25 flex items-center justify-center gap-2 btn-hover-lift transition-all"
+            className="w-full bg-gradient-to-r from-brand-amber-500 to-amber-600 hover:from-brand-amber-600 hover:to-amber-700 text-white font-black font-cairo py-3.5 px-6 rounded-xl shadow-lg shadow-brand-amber-500/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
           >
             <Search className="w-4 h-4" />
-            <span>{t('search.searchBtn')}</span>
+            <span>بحث مباشر في الجامعات</span>
             <ArrowRight className="w-4 h-4 flip-in-rtl" />
           </button>
         </div>

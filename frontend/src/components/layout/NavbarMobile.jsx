@@ -21,6 +21,11 @@ export default function NavbarMobile({ items, pathname, onNavigate }) {
     });
   });
 
+  const whatsappNumber = str('whatsapp_number', '') || str('contact_whatsapp', '905313971022');
+  const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    'مرحباً، أود التقديم للحصول على قبول جامعي في تركيا عبر شركة المجد للخدمات الطلابية.'
+  )}`;
+
   return (
     <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-4 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top-4 duration-200">
       <div className="flex flex-col space-y-1">
@@ -47,14 +52,16 @@ export default function NavbarMobile({ items, pathname, onNavigate }) {
 
       {showCta && (
         <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
-          <Link
-            to={ctaUrl}
+          <a
+            href={waApplyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onNavigate}
-            className="w-full flex items-center justify-center gap-2 bg-brand-amber-500 hover:bg-brand-amber-600 text-white font-bold text-sm py-3 rounded-xl shadow-md text-center"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm py-3 rounded-xl shadow-md text-center"
           >
             <Sparkles className="w-4 h-4" />
             <span>{ctaLabel}</span>
-          </Link>
+          </a>
         </div>
       )}
     </div>

@@ -330,13 +330,19 @@ export default function UniversityDetailPage() {
 
             {/* Apply Header CTA */}
             <div className="shrink-0 pt-2 md:pt-0">
-              <Link
-                to={`/apply?university=${encodeURIComponent(name)}`}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-600 hover:to-brand-amber-700 text-white font-bold text-sm shadow-xl shadow-brand-amber-500/20 btn-hover-lift transition-all w-full sm:w-auto"
+              <a
+                href={`https://wa.me/905313971022?text=${encodeURIComponent(
+                  `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم والحصول على قبول جامعي في (${name}).`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm shadow-xl shadow-emerald-500/20 btn-hover-lift transition-all w-full sm:w-auto"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>{t('universities.applyToUni')}</span>
-              </Link>
+                <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
+                </svg>
+                <span>{t('universities.applyToUni')} عبر واتساب</span>
+              </a>
             </div>
           </div>
         </div>
@@ -636,14 +642,19 @@ export default function UniversityDetailPage() {
                             {prog.durationYears} {currentLang === 'ar' ? 'سنوات' : currentLang === 'tr' ? 'Yıl' : 'Years'}
                           </td>
                           <td className="p-4 text-center">
-                            <Link
-                              to={`/apply?university=${encodeURIComponent(
-                                name
-                              )}&program=${encodeURIComponent(pName)}`}
-                              className="inline-block px-3.5 py-1.5 rounded-lg bg-brand-amber-500 hover:bg-brand-amber-600 text-white font-bold text-xs transition-colors shadow-sm"
+                            <a
+                              href={`https://wa.me/905313971022?text=${encodeURIComponent(
+                                `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم على تخصص (${pName}) في جامعة (${name}).`
+                              )}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition-colors shadow-sm"
                             >
-                              {t('nav.applyNow')}
-                            </Link>
+                              <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24">
+                                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
+                              </svg>
+                              <span>{t('nav.applyNow')}</span>
+                            </a>
                           </td>
                         </tr>
                       );
@@ -762,13 +773,19 @@ export default function UniversityDetailPage() {
                 </a>
               )}
 
-              <Link
-                to={`/apply?university=${encodeURIComponent(name)}`}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-amber-500 hover:bg-brand-amber-600 text-white font-bold text-xs shadow-lg shadow-brand-amber-500/30 btn-hover-lift transition-all text-center"
+              <a
+                href={`https://wa.me/905313971022?text=${encodeURIComponent(
+                  `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم والحصول على قبول رسمي في جامعة (${name}).`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-xs shadow-lg shadow-emerald-500/30 btn-hover-lift transition-all text-center"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>{t('universities.applyToUni')}</span>
-              </Link>
+                <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
+                </svg>
+                <span>{t('universities.applyToUni')} عبر واتساب</span>
+              </a>
             </div>
           </div>
 

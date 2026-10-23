@@ -27,6 +27,11 @@ export default function Header() {
   const ctaUrl = str('nav_cta_url', '/apply');
   const ctaLabel = text('nav_cta_label', () => t('nav.applyNow'));
 
+  const whatsappNumber = str('whatsapp_number', '') || str('contact_whatsapp', '905313971022');
+  const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    'مرحباً، أود التقديم للحصول على قبول جامعي في تركيا عبر شركة المجد للخدمات الطلابية.'
+  )}`;
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -44,26 +49,28 @@ export default function Header() {
       <header
         className={`${sticky ? 'sticky top-0' : 'relative'} z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md py-3.5 border-b border-slate-200'
-            : 'bg-white py-4 border-b border-slate-100'
+            ? 'bg-white/95 backdrop-blur-md shadow-md py-2 sm:py-2.5 border-b border-slate-200'
+            : 'bg-white py-2.5 sm:py-3 border-b border-slate-100'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
           <SiteBrand />
 
           <NavbarDesktop items={navItems} pathname={location.pathname} />
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {showLang && <LanguageSwitcher />}
 
             {showCta && (
-              <Link
-                to={ctaUrl}
-                className="hidden sm:inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-600 hover:to-brand-amber-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-brand-amber-500/20 btn-hover-lift transition-all"
+              <a
+                href={waApplyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-md shadow-emerald-500/20 btn-hover-lift transition-all"
               >
                 <Sparkles className="w-4 h-4" />
                 <span>{ctaLabel}</span>
-              </Link>
+              </a>
             )}
 
             <button

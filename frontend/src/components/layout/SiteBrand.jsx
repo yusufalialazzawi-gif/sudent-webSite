@@ -20,23 +20,23 @@ export default function SiteBrand({ variant = 'on-white', compact = false }) {
   const dark = variant === 'on-dark';
 
   return (
-    <Link to="/" className="flex items-center gap-3 group">
+    <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 max-w-[240px] sm:max-w-none">
       <img
         src={logoUrl}
         alt={text('site_name', () => FALLBACK_NAME[currentLang])}
-        className={`${compact ? 'w-10 h-10' : 'h-10 sm:h-11 max-h-11 w-auto max-w-[160px]'} object-contain rounded-xl bg-white p-1 border ${
+        className={`${compact ? 'w-8 h-8 sm:w-9 sm:h-9' : 'h-8 sm:h-10 w-auto'} object-contain rounded-lg sm:rounded-xl bg-white p-0.5 sm:p-1 border ${
           dark ? 'border-brand-amber-500/30' : 'border-slate-100 shadow-sm'
         } group-hover:scale-105 transition-transform shrink-0`}
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col min-w-0">
         <span
-          className={`text-xl font-black tracking-tight flex items-center gap-1.5 font-cairo leading-tight ${
-            dark ? 'text-white' : 'text-brand-navy-800'
+          className={`text-sm sm:text-base lg:text-lg font-bold tracking-tight font-cairo leading-tight truncate sm:whitespace-normal ${
+            dark ? 'text-white' : 'text-brand-navy-900'
           }`}
         >
           {text('site_name', () => FALLBACK_NAME[currentLang])}
         </span>
-        <span className={`text-[10px] font-medium tracking-wider uppercase ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
+        <span className={`hidden sm:block text-[10px] font-medium truncate ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
           {text('site_slogan', () => FALLBACK_SLOGAN[currentLang])}
         </span>
       </div>
