@@ -339,7 +339,7 @@ export default function UniversityDetailPage() {
             <div className="shrink-0 pt-2 md:pt-0">
               <a
                 href={`https://wa.me/905313971022?text=${encodeURIComponent(
-                  `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم والحصول على قبول جامعي في (${name}).`
+                  `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم والحصول على قبول جامعي في (${name}).`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -651,7 +651,7 @@ export default function UniversityDetailPage() {
                           <td className="p-4 text-center">
                             <a
                               href={`https://wa.me/905313971022?text=${encodeURIComponent(
-                                `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم على تخصص (${pName}) في جامعة (${name}).`
+                                `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم على تخصص (${pName}) في جامعة (${name}).`
                               )}`}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -782,7 +782,7 @@ export default function UniversityDetailPage() {
 
               <a
                 href={`https://wa.me/905313971022?text=${encodeURIComponent(
-                  `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم والحصول على قبول رسمي في جامعة (${name}).`
+                  `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم والحصول على قبول رسمي في جامعة (${name}).`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

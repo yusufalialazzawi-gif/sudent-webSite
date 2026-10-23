@@ -82,7 +82,7 @@ export default [
   ['إلغاء', 'İptal', 'Cancel'],
   ['جاري الحفظ...', 'Kaydediliyor...', 'Saving...'],
   ['تأكيد التحديث', 'Güncellemeyi Onayla', 'Confirm Update'],
-  ['فريق شركة المجد للخدمات الطلابية', 'El-Mecd Öğrenci Hizmetleri Ekibi', 'Al-Majd Student Services Team'],
+  ['فريق شركة المجد للقبولات الجامعية', 'El-Mecd Öğrenci Hizmetleri Ekibi', 'Al-Majd Student Services Team'],
   ['جاري تحميل المقالات...', 'Makaleler yükleniyor...', 'Loading articles...'],
   ['المقال', 'Makale', 'Article'],
   ['التصنيف', 'Kategori', 'Category'],

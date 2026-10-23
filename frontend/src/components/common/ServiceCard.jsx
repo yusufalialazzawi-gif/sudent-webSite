@@ -119,7 +119,7 @@ export default function ServiceCard({ service }) {
 
           <a
             href={`https://wa.me/905313971022?text=${encodeURIComponent(
-              `مرحباً شركة المجد للخدمات الطلابية، أود الاستفسار وطلب خدمة (${title}).`
+              `مرحباً شركة المجد للقبولات الجامعية، أود الاستفسار وطلب خدمة (${title}).`
             )}`}
             target="_blank"
             rel="noopener noreferrer"

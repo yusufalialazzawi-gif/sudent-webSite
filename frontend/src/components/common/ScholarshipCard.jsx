@@ -120,7 +120,7 @@ export default function ScholarshipCard({ scholarship }) {
 
           <a
             href={`https://wa.me/905313971022?text=${encodeURIComponent(
-              `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم على المنحة الدراسية (${title}).`
+              `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم على المنحة الدراسية (${title}).`
             )}`}
             target="_blank"
             rel="noopener noreferrer"

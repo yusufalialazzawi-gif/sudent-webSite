@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import useSiteText from '../../hooks/useSiteText';
 
 const FALLBACK_NAME = {
-  ar: 'شركة المجد للخدمات الطلابية',
-  tr: 'El-Mecd Öğrenci Hizmetleri',
-  en: 'Al-Majd Student Services',
+  ar: 'شركة المجد للقبولات الجامعية',
+  tr: 'El-Mecd Üniversite Kabulleri',
+  en: 'Al-Majd University Admissions',
 };
 const FALLBACK_SLOGAN = {
   ar: 'بوابتك الأكاديمية للدراسة في تركيا 🇹🇷',

@@ -163,7 +163,7 @@ export default function ProgramCard({ program }) {
           </Link>
           <a
             href={`https://wa.me/905313971022?text=${encodeURIComponent(
-              `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم على تخصص (${name}) في جامعة (${uniName}).`
+              `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم على تخصص (${name}) في جامعة (${uniName}).`
             )}`}
             target="_blank"
             rel="noopener noreferrer"

@@ -31,7 +31,7 @@ export default function AdminBlogPage() {
   const initialForm = {
     slug: '',
     category: 'GUIDE',
-    authorName: ta('فريق شركة المجد للخدمات الطلابية'),
+    authorName: ta('فريق شركة المجد للقبولات الجامعية'),
     featuredImageUrl: '',
     readTimeMinutes: 5,
     published: true,

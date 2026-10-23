@@ -581,7 +581,7 @@ export default function AdminApplicationsPage() {
                           <a
                             href={`https://wa.me/${phoneClean}?text=${encodeURIComponent(
                               currentLanguage === 'ar'
-                                ? `مرحباً ${inq.fullName}، شكراً لتواصلك مع منصة المجد للخدمات الطلابية في تركيا بخصوص (${inq.subject || ta('استفسارك')}).`
+                                ? `مرحباً ${inq.fullName}، شكراً لتواصلك مع منصة المجد للقبولات الجامعية في تركيا بخصوص (${inq.subject || ta('استفسارك')}).`
                                 : `Merhaba ${inq.fullName}, Al-Majd Eğitim Danışmanlığı olarak mesajınızı aldık.`
                             )}`}
                             target="_blank"

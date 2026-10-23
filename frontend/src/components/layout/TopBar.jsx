@@ -33,17 +33,11 @@ export default function TopBar() {
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:text-emerald-400 transition-colors"
+              className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-mono text-[11px]">+{whatsapp}</span>
             </a>
-          )}
-          {showPhone && showAdmin && <span className="hidden sm:inline text-slate-600">|</span>}
-          {showAdmin && (
-            <Link to="/admin/login" className="hover:text-white transition-colors text-[11px]">
-              {t('nav.adminPortal')}
-            </Link>
           )}
         </div>
       </div>

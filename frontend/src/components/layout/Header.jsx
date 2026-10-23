@@ -29,7 +29,7 @@ export default function Header() {
 
   const whatsappNumber = str('whatsapp_number', '') || str('contact_whatsapp', '905313971022');
   const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'مرحباً، أود التقديم للحصول على قبول جامعي في تركيا عبر شركة المجد للخدمات الطلابية.'
+    'مرحباً، أود التقديم للحصول على قبول جامعي في تركيا عبر شركة المجد للقبولات الجامعية.'
   )}`;
 
   useEffect(() => {

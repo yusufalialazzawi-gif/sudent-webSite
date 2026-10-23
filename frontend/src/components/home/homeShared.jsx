@@ -45,12 +45,14 @@ export function SectionHeading({ kicker, title, subtitle, to, linkLabel, dark = 
       {to && linkLabel && (
         <Link
           to={to}
-          className={`inline-flex items-center gap-1.5 text-sm font-bold transition-colors shrink-0 ${
-            dark ? 'text-brand-amber-400 hover:text-brand-amber-300' : 'text-brand-amber-600 hover:text-brand-amber-700'
+          className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-black font-cairo text-xs sm:text-sm transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 shrink-0 border group ${
+            dark
+              ? 'bg-gradient-to-r from-brand-amber-500 via-amber-400 to-brand-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 border-amber-300/50 shadow-brand-amber-500/30 hover:shadow-brand-amber-500/50'
+              : 'bg-gradient-to-r from-brand-amber-500 to-amber-600 hover:from-brand-amber-600 hover:to-amber-700 text-white border-amber-400/50 shadow-brand-amber-500/35 hover:shadow-brand-amber-500/50'
           }`}
         >
           <span>{linkLabel}</span>
-          <ArrowRight className="w-4 h-4 flip-in-rtl" />
+          <ArrowRight className="w-4 h-4 flip-in-rtl group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
         </Link>
       )}
     </div>

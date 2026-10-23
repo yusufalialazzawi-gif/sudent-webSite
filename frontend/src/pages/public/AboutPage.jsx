@@ -35,7 +35,7 @@ export default function AboutPage() {
   // Dynamic texts from backend settings with fallbacks
   const title =
     currentLang === 'ar'
-      ? settings.about_hero_title_ar || 'من نحن؟ | شركة المجد للخدمات الطلابية'
+      ? settings.about_hero_title_ar || 'من نحن؟ | شركة المجد للقبولات الجامعية'
       : currentLang === 'tr'
       ? settings.about_hero_title_tr || 'Biz Kimiz? | El-Mecd Öğrenci Hizmetleri'
       : settings.about_hero_title_en || 'About Us | Al-Majd Student Services';
@@ -50,7 +50,7 @@ export default function AboutPage() {
   const p1 =
     currentLang === 'ar'
       ? settings.about_p1_ar ||
-        'نحن شركة المجد للخدمات الطلابية، نمتلك سنوات من الخبرة في مجال الخدمات والاستشارات التعليمية، وقد ساعدنا مئات الطلاب من العراق ومصر والجزائر والعديد من الدول الأخرى في رحلتهم نحو الدراسة في تركيا.'
+        'نحن شركة المجد للقبولات الجامعية، نمتلك سنوات من الخبرة في مجال الخدمات والاستشارات التعليمية، وقد ساعدنا مئات الطلاب من العراق ومصر والجزائر والعديد من الدول الأخرى في رحلتهم نحو الدراسة في تركيا.'
       : currentLang === 'tr'
       ? settings.about_p1_tr ||
         'Biz El-Mecd Öğrenci Hizmetleri olarak, eğitim ve akademik danışmanlık alanında yıllara dayanan deneyimimizle; Irak, Mısır, Cezayir ve dünyanın dört bir yanından yüzlerce öğrenciye Türkiye’deki üniversite yolculuklarında rehberlik ettik.'
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
   const closingText =
     currentLang === 'ar'
-      ? settings.about_closing_ar || 'شركة المجد للخدمات الطلابية — مستقبلك الدراسي يبدأ بخطوة، ونحن هنا لمساعدتك على اتخاذها.'
+      ? settings.about_closing_ar || 'شركة المجد للقبولات الجامعية — مستقبلك الدراسي يبدأ بخطوة، ونحن هنا لمساعدتك على اتخاذها.'
       : currentLang === 'tr'
       ? settings.about_closing_tr || 'El-Mecd Öğrenci Hizmetleri — Üniversite geleceğiniz bir adımla başlar, o adımı güvenle atmanız için biz buradayız.'
       : settings.about_closing_en || 'Al-Majd Student Services — Your academic future begins with a single step, and we are right beside you to make it happen.';
@@ -349,7 +349,7 @@ export default function AboutPage() {
             <a
               href={`https://wa.me/${settings.whatsapp_number || settings.contact_whatsapp || '905313971022'}?text=${encodeURIComponent(
                 currentLang === 'ar'
-                  ? settings.whatsapp_message_ar || 'مرحباً شركة المجد للخدمات الطلابية، أود استشارة حول الدراسة في تركيا'
+                  ? settings.whatsapp_message_ar || 'مرحباً شركة المجد للقبولات الجامعية، أود استشارة حول الدراسة في تركيا'
                   : currentLang === 'tr'
                   ? settings.whatsapp_message_tr || 'Merhaba El-Mecd Öğrenci Hizmetleri, Türkiye’de eğitim için danışmanlık almak istiyorum'
                   : settings.whatsapp_message_en || 'Hello Al-Majd Student Services, I would like guidance on studying in Turkey'

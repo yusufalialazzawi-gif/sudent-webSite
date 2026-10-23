@@ -34,7 +34,7 @@ export default function UniversityCard({ university }) {
 
   const whatsappNumber = '905313971022';
   const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `مرحباً شركة المجد للخدمات الطلابية، أرغب بالتقديم والحصول على قبول جامعي رسمي في (${name}).`
+    `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم والحصول على قبول جامعي رسمي في (${name}).`
   )}`;
 
   const handleCardClick = () => {

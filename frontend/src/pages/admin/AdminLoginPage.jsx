@@ -80,10 +80,10 @@ export default function AdminLoginPage() {
         {/* Brand Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white p-1 shadow-xl shadow-brand-amber-500/10 mb-4 border border-brand-amber-500/40">
-            <img src="/logo.jpg" alt={ta("شركة المجد للخدمات الطلابية")} className="w-full h-full object-contain rounded-xl" />
+            <img src="/logo.jpg" alt={ta("شركة المجد للقبولات الجامعية")} className="w-full h-full object-contain rounded-xl" />
           </div>
           <h1 className="text-2xl font-black text-white tracking-wide font-cairo">
-            {currentLanguage === 'ar' ? 'شركة المجد للخدمات الطلابية' : currentLanguage === 'tr' ? 'El-Mecd Öğrenci Hizmetleri' : 'Al-Majd Student Services'}
+            {currentLanguage === 'ar' ? 'شركة المجد للقبولات الجامعية' : currentLanguage === 'tr' ? 'El-Mecd Üniversite Kabulleri' : 'Al-Majd University Admissions'}
           </h1>
           <p className="text-sm text-slate-400 mt-2">
             {tx('بوابة الإدارة المركزية لمتابعة ملفات الطلاب والجامعات', 'Öğrenci dosyaları ve üniversite kataloğu için merkezi yönetim portalı', 'Central admissions and university catalog management portal')}

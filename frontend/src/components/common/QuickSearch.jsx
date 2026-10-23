@@ -50,7 +50,7 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
 
   const whatsappNumber = '905313971022';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'مرحباً شركة المجد للخدمات الطلابية، أود الاستفسار عن القبولات والجامعات المتاحة في تركيا.'
+    'مرحباً شركة المجد للقبولات الجامعية، أود الاستفسار عن القبولات والجامعات المتاحة في تركيا.'
   )}`;
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
     const country = e.target.value;
     setSelectedCountry(country);
     if (country) {
-      const msg = `مرحباً شركة المجد للخدمات الطلابية، أود معرفة الجامعات التركية المعتمدة والمعترف بها في دولة (${country}).`;
+      const msg = `مرحباً شركة المجد للقبولات الجامعية، أود معرفة الجامعات التركية المعتمدة والمعترف بها في دولة (${country}).`;
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     }
   };

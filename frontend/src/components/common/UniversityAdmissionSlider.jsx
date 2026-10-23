@@ -502,7 +502,7 @@ export default function UniversityAdmissionSlider() {
 
                       <a
                         href={`https://wa.me/905313971022?text=${encodeURIComponent(
-                          `مرحباً شركة المجد للخدمات الطلابية، أود التقديم والتسجيل في ${uniName} (${isState ? 'حكومية' : 'خاصة'}).`
+                          `مرحباً شركة المجد للقبولات الجامعية، أود التقديم والتسجيل في ${uniName} (${isState ? 'حكومية' : 'خاصة'}).`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
