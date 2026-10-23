@@ -37,11 +37,14 @@ export default function ScholarshipCard({ scholarship }) {
         <img
           src={
             scholarship.imageUrl ||
-            'https://images.unsplash.com/photo-1507842229451-7f01be837a2b?w=800&auto=format&fit=crop&q=80'
+            '/uploads/universities/koc-university.webp'
           }
           alt={title}
           className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = '/uploads/universities/koc-university.webp';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-950/90 via-slate-950/40 to-transparent"></div>
 

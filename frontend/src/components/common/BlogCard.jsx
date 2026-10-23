@@ -24,11 +24,14 @@ export default function BlogCard({ article }) {
         <img
           src={
             article.featuredImageUrl ||
-            'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&auto=format&fit=crop&q=80'
+            '/uploads/universities/bilkent-university.webp'
           }
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = '/uploads/universities/bilkent-university.webp';
+          }}
         />
         <div className="absolute top-3 start-3">
           <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-brand-navy-950/80 backdrop-blur-md text-white border border-white/20">

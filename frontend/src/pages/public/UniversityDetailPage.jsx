@@ -224,10 +224,13 @@ export default function UniversityDetailPage() {
           <img
             src={
               university.coverImageUrl ||
-              'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&auto=format&fit=crop&q=80'
+              `/uploads/universities/${university.slug}.webp`
             }
             alt={name}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = '/uploads/universities/istanbul-universitesi.webp';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-950 via-brand-navy-950/85 to-transparent"></div>
           <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-brand-navy-950/80 to-transparent pointer-events-none"></div>
@@ -258,6 +261,9 @@ export default function UniversityDetailPage() {
                   }
                   alt={name}
                   className="w-full h-full object-cover rounded-xl"
+                  onError={(e) => {
+                    e.currentTarget.src = '/uploads/universities/istanbul-universitesi.webp';
+                  }}
                 />
               </div>
 

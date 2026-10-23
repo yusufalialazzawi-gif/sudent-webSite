@@ -138,8 +138,8 @@ export default function AdminLayout() {
               alt="Site Logo"
               className="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow border border-brand-amber-500/40"
             />
-            <span className="font-bold text-sm text-white tracking-wide font-cairo">
-              {tx('المجد للقبولات', 'El-Mecd Yönetim', 'Al-Majd Admin')}
+            <span className="font-bold text-xs sm:text-sm text-white tracking-wide font-cairo">
+              {tx('شركة المجد للخدمات الطلابية', 'El-Mecd Öğrenci Hizmetleri', 'Al-Majd Student Services')}
             </span>
           </div>
         </div>
@@ -181,8 +181,8 @@ export default function AdminLayout() {
               className="w-10 h-10 rounded-xl object-contain bg-white p-0.5 shadow-md border border-brand-amber-500/40"
             />
             <div>
-              <div className="font-extrabold text-base text-white leading-tight tracking-wide font-cairo">
-                {tx('المجد للقبولات', 'El-Mecd Portalı', 'Al-Majd Portal')}
+              <div className="font-extrabold text-sm sm:text-base text-white leading-tight tracking-wide font-cairo">
+                {tx('شركة المجد للخدمات الطلابية', 'El-Mecd Öğrenci Hizmetleri', 'Al-Majd Student Services')}
               </div>
               <div className="text-[11px] text-amber-400 font-medium">{tx('بوابة التحكم 2026', 'Kontrol Portalı 2026', 'Control Portal 2026')}</div>
             </div>

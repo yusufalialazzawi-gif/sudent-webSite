@@ -371,11 +371,14 @@ export default function UniversityAdmissionSlider() {
                     <img
                       src={
                         uni.coverImageUrl ||
-                        'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop&q=80'
+                        '/uploads/universities/bogazici-universitesi.webp'
                       }
                       alt={uniName}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = '/uploads/universities/bogazici-universitesi.webp';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
 

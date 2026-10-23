@@ -60,6 +60,20 @@ export function HomeHero() {
             {/* Accessible SEO H1 */}
             <h1 className="sr-only">شركة المجد للخدمات الطلابية - قبولك الجامعي في تركيا بأسهل وأسرع الطرق</h1>
 
+            {/* Desktop-only balanced brand header */}
+            <div className="hidden lg:block space-y-3 mb-2 text-start w-full max-w-2xl">
+              <div className="inline-flex items-center gap-2 bg-brand-amber-500/20 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-amber-500/30 text-brand-amber-400 text-xs font-bold shadow-inner">
+                <Sparkles className="w-3.5 h-3.5 text-brand-amber-400" />
+                <span>شركة المجد للخدمات الطلابية 🇹🇷</span>
+              </div>
+              <h2 className="text-3xl xl:text-4xl font-black font-cairo text-white leading-snug">
+                بوابتك المعتمدة للقبول في{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber-400 via-amber-300 to-brand-amber-500">
+                  أفضل الجامعات التركية
+                </span>
+              </h2>
+            </div>
+
             {/* 4 Quick Action Buttons Side-by-Side (2x2 on Mobile, 4 in row on Desktop) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-2 w-full max-w-2xl">
               {/* 1. الجامعات المتاحة */}

@@ -190,9 +190,10 @@ export default function HeroBackground() {
         {/* Üst Karartma Geçişi - Navbar ile uyum */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-brand-navy-950/90 via-brand-navy-950/40 to-transparent pointer-events-none z-10" />
 
-        {/* Gerçek Üniversite Fotoğrafları - Her 1 saniyede ultra akıcı 450ms crossfade */}
+        {/* Gerçek Üniversite Fotoğrafları - Her 1 saniyede yumuşak Zoom-In / Zoom-Out geçişi */}
         {images.map((img, idx) => {
           const isActive = idx === active;
+          const isEven = idx % 2 === 0;
           return (
             <img
               key={`${img.url}-${idx}`}
@@ -200,8 +201,14 @@ export default function HeroBackground() {
               alt={img.nameTr || img.nameAr || 'Turkish University Campus'}
               decoding="async"
               loading="eager"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out will-change-[opacity] ${
-                isActive ? 'opacity-85 z-[1]' : 'opacity-0 z-0 pointer-events-none'
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform ${
+                isActive
+                  ? isEven
+                    ? 'opacity-85 scale-108 z-[1]'
+                    : 'opacity-85 scale-100 z-[1]'
+                  : isEven
+                  ? 'opacity-0 scale-98 z-0 pointer-events-none'
+                  : 'opacity-0 scale-110 z-0 pointer-events-none'
               }`}
             />
           );

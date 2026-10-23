@@ -51,11 +51,14 @@ export default function UniversityCard({ university }) {
         <img
           src={
             university.coverImageUrl ||
-            'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80'
+            '/uploads/universities/istanbul-universitesi.webp'
           }
           alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = '/uploads/universities/istanbul-universitesi.webp';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent"></div>
 
@@ -86,19 +89,23 @@ export default function UniversityCard({ university }) {
         </div>
 
         {/* University Logo Floating Avatar */}
-        {university.logoUrl && (
-          <div className="absolute -bottom-5 end-4 w-14 h-14 rounded-2xl bg-white p-1.5 shadow-xl border border-slate-100 overflow-hidden z-10 flex items-center justify-center">
+        <div className="absolute -bottom-5 end-4 w-14 h-14 rounded-2xl bg-white p-1.5 shadow-xl border border-slate-100 overflow-hidden z-10 flex items-center justify-center">
+          {university.logoUrl ? (
             <img
               src={university.logoUrl}
               alt=""
               className="w-full h-full object-contain"
               loading="lazy"
               onError={(e) => {
-                e.target.style.display = 'none';
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
               }}
             />
+          ) : null}
+          <div className={`${university.logoUrl ? 'hidden' : 'flex'} w-full h-full items-center justify-center bg-brand-navy-950 rounded-xl text-brand-amber-400`}>
+            <GraduationCap className="w-7 h-7" />
           </div>
-        )}
+        </div>
       </div>
 
       {/* Card Content Body */}
