@@ -145,4 +145,62 @@ router.patch('/inquiries/admin/:id/status', authenticate, requireRole(['SUPER_AD
   }
 });
 
+// DELETE /api/public/inquiries/admin/:id - Delete contact inquiry
+router.delete('/inquiries/admin/:id', authenticate, requireRole(['SUPER_ADMIN', 'ADMISSIONS_STAFF']), async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await prisma.contactInquiry.delete({
+      where: { id },
+    });
+    res.json({ success: true, message: 'Inquiry deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET /api/public/platform-stats - Real verified database statistics
+router.get('/platform-stats', async (req, res, next) => {
+  try {
+    const [
+      totalUniversities,
+      totalPublicUniversities,
+      totalPrivateUniversities,
+      totalGraduateUniversities,
+      totalOpenUniversities,
+      totalPrograms,
+      totalScholarships,
+      totalReviews,
+      totalServices,
+    ] = await Promise.all([
+      prisma.university.count({ where: { published: true } }),
+      prisma.university.count({ where: { type: 'PUBLIC', published: true } }),
+      prisma.university.count({ where: { type: 'PRIVATE', published: true } }),
+      prisma.university.count({ where: { graduateAdmissionOpen: true, published: true } }),
+      prisma.university.count({ where: { admissionStatus: 'OPEN', published: true } }),
+      prisma.academicProgram.count({ where: { published: true } }),
+      prisma.scholarship.count({ where: { status: 'ACTIVE', published: true } }),
+      prisma.universityReview.count({ where: { status: 'APPROVED' } }),
+      prisma.service.count({ where: { published: true } }),
+    ]);
+
+    res.json({
+      success: true,
+      data: {
+        totalUniversities,
+        totalPublicUniversities,
+        totalPrivateUniversities,
+        totalGraduateUniversities,
+        totalOpenUniversities,
+        totalPrograms,
+        totalScholarships,
+        totalReviews,
+        totalServices,
+        experienceYears: 8,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

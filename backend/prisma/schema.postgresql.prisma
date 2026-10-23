@@ -46,14 +46,25 @@ model University {
   websiteUrl      String?
   logoUrl         String?
   coverImageUrl   String?
-  featured        Boolean                 @default(false)
-  published       Boolean                 @default(true)
+  videoUrl              String?
+  galleryImages         String?
+  admissionStatus       String                  @default("OPEN") // OPEN, UPCOMING, CLOSED
+  admissionStartDate    DateTime?
+  admissionEndDate      DateTime?
+  announcementText      String?
+  graduateAdmissionOpen Boolean                 @default(true)
+  featured              Boolean                 @default(false)
+  published             Boolean                 @default(true)
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
 
   translations    UniversityTranslation[]
   programs        AcademicProgram[]
   scholarships    Scholarship[]
+
+  @@index([published, ranking])
+  @@index([city])
+  @@index([type])
 }
 
 model UniversityTranslation {
@@ -103,6 +114,10 @@ model AcademicProgram {
   translations       ProgramTranslation[]
 
   @@unique([universityId, slug])
+
+  @@index([universityId, published])
+  @@index([published, studyLanguage, degreeLevel])
+  @@index([categoryId])
 }
 
 model ProgramTranslation {
@@ -212,6 +227,8 @@ model Scholarship {
   updatedAt          DateTime                 @updatedAt
 
   translations       ScholarshipTranslation[]
+
+  @@index([published])
 }
 
 model ScholarshipTranslation {
@@ -241,6 +258,8 @@ model Article {
   updatedAt        DateTime             @updatedAt
 
   translations     ArticleTranslation[]
+
+  @@index([published])
 }
 
 model ArticleTranslation {
@@ -282,6 +301,8 @@ model StudentApplication {
   documents           ApplicationDocument[]
   statusHistory       ApplicationStatusHistory[]
   internalNotes       ApplicationNote[]
+
+  @@index([status, createdAt])
 }
 
 model ApplicationDocument {

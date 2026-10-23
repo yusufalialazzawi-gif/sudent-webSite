@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Image as ImageIcon,
@@ -117,7 +118,7 @@ export default function AdminMediaLibraryPage() {
 
         <label className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 hover:from-brand-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition">
           <Upload size={16} />
-          <span>{uploading ? 'جاري الرفع...' : 'رفع ملف جديد'}</span>
+          <span>{uploading ? ta('جاري الرفع...') : ta('رفع ملف جديد')}</span>
           <input
             type="file"
             onChange={handleFileUpload}
@@ -148,7 +149,7 @@ export default function AdminMediaLibraryPage() {
               typeFilter === '' ? 'bg-brand-navy-950 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            الكل
+            {ta("الكل")}
           </button>
           <button
             onClick={() => setTypeFilter('IMAGE')}
@@ -156,7 +157,7 @@ export default function AdminMediaLibraryPage() {
               typeFilter === 'IMAGE' ? 'bg-brand-navy-950 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            الصور
+            {ta("الصور")}
           </button>
           <button
             onClick={() => setTypeFilter('DOCUMENT')}
@@ -164,7 +165,7 @@ export default function AdminMediaLibraryPage() {
               typeFilter === 'DOCUMENT' ? 'bg-brand-navy-950 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
-            المستندات
+            {ta("المستندات")}
           </button>
         </div>
       </div>
@@ -173,7 +174,7 @@ export default function AdminMediaLibraryPage() {
       {isLoading ? (
         <div className="p-12 text-center text-slate-400 bg-white rounded-2xl border border-slate-200">
           <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <span>جاري تحميل مكتبة الوسائط...</span>
+          <span>{ta("جاري تحميل مكتبة الوسائط...")}</span>
         </div>
       ) : assets.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -214,7 +215,7 @@ export default function AdminMediaLibraryPage() {
                   </button>
                   <button
                     onClick={() => {
-                      if (confirm(`حذف الملف ${asset.originalName}؟`)) {
+                      if (confirm(tx(`حذف الملف ${asset.originalName}؟`, `${asset.originalName} dosyasını silmek istiyor musunuz?`, `Delete file ${asset.originalName}?`))) {
                         deleteMutation.mutate(asset.id);
                       }
                     }}
@@ -241,7 +242,7 @@ export default function AdminMediaLibraryPage() {
         </div>
       ) : (
         <div className="p-12 text-center text-slate-400 bg-white rounded-2xl border border-slate-200 text-sm">
-          لا توجد وسائط مرفوعة مطابقة للبحث
+          {ta("لا توجد وسائط مرفوعة مطابقة للبحث")}
         </div>
       )}
 
@@ -250,7 +251,7 @@ export default function AdminMediaLibraryPage() {
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b pb-3">
-              <h3 className="font-bold text-slate-900 text-sm">تعديل نصوص الـ SEO البديلة (Alt Tags)</h3>
+              <h3 className="font-bold text-slate-900 text-sm">{ta("تعديل نصوص الـ SEO البديلة (Alt Tags)")}</h3>
               <button onClick={() => setEditingAsset(null)} className="p-1 text-slate-400 hover:text-slate-600">
                 <X size={18} />
               </button>
@@ -258,12 +259,12 @@ export default function AdminMediaLibraryPage() {
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">النص البديل بالعربية (Alt Text AR)</label>
+                <label className="block font-bold text-slate-700 mb-1">{ta("النص البديل بالعربية (Alt Text AR)")}</label>
                 <input
                   type="text"
                   value={altTexts.ar}
                   onChange={(e) => setAltTexts({ ...altTexts, ar: e.target.value })}
-                  placeholder="مبنى الحرم الجامعي لجامعة اسطنبول ميديبول"
+                  placeholder={ta("مبنى الحرم الجامعي لجامعة اسطنبول ميديبول")}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                 />
               </div>
@@ -297,7 +298,7 @@ export default function AdminMediaLibraryPage() {
                 onClick={() => setEditingAsset(null)}
                 className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
               >
-                إلغاء
+                {ta("إلغاء")}
               </button>
               <button
                 type="button"
@@ -314,7 +315,7 @@ export default function AdminMediaLibraryPage() {
                 disabled={updateMutation.isPending}
                 className="px-5 py-2 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow transition disabled:opacity-50"
               >
-                {updateMutation.isPending ? 'جاري الحفظ...' : 'حفظ التغييرات'}
+                {updateMutation.isPending ? ta('جاري الحفظ...') : ta('حفظ التغييرات')}
               </button>
             </div>
           </div>

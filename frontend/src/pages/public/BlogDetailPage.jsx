@@ -29,9 +29,11 @@ export default function BlogDetailPage() {
   if (isError || !data?.data) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800 font-cairo">لم يتم العثور على المقال</h2>
+        <h2 className="text-2xl font-bold text-slate-800 font-cairo">
+          {currentLang === 'ar' ? 'لم يتم العثور على المقال' : currentLang === 'tr' ? 'Makale bulunamadı' : 'Article not found'}
+        </h2>
         <Link to="/blog" className="inline-block px-5 py-2.5 bg-brand-amber-500 text-white rounded-xl text-xs font-bold">
-          العودة للمدونة
+          {currentLang === 'ar' ? 'العودة للمدونة' : currentLang === 'tr' ? 'Bloga Geri Dön' : 'Back to Blog'}
         </Link>
       </div>
     );

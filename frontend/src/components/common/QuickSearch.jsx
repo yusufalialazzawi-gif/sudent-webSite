@@ -107,8 +107,8 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
           <Search className="w-5 h-5 absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
         </div>
 
-        {/* 4 Multi-Select Filters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* Multi-Select Filters - Generous 2-column layout to prevent text clipping */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
           {/* Degree Level */}
           <div className="space-y-1">
             <label className={`text-[11px] font-bold uppercase tracking-wider block ${isEmbedded ? 'text-slate-500' : 'text-slate-300'}`}>

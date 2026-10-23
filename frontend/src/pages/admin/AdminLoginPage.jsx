@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { ta } from '../../i18n/adminText';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, KeyRound, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
@@ -10,15 +11,14 @@ export default function AdminLoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, isAuthenticated } = useAuth();
-  const { currentLanguage, changeLanguage, isRtl } = useLanguage();
+  const { currentLanguage, changeLanguage, isRtl, tx } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || '/admin';
 
   if (isAuthenticated) {
-    navigate('/admin', { replace: true });
-    return null;
+    return <Navigate to="/admin" replace />;
   }
 
   const handleSubmit = async (e) => {
@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
       await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.message || 'فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد.');
+      setError(err.message || tx('فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد.', 'Giriş başarısız. Lütfen bilgilerinizi kontrol edin.', 'Login failed. Please check your credentials.'));
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
             currentLanguage === 'ar' ? 'bg-brand-amber-500 text-white' : 'text-slate-400 hover:text-white'
           }`}
         >
-          عربي
+          {ta("عربي")}
         </button>
         <button
           onClick={() => changeLanguage('tr')}
@@ -80,13 +80,13 @@ export default function AdminLoginPage() {
         {/* Brand Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white p-1 shadow-xl shadow-brand-amber-500/10 mb-4 border border-brand-amber-500/40">
-            <img src="/logo.jpg" alt="المجد للقبولات الجامعية" className="w-full h-full object-contain rounded-xl" />
+            <img src="/logo.jpg" alt={ta("المجد للقبولات الجامعية")} className="w-full h-full object-contain rounded-xl" />
           </div>
           <h1 className="text-2xl font-black text-white tracking-wide font-cairo">
             {currentLanguage === 'ar' ? 'المجد للقبولات الجامعية' : currentLanguage === 'tr' ? 'El-Mecd Üniversite Kabulleri' : 'Al-Majd Admissions Portal'}
           </h1>
           <p className="text-sm text-slate-400 mt-2">
-            {currentLanguage === 'ar' ? 'بوابة الإدارة المركزية لمتابعة ملفات الطلاب والجامعات' : 'Central admissions and university catalog management portal'}
+            {tx('بوابة الإدارة المركزية لمتابعة ملفات الطلاب والجامعات', 'Öğrenci dosyaları ve üniversite kataloğu için merkezi yönetim portalı', 'Central admissions and university catalog management portal')}
           </p>
         </div>
 
@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-2">
-              {currentLanguage === 'ar' ? 'البريد الإلكتروني' : 'Email Address'}
+              {tx('البريد الإلكتروني', 'E-posta Adresi', 'Email Address')}
             </label>
             <div className="relative">
               <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
 
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-2">
-              {currentLanguage === 'ar' ? 'كلمة المرور' : 'Password'}
+              {tx('كلمة المرور', 'Şifre', 'Password')}
             </label>
             <div className="relative">
               <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
@@ -143,7 +143,7 @@ export default function AdminLoginPage() {
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
-                <span>{currentLanguage === 'ar' ? 'تسجيل الدخول' : 'Sign In to Portal'}</span>
+                <span>{tx('تسجيل الدخول', 'Portala Giriş Yap', 'Sign In to Portal')}</span>
                 <ArrowRight size={18} className={isRtl ? 'rotate-180' : ''} />
               </>
             )}
@@ -154,7 +154,7 @@ export default function AdminLoginPage() {
         <div className="mt-8 pt-6 border-t border-slate-800/80">
           <div className="text-xs font-semibold text-slate-400 text-center mb-3 flex items-center justify-center gap-1.5">
             <KeyRound size={14} className="text-brand-amber-500" />
-            <span>{currentLanguage === 'ar' ? 'حسابات تجريبية سريعة' : 'Quick Demo Accounts'}</span>
+            <span>{tx('حسابات تجريبية سريعة', 'Hızlı Demo Hesapları', 'Quick Demo Accounts')}</span>
           </div>
 
           <div className="grid grid-cols-1 gap-2">

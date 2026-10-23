@@ -1,0 +1,48 @@
+[
+{"slug":"halic-universitesi","nameTr":"Haliç Üniversitesi","facultyCount":8,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen, köklü programlarından"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık kampüsü ve hastane uygulamalı eğitim"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Güçlü sağlık bilimleri altyapısı ve klinik uygulama"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tarihi yarımada yakınında tasarım odaklı eğitim"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektör odaklı eğitim"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"İstanbul teknoloji ekosistemine yakın mühendislik eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Hali%C3%A7_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"hasan-kalyoncu-university","nameTr":"Hasan Kalyoncu Üniversitesi","facultyCount":9,"departmentCount":30,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Bölgenin güçlü vakıf hukuk programlarından"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Uygulama merkezli eğitim ve yüksek tercih oranı"},
+ {"tr":"Rehberlik ve Psikolojik Danışmanlık","en":"Guidance and Psychological Counseling","reason":"Eğitim fakültesinin köklü ve güçlü programı"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Gaziantep hastaneleriyle iş birliğinde klinik eğitim"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Sanayi kenti Gaziantep'te sektör iş birlikleri"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Uygulamalı stüdyo eğitimi ve bölgesel projeler"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Hasan_Kalyoncu_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"igdir-universitesi","nameTr":"Iğdır Üniversitesi","facultyCount":10,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Ziraat (Bahçe Bitkileri)","en":"Agriculture (Horticulture)","reason":"Iğdır Ovası'nın tarım potansiyeline dayalı uzmanlaşma"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık Bilimleri Fakültesi'nin en çok tercih edilen programı"},
+ {"tr":"İlahiyat","en":"Theology","reason":"Bölgenin köklü dini yükseköğretim geleneği"},
+ {"tr":"Turizm Rehberliği","en":"Tourism Guidance","reason":"Ağrı Dağı bölgesinde saha uygulama avantajı"},
+ {"tr":"Beden Eğitimi ve Spor","en":"Physical Education and Sports","reason":"Spor Bilimleri Fakültesi'nin bölgesel başarısı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/I%C4%9Fd%C4%B1r_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"inonu-universitesi","nameTr":"İnönü Üniversitesi","facultyCount":14,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Turgut Özal Tıp Merkezi, karaciğer naklinde dünya çapında"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Köklü eczacılık eğitimi ve güçlü araştırma altyapısı"},
+ {"tr":"Eğitim (Sınıf Öğretmenliği)","en":"Education","reason":"Bölgenin en köklü öğretmen yetiştirme kurumu"},
+ {"tr":"Hukuk","en":"Law","reason":"Malatya adliyesiyle iş birliğinde uygulamalı eğitim"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Turgut Özal Tıp Merkezi'nde yoğun klinik uygulama"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0n%C3%B6n%C3%BC_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"isik-universitesi","nameTr":"Işık Üniversitesi","facultyCount":3,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"MÜDEK akreditasyonlu, Şile kampüsünde güçlü laboratuvarlar"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"İngilizce eğitim ve yüksek tercih edilen program"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım odaklı stüdyo eğitimi geleneği"},
+ {"tr":"Endüstri Mühendisliği","en":"Industrial Engineering","reason":"MÜDEK akreditasyonlu ve sektör bağlantılı program"},
+ {"tr":"İşletme","en":"Business Administration","reason":"İngilizce eğitim ve uluslararası çift diploma seçenekleri"},
+ {"tr":"Görsel İletişim Tasarımı","en":"Visual Communication Design","reason":"Güzel sanatlar geleneğinden gelen tasarım eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/I%C5%9F%C4%B1k_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-29-mayis-universitesi","nameTr":"İstanbul 29 Mayıs Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Güçlü akademik kadro ve yüksek yerleşme puanları"},
+ {"tr":"Arap Dili ve Edebiyatı","en":"Arabic Language and Literature","reason":"Şarkiyat geleneğinde Türkiye'nin öncü programlarından"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"İngilizce eğitim ve uygulamalı araştırma odaklılık"},
+ {"tr":"Felsefe","en":"Philosophy","reason":"Klasik ve çağdaş felsefede yetkin akademik kadro"},
+ {"tr":"İngilizce Mütercim-Tercümanlık","en":"English Translation and Interpreting","reason":"Dil eğitiminde köklü kurum geleneği"},
+ {"tr":"Tarih","en":"History","reason":"Osmanlı araştırmalarında güçlü uzmanlık altyapısı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_29_May%C4%B1s_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

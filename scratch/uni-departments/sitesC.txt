@@ -1,0 +1,15 @@
+marmara-universitesi|https://marmara.edu.tr/universite/akademik-birimler/fakulteler
+mersin-universitesi|https://www.mersin.edu.tr/akademik-birimler
+manisa-celal-bayar-universitesi|https://www.cbu.edu.tr/tr/sayfa/akademik-birimler
+kocaeli-universitesi|https://www.kocaeli.edu.tr/birimler.php
+pamukkale-universitesi|https://pau.edu.tr
+ordu-universitesi|https://www.odu.edu.tr/tr/sayfa/akademik-birimler
+sanko-university|https://www.sanko.edu.tr
+piri-reis-universitesi|https://pirireis.edu.tr/akademik/
+recep-tayyip-erdogan-universitesi|https://www.erdogan.edu.tr/tr/kurumsal/akademik-birimler
+siirt-universitesi|https://www.siirt.edu.tr/menumobile/akademik/836698.html
+sinop-universitesi|https://www.sinop.edu.tr/akademik-birimler
+suleyman-demirel-universitesi|https://sdu.edu.tr/tr-TR/Birimler/Liste/3/akademik-birimler
+trakya-universitesi|https://trakya.edu.tr/birimler
+yalova-universitesi|https://www.yalova.edu.tr/tr/sayfa/akademik-birimler
+yasar-university|https://www.yasar.edu.tr/tr/akademik-birimler

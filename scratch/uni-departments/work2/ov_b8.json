@@ -1,0 +1,10 @@
+[
+{"slug":"kafkas-universitesi","nameTr":"Kafkas Üniversitesi","facultyCount":12,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Veteriner Hekimliği","en":"Veterinary Medicine","reason":"Hayvan hastanesiyle bölgenin köklü veterinerlik eğitimi"},
+ {"tr":"Tıp","en":"Medicine","reason":"Kafkas Üniversitesi Hastanesi ile klinik eğitim"},
+ {"tr":"Eğitim (Sınıf Öğretmenliği)","en":"Education","reason":"Dede Korkut Eğitim Fakültesi'nin köklü geleneği"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık Bilimleri Fakültesi'nin en güçlü programı"},
+ {"tr":"Turizm Rehberliği","en":"Tourism Guidance","reason":"Sarıkamış kış turizmi sahasında uygulama avantajı"},
+ {"tr":"İlahiyat","en":"Theology","reason":"Bölgenin dini yükseköğretimde köklü kurumu"}],
+"sourceUrl":"https://www.kafkas.edu.tr/","asOf":"2026-10-22","confidence":"medium"}
+]

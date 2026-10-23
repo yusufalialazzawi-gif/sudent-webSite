@@ -1,0 +1,16 @@
+lokman-hekim-universitesi|https://www.lokmanhekim.edu.tr/akademik/fakulteler/
+maltepe-university|https://maltepe.edu.tr/tr/fakulteler
+mef-university|https://www.mef.edu.tr/tr/fakulteler
+ondokuz-mayis-universitesi|https://www.omu.edu.tr/tr/akademik/fakulteler
+ozyegin-university|https://www.ozyegin.edu.tr/tr/akademik/fakulteler
+sakarya-universitesi|https://www.sakarya.edu.tr/aboutus/akademikbirimler
+selcuk-universitesi|https://www.selcuk.edu.tr/Anasayfa/Akademik
+toros-university|https://toros.edu.tr/sayfalar/fakulteler
+uskudar-university|https://www.uskudar.edu.tr/akademik
+van-yuzuncu-yil-universitesi|https://www.yyu.edu.tr/Birimler
+yildiz-teknik-universitesi|https://www.yildiz.edu.tr/egitim/akademik-birimler
+ted-university|https://www.tedu.edu.tr/birimler
+tobb-ekonomi-ve-teknoloji-universitesi|https://www.etu.edu.tr/tr/akademik
+yeditepe-university|https://www.yeditepe.edu.tr/tr/akademik/lisans
+orta-dogu-teknik-universitesi|https://www.metu.edu.tr/undergraduate-programs-and-degrees
+kocaeli-saglik-ve-teknoloji-universitesi|https://aday.kstu.edu.tr/programlar/lisans-programlari/

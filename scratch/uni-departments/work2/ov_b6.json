@@ -1,0 +1,57 @@
+[
+{"slug":"istanbul-universitesi","nameTr":"İstanbul Üniversitesi","facultyCount":14,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp (İstanbul Tıp Fakültesi)","en":"Medicine (Istanbul Medical Faculty)","reason":"Çapa'da Türkiye'nin en köklü tıp eğitimi"},
+ {"tr":"Hukuk","en":"Law","reason":"1874'ten beri ülkenin en prestijli hukuk programı"},
+ {"tr":"İktisat","en":"Economics","reason":"Türkiye'nin ilk iktisat fakültesi geleneği"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Ülkenin en köklü psikoloji bölümlerinden"},
+ {"tr":"Tarih","en":"History","reason":"Osmanlı ve Cumhuriyet araştırmalarında öncü bölüm"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Köklü eczacılık eğitimi ve araştırma altyapısı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-university","nameTr":"İstanbul Üniversitesi","facultyCount":14,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp (İstanbul Tıp Fakültesi)","en":"Medicine (Istanbul Medical Faculty)","reason":"Çapa'da Türkiye'nin en köklü tıp eğitimi"},
+ {"tr":"Hukuk","en":"Law","reason":"1874'ten beri ülkenin en prestijli hukuk programı"},
+ {"tr":"İktisat","en":"Economics","reason":"Türkiye'nin ilk iktisat fakültesi geleneği"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Ülkenin en köklü psikoloji bölümlerinden"},
+ {"tr":"Tarih","en":"History","reason":"Osmanlı ve Cumhuriyet araştırmalarında öncü bölüm"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Köklü eczacılık eğitimi ve araştırma altyapısı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-yeni-yuzyil-universitesi","nameTr":"İstanbul Yeni Yüzyıl Üniversitesi","facultyCount":10,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Gaziosmanpaşa Hastanesi bağlantılı klinik eğitim"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Kendi diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Sağlık temalı üniversitenin güçlü programı"},
+ {"tr":"Hukuk","en":"Law","reason":"Merkezi yerleşkede uygulamaya yakın eğitim"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Hastane iş birlikleriyle klinik uygulama"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Yeni_Y%C3%BCzy%C4%B1l_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istinye-university","nameTr":"İstinye Üniversitesi","facultyCount":9,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Liv Hospital ve Medical Park ağında klinik eğitim"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Modern diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Sağlık odaklı üniversitenin güçlü programı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Yapay zeka odaklı güncel müfredat"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"MLP Care hastane ağında yoğun klinik uygulama"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektör odaklı eğitim"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stinye_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"izmir-university-of-economics","nameTr":"İzmir Ekonomi Üniversitesi","facultyCount":8,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"İşletme","en":"Business Administration","reason":"İzmir Ticaret Odası destekli, İngilizce eğitim"},
+ {"tr":"Uluslararası Ticaret ve Finansman","en":"International Trade and Finance","reason":"Ticaret odası ekosistemiyle sektör bağlantılı eğitim"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"ABET akreditasyonlu, yüksek puanlı program"},
+ {"tr":"Endüstriyel Tasarım","en":"Industrial Design","reason":"Türkiye'nin saygın tasarım programlarından"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım odaklı güçlü stüdyo eğitimi"},
+ {"tr":"Hukuk","en":"Law","reason":"İngilizce destekli güncel hukuk eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0zmir_Ekonomi_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"izmir-yuksek-teknoloji-enstitusu","nameTr":"İzmir Yüksek Teknoloji Enstitüsü (İYTE)","facultyCount":3,"departmentCount":19,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Teknopark İzmir ile iç içe araştırma odaklı eğitim"},
+ {"tr":"Moleküler Biyoloji ve Genetik","en":"Molecular Biology and Genetics","reason":"Türkiye'nin en güçlü yaşam bilimleri programlarından"},
+ {"tr":"Elektrik-Elektronik Mühendisliği","en":"Electrical-Electronics Engineering","reason":"Yüksek araştırma çıktısı, İngilizce eğitim"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Teknoloji ve tasarım odaklı nitelikli eğitim"},
+ {"tr":"Fotonik","en":"Photonics","reason":"Türkiye'de az bulunan öncü lisans programı"},
+ {"tr":"Kimya Mühendisliği","en":"Chemical Engineering","reason":"Güçlü araştırma merkezleriyle laboratuvar odaklı eğitim"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0zmir_Y%C3%BCksek_Teknoloji_Enstit%C3%BCs%C3%BC","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"kadir-has-university","nameTr":"Kadir Has Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"İngilizce destekli, saygın vakıf hukuk programı"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Uluslararası akreditasyon ve İngilizce eğitim"},
+ {"tr":"Yönetim Bilişim Sistemleri","en":"Management Information Systems","reason":"Teknoloji ve işletmeyi birleştiren güçlü program"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"İngilizce eğitim ve araştırma odaklı kadro"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Merkezi Cibali kampüsünde tasarım eğitimi"},
+ {"tr":"Yeni Medya ve İletişim","en":"New Media and Communication","reason":"Türkiye'nin öncü yeni medya programlarından"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Kadir_Has_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

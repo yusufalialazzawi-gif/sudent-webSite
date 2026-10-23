@@ -59,6 +59,7 @@ export async function request(endpoint, options = {}) {
 export const api = {
   // Public
   getPublicSettings: () => request('/settings/public'),
+  getPlatformStats: () => request('/public/platform-stats'),
   getSearchOptions: () => request('/public/search-options'),
   getTestimonials: () => request('/public/testimonials'),
   getFaqs: (category, lang) => request(`/public/faqs?${new URLSearchParams({ ...(category && { category }), lang }).toString()}`),
@@ -68,6 +69,8 @@ export const api = {
   // Universities
   getUniversities: (params = {}) => request(`/universities?${new URLSearchParams(params).toString()}`),
   getUniversityBySlug: (slug, lang) => request(`/universities/${slug}?lang=${lang || 'ar'}`),
+  getAdmissionAnnouncements: (params = {}) => request(`/universities/announcements?${new URLSearchParams(params).toString()}`),
+  updateAdmissionStatus: (id, data) => request(`/universities/admin/${id}/admission-status`, { method: 'PATCH', body: data }),
   
   // Programs
   getCategories: () => request('/programs/categories'),
@@ -104,9 +107,26 @@ export const api = {
 
   // Admin Universities
   getAdminUniversities: () => request('/universities/admin/all'),
+  getImportRegistry: () => request('/universities/admin/import-registry'),
+  importUniversitiesBatch: (data) => request('/universities/admin/import-batch', { method: 'POST', body: data }),
+  uploadUniversityVideo: (formData) => request('/universities/admin/upload-video', { method: 'POST', body: formData, isFormData: true }),
   createUniversity: (data) => request('/universities/admin', { method: 'POST', body: data }),
   updateUniversity: (id, data) => request(`/universities/admin/${id}`, { method: 'PUT', body: data }),
   deleteUniversity: (id) => request(`/universities/admin/${id}`, { method: 'DELETE' }),
+
+  // Student Reviews & Testimonials
+  getUniversityReviews: (slug) => request(`/reviews/university/${slug}`),
+  submitUniversityReview: (slug, data) => request(`/reviews/university/${slug}`, { method: 'POST', body: data }),
+  getAdminReviews: (params = {}) => request(`/reviews/admin/all?${new URLSearchParams(params).toString()}`),
+  createAdminReview: (data) => request('/reviews/admin', { method: 'POST', body: data }),
+  moderateReview: (id, data) => request(`/reviews/admin/${id}`, { method: 'PATCH', body: data }),
+  deleteReview: (id) => request(`/reviews/admin/${id}`, { method: 'DELETE' }),
+
+  // Admin Student Testimonials (with Photos & Multi-language Quotes)
+  getAdminTestimonials: () => request('/reviews/testimonials/admin'),
+  createAdminTestimonial: (data) => request('/reviews/testimonials/admin', { method: 'POST', body: data }),
+  updateAdminTestimonial: (id, data) => request(`/reviews/testimonials/admin/${id}`, { method: 'PUT', body: data }),
+  deleteAdminTestimonial: (id) => request(`/reviews/testimonials/admin/${id}`, { method: 'DELETE' }),
 
   // Admin Programs
   getAdminPrograms: () => request('/programs/admin/all'),
@@ -121,6 +141,11 @@ export const api = {
   assignApplication: (id, staffId) => request(`/applications/admin/${id}/assign`, { method: 'PATCH', body: { staffId } }),
   addApplicationNote: (id, noteText) => request(`/applications/admin/${id}/notes`, { method: 'POST', body: { noteText } }),
   downloadDocumentUrl: (docId) => `/api/applications/admin/documents/${docId}/download`,
+
+  // Contact Inquiries (Website Leads)
+  getAdminInquiries: () => request('/public/inquiries/admin'),
+  updateInquiryStatus: (id, status) => request(`/public/inquiries/admin/${id}/status`, { method: 'PATCH', body: { status } }),
+  deleteInquiry: (id) => request(`/public/inquiries/admin/${id}`, { method: 'DELETE' }),
 
   // Admin Services
   getAdminServices: () => request('/services/admin/all'),
@@ -164,6 +189,7 @@ export const api = {
 
   // Admin Settings
   getAdminSettings: () => request('/settings/admin'),
+  getSettingsSchema: () => request('/settings/schema'),
   updateAdminSettings: (settings) => request('/settings/admin', { method: 'PUT', body: { settings } }),
 
   // Admin Staff & Audit

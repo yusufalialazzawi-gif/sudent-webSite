@@ -68,11 +68,6 @@ export default function ProgramDetailPage() {
   const career = translation.careerOpportunities || '';
   const uniName = uniTrans.name || program.university?.slug || 'Turkish University';
 
-  const hasDiscount = program.discountedTuition && program.discountedTuition < program.annualTuition;
-  const discountPercent = hasDiscount
-    ? Math.round(((program.annualTuition - program.discountedTuition) / program.annualTuition) * 100)
-    : 0;
-
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-10">
       {/* Header Banner */}
@@ -141,34 +136,10 @@ export default function ProgramDetailPage() {
         <div className="lg:col-span-4 space-y-6">
           <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-5">
             <h3 className="font-bold text-base text-brand-navy-950 font-cairo border-b border-slate-100 pb-3">
-              تفاصيل القسط والمدة
+              معلومات البرنامج والتسجيل
             </h3>
 
-            <div>
-              <span className="text-xs text-slate-500 block mb-1">الرسوم الدراسية السنوية:</span>
-              {hasDiscount ? (
-                <div>
-                  <span className="text-xs text-slate-400 line-through block">
-                    ${program.annualTuition.toLocaleString()}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-black text-emerald-600 font-cairo">
-                      ${program.discountedTuition.toLocaleString()}
-                    </span>
-                    <span className="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">
-                      خصم {discountPercent}%
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <span className="text-2xl font-black text-brand-navy-950 font-cairo">
-                  ${program.annualTuition.toLocaleString()}
-                </span>
-              )}
-              <span className="text-xs text-slate-400 block mt-0.5">{program.currency} / العام الدراسي {program.academicYear}</span>
-            </div>
-
-            <div className="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+            <div className="space-y-3 text-xs text-slate-600">
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">مدة الدراسة:</span>
                 <span className="font-bold text-slate-900">{program.durationYears} سنوات</span>
@@ -176,6 +147,14 @@ export default function ProgramDetailPage() {
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">حالة التقديم:</span>
                 <span className="font-bold text-emerald-600">مفتوح للعام الحالي</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400">العام الأكاديمي:</span>
+                <span className="font-bold text-slate-900">{program.academicYear || '2026 - 2027'}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400">نوع القبول:</span>
+                <span className="font-bold text-emerald-600">قبول مباشر بدون يوس</span>
               </div>
             </div>
 

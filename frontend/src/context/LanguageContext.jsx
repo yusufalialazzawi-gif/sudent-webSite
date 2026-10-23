@@ -30,12 +30,16 @@ export const LanguageProvider = ({ children }) => {
     }
   };
 
+  // Inline trilingual text helper: tx(arabic, turkish, english)
+  const tx = (ar, tr, en) => (currentLang === 'ar' ? ar : currentLang === 'tr' ? (tr ?? en) : en);
+
   return (
     <LanguageContext.Provider
       value={{
         currentLang,
         currentLanguage: currentLang,
         isRtl,
+        tx,
         changeLanguage,
         languages: [
           { code: 'ar', label: 'العربية', dir: 'rtl', flag: '🇸🇦' },

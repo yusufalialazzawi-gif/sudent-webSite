@@ -24,7 +24,11 @@ export default function CoursesPage() {
           {t('courses.title')}
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-brand-navy-950 font-cairo">
-          دورات التحضير للامتحانات واللغة في تركيا
+          {currentLang === 'ar'
+            ? 'دورات التحضير للامتحانات واللغة في تركيا'
+            : currentLang === 'tr'
+            ? 'Türkiye’de Sınav Hazırlık ve Dil Kursları'
+            : 'Exam Preparation & Language Courses in Turkey'}
         </h1>
         <p className="text-slate-600 text-sm leading-relaxed">
           {t('courses.subtitle')}
@@ -38,7 +42,7 @@ export default function CoursesPage() {
               !studyMode ? 'bg-brand-navy-950 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            جميع الأنماط
+            {currentLang === 'ar' ? 'جميع الأنماط' : currentLang === 'tr' ? 'Tüm Eğitim Şekilleri' : 'All Modes'}
           </button>
           <button
             onClick={() => setStudyMode('ONLINE')}
@@ -46,7 +50,7 @@ export default function CoursesPage() {
               studyMode === 'ONLINE' ? 'bg-brand-amber-500 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            عن بُعد (أونلاين)
+            {currentLang === 'ar' ? 'عن بُعد (أونلاين)' : currentLang === 'tr' ? 'Online / Uzaktan' : 'Online'}
           </button>
           <button
             onClick={() => setStudyMode('HYBRID')}
@@ -54,7 +58,7 @@ export default function CoursesPage() {
               studyMode === 'HYBRID' ? 'bg-brand-amber-500 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            مدمج وحضوري
+            {currentLang === 'ar' ? 'مدمج وحضوري' : currentLang === 'tr' ? 'Yüz Yüze & Hibrit' : 'In-Person & Hybrid'}
           </button>
         </div>
       </div>
@@ -68,7 +72,7 @@ export default function CoursesPage() {
         </div>
       ) : isError ? (
         <div className="p-6 bg-red-50 text-red-700 rounded-2xl text-center text-sm font-bold">
-          {error?.message || 'حدث خطأ في جلب الدورات.'}
+          {error?.message || (currentLang === 'ar' ? 'حدث خطأ في جلب الدورات.' : currentLang === 'tr' ? 'Kurs verileri yüklenirken hata oluştu.' : 'Failed to load courses.')}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

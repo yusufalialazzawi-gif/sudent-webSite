@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Layers,
@@ -165,7 +166,7 @@ export default function AdminPageBuilderPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 text-white rounded-xl text-xs font-bold shadow-md hover:from-brand-amber-600 hover:to-amber-700 transition"
         >
           <Plus size={16} />
-          <span>{currentLanguage === 'ar' ? 'إضافة قسم جديد' : 'Add Section'}</span>
+          <span>{tx('إضافة قسم جديد', 'Yeni Bölüm Ekle', 'Add Section')}</span>
         </button>
       </div>
 
@@ -177,7 +178,7 @@ export default function AdminPageBuilderPage() {
             selectedPage === 'home' ? 'bg-brand-navy-950 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          الصفحة الرئيسية (Home Page)
+          {tx('الصفحة الرئيسية (Home Page)', 'Ana Sayfa (Home Page)', 'Home Page')}
         </button>
         <button
           onClick={() => setSelectedPage('about')}
@@ -185,7 +186,7 @@ export default function AdminPageBuilderPage() {
             selectedPage === 'about' ? 'bg-brand-navy-950 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          صفحة من نحن (About)
+          {tx('صفحة من نحن (About)', 'Hakkımızda Sayfası (About)', 'About Page')}
         </button>
       </div>
 
@@ -194,95 +195,114 @@ export default function AdminPageBuilderPage() {
         {isLoading ? (
           <div className="p-12 text-center text-slate-400 bg-white rounded-2xl border border-slate-200">
             <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <span>جاري تحميل هيكل الصفحة...</span>
+            <span>{tx('جاري تحميل هيكل الصفحة...', 'Sayfa yapısı yükleniyor...', 'Loading page structure...')}</span>
           </div>
         ) : sections.length > 0 ? (
-          sections.map((sec, idx) => (
-            <div
-              key={sec.id}
-              className={`p-4 rounded-2xl border transition bg-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm ${
-                !sec.isEnabled ? 'opacity-60 bg-slate-50' : 'hover:border-brand-amber-500/40'
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                {/* Reorder Buttons */}
-                <div className="flex flex-col gap-1">
-                  <button
-                    disabled={idx === 0}
-                    onClick={() => moveSection(idx, 'up')}
-                    className="p-1 text-slate-400 hover:text-brand-navy-900 disabled:opacity-20 rounded hover:bg-slate-100"
-                    title="Move Up"
-                  >
-                    <ArrowUp size={14} />
-                  </button>
-                  <button
-                    disabled={idx === sections.length - 1}
-                    onClick={() => moveSection(idx, 'down')}
-                    className="p-1 text-slate-400 hover:text-brand-navy-900 disabled:opacity-20 rounded hover:bg-slate-100"
-                    title="Move Down"
-                  >
-                    <ArrowDown size={14} />
-                  </button>
-                </div>
+          sections.map((sec, idx) => {
+            const displayTitle =
+              (currentLanguage === 'ar' ? sec.titleAr : currentLanguage === 'en' ? sec.titleEn : sec.titleTr) ||
+              sec.titleAr ||
+              sec.titleTr ||
+              sec.titleEn ||
+              sec.sectionKey;
+            const displaySubtitle =
+              (currentLanguage === 'ar' ? sec.subtitleAr : currentLanguage === 'en' ? sec.subtitleEn : sec.subtitleTr) ||
+              sec.subtitleAr ||
+              sec.subtitleTr ||
+              sec.subtitleEn ||
+              '';
 
-                <div className="w-8 h-8 rounded-xl bg-brand-navy-950 text-white flex items-center justify-center text-xs font-bold shadow-sm">
-                  {sec.sortOrder || idx + 1}
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-black text-slate-900 text-sm">{sec.titleAr || sec.sectionKey}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono">
-                      {sec.sectionKey}
-                    </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">
-                      {sec.sectionType}
-                    </span>
+            return (
+              <div
+                key={sec.id}
+                className={`p-4 rounded-2xl border transition bg-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm ${
+                  !sec.isEnabled ? 'opacity-60 bg-slate-50' : 'hover:border-brand-amber-500/40'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  {/* Reorder Buttons */}
+                  <div className="flex flex-col gap-1">
+                    <button
+                      disabled={idx === 0}
+                      onClick={() => moveSection(idx, 'up')}
+                      className="p-1 text-slate-400 hover:text-brand-navy-900 disabled:opacity-20 rounded hover:bg-slate-100"
+                      title={tx('تحريك للأعلى', 'Yukarı Taşı', 'Move Up')}
+                    >
+                      <ArrowUp size={14} />
+                    </button>
+                    <button
+                      disabled={idx === sections.length - 1}
+                      onClick={() => moveSection(idx, 'down')}
+                      className="p-1 text-slate-400 hover:text-brand-navy-900 disabled:opacity-20 rounded hover:bg-slate-100"
+                      title={tx('تحريك للأسفل', 'Aşağı Taşı', 'Move Down')}
+                    >
+                      <ArrowDown size={14} />
+                    </button>
                   </div>
-                  <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">{sec.subtitleAr || 'لا يوجد عنوان فرعي'}</p>
+
+                  <div className="w-8 h-8 rounded-xl bg-brand-navy-950 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                    {sec.sortOrder || idx + 1}
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-black text-slate-900 text-sm">{displayTitle}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono">
+                        {sec.sectionKey}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">
+                        {sec.sectionType}
+                      </span>
+                    </div>
+                    {displaySubtitle ? (
+                      <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">{displaySubtitle}</p>
+                    ) : (
+                      <p className="text-xs text-slate-300 mt-0.5 italic">{tx('لا يوجد عنوان فرعي', 'Alt başlık yok', 'No subtitle')}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2 self-end md:self-center">
+                  <button
+                    onClick={() => toggleStatusMutation.mutate({ id: sec.id, isEnabled: !sec.isEnabled })}
+                    className={`p-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+                      sec.isEnabled
+                        ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    }`}
+                    title={sec.isEnabled ? tx('تعطيل القسم', 'Bölümü Pasifleştir', 'Disable Section') : tx('تفعيل القسم', 'Bölümü Aktifleştir', 'Enable Section')}
+                  >
+                    {sec.isEnabled ? <Eye size={16} /> : <EyeOff size={16} />}
+                    <span>{sec.isEnabled ? tx('مفعل', 'Aktif', 'Active') : tx('معطل', 'Pasif', 'Inactive')}</span>
+                  </button>
+
+                  <button
+                    onClick={() => openEditModal(sec)}
+                    className="p-2 text-slate-600 hover:text-brand-navy-950 hover:bg-slate-100 rounded-xl transition"
+                    title={tx('تعديل القسم', 'Bölümü Düzenle', 'Edit Section')}
+                  >
+                    <Edit size={16} />
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      if (confirm(tx(`هل أنت متأكد من حذف قسم ${sec.sectionKey}؟`, `${sec.sectionKey} bölümünü silmek istediğinize emin misiniz?`, `Are you sure you want to delete section ${sec.sectionKey}?`))) {
+                        deleteMutation.mutate(sec.id);
+                      }
+                    }}
+                    className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-xl transition"
+                    title={tx('حذف القسم', 'Bölümü Sil', 'Delete Section')}
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
               </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-2 self-end md:self-center">
-                <button
-                  onClick={() => toggleStatusMutation.mutate({ id: sec.id, isEnabled: !sec.isEnabled })}
-                  className={`p-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
-                    sec.isEnabled
-                      ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
-                      : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                  }`}
-                  title={sec.isEnabled ? 'Disable Section' : 'Enable Section'}
-                >
-                  {sec.isEnabled ? <Eye size={16} /> : <EyeOff size={16} />}
-                  <span>{sec.isEnabled ? 'مفعل' : 'معطل'}</span>
-                </button>
-
-                <button
-                  onClick={() => openEditModal(sec)}
-                  className="p-2 text-slate-600 hover:text-brand-navy-950 hover:bg-slate-100 rounded-xl transition"
-                  title="Edit Section"
-                >
-                  <Edit size={16} />
-                </button>
-
-                <button
-                  onClick={() => {
-                    if (confirm(`هل أنت متأكد من حذف قسم ${sec.sectionKey}؟`)) {
-                      deleteMutation.mutate(sec.id);
-                    }
-                  }}
-                  className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-xl transition"
-                  title="Delete Section"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="p-12 text-center text-slate-400 bg-white rounded-2xl border border-slate-200 text-sm">
-            لا توجد أقسام مسجلة لهذه الصفحة
+            {tx('لا توجد أقسام مسجلة لهذه الصفحة', 'Bu sayfa için kayıtlı bölüm bulunamadı.', 'No sections found for this page.')}
           </div>
         )}
       </div>
@@ -294,9 +314,9 @@ export default function AdminPageBuilderPage() {
             <div className="p-6 bg-brand-navy-950 text-white flex items-center justify-between">
               <div>
                 <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">
-                  {editingId ? 'تعديل قسم الصفحة' : 'إضافة قسم جديد'}
+                  {editingId ? tx('تعديل قسم الصفحة', 'Bölümü Düzenle', 'Edit Page Section') : tx('إضافة قسم جديد', 'Yeni Bölüm Ekle', 'Add New Section')}
                 </span>
-                <h2 className="text-xl font-bold mt-0.5">{form.sectionKey || 'قسم الصفحة'}</h2>
+                <h2 className="text-xl font-bold mt-0.5">{form.sectionKey || tx('قسم الصفحة', 'Sayfa Bölümü', 'Page Section')}</h2>
               </div>
               <button onClick={closeModal} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white">
                 <X size={20} />
@@ -306,7 +326,9 @@ export default function AdminPageBuilderPage() {
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المعرف الفريد (Section Key)*</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {tx('المعرف الفريد (Section Key)*', 'Benzersiz Tanımlayıcı (Section Key)*', 'Unique Key (Section Key)*')}
+                  </label>
                   <input
                     type="text"
                     required
@@ -317,7 +339,9 @@ export default function AdminPageBuilderPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">نوع القسم (Section Type)*</label>
+                  <label className="block font-bold text-slate-700 mb-1">
+                    {tx('نوع القسم (Section Type)*', 'Bölüm Türü (Section Type)*', 'Section Type*')}
+                  </label>
                   <select
                     value={form.sectionType}
                     onChange={(e) => setForm({ ...form, sectionType: e.target.value })}
@@ -340,7 +364,7 @@ export default function AdminPageBuilderPage() {
                 <div className="bg-slate-100 p-2 flex items-center gap-2 border-b border-slate-200">
                   <span className="text-xs font-bold text-slate-600 px-3 flex items-center gap-1.5">
                     <Globe size={14} className="text-brand-amber-500" />
-                    <span>محتوى النصوص:</span>
+                    <span>{tx('محتوى النصوص:', 'Metin İçeriği:', 'Text Content:')}</span>
                   </span>
                   {['ar', 'tr', 'en'].map((lng) => (
                     <button
@@ -360,7 +384,7 @@ export default function AdminPageBuilderPage() {
                   {activeTab === 'ar' && (
                     <>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">عنوان القسم بالعربية</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('عنوان القسم بالعربية', 'Arapça Başlık', 'Arabic Title')}</label>
                         <input
                           type="text"
                           value={form.titleAr}
@@ -369,7 +393,7 @@ export default function AdminPageBuilderPage() {
                         />
                       </div>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">العنوان الفرعي بالعربية</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('العنوان الفرعي بالعربية', 'Arapça Alt Başlık', 'Arabic Subtitle')}</label>
                         <textarea
                           rows={2}
                           value={form.subtitleAr}
@@ -383,7 +407,7 @@ export default function AdminPageBuilderPage() {
                   {activeTab === 'tr' && (
                     <>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">Türkçe Başlık</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('عنوان القسم بالتركية', 'Türkçe Başlık', 'Turkish Title')}</label>
                         <input
                           type="text"
                           value={form.titleTr}
@@ -392,7 +416,7 @@ export default function AdminPageBuilderPage() {
                         />
                       </div>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">Türkçe Alt Başlık</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('العنوان الفرعي بالتركية', 'Türkçe Alt Başlık', 'Turkish Subtitle')}</label>
                         <textarea
                           rows={2}
                           value={form.subtitleTr}
@@ -406,7 +430,7 @@ export default function AdminPageBuilderPage() {
                   {activeTab === 'en' && (
                     <>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">English Title</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('عنوان القسم بالإنجليزية', 'İngilizce Başlık', 'English Title')}</label>
                         <input
                           type="text"
                           value={form.titleEn}
@@ -415,7 +439,7 @@ export default function AdminPageBuilderPage() {
                         />
                       </div>
                       <div>
-                        <label className="block font-bold text-slate-700 mb-1">English Subtitle</label>
+                        <label className="block font-bold text-slate-700 mb-1">{tx('العنوان الفرعي بالإنجليزية', 'İngilizce Alt Başlık', 'English Subtitle')}</label>
                         <textarea
                           rows={2}
                           value={form.subtitleEn}
@@ -432,7 +456,7 @@ export default function AdminPageBuilderPage() {
               <div>
                 <label className="block font-bold text-slate-700 mb-1 text-xs flex items-center gap-1.5">
                   <Code size={14} className="text-brand-amber-500" />
-                  <span>تخصيص البيانات الإضافية (JSON Configuration)</span>
+                  <span>{tx('تخصيص البيانات الإضافية (JSON Configuration)', 'Ek Veri Yapılandırması (JSON)', 'Extra Configuration (JSON)')}</span>
                 </label>
                 <textarea
                   rows={4}
@@ -448,14 +472,14 @@ export default function AdminPageBuilderPage() {
                   onClick={closeModal}
                   className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                 >
-                  إلغاء
+                  {tx('إلغاء', 'İptal', 'Cancel')}
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
                   className="px-6 py-2.5 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow-md transition disabled:opacity-50"
                 >
-                  {saveMutation.isPending ? 'جاري الحفظ...' : 'حفظ القسم'}
+                  {saveMutation.isPending ? tx('جاري الحفظ...', 'Kaydediliyor...', 'Saving...') : tx('حفظ القسم', 'Bölümü Kaydet', 'Save Section')}
                 </button>
               </div>
             </form>

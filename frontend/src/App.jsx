@@ -1,44 +1,45 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 import WhatsAppFloating from './components/common/WhatsAppFloating';
 
 // Public Pages
 import HomePage from './pages/public/HomePage';
-import UniversitiesPage from './pages/public/UniversitiesPage';
-import UniversityDetailPage from './pages/public/UniversityDetailPage';
-import ProgramsPage from './pages/public/ProgramsPage';
-import ProgramDetailPage from './pages/public/ProgramDetailPage';
-import ServicesPage from './pages/public/ServicesPage';
-import ServiceDetailPage from './pages/public/ServiceDetailPage';
-import CoursesPage from './pages/public/CoursesPage';
-import CourseDetailPage from './pages/public/CourseDetailPage';
-import ScholarshipsPage from './pages/public/ScholarshipsPage';
-import ScholarshipDetailPage from './pages/public/ScholarshipDetailPage';
-import BlogPage from './pages/public/BlogPage';
-import BlogDetailPage from './pages/public/BlogDetailPage';
-import AboutPage from './pages/public/AboutPage';
-import ContactPage from './pages/public/ContactPage';
-import ApplyPage from './pages/public/ApplyPage';
+const UniversitiesPage = lazy(() => import('./pages/public/UniversitiesPage'));
+const UniversityDetailPage = lazy(() => import('./pages/public/UniversityDetailPage'));
+const ProgramsPage = lazy(() => import('./pages/public/ProgramsPage'));
+const ProgramDetailPage = lazy(() => import('./pages/public/ProgramDetailPage'));
+const ServicesPage = lazy(() => import('./pages/public/ServicesPage'));
+const ServiceDetailPage = lazy(() => import('./pages/public/ServiceDetailPage'));
+const CoursesPage = lazy(() => import('./pages/public/CoursesPage'));
+const CourseDetailPage = lazy(() => import('./pages/public/CourseDetailPage'));
+const ScholarshipsPage = lazy(() => import('./pages/public/ScholarshipsPage'));
+const ScholarshipDetailPage = lazy(() => import('./pages/public/ScholarshipDetailPage'));
+const BlogPage = lazy(() => import('./pages/public/BlogPage'));
+const BlogDetailPage = lazy(() => import('./pages/public/BlogDetailPage'));
+const AboutPage = lazy(() => import('./pages/public/AboutPage'));
+const ContactPage = lazy(() => import('./pages/public/ContactPage'));
+const ApplyPage = lazy(() => import('./pages/public/ApplyPage'));
 
 // Admin Pages
-import AdminLayout from './pages/admin/AdminLayout';
-import AdminLoginPage from './pages/admin/AdminLoginPage';
-import AdminDashboardPage from './pages/admin/AdminDashboardPage';
-import AdminApplicationsPage from './pages/admin/AdminApplicationsPage';
-import AdminUniversitiesPage from './pages/admin/AdminUniversitiesPage';
-import AdminProgramsPage from './pages/admin/AdminProgramsPage';
-import AdminServicesPage from './pages/admin/AdminServicesPage';
-import AdminCoursesPage from './pages/admin/AdminCoursesPage';
-import AdminScholarshipsPage from './pages/admin/AdminScholarshipsPage';
-import AdminPageBuilderPage from './pages/admin/AdminPageBuilderPage';
-import AdminMediaLibraryPage from './pages/admin/AdminMediaLibraryPage';
-import AdminTranslationsPage from './pages/admin/AdminTranslationsPage';
-import AdminBlogPage from './pages/admin/AdminBlogPage';
-import AdminSettingsPage from './pages/admin/AdminSettingsPage';
-import AdminStaffPage from './pages/admin/AdminStaffPage';
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminLoginPage = lazy(() => import('./pages/admin/AdminLoginPage'));
+const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
+const AdminApplicationsPage = lazy(() => import('./pages/admin/AdminApplicationsPage'));
+const AdminUniversitiesPage = lazy(() => import('./pages/admin/AdminUniversitiesPage'));
+const AdminReviewsPage = lazy(() => import('./pages/admin/AdminReviewsPage'));
+const AdminProgramsPage = lazy(() => import('./pages/admin/AdminProgramsPage'));
+const AdminServicesPage = lazy(() => import('./pages/admin/AdminServicesPage'));
+const AdminCoursesPage = lazy(() => import('./pages/admin/AdminCoursesPage'));
+const AdminScholarshipsPage = lazy(() => import('./pages/admin/AdminScholarshipsPage'));
+const AdminPageBuilderPage = lazy(() => import('./pages/admin/AdminPageBuilderPage'));
+const AdminMediaLibraryPage = lazy(() => import('./pages/admin/AdminMediaLibraryPage'));
+const AdminTranslationsPage = lazy(() => import('./pages/admin/AdminTranslationsPage'));
+const AdminBlogPage = lazy(() => import('./pages/admin/AdminBlogPage'));
+const AdminSettingsPage = lazy(() => import('./pages/admin/AdminSettingsPage'));
+const AdminStaffPage = lazy(() => import('./pages/admin/AdminStaffPage'));
 
 // Protected Route Guard
 function ProtectedAdminRoute() {
@@ -100,8 +101,17 @@ function NotFoundPage() {
   );
 }
 
+function RouteFallback() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center" role="status" aria-label="Loading">
+      <div className="w-10 h-10 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
+
 export default function App() {
   return (
+    <Suspense fallback={<RouteFallback />}>
     <Routes>
       {/* Public Pages */}
       <Route element={<PublicLayout />}>
@@ -133,6 +143,7 @@ export default function App() {
           <Route index element={<AdminDashboardPage />} />
           <Route path="applications" element={<AdminApplicationsPage />} />
           <Route path="universities" element={<AdminUniversitiesPage />} />
+          <Route path="reviews" element={<AdminReviewsPage />} />
           <Route path="programs" element={<AdminProgramsPage />} />
           <Route path="services" element={<AdminServicesPage />} />
           <Route path="courses" element={<AdminCoursesPage />} />
@@ -146,5 +157,6 @@ export default function App() {
         </Route>
       </Route>
     </Routes>
+    </Suspense>
   );
 }

@@ -1,0 +1,1696 @@
+[
+ {
+  "slug": "galatasaray-universitesi",
+  "nameTr": "Galatasaray Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Frankofon eğitimli, Türkiye'nin en seçkin hukuk programlarından"
+   },
+   {
+    "tr": "Uluslararası İlişkiler",
+    "en": "International Relations",
+    "reason": "Fransızca destekli eğitim ve güçlü akademik kadro"
+   },
+   {
+    "tr": "İletişim (Gazetecilik)",
+    "en": "Communication (Journalism)",
+    "reason": "Frankofon geleneğe sahip köklü iletişim eğitimi"
+   },
+   {
+    "tr": "Endüstri Mühendisliği",
+    "en": "Industrial Engineering",
+    "reason": "Fransızca-İngilizce destekli, yüksek puanlı program"
+   },
+   {
+    "tr": "Felsefe",
+    "en": "Philosophy",
+    "reason": "Fransız felsefe geleneğinde öncü akademik kadro"
+   },
+   {
+    "tr": "İktisat",
+    "en": "Economics",
+    "reason": "Frankofon altyapı ve güçlü uluslararası iş birlikleri"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Galatasaray_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "gazi-universitesi",
+  "nameTr": "Gazi Üniversitesi",
+  "facultyCount": 12,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Gazi Hastanesi ile köklü ve güçlü klinik eğitim geleneği"
+   },
+   {
+    "tr": "Gazi Eğitimi (Sınıf Öğretmenliği)",
+    "en": "Education (Classroom Teaching)",
+    "reason": "Öğretmen yetiştirmede Türkiye'nin en köklü kurumlarından"
+   },
+   {
+    "tr": "Elektrik-Elektronik Mühendisliği",
+    "en": "Electrical-Electronics Engineering",
+    "reason": "MÜDEK akreditasyonlu, güçlü araştırma altyapısı"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Köklü eczacılık eğitimi ve güçlü laboratuvar altyapısı"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Büyük diş hekimliği hastanesi ile yoğun klinik pratik"
+   },
+   {
+    "tr": "Makine Mühendisliği",
+    "en": "Mechanical Engineering",
+    "reason": "Sanayi iş birlikleri ve MÜDEK akreditasyonlu program"
+   }
+  ],
+  "sourceUrl": "https://gazi.edu.tr/akademik",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "gebze-teknik-universitesi",
+  "nameTr": "Gebze Teknik Üniversitesi (GTÜ)",
+  "facultyCount": 5,
+  "departmentCount": 22,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Teknopark ve sanayi bölgesiyle güçlü Ar-Ge bağları"
+   },
+   {
+    "tr": "Elektrik-Elektronik Mühendisliği",
+    "en": "Electrical-Electronics Engineering",
+    "reason": "Yüksek araştırma çıktısı, MÜDEK akreditasyonu"
+   },
+   {
+    "tr": "Moleküler Biyoloji ve Genetik",
+    "en": "Molecular Biology and Genetics",
+    "reason": "Türkiye'de alanın öncü ve en köklü programlarından"
+   },
+   {
+    "tr": "Biyomühendislik",
+    "en": "Bioengineering",
+    "reason": "Araştırma odaklı, yüksek lisans kökenli güçlü kadro"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım ve teknoloji odaklı nitelikli eğitim"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Sanayi bölgesine yakınlıkla güçlü uygulama bağları"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Gebze_Teknik_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "giresun-universitesi",
+  "nameTr": "Giresun Üniversitesi",
+  "facultyCount": 13,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Giresun Eğitim ve Araştırma Hastanesi ile klinik eğitim"
+   },
+   {
+    "tr": "Denizcilik (Gemi Makineleri İşletme Müh.)",
+    "en": "Maritime (Marine Engineering)",
+    "reason": "Karadeniz'de denizcilik alanında uzmanlaşmış fakülte"
+   },
+   {
+    "tr": "Eğitim (Sınıf Öğretmenliği)",
+    "en": "Education (Classroom Teaching)",
+    "reason": "Bölgenin köklü öğretmen yetiştirme geleneği"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık kampüsü ve hastane iş birliğiyle uygulama"
+   },
+   {
+    "tr": "Beden Eğitimi ve Spor",
+    "en": "Physical Education and Sports",
+    "reason": "SPORAK akreditasyonlu beden eğitimi programı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Giresun_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "gumushane-universitesi",
+  "nameTr": "Gümüşhane Üniversitesi",
+  "facultyCount": 7,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık Bilimleri Fakültesi'nin en çok tercih edilen programı"
+   },
+   {
+    "tr": "İlahiyat",
+    "en": "Theology",
+    "reason": "Bölgenin köklü ilahiyat eğitim kurumlarından"
+   },
+   {
+    "tr": "Halkla İlişkiler ve Reklamcılık",
+    "en": "Public Relations and Advertising",
+    "reason": "İletişim Fakültesi'nin uygulamalı eğitim veren programı"
+   },
+   {
+    "tr": "Turizm Rehberliği",
+    "en": "Tourism Guidance",
+    "reason": "Zigana-Karaca Mağarası bölgesinde saha uygulama avantajı"
+   },
+   {
+    "tr": "Madencilik (İş Sağlığı ve Güvenliği)",
+    "en": "Mining (Occupational Health and Safety)",
+    "reason": "Maden bölgesinde iş güvenliği alanında uzmanlaşma"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/G%C3%BCm%C3%BC%C5%9Fhane_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "hacettepe-universitesi",
+  "nameTr": "Hacettepe Üniversitesi",
+  "facultyCount": 17,
+  "departmentCount": 101,
+  "departmentCountBasis": "LISANS",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Türkiye'nin en prestijli tıp fakültelerinden, güçlü araştırma hastanesi"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Türkiye'de alanının ilk ve öncü fakültesi"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Ülkenin en köklü hemşirelik fakültelerinden"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Güçlü akademik kadro ve araştırma altyapısı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Yüksek yerleşme puanları ve MÜDEK akreditasyonu"
+   },
+   {
+    "tr": "Mütercim-Tercümanlık (İngilizce)",
+    "en": "Translation and Interpreting (English)",
+    "reason": "Türkiye'nin en saygın çeviri programlarından"
+   }
+  ],
+  "sourceUrl": "https://www.hacettepe.edu.tr/ogretim/sayilarla_ogretim",
+  "asOf": "2026-10-22",
+  "confidence": "high"
+ },
+ {
+  "slug": "halic-universitesi",
+  "nameTr": "Haliç Üniversitesi",
+  "facultyCount": 8,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen, köklü programlarından"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık kampüsü ve hastane uygulamalı eğitim"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Güçlü sağlık bilimleri altyapısı ve klinik uygulama"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tarihi yarımada yakınında tasarım odaklı eğitim"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektör odaklı eğitim"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "İstanbul teknoloji ekosistemine yakın mühendislik eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Hali%C3%A7_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "hasan-kalyoncu-university",
+  "nameTr": "Hasan Kalyoncu Üniversitesi",
+  "facultyCount": 9,
+  "departmentCount": 30,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Bölgenin güçlü vakıf hukuk programlarından"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Uygulama merkezli eğitim ve yüksek tercih oranı"
+   },
+   {
+    "tr": "Rehberlik ve Psikolojik Danışmanlık",
+    "en": "Guidance and Psychological Counseling",
+    "reason": "Eğitim fakültesinin köklü ve güçlü programı"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Gaziantep hastaneleriyle iş birliğinde klinik eğitim"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Sanayi kenti Gaziantep'te sektör iş birlikleri"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Uygulamalı stüdyo eğitimi ve bölgesel projeler"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Hasan_Kalyoncu_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "igdir-universitesi",
+  "nameTr": "Iğdır Üniversitesi",
+  "facultyCount": 10,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Ziraat (Bahçe Bitkileri)",
+    "en": "Agriculture (Horticulture)",
+    "reason": "Iğdır Ovası'nın tarım potansiyeline dayalı uzmanlaşma"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık Bilimleri Fakültesi'nin en çok tercih edilen programı"
+   },
+   {
+    "tr": "İlahiyat",
+    "en": "Theology",
+    "reason": "Bölgenin köklü dini yükseköğretim geleneği"
+   },
+   {
+    "tr": "Turizm Rehberliği",
+    "en": "Tourism Guidance",
+    "reason": "Ağrı Dağı bölgesinde saha uygulama avantajı"
+   },
+   {
+    "tr": "Beden Eğitimi ve Spor",
+    "en": "Physical Education and Sports",
+    "reason": "Spor Bilimleri Fakültesi'nin bölgesel başarısı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/I%C4%9Fd%C4%B1r_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "inonu-universitesi",
+  "nameTr": "İnönü Üniversitesi",
+  "facultyCount": 14,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Turgut Özal Tıp Merkezi, karaciğer naklinde dünya çapında"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Köklü eczacılık eğitimi ve güçlü araştırma altyapısı"
+   },
+   {
+    "tr": "Eğitim (Sınıf Öğretmenliği)",
+    "en": "Education",
+    "reason": "Bölgenin en köklü öğretmen yetiştirme kurumu"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Malatya adliyesiyle iş birliğinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Turgut Özal Tıp Merkezi'nde yoğun klinik uygulama"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0n%C3%B6n%C3%BC_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "isik-universitesi",
+  "nameTr": "Işık Üniversitesi",
+  "facultyCount": 3,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "MÜDEK akreditasyonlu, Şile kampüsünde güçlü laboratuvarlar"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "İngilizce eğitim ve yüksek tercih edilen program"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım odaklı stüdyo eğitimi geleneği"
+   },
+   {
+    "tr": "Endüstri Mühendisliği",
+    "en": "Industrial Engineering",
+    "reason": "MÜDEK akreditasyonlu ve sektör bağlantılı program"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "İngilizce eğitim ve uluslararası çift diploma seçenekleri"
+   },
+   {
+    "tr": "Görsel İletişim Tasarımı",
+    "en": "Visual Communication Design",
+    "reason": "Güzel sanatlar geleneğinden gelen tasarım eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/I%C5%9F%C4%B1k_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-29-mayis-universitesi",
+  "nameTr": "İstanbul 29 Mayıs Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Güçlü akademik kadro ve yüksek yerleşme puanları"
+   },
+   {
+    "tr": "Arap Dili ve Edebiyatı",
+    "en": "Arabic Language and Literature",
+    "reason": "Şarkiyat geleneğinde Türkiye'nin öncü programlarından"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "İngilizce eğitim ve uygulamalı araştırma odaklılık"
+   },
+   {
+    "tr": "Felsefe",
+    "en": "Philosophy",
+    "reason": "Klasik ve çağdaş felsefede yetkin akademik kadro"
+   },
+   {
+    "tr": "İngilizce Mütercim-Tercümanlık",
+    "en": "English Translation and Interpreting",
+    "reason": "Dil eğitiminde köklü kurum geleneği"
+   },
+   {
+    "tr": "Tarih",
+    "en": "History",
+    "reason": "Osmanlı araştırmalarında güçlü uzmanlık altyapısı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_29_May%C4%B1s_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-arel-university",
+  "nameTr": "İstanbul Arel Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Fen-Edebiyat Fakültesi'nin en çok tercih edilen programı"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Kendi hastane uygulamalarıyla sağlık eğitimi"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Sektör bağlantılı uygulama odaklı mühendislik eğitimi"
+   },
+   {
+    "tr": "Radyo, Televizyon ve Sinema",
+    "en": "Radio, Television and Cinema",
+    "reason": "İletişim fakültesinin stüdyo donanımlı programı"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektöre yönelik eğitim"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Atölye odaklı tasarım eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Arel_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-atlas-university",
+  "nameTr": "İstanbul Atlas Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": 22,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Atlas Hastanesi altyapısıyla klinik tıp eğitimi"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Modern diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin yüksek kontenjanlı popüler programı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Mühendislik fakültesinin en geniş programlarından"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Hastane uygulamalı sağlık bilimleri eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Atlas_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-aydin-university",
+  "nameTr": "İstanbul Aydın Üniversitesi",
+  "facultyCount": 14,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Büyük diş hastanesiyle yoğun klinik eğitim"
+   },
+   {
+    "tr": "Eğitim (Okul Öncesi Öğretmenliği)",
+    "en": "Education (Preschool Teaching)",
+    "reason": "Üniversitenin köklü eğitim fakültesi geleneği"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Teknopark bağlantılı uygulama odaklı eğitim"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Geniş akademik kadrolu, yüksek tercih edilen program"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Uygulama laboratuvarlarıyla destekli eğitim"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım atölyeleri ve sektör iş birlikleri"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ayd%C4%B1n_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-bilgi-university",
+  "nameTr": "İstanbul Bilgi Üniversitesi",
+  "facultyCount": 8,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Türkiye'nin en saygın vakıf hukuk programlarından"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Uluslararası akreditasyonlu, Laureate ağının parçası"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Uluslararası üne sahip tasarım eğitimi geleneği"
+   },
+   {
+    "tr": "İletişim (Medya)",
+    "en": "Communication (Media)",
+    "reason": "Türkiye'nin öncü iletişim fakültelerinden"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "İngilizce eğitim ve güçlü klinik yüksek lisans bağlantısı"
+   },
+   {
+    "tr": "Uluslararası İlişkiler",
+    "en": "International Relations",
+    "reason": "Uluslararası ağ ve İngilizce eğitim avantajı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Bilgi_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-galata-university",
+  "nameTr": "İstanbul Galata Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Kendi diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen programlarından"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Veri bilimi odaklı güncel müfredat"
+   },
+   {
+    "tr": "İç Mimarlık ve Çevre Tasarımı",
+    "en": "Interior Architecture and Environmental Design",
+    "reason": "Tasarım odaklı, merkezi kampüs avantajı"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Sektör iş birlikleriyle uygulama ağırlıklı eğitim"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Galata_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-gedik-university",
+  "nameTr": "İstanbul Gedik Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": 24,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Gedik Holding desteğiyle uygulamaya yakın eğitim"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Sanayi bağlantılı mühendislik eğitimi geleneği"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık bilimleri odaklı üniversite altyapısı"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım ve teknoloji odaklı stüdyo eğitimi"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Spor bilimleri altyapısıyla güçlü klinik eğitim"
+   },
+   {
+    "tr": "Spor Yöneticiliği",
+    "en": "Sports Management",
+    "reason": "Spor bilimleri fakültesinin uzmanlık alanı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Gedik_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-gelisim-university",
+  "nameTr": "İstanbul Gelişim Üniversitesi",
+  "facultyCount": 7,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Akredite sağlık programları ve güçlü uygulama altyapısı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "MÜDEK akreditasyonu hedefli güncel müfredat"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen programlarından"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Atölye odaklı tasarım eğitimi"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Sağlık bilimleri odaklı klinik uygulama"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektör odaklı eğitim"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Geli%C5%9Fim_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-kent-university",
+  "nameTr": "İstanbul Kent Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Kendi diş hastanesinde yoğun klinik eğitim"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Sağlık odaklı üniversitenin güçlü programı"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Merkezi kampüs ve uygulamalı eğitim modeli"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Hastane iş birlikleriyle klinik uygulama"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Güncel müfredatlı mühendislik eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Kent_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-kultur-university",
+  "nameTr": "İstanbul Kültür Üniversitesi",
+  "facultyCount": 8,
+  "departmentCount": 33,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Köklü vakıf üniversitesinin en güçlü programlarından"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Kültür geleneğinin tasarım odaklı güçlü programı"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Uygulama merkezli eğitim ve yüksek tercih"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "MÜDEK akreditasyonlu mühendislik eğitimi"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "İngilizce eğitim ve uluslararası iş birlikleri"
+   },
+   {
+    "tr": "Radyo, Televizyon ve Sinema",
+    "en": "Radio, Television and Cinema",
+    "reason": "Sanat ve tasarım fakültesinin uygulamalı programı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_K%C3%BClt%C3%BCr_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-medipol-university",
+  "nameTr": "İstanbul Medipol Üniversitesi",
+  "facultyCount": 12,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Medipol Mega Hastanesi ile güçlü klinik eğitim"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Türkiye'nin en büyük diş hastanelerinden birinde eğitim"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Sağlık temalı üniversitenin köklü programı"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Geniş hastane ağında yoğun klinik uygulama"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Rehabilitasyon merkezleriyle uygulamalı eğitim"
+   },
+   {
+    "tr": "Uluslararası Tıp (International Medicine)",
+    "en": "International Medicine",
+    "reason": "İngilizce eğitimli, uluslararası öğrencilere yönelik tıp"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Medipol_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-nisantasi-university",
+  "nameTr": "İstanbul Nişantaşı Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": 48,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Neo Hastanesi bağlantılı klinik tıp eğitimi"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Modern diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen programlarından"
+   },
+   {
+    "tr": "Radyo, Televizyon ve Sinema",
+    "en": "Radio, Television and Cinema",
+    "reason": "Sektör bağlantılı medya eğitim altyapısı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Teknopark yerleşkesinde teknoloji odaklı eğitim"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektör odaklı program"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ni%C5%9Fanta%C5%9F%C4%B1_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-okan-university",
+  "nameTr": "İstanbul Okan Üniversitesi",
+  "facultyCount": 11,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Okan Hastanesi ile entegre klinik eğitim"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Kendi diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Tuzla kampüsünde güçlü akademik kadro"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Uygulama merkezi destekli eğitim"
+   },
+   {
+    "tr": "Otomotiv Mühendisliği",
+    "en": "Automotive Engineering",
+    "reason": "Türkiye'de az sayıda bulunan uzmanlık programı"
+   },
+   {
+    "tr": "Eğitim (İngilizce Öğretmenliği)",
+    "en": "Education (English Language Teaching)",
+    "reason": "Üniversitenin köklü eğitim geleneği"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Okan_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-rumeli-university",
+  "nameTr": "İstanbul Rumeli Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık bilimleri odaklı uygulama ağırlıklı eğitim"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen programlarından"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Silivri teknopark bölgesine yakın mühendislik eğitimi"
+   },
+   {
+    "tr": "Fizyoterapi ve Rehabilitasyon",
+    "en": "Physiotherapy and Rehabilitation",
+    "reason": "Spor bilimleri altyapısıyla klinik uygulama"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektöre yönelik program"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Rumeli_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-sabahattin-zaim-university",
+  "nameTr": "İstanbul Sabahattin Zaim Üniversitesi",
+  "facultyCount": 9,
+  "departmentCount": 37,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "İslami İlimler",
+    "en": "Islamic Sciences",
+    "reason": "Türkiye'nin önde gelen İngilizce-Arapça ilahiyat programı"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Güçlü akademik kadro ve yüksek yerleşme puanları"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Uygulama merkezli İngilizce eğitim"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Yapay zeka odaklı güncel müfredat"
+   },
+   {
+    "tr": "Eğitim (İngilizce Öğretmenliği)",
+    "en": "Education (English Language Teaching)",
+    "reason": "Eğitim fakültesinin köklü öğretmen yetiştirme geleneği"
+   },
+   {
+    "tr": "Uluslararası Ticaret ve Finansman",
+    "en": "International Trade and Finance",
+    "reason": "İslam ekonomisi ve finans alanında uzmanlaşma"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Sabahattin_Zaim_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-saglik-ve-teknoloji-universitesi",
+  "nameTr": "İstanbul Sağlık ve Teknoloji Üniversitesi",
+  "facultyCount": 6,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Sağlık temalı üniversitenin hastane bağlantılı programı"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Modern diş kliniğinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Sağlık odaklı eğitim altyapısı"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Klinik uygulama ağırlıklı sağlık eğitimi"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Sağlık teknolojileriyle kesişen mühendislik eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Sa%C4%9Fl%C4%B1k_ve_Teknoloji_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-teknik-universitesi",
+  "nameTr": "İstanbul Teknik Üniversitesi (İTÜ)",
+  "facultyCount": 13,
+  "departmentCount": 39,
+  "departmentCountBasis": "LISANS",
+  "bestDepartments": [
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Türkiye'nin en yüksek puanlı mühendislik programlarından"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Dünya çapında tanınan köklü mimarlık eğitimi"
+   },
+   {
+    "tr": "Uçak Mühendisliği",
+    "en": "Aeronautical Engineering",
+    "reason": "Türkiye'nin ilk ve öncü havacılık mühendisliği programı"
+   },
+   {
+    "tr": "Elektrik-Elektronik Mühendisliği",
+    "en": "Electrical-Electronics Engineering",
+    "reason": "ABET/MÜDEK akreditasyonlu, güçlü sanayi bağları"
+   },
+   {
+    "tr": "İnşaat Mühendisliği",
+    "en": "Civil Engineering",
+    "reason": "250 yıllık mühendislik geleneğinin amiral programı"
+   },
+   {
+    "tr": "Gemi İnşaatı ve Gemi Makineleri Müh.",
+    "en": "Naval Architecture and Marine Engineering",
+    "reason": "Türkiye'de alanının en köklü ve tek büyük programı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Teknik_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "high"
+ },
+ {
+  "slug": "istanbul-ticaret-universitesi",
+  "nameTr": "İstanbul Ticaret Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "İTO desteğiyle ticaret hukukunda uzmanlaşma"
+   },
+   {
+    "tr": "Uluslararası Ticaret",
+    "en": "International Trade",
+    "reason": "İstanbul Ticaret Odası ile doğrudan sektör bağlantısı"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Ticaret odası ekosisteminde uygulamalı eğitim"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Merkezi yerleşkede güçlü akademik kadro"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tarihi yarımada odaklı tasarım eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ticaret_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-topkapi-universitesi",
+  "nameTr": "İstanbul Topkapı Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Teknoloji odaklı güncel müfredat"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Üniversitenin en çok tercih edilen programlarından"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım stüdyosu odaklı eğitim"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektöre yönelik eğitim"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Merkezi kampüs ve sektör iş birlikleri"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Topkap%C4%B1_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-universitesi",
+  "nameTr": "İstanbul Üniversitesi",
+  "facultyCount": 14,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp (İstanbul Tıp Fakültesi)",
+    "en": "Medicine (Istanbul Medical Faculty)",
+    "reason": "Çapa'da Türkiye'nin en köklü tıp eğitimi"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "1874'ten beri ülkenin en prestijli hukuk programı"
+   },
+   {
+    "tr": "İktisat",
+    "en": "Economics",
+    "reason": "Türkiye'nin ilk iktisat fakültesi geleneği"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Ülkenin en köklü psikoloji bölümlerinden"
+   },
+   {
+    "tr": "Tarih",
+    "en": "History",
+    "reason": "Osmanlı ve Cumhuriyet araştırmalarında öncü bölüm"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Köklü eczacılık eğitimi ve araştırma altyapısı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-university",
+  "nameTr": "İstanbul Üniversitesi",
+  "facultyCount": 14,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp (İstanbul Tıp Fakültesi)",
+    "en": "Medicine (Istanbul Medical Faculty)",
+    "reason": "Çapa'da Türkiye'nin en köklü tıp eğitimi"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "1874'ten beri ülkenin en prestijli hukuk programı"
+   },
+   {
+    "tr": "İktisat",
+    "en": "Economics",
+    "reason": "Türkiye'nin ilk iktisat fakültesi geleneği"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Ülkenin en köklü psikoloji bölümlerinden"
+   },
+   {
+    "tr": "Tarih",
+    "en": "History",
+    "reason": "Osmanlı ve Cumhuriyet araştırmalarında öncü bölüm"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Köklü eczacılık eğitimi ve araştırma altyapısı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istanbul-yeni-yuzyil-universitesi",
+  "nameTr": "İstanbul Yeni Yüzyıl Üniversitesi",
+  "facultyCount": 10,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Gaziosmanpaşa Hastanesi bağlantılı klinik eğitim"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Kendi diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Sağlık temalı üniversitenin güçlü programı"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "Merkezi yerleşkede uygulamaya yakın eğitim"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Hastane iş birlikleriyle klinik uygulama"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stanbul_Yeni_Y%C3%BCzy%C4%B1l_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "istinye-university",
+  "nameTr": "İstinye Üniversitesi",
+  "facultyCount": 9,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Liv Hospital ve Medical Park ağında klinik eğitim"
+   },
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Modern diş hastanesinde uygulamalı eğitim"
+   },
+   {
+    "tr": "Eczacılık",
+    "en": "Pharmacy",
+    "reason": "Sağlık odaklı üniversitenin güçlü programı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Yapay zeka odaklı güncel müfredat"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "MLP Care hastane ağında yoğun klinik uygulama"
+   },
+   {
+    "tr": "Gastronomi ve Mutfak Sanatları",
+    "en": "Gastronomy and Culinary Arts",
+    "reason": "Uygulama mutfaklarıyla sektör odaklı eğitim"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0stinye_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "izmir-university-of-economics",
+  "nameTr": "İzmir Ekonomi Üniversitesi",
+  "facultyCount": 8,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "İzmir Ticaret Odası destekli, İngilizce eğitim"
+   },
+   {
+    "tr": "Uluslararası Ticaret ve Finansman",
+    "en": "International Trade and Finance",
+    "reason": "Ticaret odası ekosistemiyle sektör bağlantılı eğitim"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "ABET akreditasyonlu, yüksek puanlı program"
+   },
+   {
+    "tr": "Endüstriyel Tasarım",
+    "en": "Industrial Design",
+    "reason": "Türkiye'nin saygın tasarım programlarından"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Tasarım odaklı güçlü stüdyo eğitimi"
+   },
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "İngilizce destekli güncel hukuk eğitimi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0zmir_Ekonomi_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "izmir-yuksek-teknoloji-enstitusu",
+  "nameTr": "İzmir Yüksek Teknoloji Enstitüsü (İYTE)",
+  "facultyCount": 3,
+  "departmentCount": 19,
+  "departmentCountBasis": "FACULTY_PAGES_SUMMED",
+  "bestDepartments": [
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Teknopark İzmir ile iç içe araştırma odaklı eğitim"
+   },
+   {
+    "tr": "Moleküler Biyoloji ve Genetik",
+    "en": "Molecular Biology and Genetics",
+    "reason": "Türkiye'nin en güçlü yaşam bilimleri programlarından"
+   },
+   {
+    "tr": "Elektrik-Elektronik Mühendisliği",
+    "en": "Electrical-Electronics Engineering",
+    "reason": "Yüksek araştırma çıktısı, İngilizce eğitim"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Teknoloji ve tasarım odaklı nitelikli eğitim"
+   },
+   {
+    "tr": "Fotonik",
+    "en": "Photonics",
+    "reason": "Türkiye'de az bulunan öncü lisans programı"
+   },
+   {
+    "tr": "Kimya Mühendisliği",
+    "en": "Chemical Engineering",
+    "reason": "Güçlü araştırma merkezleriyle laboratuvar odaklı eğitim"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/%C4%B0zmir_Y%C3%BCksek_Teknoloji_Enstit%C3%BCs%C3%BC",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "kadir-has-university",
+  "nameTr": "Kadir Has Üniversitesi",
+  "facultyCount": 5,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Hukuk",
+    "en": "Law",
+    "reason": "İngilizce destekli, saygın vakıf hukuk programı"
+   },
+   {
+    "tr": "İşletme",
+    "en": "Business Administration",
+    "reason": "Uluslararası akreditasyon ve İngilizce eğitim"
+   },
+   {
+    "tr": "Yönetim Bilişim Sistemleri",
+    "en": "Management Information Systems",
+    "reason": "Teknoloji ve işletmeyi birleştiren güçlü program"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "İngilizce eğitim ve araştırma odaklı kadro"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Merkezi Cibali kampüsünde tasarım eğitimi"
+   },
+   {
+    "tr": "Yeni Medya ve İletişim",
+    "en": "New Media and Communication",
+    "reason": "Türkiye'nin öncü yeni medya programlarından"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Kadir_Has_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "kafkas-universitesi",
+  "nameTr": "Kafkas Üniversitesi",
+  "facultyCount": 12,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Veteriner Hekimliği",
+    "en": "Veterinary Medicine",
+    "reason": "Hayvan hastanesiyle bölgenin köklü veterinerlik eğitimi"
+   },
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Kafkas Üniversitesi Hastanesi ile klinik eğitim"
+   },
+   {
+    "tr": "Eğitim (Sınıf Öğretmenliği)",
+    "en": "Education",
+    "reason": "Dede Korkut Eğitim Fakültesi'nin köklü geleneği"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık Bilimleri Fakültesi'nin en güçlü programı"
+   },
+   {
+    "tr": "Turizm Rehberliği",
+    "en": "Tourism Guidance",
+    "reason": "Sarıkamış kış turizmi sahasında uygulama avantajı"
+   },
+   {
+    "tr": "İlahiyat",
+    "en": "Theology",
+    "reason": "Bölgenin dini yükseköğretimde köklü kurumu"
+   }
+  ],
+  "sourceUrl": "https://www.kafkas.edu.tr/",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "kapadokya-university",
+  "nameTr": "Kapadokya Üniversitesi",
+  "facultyCount": 4,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Diş Hekimliği",
+    "en": "Dentistry",
+    "reason": "Bölgenin modern klinik altyapılı diş hekimliği programı"
+   },
+   {
+    "tr": "Psikoloji",
+    "en": "Psychology",
+    "reason": "Mustafapaşa yerleşkesinde güçlü akademik kadro"
+   },
+   {
+    "tr": "Mütercim-Tercümanlık (İngilizce)",
+    "en": "Translation and Interpreting (English)",
+    "reason": "Dil eğitiminde köklü kurum geleneği"
+   },
+   {
+    "tr": "Turizm Rehberliği",
+    "en": "Tourism Guidance",
+    "reason": "Kapadokya bölgesinde eşsiz saha uygulama avantajı"
+   },
+   {
+    "tr": "Bilgisayar Mühendisliği",
+    "en": "Computer Engineering",
+    "reason": "Bilişim fakültesinin güncel müfredatlı programı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Kapadokya_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "karabuk-universitesi",
+  "nameTr": "Karabük Üniversitesi",
+  "facultyCount": 12,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Demir-Çelik (Metalurji ve Malzeme Müh.)",
+    "en": "Iron and Steel (Metallurgy and Materials Eng.)",
+    "reason": "Kardemir ile iş birliğinde Türkiye'de öncü uzmanlık"
+   },
+   {
+    "tr": "Makine Mühendisliği",
+    "en": "Mechanical Engineering",
+    "reason": "Ağır sanayi kentiyle iç içe uygulamalı eğitim"
+   },
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Karabük Eğitim ve Araştırma Hastanesi ile klinik eğitim"
+   },
+   {
+    "tr": "Mimarlık",
+    "en": "Architecture",
+    "reason": "Safranbolu'nun tarihi doku yakınında tasarım eğitimi"
+   },
+   {
+    "tr": "Hemşirelik",
+    "en": "Nursing",
+    "reason": "Sağlık kampüsünde uygulama ağırlıklı eğitim"
+   },
+   {
+    "tr": "Otomotiv Mühendisliği",
+    "en": "Automotive Engineering",
+    "reason": "Türkiye'de az sayıda bulunan uzmanlık programı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Karab%C3%BCk_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "karadeniz-teknik-universitesi",
+  "nameTr": "Karadeniz Teknik Üniversitesi (KTÜ)",
+  "facultyCount": 12,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Farabi Hastanesi ile bölgenin en güçlü tıp eğitimi"
+   },
+   {
+    "tr": "İnşaat Mühendisliği",
+    "en": "Civil Engineering",
+    "reason": "KTÜ'nün köklü mühendislik geleneğinin amiral programı"
+   },
+   {
+    "tr": "Makine Mühendisliği",
+    "en": "Mechanical Engineering",
+    "reason": "MÜDEK akreditasyonlu, sanayi bağlantılı eğitim"
+   },
+   {
+    "tr": "Orman Mühendisliği",
+    "en": "Forest Engineering",
+    "reason": "Karadeniz ormanlarında Türkiye'nin öncü programı"
+   },
+   {
+    "tr": "Elektrik-Elektronik Mühendisliği",
+    "en": "Electrical-Electronics Engineering",
+    "reason": "Güçlü araştırma altyapısı ve akredite program"
+   },
+   {
+    "tr": "Deniz Ulaştırma İşletme Müh.",
+    "en": "Maritime Transportation Engineering",
+    "reason": "Karadeniz'de denizcilik uzmanlığı ve uygulama gemisi"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Karadeniz_Teknik_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ },
+ {
+  "slug": "kastamonu-universitesi",
+  "nameTr": "Kastamonu Üniversitesi",
+  "facultyCount": 13,
+  "departmentCount": null,
+  "departmentCountBasis": "UNVERIFIED",
+  "bestDepartments": [
+   {
+    "tr": "Ormancılık (Orman Mühendisliği)",
+    "en": "Forestry (Forest Engineering)",
+    "reason": "Orman bölgesinde Türkiye'nin güçlü ormancılık eğitimi"
+   },
+   {
+    "tr": "Veteriner Hekimliği",
+    "en": "Veterinary Medicine",
+    "reason": "Hayvancılık bölgesinde uygulamalı veterinerlik eğitimi"
+   },
+   {
+    "tr": "Tıp",
+    "en": "Medicine",
+    "reason": "Kastamonu Eğitim ve Araştırma Hastanesi ile klinik eğitim"
+   },
+   {
+    "tr": "Eğitim (Sınıf Öğretmenliği)",
+    "en": "Education",
+    "reason": "Bölgenin köklü öğretmen yetiştirme kurumu"
+   },
+   {
+    "tr": "Turizm Rehberliği",
+    "en": "Tourism Guidance",
+    "reason": "Kastamonu kültür turizmi sahasında uygulama avantajı"
+   }
+  ],
+  "sourceUrl": "https://tr.wikipedia.org/wiki/Kastamonu_%C3%9Cniversitesi",
+  "asOf": "2026-10-22",
+  "confidence": "medium"
+ }
+]

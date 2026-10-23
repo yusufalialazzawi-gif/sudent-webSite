@@ -1,0 +1,48 @@
+[
+{"slug":"istanbul-arel-university","nameTr":"İstanbul Arel Üniversitesi","facultyCount":6,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Psikoloji","en":"Psychology","reason":"Fen-Edebiyat Fakültesi'nin en çok tercih edilen programı"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Kendi hastane uygulamalarıyla sağlık eğitimi"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Sektör bağlantılı uygulama odaklı mühendislik eğitimi"},
+ {"tr":"Radyo, Televizyon ve Sinema","en":"Radio, Television and Cinema","reason":"İletişim fakültesinin stüdyo donanımlı programı"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektöre yönelik eğitim"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Atölye odaklı tasarım eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Arel_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-atlas-university","nameTr":"İstanbul Atlas Üniversitesi","facultyCount":6,"departmentCount":22,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Atlas Hastanesi altyapısıyla klinik tıp eğitimi"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Modern diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin yüksek kontenjanlı popüler programı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Mühendislik fakültesinin en geniş programlarından"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Hastane uygulamalı sağlık bilimleri eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Atlas_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-aydin-university","nameTr":"İstanbul Aydın Üniversitesi","facultyCount":14,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Büyük diş hastanesiyle yoğun klinik eğitim"},
+ {"tr":"Eğitim (Okul Öncesi Öğretmenliği)","en":"Education (Preschool Teaching)","reason":"Üniversitenin köklü eğitim fakültesi geleneği"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Teknopark bağlantılı uygulama odaklı eğitim"},
+ {"tr":"Hukuk","en":"Law","reason":"Geniş akademik kadrolu, yüksek tercih edilen program"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Uygulama laboratuvarlarıyla destekli eğitim"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım atölyeleri ve sektör iş birlikleri"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ayd%C4%B1n_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-bilgi-university","nameTr":"İstanbul Bilgi Üniversitesi","facultyCount":8,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Türkiye'nin en saygın vakıf hukuk programlarından"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Uluslararası akreditasyonlu, Laureate ağının parçası"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Uluslararası üne sahip tasarım eğitimi geleneği"},
+ {"tr":"İletişim (Medya)","en":"Communication (Media)","reason":"Türkiye'nin öncü iletişim fakültelerinden"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"İngilizce eğitim ve güçlü klinik yüksek lisans bağlantısı"},
+ {"tr":"Uluslararası İlişkiler","en":"International Relations","reason":"Uluslararası ağ ve İngilizce eğitim avantajı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Bilgi_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-galata-university","nameTr":"İstanbul Galata Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Kendi diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen programlarından"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Veri bilimi odaklı güncel müfredat"},
+ {"tr":"İç Mimarlık ve Çevre Tasarımı","en":"Interior Architecture and Environmental Design","reason":"Tasarım odaklı, merkezi kampüs avantajı"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Sektör iş birlikleriyle uygulama ağırlıklı eğitim"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Galata_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-gedik-university","nameTr":"İstanbul Gedik Üniversitesi","facultyCount":6,"departmentCount":24,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Gedik Holding desteğiyle uygulamaya yakın eğitim"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Sanayi bağlantılı mühendislik eğitimi geleneği"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık bilimleri odaklı üniversite altyapısı"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım ve teknoloji odaklı stüdyo eğitimi"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Spor bilimleri altyapısıyla güçlü klinik eğitim"},
+ {"tr":"Spor Yöneticiliği","en":"Sports Management","reason":"Spor bilimleri fakültesinin uzmanlık alanı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Gedik_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

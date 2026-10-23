@@ -1,0 +1,60 @@
+Tıp || Medicine
+Diş Hekimliği || Dentistry
+Eczacılık || Pharmacy
+Hemşirelik || Nursing
+Fizyoterapi ve Rehabilitasyon || Physiotherapy and Rehabilitation
+Uluslararası Tıp (International Medicine) || International Medicine
+Tıp (İstanbul Tıp Fakültesi) || Medicine (Istanbul Medical Faculty)
+Hukuk || Law
+İktisat || Economics
+Psikoloji || Psychology
+Tarih || History
+Bilgisayar Mühendisliği || Computer Engineering
+Mimarlık || Architecture
+Uçak Mühendisliği || Aeronautical Engineering
+Elektrik-Elektronik Mühendisliği || Electrical-Electronics Engineering
+İnşaat Mühendisliği || Civil Engineering
+Gemi İnşaatı ve Gemi Makineleri Müh. || Naval Architecture and Marine Engineering
+Mütercim-Tercümanlık (İngilizce) || Translation and Interpreting (English)
+Gazi Eğitimi (Sınıf Öğretmenliği) || Education (Classroom Teaching)
+Makine Mühendisliği || Mechanical Engineering
+Orman Mühendisliği || Forest Engineering
+Deniz Ulaştırma İşletme Müh. || Maritime Transportation Engineering
+Eğitim (Sınıf Öğretmenliği) || Education
+Moleküler Biyoloji ve Genetik || Molecular Biology and Genetics
+Biyomühendislik || Bioengineering
+İşletme || Business Administration
+Fotonik || Photonics
+Kimya Mühendisliği || Chemical Engineering
+Demir-Çelik (Metalurji ve Malzeme Müh.) || Iron and Steel (Metallurgy and Materials Eng.)
+Otomotiv Mühendisliği || Automotive Engineering
+Ormancılık (Orman Mühendisliği) || Forestry (Forest Engineering)
+Veteriner Hekimliği || Veterinary Medicine
+Turizm Rehberliği || Tourism Guidance
+Denizcilik (Gemi Makineleri İşletme Müh.) || Maritime (Marine Engineering)
+Beden Eğitimi ve Spor || Physical Education and Sports
+İlahiyat || Theology
+Halkla İlişkiler ve Reklamcılık || Public Relations and Advertising
+Madencilik (İş Sağlığı ve Güvenliği) || Mining (Occupational Health and Safety)
+Ziraat (Bahçe Bitkileri) || Agriculture (Horticulture)
+Yönetim Bilişim Sistemleri || Management Information Systems
+Yeni Medya ve İletişim || New Media and Communication
+Eğitim (Okul Öncesi Öğretmenliği) || Education (Preschool Teaching)
+Radyo, Televizyon ve Sinema || Radio, Television and Cinema
+Eğitim (İngilizce Öğretmenliği) || Education (English Language Teaching)
+Gastronomi ve Mutfak Sanatları || Gastronomy and Culinary Arts
+Uluslararası Ticaret ve Finansman || International Trade and Finance
+Endüstriyel Tasarım || Industrial Design
+Rehberlik ve Psikolojik Danışmanlık || Guidance and Psychological Counseling
+Endüstri Mühendisliği || Industrial Engineering
+Görsel İletişim Tasarımı || Visual Communication Design
+İletişim (Medya) || Communication (Media)
+Uluslararası İlişkiler || International Relations
+İç Mimarlık ve Çevre Tasarımı || Interior Architecture and Environmental Design
+Spor Yöneticiliği || Sports Management
+İslami İlimler || Islamic Sciences
+Uluslararası Ticaret || International Trade
+Arap Dili ve Edebiyatı || Arabic Language and Literature
+Felsefe || Philosophy
+İngilizce Mütercim-Tercümanlık || English Translation and Interpreting
+İletişim (Gazetecilik) || Communication (Journalism)

@@ -97,9 +97,43 @@ router.get('/metrics', authenticate, async (req, res, next) => {
       },
     });
 
+    // 5. Recent Contact Inquiries (Latest 6)
+    const [totalInquiries, recentInquiriesList] = await Promise.all([
+      prisma.contactInquiry.count(),
+      prisma.contactInquiry.findMany({
+        take: 6,
+        orderBy: { createdAt: 'desc' },
+      }),
+    ]);
+
+    const formattedRecentInquiries = recentInquiriesList.map((inq) => ({
+      id: inq.id,
+      name: inq.fullName,
+      fullName: inq.fullName,
+      email: inq.email,
+      phone: inq.phone,
+      subject: inq.subject,
+      message: inq.message,
+      status: inq.status,
+      createdAt: inq.createdAt,
+    }));
+
     res.json({
       success: true,
       data: {
+        // Flattened metrics for dashboard summary cards
+        totalApplications,
+        submittedApplications: newApplications,
+        underReviewApplications,
+        acceptedApplications: admissionsReceived,
+        enrolledApplications: closedApplications,
+        totalUniversities,
+        totalPrograms,
+        totalInquiries,
+        recentApplications,
+        recentInquiries: formattedRecentInquiries,
+
+        // Grouped metrics
         applications: {
           total: totalApplications,
           new: newApplications,
@@ -119,7 +153,9 @@ router.get('/metrics', authenticate, async (req, res, next) => {
           ],
         },
         inquiries: {
+          total: totalInquiries,
           new: newInquiries,
+          recent: formattedRecentInquiries,
         },
         content: {
           totalUniversities,
@@ -132,7 +168,6 @@ router.get('/metrics', authenticate, async (req, res, next) => {
         translations: {
           missingCount: missingTranslationsCount,
         },
-        recentApplications,
       },
     });
   } catch (error) {

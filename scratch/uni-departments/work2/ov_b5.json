@@ -1,0 +1,46 @@
+[
+{"slug":"istanbul-rumeli-university","nameTr":"İstanbul Rumeli Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık bilimleri odaklı uygulama ağırlıklı eğitim"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen programlarından"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Silivri teknopark bölgesine yakın mühendislik eğitimi"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Spor bilimleri altyapısıyla klinik uygulama"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektöre yönelik program"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Rumeli_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-sabahattin-zaim-university","nameTr":"İstanbul Sabahattin Zaim Üniversitesi","facultyCount":9,"departmentCount":37,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"İslami İlimler","en":"Islamic Sciences","reason":"Türkiye'nin önde gelen İngilizce-Arapça ilahiyat programı"},
+ {"tr":"Hukuk","en":"Law","reason":"Güçlü akademik kadro ve yüksek yerleşme puanları"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Uygulama merkezli İngilizce eğitim"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Yapay zeka odaklı güncel müfredat"},
+ {"tr":"Eğitim (İngilizce Öğretmenliği)","en":"Education (English Language Teaching)","reason":"Eğitim fakültesinin köklü öğretmen yetiştirme geleneği"},
+ {"tr":"Uluslararası Ticaret ve Finansman","en":"International Trade and Finance","reason":"İslam ekonomisi ve finans alanında uzmanlaşma"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Sabahattin_Zaim_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-saglik-ve-teknoloji-universitesi","nameTr":"İstanbul Sağlık ve Teknoloji Üniversitesi","facultyCount":6,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Sağlık temalı üniversitenin hastane bağlantılı programı"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Modern diş kliniğinde uygulamalı eğitim"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Sağlık odaklı eğitim altyapısı"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Klinik uygulama ağırlıklı sağlık eğitimi"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Sağlık teknolojileriyle kesişen mühendislik eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Sa%C4%9Fl%C4%B1k_ve_Teknoloji_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-teknik-universitesi","nameTr":"İstanbul Teknik Üniversitesi (İTÜ)","facultyCount":13,"departmentCount":39,"departmentCountBasis":"LISANS","bestDepartments":[
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Türkiye'nin en yüksek puanlı mühendislik programlarından"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Dünya çapında tanınan köklü mimarlık eğitimi"},
+ {"tr":"Uçak Mühendisliği","en":"Aeronautical Engineering","reason":"Türkiye'nin ilk ve öncü havacılık mühendisliği programı"},
+ {"tr":"Elektrik-Elektronik Mühendisliği","en":"Electrical-Electronics Engineering","reason":"ABET/MÜDEK akreditasyonlu, güçlü sanayi bağları"},
+ {"tr":"İnşaat Mühendisliği","en":"Civil Engineering","reason":"250 yıllık mühendislik geleneğinin amiral programı"},
+ {"tr":"Gemi İnşaatı ve Gemi Makineleri Müh.","en":"Naval Architecture and Marine Engineering","reason":"Türkiye'de alanının en köklü ve tek büyük programı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Teknik_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"high"},
+{"slug":"istanbul-ticaret-universitesi","nameTr":"İstanbul Ticaret Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"İTO desteğiyle ticaret hukukunda uzmanlaşma"},
+ {"tr":"Uluslararası Ticaret","en":"International Trade","reason":"İstanbul Ticaret Odası ile doğrudan sektör bağlantısı"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Ticaret odası ekosisteminde uygulamalı eğitim"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Merkezi yerleşkede güçlü akademik kadro"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tarihi yarımada odaklı tasarım eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ticaret_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-topkapi-universitesi","nameTr":"İstanbul Topkapı Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Teknoloji odaklı güncel müfredat"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen programlarından"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım stüdyosu odaklı eğitim"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektöre yönelik eğitim"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Merkezi kampüs ve sektör iş birlikleri"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Topkap%C4%B1_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

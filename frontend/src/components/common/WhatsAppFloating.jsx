@@ -11,7 +11,7 @@ export default function WhatsAppFloating() {
     return null;
   }
 
-  const phone = settings.contact_whatsapp || '905514678371';
+  const phone = settings.contact_whatsapp || settings.whatsapp_number || '905313971022';
 
   let defaultMsg =
     settings.whatsapp_message_ar ||

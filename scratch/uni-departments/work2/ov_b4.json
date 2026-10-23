@@ -1,0 +1,49 @@
+[
+{"slug":"istanbul-gelisim-university","nameTr":"İstanbul Gelişim Üniversitesi","facultyCount":7,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Akredite sağlık programları ve güçlü uygulama altyapısı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"MÜDEK akreditasyonu hedefli güncel müfredat"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen programlarından"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Atölye odaklı tasarım eğitimi"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Sağlık bilimleri odaklı klinik uygulama"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektör odaklı eğitim"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Geli%C5%9Fim_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-kent-university","nameTr":"İstanbul Kent Üniversitesi","facultyCount":6,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Kendi diş hastanesinde yoğun klinik eğitim"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Sağlık odaklı üniversitenin güçlü programı"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Merkezi kampüs ve uygulamalı eğitim modeli"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Hastane iş birlikleriyle klinik uygulama"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Güncel müfredatlı mühendislik eğitimi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Kent_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-kultur-university","nameTr":"İstanbul Kültür Üniversitesi","facultyCount":8,"departmentCount":33,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Köklü vakıf üniversitesinin en güçlü programlarından"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Kültür geleneğinin tasarım odaklı güçlü programı"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Uygulama merkezli eğitim ve yüksek tercih"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"MÜDEK akreditasyonlu mühendislik eğitimi"},
+ {"tr":"İşletme","en":"Business Administration","reason":"İngilizce eğitim ve uluslararası iş birlikleri"},
+ {"tr":"Radyo, Televizyon ve Sinema","en":"Radio, Television and Cinema","reason":"Sanat ve tasarım fakültesinin uygulamalı programı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_K%C3%BClt%C3%BCr_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-medipol-university","nameTr":"İstanbul Medipol Üniversitesi","facultyCount":12,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Medipol Mega Hastanesi ile güçlü klinik eğitim"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Türkiye'nin en büyük diş hastanelerinden birinde eğitim"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Sağlık temalı üniversitenin köklü programı"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Geniş hastane ağında yoğun klinik uygulama"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Rehabilitasyon merkezleriyle uygulamalı eğitim"},
+ {"tr":"Uluslararası Tıp (International Medicine)","en":"International Medicine","reason":"İngilizce eğitimli, uluslararası öğrencilere yönelik tıp"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Medipol_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-nisantasi-university","nameTr":"İstanbul Nişantaşı Üniversitesi","facultyCount":6,"departmentCount":48,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Neo Hastanesi bağlantılı klinik tıp eğitimi"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Modern diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Üniversitenin en çok tercih edilen programlarından"},
+ {"tr":"Radyo, Televizyon ve Sinema","en":"Radio, Television and Cinema","reason":"Sektör bağlantılı medya eğitim altyapısı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Teknopark yerleşkesinde teknoloji odaklı eğitim"},
+ {"tr":"Gastronomi ve Mutfak Sanatları","en":"Gastronomy and Culinary Arts","reason":"Uygulama mutfaklarıyla sektör odaklı program"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Ni%C5%9Fanta%C5%9F%C4%B1_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"istanbul-okan-university","nameTr":"İstanbul Okan Üniversitesi","facultyCount":11,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Okan Hastanesi ile entegre klinik eğitim"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Kendi diş hastanesinde uygulamalı eğitim"},
+ {"tr":"Hukuk","en":"Law","reason":"Tuzla kampüsünde güçlü akademik kadro"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Uygulama merkezi destekli eğitim"},
+ {"tr":"Otomotiv Mühendisliği","en":"Automotive Engineering","reason":"Türkiye'de az sayıda bulunan uzmanlık programı"},
+ {"tr":"Eğitim (İngilizce Öğretmenliği)","en":"Education (English Language Teaching)","reason":"Üniversitenin köklü eğitim geleneği"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/%C4%B0stanbul_Okan_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

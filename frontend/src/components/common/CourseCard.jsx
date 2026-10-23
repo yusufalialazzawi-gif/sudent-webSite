@@ -33,7 +33,7 @@ export default function CourseCard({ course }) {
         <img
           src={
             course.imageUrl ||
-            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80'
+            'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&auto=format&fit=crop&q=80'
           }
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -49,9 +49,9 @@ export default function CourseCard({ course }) {
           </span>
         </div>
 
-        {/* Price Tag */}
-        <div className="absolute bottom-3 end-3 bg-brand-amber-500 text-white px-3 py-1 rounded-lg text-xs font-black shadow-md">
-          {course.price === 0 ? (currentLang === 'ar' ? 'مجاني' : 'Free') : `$${course.price} ${course.currency}`}
+        {/* Certified Badge */}
+        <div className="absolute bottom-3 end-3 bg-brand-navy-950/90 text-brand-amber-300 border border-brand-amber-400/30 px-3 py-1 rounded-lg text-xs font-black shadow-md backdrop-blur-md">
+          {currentLang === 'ar' ? 'شهادة معتمدة' : currentLang === 'tr' ? 'Onaylı Sertifika' : 'Certified'}
         </div>
       </div>
 

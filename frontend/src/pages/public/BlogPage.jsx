@@ -52,7 +52,11 @@ export default function BlogPage() {
           {t('blog.title')}
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-brand-navy-950 font-cairo">
-          مدونة الدراسة والحياة الطلابية في تركيا
+          {currentLang === 'ar'
+            ? 'مدونة الدراسة والحياة الطلابية في تركيا'
+            : currentLang === 'tr'
+            ? 'Türkiye’de Eğitim ve Öğrenci Yaşamı Blogu'
+            : 'Study & Student Life in Turkey Blog'}
         </h1>
         <p className="text-slate-600 text-sm leading-relaxed">
           {t('blog.subtitle')}
@@ -66,7 +70,7 @@ export default function BlogPage() {
               !category ? 'bg-brand-navy-950 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            جميع المقالات
+            {currentLang === 'ar' ? 'جميع المقالات' : currentLang === 'tr' ? 'Tüm Yazılar' : 'All Articles'}
           </button>
           <button
             onClick={() => updateFilters({ category: 'LIVING' })}
@@ -74,7 +78,7 @@ export default function BlogPage() {
               category === 'LIVING' ? 'bg-brand-amber-500 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            تكاليف المعيشة
+            {currentLang === 'ar' ? 'تكاليف المعيشة' : currentLang === 'tr' ? 'Yaşam Maliyetleri' : 'Cost of Living'}
           </button>
           <button
             onClick={() => updateFilters({ category: 'GUIDE' })}
@@ -82,7 +86,7 @@ export default function BlogPage() {
               category === 'GUIDE' ? 'bg-brand-amber-500 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
-            دليل الإقامة والقبول
+            {currentLang === 'ar' ? 'دليل الإقامة والقبول' : currentLang === 'tr' ? 'İkamet & Başvuru Rehberi' : 'Residence & Admissions Guide'}
           </button>
         </div>
       </div>
@@ -96,7 +100,7 @@ export default function BlogPage() {
         </div>
       ) : isError ? (
         <div className="p-6 bg-red-50 text-red-700 rounded-2xl text-center text-sm font-bold">
-          {error?.message || 'حدث خطأ في تحميل المقالات.'}
+          {error?.message || (currentLang === 'ar' ? 'حدث خطأ في تحميل المقالات.' : currentLang === 'tr' ? 'Makaleler yüklenirken bir hata oluştu.' : 'Failed to load blog articles.')}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

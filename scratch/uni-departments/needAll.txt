@@ -1,0 +1,115 @@
+abdullah-gul-universitesi | Abdullah Gül Üniversitesi | https://www.agu.edu.tr
+acibadem-universitesi | Acıbadem Mehmet Ali Aydınlar Üniversitesi | https://www.acibadem.edu.tr
+agri-ibrahim-cecen-universitesi | Ağrı İbrahim Çeçen Üniversitesi | https://agri.edu.tr
+akdeniz-universitesi | Akdeniz Üniversitesi | https://akdeniz.edu.tr
+alanya-universitesi | Alanya Üniversitesi | https://www.alanya.edu.tr
+altinbas-university | Altınbaş Üniversitesi | https://www.altinbas.edu.tr
+anadolu-universitesi | Anadolu Üniversitesi | https://anadolu.edu.tr
+ankara-universitesi | Ankara Üniversitesi | https://ankara.edu.tr
+antalya-bilim-university | Antalya Bilim Üniversitesi | https://antalya.edu.tr
+artvin-coruh-universitesi | Artvin Çoruh Üniversitesi | https://artvin.edu.tr
+ataturk-universitesi | Atatürk Üniversitesi | https://atauni.edu.tr
+atilim-university | Atılım Üniversitesi | https://www.atilim.edu.tr
+avrasya-universitesi | Avrasya Üniversitesi | https://www.avrasya.edu.tr
+aydin-adnan-menderes-universitesi | Aydın Adnan Menderes Üniversitesi | https://adu.edu.tr
+bahcesehir-university | Bahçeşehir Üniversitesi | https://bau.edu.tr
+balikesir-universitesi | Balıkesir Üniversitesi | https://balikesir.edu.tr
+bartin-universitesi | Bartın Üniversitesi | https://bartin.edu.tr
+baskent-university | Başkent Üniversitesi | https://www.baskent.edu.tr
+bayburt-universitesi | Bayburt Üniversitesi | https://bayburt.edu.tr
+beykent-university | İstanbul Beykent Üniversitesi | https://www.beykent.edu.tr
+bezmialem-vakif-universitesi | Bezmialem Vakıf Üniversitesi | https://bezmialem.edu.tr
+bilkent-university | İhsan Doğramacı Bilkent Üniversitesi | https://www.bilkent.edu.tr
+bingol-universitesi | Bingöl Üniversitesi | https://bingol.edu.tr
+biruni-university | Biruni Üniversitesi | https://www.biruni.edu.tr
+bitlis-eren-universitesi | Bitlis Eren Üniversitesi | https://beu.edu.tr
+bogazici-universitesi | Boğaziçi Üniversitesi | https://boun.edu.tr
+bolu-abant-izzet-baysal-universitesi | Bolu Abant İzzet Baysal Üniversitesi | https://ibu.edu.tr
+bursa-uludag-universitesi | Bursa Uludağ Üniversitesi | https://uludag.edu.tr
+cag-university | Çağ Üniversitesi | https://www.cag.edu.tr
+canakkale-onsekiz-mart-universitesi | Çanakkale Onsekiz Mart Üniversitesi (ÇOMÜ) | https://comu.edu.tr
+cankaya-university | Çankaya Üniversitesi | https://www.cankaya.edu.tr
+cukurova-universitesi | Çukurova Üniversitesi | https://cu.edu.tr
+dicle-universitesi | Dicle Üniversitesi | https://dicle.edu.tr
+dogus-university | Doğuş Üniversitesi | https://www.dogus.edu.tr
+dokuz-eylul-universitesi | Dokuz Eylül Üniversitesi | https://deu.edu.tr
+duzce-universitesi | Düzce Üniversitesi | https://duzce.edu.tr
+ege-universitesi | Ege Üniversitesi | https://ege.edu.tr
+erciyes-universitesi | Erciyes Üniversitesi | https://erciyes.edu.tr
+erzincan-binali-yildirim-universitesi | Erzincan Binali Yıldırım Üniversitesi | https://ebyu.edu.tr
+eskisehir-osmangazi-universitesi | Eskişehir Osmangazi Üniversitesi | https://ogu.edu.tr
+fenerbahce-universitesi | Fenerbahçe Üniversitesi | https://www.fbu.edu.tr
+firat-universitesi | Fırat Üniversitesi | https://firat.edu.tr
+galatasaray-universitesi | Galatasaray Üniversitesi | https://gsu.edu.tr
+gazi-universitesi | Gazi Üniversitesi | https://gazi.edu.tr
+giresun-universitesi | Giresun Üniversitesi | https://giresun.edu.tr
+gumushane-universitesi | Gümüşhane Üniversitesi | https://gumushane.edu.tr
+halic-universitesi | Haliç Üniversitesi | https://halic.edu.tr
+igdir-universitesi | Iğdır Üniversitesi | https://igdir.edu.tr
+inonu-universitesi | İnönü Üniversitesi | https://inonu.edu.tr
+isik-universitesi | Işık Üniversitesi | https://www.isikun.edu.tr
+istanbul-29-mayis-universitesi | İstanbul 29 Mayıs Üniversitesi | https://www.29mayis.edu.tr
+istanbul-arel-university | İstanbul Arel Üniversitesi | https://www.arel.edu.tr
+istanbul-aydin-university | İstanbul Aydın Üniversitesi | https://www.aydin.edu.tr
+istanbul-bilgi-university | İstanbul Bilgi Üniversitesi | https://www.bilgi.edu.tr
+istanbul-galata-university | İstanbul Galata Üniversitesi | https://www.galata.edu.tr
+istanbul-gelisim-university | İstanbul Gelişim Üniversitesi | https://gelisim.edu.tr
+istanbul-kent-university | İstanbul Kent Üniversitesi | https://www.kent.edu.tr
+istanbul-medipol-university | İstanbul Medipol Üniversitesi | https://medipol.edu.tr
+istanbul-okan-university | İstanbul Okan Üniversitesi | https://www.okan.edu.tr
+istanbul-rumeli-university | İstanbul Rumeli Üniversitesi | https://rumeli.edu.tr
+istanbul-saglik-ve-teknoloji-universitesi | İstanbul Sağlık ve Teknoloji Üniversitesi | https://www.istun.edu.tr
+istanbul-ticaret-universitesi | İstanbul Ticaret Üniversitesi | https://www.ticaret.edu.tr
+istanbul-topkapi-universitesi | İstanbul Topkapı Üniversitesi | https://www.topkapi.edu.tr
+istanbul-universitesi | İstanbul Üniversitesi | https://istanbul.edu.tr
+istanbul-university | İstanbul Üniversitesi | https://istanbul.edu.tr
+istanbul-yeni-yuzyil-universitesi | İstanbul Yeni Yüzyıl Üniversitesi | https://www.yeniyuzyil.edu.tr
+istinye-university | İstinye Üniversitesi | https://www.istinye.edu.tr
+izmir-university-of-economics | İzmir Ekonomi Üniversitesi | https://www.ieu.edu.tr
+kadir-has-university | Kadir Has Üniversitesi | https://www.khas.edu.tr
+kafkas-universitesi | Kafkas Üniversitesi | https://kafkas.edu.tr
+kapadokya-university | Kapadokya Üniversitesi | https://kapadokya.edu.tr
+karabuk-universitesi | Karabük Üniversitesi | https://karabuk.edu.tr
+karadeniz-teknik-universitesi | Karadeniz Teknik Üniversitesi (KTÜ) | https://ktu.edu.tr
+kastamonu-universitesi | Kastamonu Üniversitesi | https://kastamonu.edu.tr
+koc-university | Koç Üniversitesi | https://ku.edu.tr
+kocaeli-saglik-ve-teknoloji-universitesi | Kocaeli Sağlık ve Teknoloji Üniversitesi | https://kocaelisaglik.edu.tr
+kocaeli-universitesi | Kocaeli Üniversitesi | https://kocaeli.edu.tr
+konya-gida-ve-tarim-universitesi | Konya Gıda ve Tarım Üniversitesi | https://www.gidatarim.edu.tr
+kto-karatay-university | KTO Karatay Üniversitesi | https://www.karatay.edu.tr
+lokman-hekim-universitesi | Lokman Hekim Üniversitesi | https://lokmanhekim.edu.tr
+maltepe-university | Maltepe Üniversitesi | https://www.maltepe.edu.tr
+manisa-celal-bayar-universitesi | Manisa Celal Bayar Üniversitesi | https://mcbu.edu.tr
+mardin-artuklu-universitesi | Mardin Artuklu Üniversitesi | https://artuklu.edu.tr
+marmara-universitesi | Marmara Üniversitesi | https://marmara.edu.tr
+mef-university | MEF Üniversitesi | https://www.mef.edu.tr
+mersin-universitesi | Mersin Üniversitesi | https://mersin.edu.tr
+mimar-sinan-guzel-sanatlar-universitesi | Mimar Sinan Güzel Sanatlar Üniversitesi | https://msgsu.edu.tr
+mudanya-universitesi | Mudanya Üniversitesi | https://mudanya.edu.tr
+mugla-sitki-kocman-universitesi | Muğla Sıtkı Koçman Üniversitesi | https://mu.edu.tr
+mus-alparslan-universitesi | Muş Alparslan Üniversitesi | https://alparslan.edu.tr
+ondokuz-mayis-universitesi | Ondokuz Mayıs Üniversitesi | https://omu.edu.tr
+ordu-universitesi | Ordu Üniversitesi (ODÜ) | https://odu.edu.tr
+orta-dogu-teknik-universitesi | Orta Doğu Teknik Üniversitesi (ODTÜ) | https://metu.edu.tr
+ostim-teknik-universitesi | OSTİM Teknik Üniversitesi | https://www.ostimteknik.edu.tr
+ozyegin-university | Özyeğin Üniversitesi | https://www.ozyegin.edu.tr
+pamukkale-universitesi | Pamukkale Üniversitesi | https://pau.edu.tr
+piri-reis-universitesi | Pîrî Reis Üniversitesi | https://www.pirireis.edu.tr
+recep-tayyip-erdogan-universitesi | Recep Tayyip Erdoğan Üniversitesi | https://erdogan.edu.tr
+sabanci-university | Sabancı Üniversitesi | https://sabanciuniv.edu
+sakarya-universitesi | Sakarya Üniversitesi | https://sakarya.edu.tr
+sanko-university | SANKO Üniversitesi | https://www.sanko.edu.tr
+selcuk-universitesi | Selçuk Üniversitesi | https://selcuk.edu.tr
+siirt-universitesi | Siirt Üniversitesi | https://siirt.edu.tr
+sinop-universitesi | Sinop Üniversitesi | https://sinop.edu.tr
+suleyman-demirel-universitesi | Süleyman Demirel Üniversitesi | https://sdu.edu.tr
+ted-university | TED Üniversitesi | https://www.tedu.edu.tr
+tobb-ekonomi-ve-teknoloji-universitesi | TOBB Ekonomi ve Teknoloji Üniversitesi | https://www.etu.edu.tr
+toros-university | Toros Üniversitesi | https://www.toros.edu.tr
+trakya-universitesi | Trakya Üniversitesi | https://trakya.edu.tr
+uskudar-university | Üsküdar Üniversitesi | https://uskudar.edu.tr
+van-yuzuncu-yil-universitesi | Van Yüzüncü Yıl Üniversitesi | https://yyu.edu.tr
+yalova-universitesi | Yalova Üniversitesi | https://yalova.edu.tr
+yasar-university | Yaşar Üniversitesi | https://www.yasar.edu.tr
+yeditepe-university | Yeditepe Üniversitesi | https://www.yeditepe.edu.tr
+yildiz-teknik-universitesi | Yıldız Teknik Üniversitesi (YTÜ) | https://yildiz.edu.tr

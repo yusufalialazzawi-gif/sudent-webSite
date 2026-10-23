@@ -6,6 +6,7 @@ import { Search, Filter, SlidersHorizontal, MapPin, Building2, Globe, Graduation
 import { useLanguage } from '../../context/LanguageContext';
 import { api } from '../../services/api';
 import UniversityCard from '../../components/common/UniversityCard';
+import PricingPolicyNotice from '../../components/common/PricingPolicyNotice';
 
 export default function UniversitiesPage() {
   const { t } = useTranslation();
@@ -18,6 +19,8 @@ export default function UniversitiesPage() {
   const type = searchParams.get('type') || '';
   const language = searchParams.get('language') || '';
   const degreeLevel = searchParams.get('degreeLevel') || '';
+  const admissionStatus = searchParams.get('admissionStatus') || '';
+  const graduateAdmissionOpen = searchParams.get('graduateAdmissionOpen') || '';
   const page = parseInt(searchParams.get('page') || '1');
   const sortBy = searchParams.get('sortBy') || 'ranking';
 
@@ -33,7 +36,7 @@ export default function UniversitiesPage() {
 
   // Query universities
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['universities', { search, city, type, language, degreeLevel, page, sortBy, currentLang }],
+    queryKey: ['universities', { search, city, type, language, degreeLevel, admissionStatus, graduateAdmissionOpen, page, sortBy, currentLang }],
     queryFn: () =>
       api.getUniversities({
         search,
@@ -41,6 +44,8 @@ export default function UniversitiesPage() {
         type,
         language,
         degreeLevel,
+        admissionStatus,
+        graduateAdmissionOpen,
         page,
         limit: 12,
         sortBy,
@@ -48,17 +53,28 @@ export default function UniversitiesPage() {
       }),
   });
 
-  const updateFilters = (newParams) => {
+  const updateFilters = (newParams, resetPage = true) => {
     const updated = new URLSearchParams(searchParams);
     Object.entries(newParams).forEach(([k, v]) => {
-      if (v) {
+      if (v !== undefined && v !== null && v !== '') {
         updated.set(k, v);
       } else {
         updated.delete(k);
       }
     });
-    updated.set('page', '1'); // reset page on filter change
+    if (resetPage) {
+      updated.set('page', '1'); // reset page only on filter changes
+    }
     setSearchParams(updated);
+  };
+
+  const changePage = (newPage) => {
+    const totalPages = data?.pagination?.totalPages || 1;
+    if (newPage < 1 || newPage > totalPages) return;
+    const updated = new URLSearchParams(searchParams);
+    updated.set('page', String(newPage));
+    setSearchParams(updated);
+    window.scrollTo({ top: 180, behavior: 'smooth' });
   };
 
   const handleSearchSubmit = (e) => {
@@ -71,21 +87,56 @@ export default function UniversitiesPage() {
     setSearchParams({});
   };
 
-  const hasActiveFilters = Boolean(search || city || type || language || degreeLevel);
+  const hasActiveFilters = Boolean(search || city || type || language || degreeLevel || admissionStatus || graduateAdmissionOpen);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Page Title & Breadcrumb */}
       <div>
         <span className="text-xs font-bold text-brand-amber-600 uppercase tracking-wider block mb-1">
-          {t('universities.badge')}
+          {currentLang === 'ar' ? '🏛️ دليل +120 جامعة تركية معتمدة' : currentLang === 'tr' ? '🏛️ +120 Türk Üniversitesi Rehberi' : '🏛️ +120 Turkish Universities Guide'}
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-brand-navy-950 font-cairo">
           {t('universities.title')}
         </h1>
         <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-          {t('universities.subtitle')}
+          {currentLang === 'ar'
+            ? 'تصفح قائمة الجامعات التركية الحكومية والخاصة مع تفاصيل القبول المباشر، برامج الماجستير والدكتوراه، ومواعيد التسجيل المحدثة.'
+            : currentLang === 'tr'
+            ? 'Devlet ve vakıf üniversitelerini inceleyin; lisans, yüksek lisans ve doktora kontenjanlarına resmi danışmanlıkla başvurun.'
+            : 'Browse accredited public and private universities with direct admission pathways and graduate intake calendars.'}
         </p>
+      </div>
+
+      {/* Quick Filter Category Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+        {[
+          { labelAr: 'الكل', labelTr: 'Tümü', labelEn: 'All', query: { type: '', degreeLevel: '', admissionStatus: '', graduateAdmissionOpen: '' } },
+          { labelAr: '🏛️ جامعات حكومية (Devlet)', labelTr: '🏛️ Devlet Üniversiteleri', labelEn: '🏛️ State Universities', query: { type: 'PUBLIC', degreeLevel: '', admissionStatus: '', graduateAdmissionOpen: '' } },
+          { labelAr: '🎓 ماجستير ودكتوراه (Graduate)', labelTr: '🎓 Yüksek Lisans & Doktora', labelEn: '🎓 Graduate Studies', query: { graduateAdmissionOpen: 'true', type: '', degreeLevel: '', admissionStatus: '' } },
+          { labelAr: '🟢 التقديم مفتوح الآن', labelTr: '🟢 Başvurusu Açık Olanlar', labelEn: '🟢 Open Admissions', query: { admissionStatus: 'OPEN', type: '', degreeLevel: '', graduateAdmissionOpen: '' } },
+          { labelAr: '🏢 جامعات خاصة (Vakıf)', labelTr: '🏢 Vakıf Üniversiteleri', labelEn: '🏢 Foundation Unis', query: { type: 'PRIVATE', degreeLevel: '', admissionStatus: '', graduateAdmissionOpen: '' } },
+        ].map((pill, idx) => {
+          const isActive =
+            (pill.query.type && type === pill.query.type) ||
+            (pill.query.graduateAdmissionOpen && graduateAdmissionOpen === pill.query.graduateAdmissionOpen) ||
+            (pill.query.admissionStatus && admissionStatus === pill.query.admissionStatus) ||
+            (!pill.query.type && !pill.query.graduateAdmissionOpen && !pill.query.admissionStatus && !type && !graduateAdmissionOpen && !admissionStatus);
+          const label = currentLang === 'ar' ? pill.labelAr : currentLang === 'tr' ? pill.labelTr : pill.labelEn;
+          return (
+            <button
+              key={idx}
+              onClick={() => updateFilters(pill.query)}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+                isActive
+                  ? 'bg-brand-navy-950 text-brand-amber-400 shadow-md shadow-brand-navy-950/20 scale-[1.02]'
+                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+              }`}
+            >
+              {label}
+            </button>
+          );
+        })}
       </div>
 
       {/* Filter and Search Bar Container */}
@@ -141,14 +192,41 @@ export default function UniversitiesPage() {
               <option value="TURKISH">Türkçe</option>
             </select>
 
+            {/* Admission Status */}
+            <select
+              value={admissionStatus}
+              onChange={(e) => updateFilters({ admissionStatus: e.target.value })}
+              className="px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-amber-500 cursor-pointer"
+            >
+              <option value="">
+                {currentLang === 'ar' ? 'جميع حالات التقديم' : currentLang === 'tr' ? 'Tüm Başvuru Durumları' : 'All Admission Statuses'}
+              </option>
+              <option value="OPEN">
+                {currentLang === 'ar' ? '🟢 مفتوح للتسجيل' : currentLang === 'tr' ? '🟢 Başvuru Açık' : '🟢 Open for Admission'}
+              </option>
+              <option value="UPCOMING">
+                {currentLang === 'ar' ? '🟡 يفتح قريباً' : currentLang === 'tr' ? '🟡 Yakında Açılacak' : '🟡 Opening Soon'}
+              </option>
+              <option value="CLOSED">
+                {currentLang === 'ar' ? '🔴 التقديم مغلق' : currentLang === 'tr' ? '🔴 Başvuru Kapalı' : '🔴 Closed'}
+              </option>
+              <option value="UNCONFIRMED">
+                {currentLang === 'ar' ? '⚪ غير مؤكد' : currentLang === 'tr' ? '⚪ Doğrulanmadı' : '⚪ Unconfirmed'}
+              </option>
+            </select>
+
             {/* Sort */}
             <select
               value={sortBy}
               onChange={(e) => updateFilters({ sortBy: e.target.value })}
               className="px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-amber-500 cursor-pointer text-slate-700"
             >
-              <option value="ranking">حسب الترتيب (الأعلى تصنيفاً)</option>
-              <option value="establishedYear">حسب سنة التأسيس</option>
+              <option value="ranking">
+                {currentLang === 'ar' ? 'حسب الترتيب (الأعلى تصنيفاً)' : currentLang === 'tr' ? 'Sıralamaya Göre (En Yüksek)' : 'By National Rank'}
+              </option>
+              <option value="establishedYear">
+                {currentLang === 'ar' ? 'حسب سنة التأسيس' : currentLang === 'tr' ? 'Kuruluş Yılına Göre' : 'By Established Year'}
+              </option>
             </select>
 
             {hasActiveFilters && (
@@ -168,7 +246,9 @@ export default function UniversitiesPage() {
             className="lg:hidden w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-200 text-xs font-bold bg-slate-50"
           >
             <Filter className="w-4 h-4 text-brand-amber-600" />
-            <span>تصفية النتائج</span>
+            <span>
+              {currentLang === 'ar' ? 'تصفية النتائج' : currentLang === 'tr' ? 'Sonuçları Filtrele' : 'Filter Results'}
+            </span>
           </button>
         </div>
 
@@ -215,7 +295,7 @@ export default function UniversitiesPage() {
                 onClick={() => setMobileFilterOpen(false)}
                 className="px-4 py-2 bg-brand-amber-500 text-white rounded-lg text-xs font-bold"
               >
-                تطبيق الفلاتر
+                {currentLang === 'ar' ? 'تطبيق الفلاتر' : currentLang === 'tr' ? 'Filtreleri Uygula' : 'Apply Filters'}
               </button>
             </div>
           </div>
@@ -236,7 +316,9 @@ export default function UniversitiesPage() {
         </div>
       ) : isError ? (
         <div className="text-center py-16 bg-red-50 rounded-2xl border border-red-200 text-red-700 p-6">
-          <p className="font-bold">حدث خطأ أثناء تحميل بيانات الجامعات.</p>
+          <p className="font-bold">
+            {currentLang === 'ar' ? 'حدث خطأ أثناء تحميل بيانات الجامعات.' : currentLang === 'tr' ? 'Üniversite verileri yüklenirken bir hata oluştu.' : 'An error occurred while loading universities.'}
+          </p>
           <p className="text-xs mt-1">{error?.message}</p>
         </div>
       ) : data?.data?.length === 0 ? (
@@ -246,7 +328,11 @@ export default function UniversitiesPage() {
             {t('universities.noResults')}
           </h3>
           <p className="text-slate-500 text-xs max-w-md mx-auto">
-            جرّب تغيير معايير البحث أو تصفية المدن للحصول على نتائج مطابقة.
+            {currentLang === 'ar'
+              ? 'جرّب تغيير معايير البحث أو تصفية المدن للحصول على نتائج مطابقة.'
+              : currentLang === 'tr'
+              ? 'Farklı arama kriterleri deneyerek veya filtreleri temizleyerek sonuç bulabilirsiniz.'
+              : 'Try adjusting search terms or resetting filters to find matching institutions.'}
           </p>
           <button
             onClick={clearAllFilters}
@@ -263,29 +349,38 @@ export default function UniversitiesPage() {
         </div>
       )}
 
-      {/* Pagination */}
+      {/* Transparent Pricing Policy */}
+      <PricingPolicyNotice className="mt-8" />
+
+      {/* Pagination Controls */}
       {data?.pagination?.totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 pt-6">
+        <div className="flex items-center justify-center gap-3 pt-8 pb-4">
           <button
             disabled={page <= 1}
-            onClick={() => updateFilters({ page: page - 1 })}
-            className="p-2 rounded-xl border border-slate-200 text-slate-700 disabled:opacity-40 hover:bg-slate-100 transition-colors"
+            onClick={() => changePage(page - 1)}
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 disabled:opacity-30 disabled:pointer-events-none hover:bg-brand-amber-500 hover:text-white hover:border-brand-amber-500 font-bold text-xs transition-all shadow-sm"
             aria-label="Previous page"
           >
-            <ChevronLeft className="w-5 h-5 flip-in-rtl" />
+            <ChevronLeft className="w-4 h-4 flip-in-rtl" />
+            <span>{currentLang === 'ar' ? 'السابق' : currentLang === 'tr' ? 'Önceki' : 'Previous'}</span>
           </button>
 
-          <span className="text-xs font-bold text-slate-700 px-4 py-2 rounded-xl bg-slate-100">
-            {page} / {data.pagination.totalPages}
+          <span className="text-xs font-bold text-slate-800 px-4 py-2.5 rounded-xl bg-slate-100 border border-slate-200 shadow-inner">
+            {currentLang === 'ar'
+              ? `الصفحة ${page} من ${data.pagination.totalPages}`
+              : currentLang === 'tr'
+              ? `Sayfa ${page} / ${data.pagination.totalPages}`
+              : `Page ${page} of ${data.pagination.totalPages}`}
           </span>
 
           <button
             disabled={page >= data.pagination.totalPages}
-            onClick={() => updateFilters({ page: page + 1 })}
-            className="p-2 rounded-xl border border-slate-200 text-slate-700 disabled:opacity-40 hover:bg-slate-100 transition-colors"
+            onClick={() => changePage(page + 1)}
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 disabled:opacity-30 disabled:pointer-events-none hover:bg-brand-amber-500 hover:text-white hover:border-brand-amber-500 font-bold text-xs transition-all shadow-sm"
             aria-label="Next page"
           >
-            <ChevronRight className="w-5 h-5 flip-in-rtl" />
+            <span>{currentLang === 'ar' ? 'التالي' : currentLang === 'tr' ? 'Sonraki' : 'Next'}</span>
+            <ChevronRight className="w-4 h-4 flip-in-rtl" />
           </button>
         </div>
       )}

@@ -1,0 +1,52 @@
+﻿AdminApplicationsPage.jsx:271: <span>{activeTab === 'applications' ? `${applications.length} طلبات` : `${inquiries.length} رسائل`}</span>
+AdminApplicationsPage.jsx:414: <div className="text-[11px] text-slate-500">المعدل: {app.highSchoolGpa || 'N/A'}%</div>
+AdminApplicationsPage.jsx:794: <span>الوثائق والشهادات المرفوعة ({appDetail.documents?.length || 0})</span>
+AdminApplicationsPage.jsx:890: الطالب: <span className="font-bold text-slate-800">{statusModalApp.applicantName}</span>
+AdminBlogPage.jsx:203: إجمالي المقالات: {articles.length}
+AdminBlogPage.jsx:246: <span>{art.readTimeMinutes} دقائق قراءة</span>
+AdminBlogPage.jsx:272: if (confirm(`هل أنت متأكد من حذف مقال ${arTitle}؟`)) {
+AdminBlogPage.jsx:420: <label className="block font-bold text-slate-700 mb-1">عنوان المقال ({activeTab.toUpperCase()})*</label>
+AdminCoursesPage.jsx:216: إجمالي الدورات: {courses.length}
+AdminCoursesPage.jsx:254: <div className="text-[11px] text-slate-500 mt-1">{crs.durationWeeks} أسابيع مكثفة</div>
+AdminCoursesPage.jsx:262: <span>{regCount} / {crs.capacity || '∞'} طالب</span>
+AdminCoursesPage.jsx:282: if (confirm(`هل أنت متأكد من حذف دورة ${arTitle}؟`)) {
+AdminCoursesPage.jsx:338: ملاحظة الطالب: {reg.notes}
+AdminCoursesPage.jsx:476: <label className="block font-bold text-slate-700 mb-1">عنوان الدورة ({activeTab.toUpperCase()})*</label>
+AdminMediaLibraryPage.jsx:218: if (confirm(`حذف الملف ${asset.originalName}؟`)) {
+AdminPageBuilderPage.jsx:181: الصفحة الرئيسية (Home Page)
+AdminPageBuilderPage.jsx:189: صفحة من نحن (About)
+AdminPageBuilderPage.jsx:272: if (confirm(`هل أنت متأكد من حذف قسم ${sec.sectionKey}؟`)) {
+AdminProgramsPage.jsx:280: {filteredPrograms.length} برنامج
+AdminProgramsPage.jsx:322: <span>{prog.durationYears} سنوات</span>
+AdminProgramsPage.jsx:350: if (confirm(`هل أنت متأكد من حذف ${arName}؟`)) {
+AdminProgramsPage.jsx:531: <label className="block font-bold text-slate-700 mb-1">اسم التخصص ({activeTab.toUpperCase()})*</label>
+AdminProgramsPage.jsx:543: <label className="block font-bold text-slate-700 mb-1">اسم الكلية ({activeTab.toUpperCase()})</label>
+AdminProgramsPage.jsx:554: <label className="block font-bold text-slate-700 mb-1">وصف تفصيلي للبرنامج والمقررات ({activeTab.toUpperCase()})</label>
+AdminProgramsPage.jsx:565: <label className="block font-bold text-slate-700 mb-1">فرص العمل ومجالات التخرج ({activeTab.toUpperCase()})</label>
+AdminScholarshipsPage.jsx:215: إجمالي المنح: {scholarships.length}
+AdminScholarshipsPage.jsx:282: if (confirm(`هل أنت متأكد من حذف منحة ${arTitle}؟`)) {
+AdminScholarshipsPage.jsx:423: <label className="block font-bold text-slate-700 mb-1">عنوان المنحة ({activeTab.toUpperCase()})*</label>
+AdminServicesPage.jsx:207: إجمالي الخدمات: {services.length}
+AdminServicesPage.jsx:284: if (confirm(`هل أنت متأكد من حذف ${arTitle}؟`)) {
+AdminServicesPage.jsx:421: <label className="block font-bold text-slate-700 mb-1">عنوان الخدمة ({activeTab.toUpperCase()})*</label>
+AdminServicesPage.jsx:433: <label className="block font-bold text-slate-700 mb-1">وصف الخدمة ({activeTab.toUpperCase()})</label>
+AdminServicesPage.jsx:444: <label className="block font-bold text-slate-700 mb-1">المميزات والفوائد للطلاب ({activeTab.toUpperCase()})</label>
+AdminSettingsPage.jsx:79: ? `تم حفظ ${payload.length} إعداد بنجاح — الموقع يتحدث فوراً.`
+AdminStaffPage.jsx:205: {m._count?.assignedApplications || 0} طلب
+AdminUniversitiesPage.jsx:869: if (confirm(`هل أنت متأكد من حذف ${arName} نهائياً؟`)) {
+AdminUniversitiesPage.jsx:1055: if (confirm(`هل أنت متأكد من حذف ${arName} نهائياً؟`)) {
+AdminUniversitiesPage.jsx:1476: يقوم النظام بالتحقق من كل سجل وإدخاله مع ترجماته (عربي، تركي، إنجليزي)، روابط المواقع الرسمية، الشعارات،
+AdminUniversitiesPage.jsx:1477: ولا يتم إظهار رسالة "تم الإنشاء بنجاح" إلا بعد التأكد الفعلي من وجود السجلات في قاعدة البيانات (Direct DB Verification).
+AdminUniversitiesPage.jsx:1487: {importRegistry.total} جامعة
+AdminUniversitiesPage.jsx:1493: {importRegistry.currentInDb} جامعة
+AdminUniversitiesPage.jsx:1560: <strong className="text-brand-navy-950">{importResults.verifiedDatabaseCount} جامعة</strong>
+AdminUniversitiesPage.jsx:1607: فحص تجريبي (Dry Run)
+AdminUniversitiesPage.jsx:2172: حالة التقديم (Application Status)*
+AdminUniversitiesPage.jsx:2188: آخر موعد للتقديم (Deadline Text)
+AdminUniversitiesPage.jsx:2214: ملاحظة مخصصة لحالة التقديم (Status Note)
+AdminUniversitiesPage.jsx:2227: نص إعلان القبول (يظهر في الشريط الترويجي المتحرك)
+AdminUniversitiesPage.jsx:2388: اسم الجامعة ({activeTab.toUpperCase()})*
+AdminUniversitiesPage.jsx:2408: نبذة شاملة عن الجامعة ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2422: شروط القبول والتسجيل ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2435: السكن الطلابي والإقامة ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2448: الاعتراف الدولي والاعتمادات ({activeTab.toUpperCase()})

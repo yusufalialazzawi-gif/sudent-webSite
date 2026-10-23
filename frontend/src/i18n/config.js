@@ -6,8 +6,10 @@ import ar from './locales/ar.json';
 import tr from './locales/tr.json';
 import en from './locales/en.json';
 
+const savedLang = typeof window !== 'undefined' ? localStorage.getItem('sora_preferred_lang') : null;
+const initialLang = savedLang && ['ar', 'tr', 'en'].includes(savedLang) ? savedLang : 'ar';
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
@@ -15,13 +17,9 @@ i18n
       tr: { translation: tr },
       en: { translation: en },
     },
+    lng: initialLang,
     fallbackLng: 'ar',
     supportedLngs: ['ar', 'tr', 'en'],
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'sora_preferred_lang',
-    },
     interpolation: {
       escapeValue: false,
     },

@@ -15,12 +15,18 @@ build/
 # SQLite development databases
 *.db
 *.db-journal
+*.bak*
+!backend/prisma/dev.db
 
-# Uploads directory (retain directory, ignore dynamic student uploads)
+# Uploads directory (retain public media & university photos, ignore student uploads)
 backend/uploads/*
 !backend/uploads/.gitkeep
+!backend/uploads/universities/
+!backend/uploads/universities/**
+!backend/uploads/logo.jpg
 backend/uploads/private/*
 !backend/uploads/private/.gitkeep
+storage/private_documents/*
 
 # IDE and OS files
 .DS_Store

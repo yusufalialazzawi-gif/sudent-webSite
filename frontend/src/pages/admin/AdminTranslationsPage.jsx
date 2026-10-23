@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import {
@@ -47,7 +48,7 @@ export default function AdminTranslationsPage() {
       return (
         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-red-100 text-red-700">
           <XCircle size={12} />
-          <span>مفقود (Missing)</span>
+          <span>{tx('مفقود (Missing)', 'Eksik (Missing)', 'Missing')}</span>
         </span>
       );
     }
@@ -55,14 +56,14 @@ export default function AdminTranslationsPage() {
       return (
         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
           <CheckCircle2 size={12} />
-          <span>مكتمل (100%)</span>
+          <span>{tx('مكتمل (100%)', 'Tamamlandı (100%)', 'Complete (100%)')}</span>
         </span>
       );
     }
     return (
       <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700">
         <AlertCircle size={12} />
-        <span>بحاجة لإكمال</span>
+        <span>{tx('بحاجة لإكمال', 'Eksik Çeviri', 'Needs Completion')}</span>
       </span>
     );
   };
@@ -87,10 +88,10 @@ export default function AdminTranslationsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-            {currentLanguage === 'ar' ? 'مصفوفة تغطية وجودة الترجمة' : 'Multilingual Coverage Matrix'}
+            {tx('مصفوفة تغطية وجودة الترجمة', 'Çeviri Kapsamı ve Kalite Matrisi', 'Multilingual Coverage Matrix')}
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            {currentLanguage === 'ar' ? 'مراقبة الجاهزية اللغوية للجامعات والبرامج والمقالات عبر اللغات الثلاث (العربية، التركية، الإنجليزية)' : 'Track translation readiness and localized gaps across catalog models'}
+            {tx('مراقبة الجاهزية اللغوية للجامعات والبرامج والمقالات عبر اللغات الثلاث (العربية، التركية، الإنجليزية)', 'Üniversiteler, programlar ve makalelerin üç dildeki (Arapça, Türkçe, İngilizce) çeviri hazır bulunuşluğunu izleyin', 'Track translation readiness and localized gaps across catalog models (Arabic, Turkish, English)')}
           </p>
         </div>
       </div>
@@ -99,7 +100,7 @@ export default function AdminTranslationsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-slate-400 font-semibold">إجمالي العناصر بالقسم</div>
+            <div className="text-xs text-slate-400 font-semibold">{tx('إجمالي العناصر بالقسم', 'Bölümdeki Toplam Öğe', 'Total Catalog Items')}</div>
             <div className="text-2xl font-black text-slate-900 mt-1">{total}</div>
           </div>
           <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
@@ -109,7 +110,7 @@ export default function AdminTranslationsPage() {
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-slate-400 font-semibold">مترجمة بالكامل (3 لغات)</div>
+            <div className="text-xs text-slate-400 font-semibold">{tx('مترجمة بالكامل (3 لغات)', 'Tam Çevrilmiş (3 Dil)', 'Fully Translated (3 Langs)')}</div>
             <div className="text-2xl font-black text-emerald-600 mt-1">{fullyTranslated}</div>
           </div>
           <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
@@ -119,7 +120,7 @@ export default function AdminTranslationsPage() {
 
         <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-slate-400 font-semibold">بحاجة لمراجعة أو ترجمة</div>
+            <div className="text-xs text-slate-400 font-semibold">{tx('بحاجة لمراجعة أو ترجمة', 'Eksik / İncelenecek', 'Missing / Needs Attention')}</div>
             <div className="text-2xl font-black text-amber-600 mt-1">{missingAny}</div>
           </div>
           <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
@@ -138,7 +139,7 @@ export default function AdminTranslationsPage() {
             }`}
           >
             <GraduationCap size={15} />
-            <span>الجامعات</span>
+            <span>{tx('الجامعات', 'Üniversiteler', 'Universities')}</span>
           </button>
 
           <button
@@ -148,7 +149,7 @@ export default function AdminTranslationsPage() {
             }`}
           >
             <BookOpen size={15} />
-            <span>التخصصات والبرامج</span>
+            <span>{tx('التخصصات والبرامج', 'Bölümler ve Programlar', 'Majors & Programs')}</span>
           </button>
 
           <button
@@ -158,7 +159,7 @@ export default function AdminTranslationsPage() {
             }`}
           >
             <Briefcase size={15} />
-            <span>الخدمات</span>
+            <span>{tx('الخدمات', 'Hizmetler', 'Services')}</span>
           </button>
 
           <button
@@ -168,7 +169,7 @@ export default function AdminTranslationsPage() {
             }`}
           >
             <FileText size={15} />
-            <span>المقالات</span>
+            <span>{tx('المقالات', 'Makaleler', 'Articles')}</span>
           </button>
         </div>
 
@@ -176,7 +177,7 @@ export default function AdminTranslationsPage() {
           <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="بحث بالعنصر..."
+            placeholder={tx('بحث بالعنصر...', 'Öğe ara...', 'Search item...')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-brand-amber-500/50"
@@ -189,18 +190,18 @@ export default function AdminTranslationsPage() {
         {isLoading ? (
           <div className="p-12 text-center text-slate-400">
             <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <span>جاري مسح حالة الترجمات...</span>
+            <span>{tx('جاري مسح حالة الترجمات...', 'Çeviri durumu taranıyor...', 'Scanning translation coverage...')}</span>
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-start">
               <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-4 text-start">العنصر والمعرف</th>
-                  <th className="px-4 py-4 text-center">العربية 🇸🇦</th>
-                  <th className="px-4 py-4 text-center">Türkçe 🇹🇷</th>
-                  <th className="px-4 py-4 text-center">English 🇬🇧</th>
-                  <th className="px-6 py-4 text-end">إجراء</th>
+                  <th className="px-6 py-4 text-start">{tx('العنصر والمعرف', 'Öğe & Tanımlayıcı', 'Item & Slug')}</th>
+                  <th className="px-4 py-4 text-center">{tx('العربية 🇸🇦', 'Arapça 🇸🇦', 'Arabic 🇸🇦')}</th>
+                  <th className="px-4 py-4 text-center">{tx('التركية 🇹🇷', 'Türkçe 🇹🇷', 'Turkish 🇹🇷')}</th>
+                  <th className="px-4 py-4 text-center">{tx('الإنجليزية 🇬🇧', 'İngilizce 🇬🇧', 'English 🇬🇧')}</th>
+                  <th className="px-6 py-4 text-end">{tx('إجراء', 'İşlem', 'Action')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -224,7 +225,7 @@ export default function AdminTranslationsPage() {
                         to={getEditLink(modelType, item.id)}
                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 hover:bg-brand-navy-950 hover:text-white rounded-lg font-bold text-slate-700 transition"
                       >
-                        <span>تعديل</span>
+                        <span>{tx('تعديل', 'Düzenle', 'Edit')}</span>
                         <ExternalLink size={12} />
                       </Link>
                     </td>
@@ -235,7 +236,7 @@ export default function AdminTranslationsPage() {
           </div>
         ) : (
           <div className="p-12 text-center text-slate-400 text-sm">
-            لا توجد عناصر مطابقة
+            {tx('لا توجد عناصر مطابقة', 'Eşleşen öğe bulunamadı', 'No matching items')}
           </div>
         )}
       </div>

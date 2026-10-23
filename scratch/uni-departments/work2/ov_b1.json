@@ -1,0 +1,48 @@
+[
+{"slug":"gazi-universitesi","nameTr":"Gazi Üniversitesi","facultyCount":12,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Gazi Hastanesi ile köklü ve güçlü klinik eğitim geleneği"},
+ {"tr":"Gazi Eğitimi (Sınıf Öğretmenliği)","en":"Education (Classroom Teaching)","reason":"Öğretmen yetiştirmede Türkiye'nin en köklü kurumlarından"},
+ {"tr":"Elektrik-Elektronik Mühendisliği","en":"Electrical-Electronics Engineering","reason":"MÜDEK akreditasyonlu, güçlü araştırma altyapısı"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Köklü eczacılık eğitimi ve güçlü laboratuvar altyapısı"},
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Büyük diş hekimliği hastanesi ile yoğun klinik pratik"},
+ {"tr":"Makine Mühendisliği","en":"Mechanical Engineering","reason":"Sanayi iş birlikleri ve MÜDEK akreditasyonlu program"}],
+"sourceUrl":"https://gazi.edu.tr/akademik","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"hacettepe-universitesi","nameTr":"Hacettepe Üniversitesi","facultyCount":15,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Türkiye'nin en prestijli tıp fakültelerinden, güçlü araştırma hastanesi"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Türkiye'de alanının ilk ve öncü fakültesi"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Ülkenin en köklü hemşirelik fakültelerinden"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Güçlü akademik kadro ve araştırma altyapısı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Yüksek yerleşme puanları ve MÜDEK akreditasyonu"},
+ {"tr":"Mütercim-Tercümanlık (İngilizce)","en":"Translation and Interpreting (English)","reason":"Türkiye'nin en saygın çeviri programlarından"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Hacettepe_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"galatasaray-universitesi","nameTr":"Galatasaray Üniversitesi","facultyCount":5,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hukuk","en":"Law","reason":"Frankofon eğitimli, Türkiye'nin en seçkin hukuk programlarından"},
+ {"tr":"Uluslararası İlişkiler","en":"International Relations","reason":"Fransızca destekli eğitim ve güçlü akademik kadro"},
+ {"tr":"İletişim (Gazetecilik)","en":"Communication (Journalism)","reason":"Frankofon geleneğe sahip köklü iletişim eğitimi"},
+ {"tr":"Endüstri Mühendisliği","en":"Industrial Engineering","reason":"Fransızca-İngilizce destekli, yüksek puanlı program"},
+ {"tr":"Felsefe","en":"Philosophy","reason":"Fransız felsefe geleneğinde öncü akademik kadro"},
+ {"tr":"İktisat","en":"Economics","reason":"Frankofon altyapı ve güçlü uluslararası iş birlikleri"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Galatasaray_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"gebze-teknik-universitesi","nameTr":"Gebze Teknik Üniversitesi (GTÜ)","facultyCount":5,"departmentCount":22,"departmentCountBasis":"FACULTY_PAGES_SUMMED","bestDepartments":[
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Teknopark ve sanayi bölgesiyle güçlü Ar-Ge bağları"},
+ {"tr":"Elektrik-Elektronik Mühendisliği","en":"Electrical-Electronics Engineering","reason":"Yüksek araştırma çıktısı, MÜDEK akreditasyonu"},
+ {"tr":"Moleküler Biyoloji ve Genetik","en":"Molecular Biology and Genetics","reason":"Türkiye'de alanın öncü ve en köklü programlarından"},
+ {"tr":"Biyomühendislik","en":"Bioengineering","reason":"Araştırma odaklı, yüksek lisans kökenli güçlü kadro"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Tasarım ve teknoloji odaklı nitelikli eğitim"},
+ {"tr":"İşletme","en":"Business Administration","reason":"Sanayi bölgesine yakınlıkla güçlü uygulama bağları"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Gebze_Teknik_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"giresun-universitesi","nameTr":"Giresun Üniversitesi","facultyCount":13,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Giresun Eğitim ve Araştırma Hastanesi ile klinik eğitim"},
+ {"tr":"Denizcilik (Gemi Makineleri İşletme Müh.)","en":"Maritime (Marine Engineering)","reason":"Karadeniz'de denizcilik alanında uzmanlaşmış fakülte"},
+ {"tr":"Eğitim (Sınıf Öğretmenliği)","en":"Education (Classroom Teaching)","reason":"Bölgenin köklü öğretmen yetiştirme geleneği"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık kampüsü ve hastane iş birliğiyle uygulama"},
+ {"tr":"Beden Eğitimi ve Spor","en":"Physical Education and Sports","reason":"SPORAK akreditasyonlu beden eğitimi programı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Giresun_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"gumushane-universitesi","nameTr":"Gümüşhane Üniversitesi","facultyCount":7,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık Bilimleri Fakültesi'nin en çok tercih edilen programı"},
+ {"tr":"İlahiyat","en":"Theology","reason":"Bölgenin köklü ilahiyat eğitim kurumlarından"},
+ {"tr":"Halkla İlişkiler ve Reklamcılık","en":"Public Relations and Advertising","reason":"İletişim Fakültesi'nin uygulamalı eğitim veren programı"},
+ {"tr":"Turizm Rehberliği","en":"Tourism Guidance","reason":"Zigana-Karaca Mağarası bölgesinde saha uygulama avantajı"},
+ {"tr":"Madencilik (İş Sağlığı ve Güvenliği)","en":"Mining (Occupational Health and Safety)","reason":"Maden bölgesinde iş güvenliği alanında uzmanlaşma"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/G%C3%BCm%C3%BC%C5%9Fhane_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

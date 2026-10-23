@@ -1,0 +1,39 @@
+eskisehir-osmangazi-universitesi | Eskişehir Osmangazi Üniversitesi | https://ogu.edu.tr
+fenerbahce-universitesi | Fenerbahçe Üniversitesi | https://www.fbu.edu.tr
+firat-universitesi | Fırat Üniversitesi | https://firat.edu.tr
+galatasaray-universitesi | Galatasaray Üniversitesi | https://gsu.edu.tr
+gazi-universitesi | Gazi Üniversitesi | https://gazi.edu.tr
+giresun-universitesi | Giresun Üniversitesi | https://giresun.edu.tr
+gumushane-universitesi | Gümüşhane Üniversitesi | https://gumushane.edu.tr
+halic-universitesi | Haliç Üniversitesi | https://halic.edu.tr
+igdir-universitesi | Iğdır Üniversitesi | https://igdir.edu.tr
+inonu-universitesi | İnönü Üniversitesi | https://inonu.edu.tr
+isik-universitesi | Işık Üniversitesi | https://www.isikun.edu.tr
+istanbul-29-mayis-universitesi | İstanbul 29 Mayıs Üniversitesi | https://www.29mayis.edu.tr
+istanbul-arel-university | İstanbul Arel Üniversitesi | https://www.arel.edu.tr
+istanbul-aydin-university | İstanbul Aydın Üniversitesi | https://www.aydin.edu.tr
+istanbul-bilgi-university | İstanbul Bilgi Üniversitesi | https://www.bilgi.edu.tr
+istanbul-galata-university | İstanbul Galata Üniversitesi | https://www.galata.edu.tr
+istanbul-gelisim-university | İstanbul Gelişim Üniversitesi | https://gelisim.edu.tr
+istanbul-kent-university | İstanbul Kent Üniversitesi | https://www.kent.edu.tr
+istanbul-medipol-university | İstanbul Medipol Üniversitesi | https://medipol.edu.tr
+istanbul-okan-university | İstanbul Okan Üniversitesi | https://www.okan.edu.tr
+istanbul-rumeli-university | İstanbul Rumeli Üniversitesi | https://rumeli.edu.tr
+istanbul-saglik-ve-teknoloji-universitesi | İstanbul Sağlık ve Teknoloji Üniversitesi | https://www.istun.edu.tr
+istanbul-ticaret-universitesi | İstanbul Ticaret Üniversitesi | https://www.ticaret.edu.tr
+istanbul-topkapi-universitesi | İstanbul Topkapı Üniversitesi | https://www.topkapi.edu.tr
+istanbul-universitesi | İstanbul Üniversitesi | https://istanbul.edu.tr
+istanbul-university | İstanbul Üniversitesi | https://istanbul.edu.tr
+istanbul-yeni-yuzyil-universitesi | İstanbul Yeni Yüzyıl Üniversitesi | https://www.yeniyuzyil.edu.tr
+istinye-university | İstinye Üniversitesi | https://www.istinye.edu.tr
+izmir-university-of-economics | İzmir Ekonomi Üniversitesi | https://www.ieu.edu.tr
+kadir-has-university | Kadir Has Üniversitesi | https://www.khas.edu.tr
+kafkas-universitesi | Kafkas Üniversitesi | https://kafkas.edu.tr
+kapadokya-university | Kapadokya Üniversitesi | https://kapadokya.edu.tr
+karabuk-universitesi | Karabük Üniversitesi | https://karabuk.edu.tr
+karadeniz-teknik-universitesi | Karadeniz Teknik Üniversitesi (KTÜ) | https://ktu.edu.tr
+kastamonu-universitesi | Kastamonu Üniversitesi | https://kastamonu.edu.tr
+koc-university | Koç Üniversitesi | https://ku.edu.tr
+kocaeli-saglik-ve-teknoloji-universitesi | Kocaeli Sağlık ve Teknoloji Üniversitesi | https://kocaelisaglik.edu.tr
+kocaeli-universitesi | Kocaeli Üniversitesi | https://kocaeli.edu.tr
+konya-gida-ve-tarim-universitesi | Konya Gıda ve Tarım Üniversitesi | https://www.gidatarim.edu.tr

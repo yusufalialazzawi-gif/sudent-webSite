@@ -26,18 +26,62 @@ const publicStorage = multer.diskStorage({
 });
 
 const publicFileFilter = (req, file, cb) => {
-  const allowedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'application/pdf'];
-  if (allowedMime.includes(file.mimetype)) {
+  const allowedMime = [
+    'image/jpeg',
+    'image/png',
+    'image/webp',
+    'image/svg+xml',
+    'application/pdf',
+    'video/mp4',
+    'video/webm',
+    'video/ogg',
+    'video/quicktime',
+  ];
+  if (allowedMime.includes(file.mimetype) || file.mimetype.startsWith('video/')) {
     cb(null, true);
   } else {
-    cb(new Error('Invalid file type. Only JPEG, PNG, WebP, SVG, and PDF are allowed for public media.'), false);
+    cb(new Error('Invalid file type. Only JPEG, PNG, WebP, SVG, PDF, and Videos (MP4, WebM, OGG, MOV) are allowed.'), false);
   }
 };
 
 export const publicUpload = multer({
   storage: publicStorage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 150 * 1024 * 1024 }, // 150MB limit
   fileFilter: publicFileFilter,
+});
+
+// 2. Dedicated University Video Upload (MP4, WebM, MOV, OGG)
+const videoStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, publicUploadDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const ext = path.extname(file.originalname).toLowerCase() || '.mp4';
+    cb(null, `uni-video-${uniqueSuffix}${ext}`);
+  },
+});
+
+const videoFileFilter = (req, file, cb) => {
+  const allowedMime = [
+    'video/mp4',
+    'video/webm',
+    'video/ogg',
+    'video/quicktime',
+    'video/x-msvideo',
+    'video/mpeg',
+  ];
+  if (allowedMime.includes(file.mimetype) || file.mimetype.startsWith('video/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Yalnızca geçerli video dosyaları (MP4, WebM, MOV, OGG) yüklenebilir.'), false);
+  }
+};
+
+export const videoUpload = multer({
+  storage: videoStorage,
+  limits: { fileSize: 150 * 1024 * 1024 }, // 150MB limit
+  fileFilter: videoFileFilter,
 });
 
 // 2. Private Student Documents Upload (Passports, Transcripts, Diplomas)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Briefcase,
@@ -79,15 +80,19 @@ export default function AdminServicesPage() {
     }
   });
 
+  const [validationError, setValidationError] = useState('');
+
   const openCreateModal = () => {
     setEditingId(null);
     setForm(initialForm);
     setActiveTab('ar');
+    setValidationError('');
     setIsModalOpen(true);
   };
 
   const openEditModal = (srv) => {
     setEditingId(srv.id);
+    setValidationError('');
 
     const getTranslation = (lang) => {
       const found = srv.translations?.find(t => t.lang === lang);
@@ -115,6 +120,7 @@ export default function AdminServicesPage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingId(null);
+    setValidationError('');
   };
 
   const handleTransChange = (lang, field, value) => {
@@ -131,6 +137,25 @@ export default function AdminServicesPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setValidationError('');
+
+    // Strict 3-Language Validation Check
+    for (const lang of ['ar', 'tr', 'en']) {
+      const trans = form.translations?.find(t => t.lang === lang);
+      if (!trans || !trans.title?.trim()) {
+        const langLabel = lang === 'ar' ? 'العربية 🇸🇦' : lang === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧';
+        setValidationError(
+          tx(
+            `يرجى إدخال عنوان الخدمة باللغة (${langLabel}). إدخال الخدمات بجميع اللغات الثلاث إلزامي.`,
+            `Lütfen (${langLabel}) dilinde hizmet başlığını giriniz. Tüm 3 dilde hizmet adı zorunludur.`,
+            `Please enter the service title in (${langLabel}). Entering content in all 3 languages is required.`
+          )
+        );
+        setActiveTab(lang);
+        return;
+      }
+    }
+
     saveMutation.mutate(form);
   };
 
@@ -152,10 +177,10 @@ export default function AdminServicesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-            {currentLanguage === 'ar' ? 'الخدمات والاستشارات الطلابية' : 'Student Consulting Services'}
+            tx('الخدمات والاستشارات الطلابية', 'Öğrenci Hizmetleri ve Danışmanlık', 'Student Consulting Services')
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            {currentLanguage === 'ar' ? 'إدارة باقات القبول الجامعي، معادلة الشهادات، الإقامة الطلابية، والسكن' : 'Manage educational consulting services, equivalency, visa and housing support'}
+            tx('إدارة باقات القبول الجامعي، معادلة الشهادات، الإقامة الطلابية، والسكن', 'Üniversite kabul paketleri, denklik, ikamet ve konaklama hizmetlerini yönetin', 'Manage educational consulting services, equivalency, visa and housing support')
           </p>
         </div>
 
@@ -164,7 +189,7 @@ export default function AdminServicesPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 text-white rounded-xl text-xs font-bold shadow-md hover:from-brand-amber-600 hover:to-amber-700 transition"
         >
           <Plus size={16} />
-          <span>{currentLanguage === 'ar' ? 'إضافة خدمة جديدة' : 'Add Service'}</span>
+          <span>{tx('إضافة خدمة جديدة', 'Yeni Hizmet Ekle', 'Add Service')}</span>
         </button>
       </div>
 
@@ -174,14 +199,14 @@ export default function AdminServicesPage() {
           <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder={currentLanguage === 'ar' ? 'بحث بالاسم أو المعرف...' : 'Search services...'}
+            placeholder={tx('بحث بالاسم أو المعرف...', 'Hizmet veya kimlik ara...', 'Search services...')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-amber-500/50"
           />
         </div>
         <div className="text-xs font-semibold text-slate-500">
-          إجمالي الخدمات: {services.length}
+          {tx('إجمالي الخدمات:', 'Toplam Hizmet:', 'Total Services:')} {services.length}
         </div>
       </div>
 
@@ -190,18 +215,18 @@ export default function AdminServicesPage() {
         {isLoading ? (
           <div className="p-12 text-center text-slate-400">
             <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <span>جاري تحميل الخدمات...</span>
+            <span>{ta("جاري تحميل الخدمات...")}</span>
           </div>
         ) : filteredServices.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-start">
               <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-4 text-start">الخدمة</th>
-                  <th className="px-4 py-4 text-start">سياسة التسعير</th>
-                  <th className="px-4 py-4 text-start">المدة المقدرة</th>
-                  <th className="px-4 py-4 text-start">الترتيب والحالة</th>
-                  <th className="px-6 py-4 text-end">إجراءات</th>
+                  <th className="px-6 py-4 text-start">{ta("الخدمة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("نوع الخدمة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("المدة المقدرة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("الترتيب والحالة")}</th>
+                  <th className="px-6 py-4 text-end">{ta("إجراءات")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -224,27 +249,27 @@ export default function AdminServicesPage() {
                       </td>
                       <td className="px-4 py-4">
                         <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
-                          {srv.pricePolicy || 'مجانية بالكامل'}
+                          {ta("معتمدة للطلاب")}
                         </span>
                       </td>
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-1.5 text-slate-600 font-medium">
                           <Clock size={14} className="text-slate-400" />
-                          <span>{srv.estimatedDuration || 'فوري'}</span>
+                          <span>{srv.estimatedDuration || ta('فوري')}</span>
                         </div>
                       </td>
                       <td className="px-4 py-4 space-y-1">
                         <div>
                           {srv.published ? (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">نشط</span>
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">{ta("نشط")}</span>
                           ) : (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">مسودة</span>
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">{ta("مسودة")}</span>
                           )}
                         </div>
                         {srv.featured && (
                           <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 flex items-center gap-1 w-fit">
                             <Star size={10} className="fill-amber-500" />
-                            <span>مميزة</span>
+                            <span>{ta("مميزة")}</span>
                           </span>
                         )}
                       </td>
@@ -258,7 +283,7 @@ export default function AdminServicesPage() {
                           </button>
                           <button
                             onClick={() => {
-                              if (confirm(`هل أنت متأكد من حذف ${arTitle}؟`)) {
+                              if (confirm(tx(`هل أنت متأكد من حذف ${arTitle}؟`, `${arTitle} hizmetini silmek istediğinize emin misiniz?`, `Are you sure you want to delete service ${arTitle}?`))) {
                                 deleteMutation.mutate(srv.id);
                               }
                             }}
@@ -276,7 +301,7 @@ export default function AdminServicesPage() {
           </div>
         ) : (
           <div className="p-12 text-center text-slate-400 text-sm">
-            لا توجد خدمات مسجلة
+            {ta("لا توجد خدمات مسجلة")}
           </div>
         )}
       </div>
@@ -288,10 +313,10 @@ export default function AdminServicesPage() {
             <div className="p-6 bg-brand-navy-950 text-white flex items-center justify-between">
               <div>
                 <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">
-                  {editingId ? 'تعديل بيانات الخدمة' : 'إضافة خدمة طلابية جديدة'}
+                  {editingId ? ta('تعديل بيانات الخدمة') : ta('إضافة خدمة طلابية جديدة')}
                 </span>
                 <h2 className="text-xl font-bold mt-0.5">
-                  {currentTrans.title || form.slug || 'الخدمة الطلابية'}
+                  {currentTrans.title || form.slug || ta('الخدمة الطلابية')}
                 </h2>
               </div>
               <button onClick={closeModal} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white">
@@ -300,9 +325,9 @@ export default function AdminServicesPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المعرف الفريد (Slug)*</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المعرف الفريد (Slug)*")}</label>
                   <input
                     type="text"
                     required
@@ -313,20 +338,10 @@ export default function AdminServicesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">سياسة الرسوم (Price Policy)</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المدة المقدرة للإنجاز")}</label>
                   <input
                     type="text"
-                    placeholder="مجانية للطلاب"
-                    value={form.pricePolicy}
-                    onChange={(e) => setForm({ ...form, pricePolicy: e.target.value })}
-                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-slate-700 mb-1">المدة المقدرة للإنجاز</label>
-                  <input
-                    type="text"
-                    placeholder="2-5 أيام عمل"
+                    placeholder={ta("2-5 أيام عمل")}
                     value={form.estimatedDuration}
                     onChange={(e) => setForm({ ...form, estimatedDuration: e.target.value })}
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -342,7 +357,7 @@ export default function AdminServicesPage() {
                     onChange={(e) => setForm({ ...form, featured: e.target.checked })}
                     className="w-4 h-4 text-brand-amber-500 rounded focus:ring-brand-amber-500"
                   />
-                  <span>تمييز الخدمة (Featured)</span>
+                  <span>{ta("تمييز الخدمة (Featured)")}</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -351,34 +366,61 @@ export default function AdminServicesPage() {
                     onChange={(e) => setForm({ ...form, published: e.target.checked })}
                     className="w-4 h-4 text-brand-amber-500 rounded focus:ring-brand-amber-500"
                   />
-                  <span>نشر الخدمة (Published)</span>
+                  <span>{ta("نشر الخدمة (Published)")}</span>
                 </label>
               </div>
 
+              {/* 3-Language Enforcement Alert & Validation */}
+              {validationError && (
+                <div className="p-3.5 bg-rose-50 border border-rose-300 text-rose-800 rounded-xl text-xs font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+                  <span>{validationError}</span>
+                </div>
+              )}
+
               {/* Multilingual Tabs */}
               <div className="border border-slate-200 rounded-2xl overflow-hidden">
-                <div className="bg-slate-100 p-2 flex items-center gap-2 border-b border-slate-200">
-                  <span className="text-xs font-bold text-slate-600 px-3 flex items-center gap-1.5">
-                    <Globe size={14} className="text-brand-amber-500" />
-                    <span>محتوى اللغات:</span>
+                <div className="bg-slate-100 p-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 px-2 flex items-center gap-1.5">
+                      <Globe size={14} className="text-brand-amber-500" />
+                      <span>{tx('اللغات الإلزامية الثلاث:', 'Zorunlu 3 Dil:', 'Mandatory 3 Languages:')}</span>
+                    </span>
+                    {['ar', 'tr', 'en'].map((lng) => {
+                      const trObj = form.translations?.find((t) => t.lang === lng);
+                      const isComplete = Boolean(trObj?.title?.trim());
+                      return (
+                        <button
+                          key={lng}
+                          type="button"
+                          onClick={() => {
+                            setActiveTab(lng);
+                            setValidationError('');
+                          }}
+                          className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition flex items-center gap-1.5 ${
+                            activeTab === lng
+                              ? 'bg-white text-brand-navy-950 shadow-sm border border-slate-200'
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}</span>
+                          {isComplete ? (
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" title={ta("مكتمل / Tamamlandı")} />
+                          ) : (
+                            <span className="w-2 h-2 rounded-full bg-rose-500" title={ta("مطلوب / Gerekli")} />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-500 hidden sm:inline-block">
+                    tx('يجب ملء اسم الخدمة باللغات الثلاث', '3 dilde hizmet adı girişi zorunludur', 'Service title is required in all 3 languages')
                   </span>
-                  {['ar', 'tr', 'en'].map((lng) => (
-                    <button
-                      key={lng}
-                      type="button"
-                      onClick={() => setActiveTab(lng)}
-                      className={`px-4 py-1.5 text-xs font-bold rounded-lg transition ${
-                        activeTab === lng ? 'bg-white text-brand-navy-950 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      {lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}
-                    </button>
-                  ))}
                 </div>
 
                 <div className="p-4 space-y-4 text-xs">
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">عنوان الخدمة ({activeTab.toUpperCase()})*</label>
+                    <label className="block font-bold text-slate-700 mb-1">{tx('عنوان الخدمة', 'Hizmet Başlığı', 'Service Title')} ({activeTab.toUpperCase()})*</label>
                     <input
                       type="text"
                       required={activeTab === 'ar'}
@@ -390,10 +432,10 @@ export default function AdminServicesPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">وصف الخدمة ({activeTab.toUpperCase()})</label>
+                    <label className="block font-bold text-slate-700 mb-1">{tx('وصف الخدمة', 'Hizmet Açıklaması', 'Service Description')} ({activeTab.toUpperCase()})</label>
                     <textarea
                       rows={3}
-                      placeholder="نقدم لك استشارة أكاديمية متكاملة لضمان مقعدك الجامعي بأفضل منحة ممكنة..."
+                      placeholder={ta("نقدم لك استشارة أكاديمية متكاملة لضمان مقعدك الجامعي بأفضل منحة ممكنة...")}
                       value={currentTrans.description || ''}
                       onChange={(e) => handleTransChange(activeTab, 'description', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -401,10 +443,10 @@ export default function AdminServicesPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">المميزات والفوائد للطلاب ({activeTab.toUpperCase()})</label>
+                    <label className="block font-bold text-slate-700 mb-1">{tx('المميزات والفوائد للطلاب', 'Öğrenciler İçin Avantajlar', 'Benefits for Students')} ({activeTab.toUpperCase()})</label>
                     <textarea
                       rows={2}
-                      placeholder="خصومات تصل إلى 75%، متابعة مستمرة حتى استلام بطاقة الطالب..."
+                      placeholder={ta("خصومات تصل إلى 75%، متابعة مستمرة حتى استلام بطاقة الطالب...")}
                       value={currentTrans.benefits || ''}
                       onChange={(e) => handleTransChange(activeTab, 'benefits', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -419,14 +461,14 @@ export default function AdminServicesPage() {
                   onClick={closeModal}
                   className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                 >
-                  إلغاء
+                  {ta("إلغاء")}
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
                   className="px-6 py-2.5 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow-md transition disabled:opacity-50"
                 >
-                  {saveMutation.isPending ? 'جاري الحفظ...' : 'حفظ الخدمة'}
+                  {saveMutation.isPending ? ta('جاري الحفظ...') : ta('حفظ الخدمة')}
                 </button>
               </div>
             </form>

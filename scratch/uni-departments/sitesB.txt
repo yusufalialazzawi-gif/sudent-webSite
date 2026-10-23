@@ -1,0 +1,15 @@
+koc-university|https://www.koc.edu.tr
+kocaeli-universitesi|https://www.kocaeli.edu.tr
+konya-gida-ve-tarim-universitesi|https://www.gidatarim.edu.tr
+kto-karatay-university|https://www.karatay.edu.tr/tr
+manisa-celal-bayar-universitesi|https://www.cbu.edu.tr
+mardin-artuklu-universitesi|https://www.artuklu.edu.tr
+marmara-universitesi|https://marmara.edu.tr
+mersin-universitesi|https://www.mersin.edu.tr
+mimar-sinan-guzel-sanatlar-universitesi|https://www.msgsu.edu.tr
+mudanya-universitesi|https://mudanya.edu.tr
+mugla-sitki-kocman-universitesi|https://www.mu.edu.tr
+mus-alparslan-universitesi|https://www.alparslan.edu.tr
+ordu-universitesi|https://www.odu.edu.tr
+ostim-teknik-universitesi|https://www.ostimteknik.edu.tr
+pamukkale-universitesi|https://www.pau.edu.tr

@@ -1,0 +1,42 @@
+galatasaray-universitesi | Galatasaray Üniversitesi | Galatasaray University | PUBLIC | Istanbul
+gazi-universitesi | Gazi Üniversitesi | Gazi University | PUBLIC | Ankara
+gebze-teknik-universitesi | Gebze Teknik Üniversitesi (GTÜ) | Gebze Technical University (GTU) | PUBLIC | Kocaeli
+giresun-universitesi | Giresun Üniversitesi | Giresun University | PUBLIC | Giresun
+gumushane-universitesi | Gümüşhane Üniversitesi | Gumushane University | PUBLIC | Gumushane
+hacettepe-universitesi | Hacettepe Üniversitesi | Hacettepe University | PUBLIC | Ankara
+halic-universitesi | Haliç Üniversitesi | Halic University | PRIVATE | Istanbul
+hasan-kalyoncu-university | Hasan Kalyoncu Üniversitesi | Hasan Kalyoncu University | PRIVATE | Gaziantep
+igdir-universitesi | Iğdır Üniversitesi | Igdir University | PUBLIC | Igdir
+inonu-universitesi | İnönü Üniversitesi | Inonu University | PUBLIC | Malatya
+isik-universitesi | Işık Üniversitesi | Isik University | PRIVATE | Istanbul
+istanbul-29-mayis-universitesi | İstanbul 29 Mayıs Üniversitesi | Istanbul 29 Mayis University | PRIVATE | Istanbul
+istanbul-arel-university | İstanbul Arel Üniversitesi | Istanbul Arel University | PRIVATE | Istanbul
+istanbul-atlas-university | İstanbul Atlas Üniversitesi | Istanbul Atlas University | PRIVATE | Istanbul
+istanbul-aydin-university | İstanbul Aydın Üniversitesi | Istanbul Aydin University | PRIVATE | Istanbul
+istanbul-bilgi-university | İstanbul Bilgi Üniversitesi | Istanbul Bilgi University | PRIVATE | Istanbul
+istanbul-galata-university | İstanbul Galata Üniversitesi | Istanbul Galata University | PRIVATE | Istanbul
+istanbul-gedik-university | İstanbul Gedik Üniversitesi | Istanbul Gedik University | PRIVATE | Istanbul
+istanbul-gelisim-university | İstanbul Gelişim Üniversitesi | Istanbul Gelisim University | PRIVATE | Istanbul
+istanbul-kent-university | İstanbul Kent Üniversitesi | Istanbul Kent University | PRIVATE | Istanbul
+istanbul-kultur-university | İstanbul Kültür Üniversitesi | Istanbul Kultur University | PRIVATE | Istanbul
+istanbul-medipol-university | İstanbul Medipol Üniversitesi | Istanbul Medipol University | PRIVATE | Istanbul
+istanbul-nisantasi-university | İstanbul Nişantaşı Üniversitesi | Istanbul Nisantasi University | PRIVATE | Istanbul
+istanbul-okan-university | İstanbul Okan Üniversitesi | Istanbul Okan University | PRIVATE | Istanbul
+istanbul-rumeli-university | İstanbul Rumeli Üniversitesi | Istanbul Rumeli University | PRIVATE | Istanbul
+istanbul-sabahattin-zaim-university | İstanbul Sabahattin Zaim Üniversitesi | Istanbul Sabahattin Zaim University | PRIVATE | Istanbul
+istanbul-saglik-ve-teknoloji-universitesi | İstanbul Sağlık ve Teknoloji Üniversitesi | Istanbul Health and Technology University | PRIVATE | Istanbul
+istanbul-teknik-universitesi | İstanbul Teknik Üniversitesi (İTÜ) | Istanbul Technical University (ITU) | PUBLIC | Istanbul
+istanbul-ticaret-universitesi | İstanbul Ticaret Üniversitesi | Istanbul Commerce University | PRIVATE | Istanbul
+istanbul-topkapi-universitesi | İstanbul Topkapı Üniversitesi | Istanbul Topkapi University | PRIVATE | Istanbul
+istanbul-universitesi | İstanbul Üniversitesi | Istanbul University | PUBLIC | Istanbul
+istanbul-university | İstanbul Üniversitesi | Istanbul University | PUBLIC | Istanbul
+istanbul-yeni-yuzyil-universitesi | İstanbul Yeni Yüzyıl Üniversitesi | Istanbul Yeni Yuzyil University | PRIVATE | Istanbul
+istinye-university | İstinye Üniversitesi | Istinye University | PRIVATE | Istanbul
+izmir-university-of-economics | İzmir Ekonomi Üniversitesi | Izmir University of Economics | PRIVATE | Izmir
+izmir-yuksek-teknoloji-enstitusu | İzmir Yüksek Teknoloji Enstitüsü (İYTE) | Izmir Institute of Technology (IZTECH / IYTE) | PUBLIC | Izmir
+kadir-has-university | Kadir Has Üniversitesi | Kadir Has University | PRIVATE | Istanbul
+kafkas-universitesi | Kafkas Üniversitesi | Kafkas University | PUBLIC | Kars
+kapadokya-university | Kapadokya Üniversitesi | Cappadocia University | PRIVATE | Nevsehir
+karabuk-universitesi | Karabük Üniversitesi | Karabuk University | PUBLIC | Karabuk
+karadeniz-teknik-universitesi | Karadeniz Teknik Üniversitesi (KTÜ) | Karadeniz Technical University (KTU) | PUBLIC | Trabzon
+kastamonu-universitesi | Kastamonu Üniversitesi | Kastamonu University | PUBLIC | Kastamonu

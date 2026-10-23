@@ -11,8 +11,13 @@ export const authenticate = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
     const decoded = verifyToken(token);
 
+    const userId = decoded.userId || decoded.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'Invalid token payload.' });
+    }
+
     const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
+      where: { id: userId },
       select: {
         id: true,
         email: true,

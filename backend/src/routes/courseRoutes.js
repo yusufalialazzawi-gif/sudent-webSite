@@ -1,6 +1,7 @@
 import express from 'express';
 import prisma from '../config/db.js';
 import { authenticate } from '../middleware/auth.js';
+import { completeTranslations } from '../utils/translations.js';
 import { requireRole, auditLog } from '../middleware/rbac.js';
 
 const router = express.Router();
@@ -146,7 +147,7 @@ router.post('/admin', authenticate, requireRole(['SUPER_ADMIN', 'CONTENT_EDITOR'
         imageUrl,
         published: published !== undefined ? Boolean(published) : true,
         translations: {
-          create: translations.map((t) => ({
+          create: completeTranslations(translations, 'title').map((t) => ({
             lang: t.lang,
             title: t.title,
             description: t.description,

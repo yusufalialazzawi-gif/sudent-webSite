@@ -1,0 +1,32 @@
+[
+{"slug":"kapadokya-university","nameTr":"Kapadokya Üniversitesi","facultyCount":4,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Diş Hekimliği","en":"Dentistry","reason":"Bölgenin modern klinik altyapılı diş hekimliği programı"},
+ {"tr":"Psikoloji","en":"Psychology","reason":"Mustafapaşa yerleşkesinde güçlü akademik kadro"},
+ {"tr":"Mütercim-Tercümanlık (İngilizce)","en":"Translation and Interpreting (English)","reason":"Dil eğitiminde köklü kurum geleneği"},
+ {"tr":"Turizm Rehberliği","en":"Tourism Guidance","reason":"Kapadokya bölgesinde eşsiz saha uygulama avantajı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Bilişim fakültesinin güncel müfredatlı programı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Kapadokya_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"karabuk-universitesi","nameTr":"Karabük Üniversitesi","facultyCount":12,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Demir-Çelik (Metalurji ve Malzeme Müh.)","en":"Iron and Steel (Metallurgy and Materials Eng.)","reason":"Kardemir ile iş birliğinde Türkiye'de öncü uzmanlık"},
+ {"tr":"Makine Mühendisliği","en":"Mechanical Engineering","reason":"Ağır sanayi kentiyle iç içe uygulamalı eğitim"},
+ {"tr":"Tıp","en":"Medicine","reason":"Karabük Eğitim ve Araştırma Hastanesi ile klinik eğitim"},
+ {"tr":"Mimarlık","en":"Architecture","reason":"Safranbolu'nun tarihi doku yakınında tasarım eğitimi"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Sağlık kampüsünde uygulama ağırlıklı eğitim"},
+ {"tr":"Otomotiv Mühendisliği","en":"Automotive Engineering","reason":"Türkiye'de az sayıda bulunan uzmanlık programı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Karab%C3%BCk_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"karadeniz-teknik-universitesi","nameTr":"Karadeniz Teknik Üniversitesi (KTÜ)","facultyCount":12,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Farabi Hastanesi ile bölgenin en güçlü tıp eğitimi"},
+ {"tr":"İnşaat Mühendisliği","en":"Civil Engineering","reason":"KTÜ'nün köklü mühendislik geleneğinin amiral programı"},
+ {"tr":"Makine Mühendisliği","en":"Mechanical Engineering","reason":"MÜDEK akreditasyonlu, sanayi bağlantılı eğitim"},
+ {"tr":"Orman Mühendisliği","en":"Forest Engineering","reason":"Karadeniz ormanlarında Türkiye'nin öncü programı"},
+ {"tr":"Elektrik-Elektronik Mühendisliği","en":"Electrical-Electronics Engineering","reason":"Güçlü araştırma altyapısı ve akredite program"},
+ {"tr":"Deniz Ulaştırma İşletme Müh.","en":"Maritime Transportation Engineering","reason":"Karadeniz'de denizcilik uzmanlığı ve uygulama gemisi"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Karadeniz_Teknik_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"},
+{"slug":"kastamonu-universitesi","nameTr":"Kastamonu Üniversitesi","facultyCount":13,"departmentCount":null,"departmentCountBasis":"UNVERIFIED","bestDepartments":[
+ {"tr":"Ormancılık (Orman Mühendisliği)","en":"Forestry (Forest Engineering)","reason":"Orman bölgesinde Türkiye'nin güçlü ormancılık eğitimi"},
+ {"tr":"Veteriner Hekimliği","en":"Veterinary Medicine","reason":"Hayvancılık bölgesinde uygulamalı veterinerlik eğitimi"},
+ {"tr":"Tıp","en":"Medicine","reason":"Kastamonu Eğitim ve Araştırma Hastanesi ile klinik eğitim"},
+ {"tr":"Eğitim (Sınıf Öğretmenliği)","en":"Education","reason":"Bölgenin köklü öğretmen yetiştirme kurumu"},
+ {"tr":"Turizm Rehberliği","en":"Tourism Guidance","reason":"Kastamonu kültür turizmi sahasında uygulama avantajı"}],
+"sourceUrl":"https://tr.wikipedia.org/wiki/Kastamonu_%C3%9Cniversitesi","asOf":"2026-10-22","confidence":"medium"}
+]

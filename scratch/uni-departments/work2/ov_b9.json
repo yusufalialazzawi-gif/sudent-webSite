@@ -1,0 +1,10 @@
+[
+{"slug":"hacettepe-universitesi","facultyCount":17,"departmentCount":101,"departmentCountBasis":"LISANS","bestDepartments":[
+ {"tr":"Tıp","en":"Medicine","reason":"Türkiye'nin en prestijli tıp fakültelerinden, güçlü araştırma hastanesi"},
+ {"tr":"Fizyoterapi ve Rehabilitasyon","en":"Physiotherapy and Rehabilitation","reason":"Türkiye'de alanının ilk ve öncü fakültesi"},
+ {"tr":"Hemşirelik","en":"Nursing","reason":"Ülkenin en köklü hemşirelik fakültelerinden"},
+ {"tr":"Eczacılık","en":"Pharmacy","reason":"Güçlü akademik kadro ve araştırma altyapısı"},
+ {"tr":"Bilgisayar Mühendisliği","en":"Computer Engineering","reason":"Yüksek yerleşme puanları ve MÜDEK akreditasyonu"},
+ {"tr":"Mütercim-Tercümanlık (İngilizce)","en":"Translation and Interpreting (English)","reason":"Türkiye'nin en saygın çeviri programlarından"}],
+"sourceUrl":"https://www.hacettepe.edu.tr/ogretim/sayilarla_ogretim","confidence":"high"}
+]

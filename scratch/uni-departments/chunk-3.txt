@@ -1,0 +1,41 @@
+koc-university | Koç Üniversitesi | Koç University | PRIVATE | Istanbul
+kocaeli-saglik-ve-teknoloji-universitesi | Kocaeli Sağlık ve Teknoloji Üniversitesi | Kocaeli Health and Technology University | PRIVATE | Kocaeli
+kocaeli-universitesi | Kocaeli Üniversitesi | Kocaeli University | PUBLIC | Kocaeli
+konya-gida-ve-tarim-universitesi | Konya Gıda ve Tarım Üniversitesi | Konya Food and Agriculture University | PRIVATE | Konya
+kto-karatay-university | KTO Karatay Üniversitesi | KTO Karatay University | PRIVATE | Konya
+lokman-hekim-universitesi | Lokman Hekim Üniversitesi | Lokman Hekim University | PRIVATE | Ankara
+maltepe-university | Maltepe Üniversitesi | Maltepe University | PRIVATE | Istanbul
+manisa-celal-bayar-universitesi | Manisa Celal Bayar Üniversitesi | Manisa Celal Bayar University | PUBLIC | Manisa
+mardin-artuklu-universitesi | Mardin Artuklu Üniversitesi | Mardin Artuklu University | PUBLIC | Mardin
+marmara-universitesi | Marmara Üniversitesi | Marmara University | PUBLIC | Istanbul
+mef-university | MEF Üniversitesi | MEF University | PRIVATE | Istanbul
+mersin-universitesi | Mersin Üniversitesi | Mersin University | PUBLIC | Mersin
+mimar-sinan-guzel-sanatlar-universitesi | Mimar Sinan Güzel Sanatlar Üniversitesi | Mimar Sinan Fine Arts University | PUBLIC | Istanbul
+mudanya-universitesi | Mudanya Üniversitesi | Mudanya University | PRIVATE | Bursa
+mugla-sitki-kocman-universitesi | Muğla Sıtkı Koçman Üniversitesi | Mugla Sitki Kocman University | PUBLIC | Mugla
+mus-alparslan-universitesi | Muş Alparslan Üniversitesi | Mus Alparslan University | PUBLIC | Mus
+ondokuz-mayis-universitesi | Ondokuz Mayıs Üniversitesi | Ondokuz Mayis University | PUBLIC | Samsun
+ordu-universitesi | Ordu Üniversitesi (ODÜ) | Ordu University | PUBLIC | Ordu
+orta-dogu-teknik-universitesi | Orta Doğu Teknik Üniversitesi (ODTÜ) | Middle East Technical University (METU) | PUBLIC | Ankara
+ostim-teknik-universitesi | OSTİM Teknik Üniversitesi | OSTIM Technical University | PRIVATE | Ankara
+ozyegin-university | Özyeğin Üniversitesi | Özyeğin University | PRIVATE | Istanbul
+pamukkale-universitesi | Pamukkale Üniversitesi | Pamukkale University | PUBLIC | Denizli
+piri-reis-universitesi | Pîrî Reis Üniversitesi | Piri Reis University | PRIVATE | Istanbul
+recep-tayyip-erdogan-universitesi | Recep Tayyip Erdoğan Üniversitesi | Recep Tayyip Erdogan University | PUBLIC | Rize
+sabanci-university | Sabancı Üniversitesi | Sabanci University | PRIVATE | Istanbul
+sakarya-universitesi | Sakarya Üniversitesi | Sakarya University | PUBLIC | Sakarya
+sanko-university | SANKO Üniversitesi | SANKO University | PRIVATE | Gaziantep
+selcuk-universitesi | Selçuk Üniversitesi | Selcuk University | PUBLIC | Konya
+siirt-universitesi | Siirt Üniversitesi | Siirt University | PUBLIC | Siirt
+sinop-universitesi | Sinop Üniversitesi | Sinop University | PUBLIC | Sinop
+suleyman-demirel-universitesi | Süleyman Demirel Üniversitesi | Suleyman Demirel University | PUBLIC | Isparta
+ted-university | TED Üniversitesi | TED University | PRIVATE | Ankara
+tobb-ekonomi-ve-teknoloji-universitesi | TOBB Ekonomi ve Teknoloji Üniversitesi | TOBB University of Economics and Technology | PRIVATE | Ankara
+toros-university | Toros Üniversitesi | Toros University | PRIVATE | Mersin
+trakya-universitesi | Trakya Üniversitesi | Trakya University | PUBLIC | Edirne
+uskudar-university | Üsküdar Üniversitesi | Uskudar University | PRIVATE | Istanbul
+van-yuzuncu-yil-universitesi | Van Yüzüncü Yıl Üniversitesi | Van Yuzuncu Yil University | PUBLIC | Van
+yalova-universitesi | Yalova Üniversitesi | Yalova University | PUBLIC | Yalova
+yasar-university | Yaşar Üniversitesi | Yasar University | PRIVATE | Izmir
+yeditepe-university | Yeditepe Üniversitesi | Yeditepe University | PRIVATE | Istanbul
+yildiz-teknik-universitesi | Yıldız Teknik Üniversitesi (YTÜ) | Yildiz Technical University (YTU) | PUBLIC | Istanbul

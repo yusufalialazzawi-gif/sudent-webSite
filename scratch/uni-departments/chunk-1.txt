@@ -1,0 +1,42 @@
+abdullah-gul-universitesi | Abdullah Gül Üniversitesi | Abdullah Gul University | PUBLIC | Kayseri
+acibadem-universitesi | Acıbadem Mehmet Ali Aydınlar Üniversitesi | Acibadem University | PRIVATE | Istanbul
+agri-ibrahim-cecen-universitesi | Ağrı İbrahim Çeçen Üniversitesi | Agri Ibrahim Cecen University | PUBLIC | Agri
+akdeniz-universitesi | Akdeniz Üniversitesi | Akdeniz University | PUBLIC | Antalya
+alanya-universitesi | Alanya Üniversitesi | Alanya University | PRIVATE | Antalya
+altinbas-university | Altınbaş Üniversitesi | Altinbas University | PRIVATE | Istanbul
+anadolu-universitesi | Anadolu Üniversitesi | Anadolu University | PUBLIC | Eskisehir
+ankara-universitesi | Ankara Üniversitesi | Ankara University | PUBLIC | Ankara
+antalya-bilim-university | Antalya Bilim Üniversitesi | Antalya Bilim University | PRIVATE | Antalya
+artvin-coruh-universitesi | Artvin Çoruh Üniversitesi | Artvin Coruh University | PUBLIC | Artvin
+ataturk-universitesi | Atatürk Üniversitesi | Ataturk University | PUBLIC | Erzurum
+atilim-university | Atılım Üniversitesi | Atilim University | PRIVATE | Ankara
+avrasya-universitesi | Avrasya Üniversitesi | Avrasya University | PRIVATE | Trabzon
+aydin-adnan-menderes-universitesi | Aydın Adnan Menderes Üniversitesi | Aydin Adnan Menderes University | PUBLIC | Aydin
+bahcesehir-university | Bahçeşehir Üniversitesi | Bahçeşehir University (BAU) | PRIVATE | Istanbul
+balikesir-universitesi | Balıkesir Üniversitesi | Balikesir University | PUBLIC | Balikesir
+bartin-universitesi | Bartın Üniversitesi | Bartin University | PUBLIC | Bartin
+baskent-university | Başkent Üniversitesi | Baskent University | PRIVATE | Ankara
+bayburt-universitesi | Bayburt Üniversitesi | Bayburt University | PUBLIC | Bayburt
+beykent-university | İstanbul Beykent Üniversitesi | Istanbul Beykent University | PRIVATE | Istanbul
+bezmialem-vakif-universitesi | Bezmialem Vakıf Üniversitesi | Bezmialem Vakif University | PRIVATE | Istanbul
+bilkent-university | İhsan Doğramacı Bilkent Üniversitesi | Bilkent University | PRIVATE | Ankara
+bingol-universitesi | Bingöl Üniversitesi | Bingol University | PUBLIC | Bingol
+biruni-university | Biruni Üniversitesi | Biruni University | PRIVATE | Istanbul
+bitlis-eren-universitesi | Bitlis Eren Üniversitesi | Bitlis Eren University | PUBLIC | Bitlis
+bogazici-universitesi | Boğaziçi Üniversitesi | Bogazici University | PUBLIC | Istanbul
+bolu-abant-izzet-baysal-universitesi | Bolu Abant İzzet Baysal Üniversitesi | Bolu Abant Izzet Baysal University | PUBLIC | Bolu
+bursa-uludag-universitesi | Bursa Uludağ Üniversitesi | Bursa Uludag University | PUBLIC | Bursa
+cag-university | Çağ Üniversitesi | Cag University | PRIVATE | Mersin
+canakkale-onsekiz-mart-universitesi | Çanakkale Onsekiz Mart Üniversitesi (ÇOMÜ) | Canakkale Onsekiz Mart University (COMU) | PUBLIC | Canakkale
+cankaya-university | Çankaya Üniversitesi | Cankaya University | PRIVATE | Ankara
+cukurova-universitesi | Çukurova Üniversitesi | Cukurova University | PUBLIC | Adana
+dicle-universitesi | Dicle Üniversitesi | Dicle University | PUBLIC | Diyarbakir
+dogus-university | Doğuş Üniversitesi | Dogus University | PRIVATE | Istanbul
+dokuz-eylul-universitesi | Dokuz Eylül Üniversitesi | Dokuz Eylul University | PUBLIC | Izmir
+duzce-universitesi | Düzce Üniversitesi | Duzce University | PUBLIC | Duzce
+ege-universitesi | Ege Üniversitesi | Ege University | PUBLIC | Izmir
+erciyes-universitesi | Erciyes Üniversitesi | Erciyes University | PUBLIC | Kayseri
+erzincan-binali-yildirim-universitesi | Erzincan Binali Yıldırım Üniversitesi | Erzincan Binali Yildirim University | PUBLIC | Erzincan
+eskisehir-osmangazi-universitesi | Eskişehir Osmangazi Üniversitesi | Eskisehir Osmangazi University | PUBLIC | Eskisehir
+fenerbahce-universitesi | Fenerbahçe Üniversitesi | Fenerbahce University | PRIVATE | Istanbul
+firat-universitesi | Fırat Üniversitesi | Firat University | PUBLIC | Elazig

@@ -1,0 +1,59 @@
+AdminApplicationsPage.jsx:270: <span>{activeTab === 'applications' ? `${applications.length} طلبات` : `${inquiries.length} رسائل`}</span>
+AdminApplicationsPage.jsx:413: <div className="text-[11px] text-slate-500">المعدل: {app.highSchoolGpa || 'N/A'}%</div>
+AdminApplicationsPage.jsx:793: <span>الوثائق والشهادات المرفوعة ({appDetail.documents?.length || 0})</span>
+AdminApplicationsPage.jsx:889: الطالب: <span className="font-bold text-slate-800">{statusModalApp.applicantName}</span>
+AdminBlogPage.jsx:146: ? `يرجى إدخال عنوان المقال باللغة (${langLabel}). إدخال المقالات بجميع اللغات الثلاث إلزامي.`
+AdminBlogPage.jsx:202: إجمالي المقالات: {articles.length}
+AdminBlogPage.jsx:245: <span>{art.readTimeMinutes} دقائق قراءة</span>
+AdminBlogPage.jsx:271: if (confirm(`هل أنت متأكد من حذف مقال ${arTitle}؟`)) {
+AdminBlogPage.jsx:419: <label className="block font-bold text-slate-700 mb-1">عنوان المقال ({activeTab.toUpperCase()})*</label>
+AdminCoursesPage.jsx:159: ? `يرجى إدخال عنوان الدورة باللغة (${langLabel}). إدخال الدورات بجميع اللغات الثلاث إلزامي.`
+AdminCoursesPage.jsx:215: إجمالي الدورات: {courses.length}
+AdminCoursesPage.jsx:253: <div className="text-[11px] text-slate-500 mt-1">{crs.durationWeeks} أسابيع مكثفة</div>
+AdminCoursesPage.jsx:261: <span>{regCount} / {crs.capacity || '∞'} طالب</span>
+AdminCoursesPage.jsx:281: if (confirm(`هل أنت متأكد من حذف دورة ${arTitle}؟`)) {
+AdminCoursesPage.jsx:337: ملاحظة الطالب: {reg.notes}
+AdminCoursesPage.jsx:475: <label className="block font-bold text-slate-700 mb-1">عنوان الدورة ({activeTab.toUpperCase()})*</label>
+AdminMediaLibraryPage.jsx:217: if (confirm(`حذف الملف ${asset.originalName}؟`)) {
+AdminPageBuilderPage.jsx:180: الصفحة الرئيسية (Home Page)
+AdminPageBuilderPage.jsx:188: صفحة من نحن (About)
+AdminPageBuilderPage.jsx:271: if (confirm(`هل أنت متأكد من حذف قسم ${sec.sectionKey}؟`)) {
+AdminProgramsPage.jsx:188: ? `يرجى إدخال اسم التخصص باللغة (${langLabel}). إدخال التخصصات بجميع اللغات الثلاث إلزامي.`
+AdminProgramsPage.jsx:279: {filteredPrograms.length} برنامج
+AdminProgramsPage.jsx:321: <span>{prog.durationYears} سنوات</span>
+AdminProgramsPage.jsx:349: if (confirm(`هل أنت متأكد من حذف ${arName}؟`)) {
+AdminProgramsPage.jsx:530: <label className="block font-bold text-slate-700 mb-1">اسم التخصص ({activeTab.toUpperCase()})*</label>
+AdminProgramsPage.jsx:542: <label className="block font-bold text-slate-700 mb-1">اسم الكلية ({activeTab.toUpperCase()})</label>
+AdminProgramsPage.jsx:553: <label className="block font-bold text-slate-700 mb-1">وصف تفصيلي للبرنامج والمقررات ({activeTab.toUpperCase()})</label>
+AdminProgramsPage.jsx:564: <label className="block font-bold text-slate-700 mb-1">فرص العمل ومجالات التخرج ({activeTab.toUpperCase()})</label>
+AdminScholarshipsPage.jsx:158: ? `يرجى إدخال عنوان المنحة باللغة (${langLabel}). إدخال البيانات بجميع اللغات الثلاث إلزامي لضمان توفير المعلومة للطلاب.
+AdminScholarshipsPage.jsx:214: إجمالي المنح: {scholarships.length}
+AdminScholarshipsPage.jsx:281: if (confirm(`هل أنت متأكد من حذف منحة ${arTitle}؟`)) {
+AdminScholarshipsPage.jsx:422: <label className="block font-bold text-slate-700 mb-1">عنوان المنحة ({activeTab.toUpperCase()})*</label>
+AdminServicesPage.jsx:148: ? `يرجى إدخال عنوان الخدمة باللغة (${langLabel}). إدخال الخدمات بجميع اللغات الثلاث إلزامي.`
+AdminServicesPage.jsx:206: إجمالي الخدمات: {services.length}
+AdminServicesPage.jsx:283: if (confirm(`هل أنت متأكد من حذف ${arTitle}؟`)) {
+AdminServicesPage.jsx:420: <label className="block font-bold text-slate-700 mb-1">عنوان الخدمة ({activeTab.toUpperCase()})*</label>
+AdminServicesPage.jsx:432: <label className="block font-bold text-slate-700 mb-1">وصف الخدمة ({activeTab.toUpperCase()})</label>
+AdminServicesPage.jsx:443: <label className="block font-bold text-slate-700 mb-1">المميزات والفوائد للطلاب ({activeTab.toUpperCase()})</label>
+AdminSettingsPage.jsx:78: ? `تم حفظ ${payload.length} إعداد بنجاح — الموقع يتحدث فوراً.`
+AdminSettingsPage.jsx:213: {isArabic ? `نتائج البحث: ${rendering.length}` : `Arama sonucu: ${rendering.length} ayar`}
+AdminStaffPage.jsx:204: {m._count?.assignedApplications || 0} طلب
+AdminUniversitiesPage.jsx:509: ? `يرجى إدخال اسم الجامعة باللغة (${langLabel}). إدخال بيانات الجامعات بجميع اللغات الثلاث إلزامي لضمان تصفح الطلاب.`
+AdminUniversitiesPage.jsx:868: if (confirm(`هل أنت متأكد من حذف ${arName} نهائياً؟`)) {
+AdminUniversitiesPage.jsx:1054: if (confirm(`هل أنت متأكد من حذف ${arName} نهائياً؟`)) {
+AdminUniversitiesPage.jsx:1475: يقوم النظام بالتحقق من كل سجل وإدخاله مع ترجماته (عربي، تركي، إنجليزي)، روابط المواقع الرسمية، الشعارات،
+AdminUniversitiesPage.jsx:1476: ولا يتم إظهار رسالة "تم الإنشاء بنجاح" إلا بعد التأكد الفعلي من وجود السجلات في قاعدة البيانات (Direct DB Verification).
+AdminUniversitiesPage.jsx:1486: {importRegistry.total} جامعة
+AdminUniversitiesPage.jsx:1492: {importRegistry.currentInDb} جامعة
+AdminUniversitiesPage.jsx:1559: <strong className="text-brand-navy-950">{importResults.verifiedDatabaseCount} جامعة</strong>
+AdminUniversitiesPage.jsx:1606: فحص تجريبي (Dry Run)
+AdminUniversitiesPage.jsx:2171: حالة التقديم (Application Status)*
+AdminUniversitiesPage.jsx:2187: آخر موعد للتقديم (Deadline Text)
+AdminUniversitiesPage.jsx:2213: ملاحظة مخصصة لحالة التقديم (Status Note)
+AdminUniversitiesPage.jsx:2226: نص إعلان القبول (يظهر في الشريط الترويجي المتحرك)
+AdminUniversitiesPage.jsx:2387: اسم الجامعة ({activeTab.toUpperCase()})*
+AdminUniversitiesPage.jsx:2407: نبذة شاملة عن الجامعة ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2421: شروط القبول والتسجيل ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2434: السكن الطلابي والإقامة ({activeTab.toUpperCase()})
+AdminUniversitiesPage.jsx:2447: الاعتراف الدولي والاعتمادات ({activeTab.toUpperCase()})

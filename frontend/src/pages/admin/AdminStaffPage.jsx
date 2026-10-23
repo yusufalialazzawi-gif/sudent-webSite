@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Shield,
@@ -128,10 +129,10 @@ export default function AdminStaffPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-            {currentLanguage === 'ar' ? 'فريق العمل وسجلات الأمان' : 'Staff Accounts & Security Logs'}
+            {tx('فريق العمل وسجلات الأمان', 'Ekip Hesapları ve Güvenlik Kayıtları', 'Staff Accounts & Security Logs')}
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            {currentLanguage === 'ar' ? 'إدارة صلاحيات مستشاري القبول ومحرري المحتوى، ومراقبة تدقيق العمليات' : 'Role-based access control (RBAC), team accounts, and immutable system audit logs'}
+            {tx('إدارة صلاحيات مستشاري القبول ومحرري المحتوى، ومراقبة تدقيق العمليات', 'Kabul danışmanı ve içerik editörü yetkilerini yönetin, sistem denetim kayıtlarını izleyin', 'Role-based access control (RBAC), team accounts, and immutable system audit logs')}
           </p>
         </div>
 
@@ -141,7 +142,7 @@ export default function AdminStaffPage() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 text-white rounded-xl text-xs font-bold shadow-md hover:from-brand-amber-600 hover:to-amber-700 transition"
           >
             <UserPlus size={16} />
-            <span>{currentLanguage === 'ar' ? 'إضافة موظف جديد' : 'New Staff Account'}</span>
+            <span>{tx('إضافة موظف جديد', 'Yeni Personel Ekle', 'New Staff Account')}</span>
           </button>
         )}
       </div>
@@ -155,7 +156,7 @@ export default function AdminStaffPage() {
           }`}
         >
           <Shield size={15} />
-          <span>حسابات الفريق والصلاحيات</span>
+          <span>{tx('حسابات الفريق والصلاحيات', 'Ekip Hesapları ve Yetkiler', 'Team Accounts & Roles')}</span>
         </button>
         <button
           onClick={() => setActiveTab('logs')}
@@ -164,7 +165,7 @@ export default function AdminStaffPage() {
           }`}
         >
           <Activity size={15} />
-          <span>سجل تدقيق الأمان (Audit Trail)</span>
+          <span>{tx('سجل تدقيق الأمان (Audit Trail)', 'Güvenlik Denetim Günlüğü (Audit Trail)', 'Security Audit Trail')}</span>
         </button>
       </div>
 
@@ -174,19 +175,19 @@ export default function AdminStaffPage() {
           {isStaffLoading ? (
             <div className="p-12 text-center text-slate-400">
               <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <span>جاري تحميل بيانات الفريق...</span>
+              <span>{tx('جاري تحميل بيانات الفريق...', 'Ekip verileri yükleniyor...', 'Loading team data...')}</span>
             </div>
           ) : staffList.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-start">
                 <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                   <tr>
-                    <th className="px-6 py-4 text-start">الموظف</th>
-                    <th className="px-4 py-4 text-start">الدور الوظيفي</th>
-                    <th className="px-4 py-4 text-start">الطلبات المسندة</th>
-                    <th className="px-4 py-4 text-start">الحالة</th>
-                    <th className="px-4 py-4 text-start">تاريخ الانضمام</th>
-                    <th className="px-6 py-4 text-end">إجراءات</th>
+                    <th className="px-6 py-4 text-start">{tx('الموظف', 'Personel', 'Staff Member')}</th>
+                    <th className="px-4 py-4 text-start">{tx('الدور الوظيفي', 'Görev / Rol', 'Role')}</th>
+                    <th className="px-4 py-4 text-start">{tx('الطلبات المسندة', 'Atanan Başvurular', 'Assigned Applications')}</th>
+                    <th className="px-4 py-4 text-start">{tx('الحالة', 'Durum', 'Status')}</th>
+                    <th className="px-4 py-4 text-start">{tx('تاريخ الانضمام', 'Kayıt Tarihi', 'Joined Date')}</th>
+                    <th className="px-6 py-4 text-end">{tx('إجراءات', 'İşlemler', 'Actions')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -201,7 +202,7 @@ export default function AdminStaffPage() {
                       </td>
                       <td className="px-4 py-4">
                         <span className="font-semibold text-slate-700">
-                          {m._count?.assignedApplications || 0} طلب
+                          {m._count?.assignedApplications || 0} {tx('طلب', 'başvuru', 'applications')}
                         </span>
                       </td>
                       <td className="px-4 py-4">
@@ -212,18 +213,18 @@ export default function AdminStaffPage() {
                           }`}
                         >
                           {m.isActive ? <CheckCircle size={12} /> : <XCircle size={12} />}
-                          <span>{m.isActive ? 'نشط' : 'معطل'}</span>
+                          <span>{m.isActive ? tx('نشط', 'Aktif', 'Active') : tx('معطل', 'Pasif', 'Inactive')}</span>
                         </button>
                       </td>
                       <td className="px-4 py-4 text-slate-400">
-                        {new Date(m.createdAt).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US')}
+                        {new Date(m.createdAt).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : currentLanguage === 'tr' ? 'tr-TR' : 'en-US')}
                       </td>
                       <td className="px-6 py-4 text-end">
                         <button
                           onClick={() => openEditModal(m)}
                           className="px-3 py-1.5 bg-slate-100 hover:bg-brand-navy-950 hover:text-white rounded-lg font-bold text-slate-700 transition"
                         >
-                          تعديل الصلاحيات
+                          {tx('تعديل الصلاحيات', 'Yetkileri Düzenle', 'Edit Roles')}
                         </button>
                       </td>
                     </tr>
@@ -233,7 +234,7 @@ export default function AdminStaffPage() {
             </div>
           ) : (
             <div className="p-12 text-center text-slate-400 text-sm">
-              لا توجد حسابات مسجلة
+              {tx('لا توجد حسابات مسجلة', 'Kayıtlı hesap bulunamadı', 'No registered staff accounts')}
             </div>
           )}
         </div>
@@ -245,18 +246,18 @@ export default function AdminStaffPage() {
           {isLogsLoading ? (
             <div className="p-12 text-center text-slate-400">
               <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <span>جاري تحميل سجل التدقيق الأمني...</span>
+              <span>{tx('جاري تحميل سجل التدقيق الأمني...', 'Güvenlik denetim günlüğü yükleniyor...', 'Loading audit logs...')}</span>
             </div>
           ) : auditLogs.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-start">
                 <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                   <tr>
-                    <th className="px-6 py-4 text-start">العملية والكيان</th>
-                    <th className="px-4 py-4 text-start">المستخدم المنفذ</th>
-                    <th className="px-4 py-4 text-start">تفاصيل الإجراء</th>
-                    <th className="px-4 py-4 text-start">عنوان IP</th>
-                    <th className="px-6 py-4 text-end">التوقيت</th>
+                    <th className="px-6 py-4 text-start">{tx('العملية والكيان', 'İşlem & Varlık', 'Action & Entity')}</th>
+                    <th className="px-4 py-4 text-start">{tx('المستخدم المنفذ', 'İşlemi Yapan', 'User')}</th>
+                    <th className="px-4 py-4 text-start">{tx('تفاصيل الإجراء', 'İşlem Detayı', 'Details')}</th>
+                    <th className="px-4 py-4 text-start">{tx('عنوان IP', 'IP Adresi', 'IP Address')}</th>
+                    <th className="px-6 py-4 text-end">{tx('التوقيت', 'Zaman', 'Timestamp')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -279,7 +280,7 @@ export default function AdminStaffPage() {
                         {log.ipAddress || '127.0.0.1'}
                       </td>
                       <td className="px-6 py-3.5 text-end text-slate-400 text-[11px] whitespace-nowrap font-sans">
-                        {new Date(log.createdAt).toLocaleString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US')}
+                        {new Date(log.createdAt).toLocaleString(currentLanguage === 'ar' ? 'ar-EG' : currentLanguage === 'tr' ? 'tr-TR' : 'en-US')}
                       </td>
                     </tr>
                   ))}
@@ -288,7 +289,7 @@ export default function AdminStaffPage() {
             </div>
           ) : (
             <div className="p-12 text-center text-slate-400 text-sm">
-              لا توجد سجلات أمان مسجلة بعد
+              {tx('لا توجد سجلات أمان مسجلة بعد', 'Henüz güvenlik kaydı bulunamadı', 'No security logs found yet')}
             </div>
           )}
         </div>
@@ -300,7 +301,7 @@ export default function AdminStaffPage() {
           <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b pb-3">
               <h3 className="font-bold text-slate-900 text-base">
-                {editingStaffId ? 'تعديل بيانات الحساب' : 'إنشاء حساب موظف جديد'}
+                {editingStaffId ? tx('تعديل بيانات الحساب', 'Hesap Bilgilerini Düzenle', 'Edit Account Details') : tx('إنشاء حساب موظف جديد', 'Yeni Personel Hesabı Oluştur', 'Create Staff Account')}
               </h3>
               <button onClick={closeModal} className="p-1 text-slate-400 hover:text-slate-600">
                 <X size={18} />
@@ -309,11 +310,11 @@ export default function AdminStaffPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">الاسم الكامل*</label>
+                <label className="block font-bold text-slate-700 mb-1">{tx('الاسم الكامل*', 'Ad Soyad*', 'Full Name*')}</label>
                 <input
                   type="text"
                   required
-                  placeholder="محمد أحمد"
+                  placeholder={tx('محمد أحمد', 'Ahmet Yılmaz', 'John Doe')}
                   value={form.fullName}
                   onChange={(e) => setForm({ ...form, fullName: e.target.value })}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -321,7 +322,7 @@ export default function AdminStaffPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">البريد الإلكتروني*</label>
+                <label className="block font-bold text-slate-700 mb-1">{tx('البريد الإلكتروني*', 'E-posta*', 'Email Address*')}</label>
                 <input
                   type="email"
                   required
@@ -334,22 +335,22 @@ export default function AdminStaffPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">الصلاحية والدور (RBAC Role)*</label>
+                <label className="block font-bold text-slate-700 mb-1">{tx('الصلاحية والدور (RBAC Role)*', 'Yetki ve Rol (RBAC)*', 'Role & Permissions (RBAC)*')}</label>
                 <select
                   value={form.role}
                   onChange={(e) => setForm({ ...form, role: e.target.value })}
                   className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                 >
-                  <option value="ADMISSIONS_OFFICER">مستشار قبولات (Admissions Officer)</option>
-                  <option value="CONTENT_EDITOR">محرر محتوى ومدونة (Content Editor)</option>
-                  <option value="ADMIN">مدير نظام (Admin)</option>
-                  <option value="SUPER_ADMIN">مدير عام بكامل الصلاحيات (Super Admin)</option>
+                  <option value="ADMISSIONS_OFFICER">{tx('مستشار قبولات (Admissions Officer)', 'Kabul Danışmanı (Admissions Officer)', 'Admissions Officer')}</option>
+                  <option value="CONTENT_EDITOR">{tx('محرر محتوى ومدونة (Content Editor)', 'İçerik Editörü (Content Editor)', 'Content Editor')}</option>
+                  <option value="ADMIN">{tx('مدير نظام (Admin)', 'Sistem Yöneticisi (Admin)', 'Admin')}</option>
+                  <option value="SUPER_ADMIN">{tx('مدير عام بكامل الصلاحيات (Super Admin)', 'Süper Yönetici (Super Admin)', 'Super Admin')}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block font-bold text-slate-700 mb-1">
-                  {editingStaffId ? 'تغيير كلمة المرور (اتركه فارغاً للإبقاء على الحالية)' : 'كلمة المرور الأولية*'}
+                  {editingStaffId ? tx('تغيير كلمة المرور (اتركه فارغاً للإبقاء على الحالية)', 'Şifreyi Değiştir (Mevcut şifreyi korumak için boş bırakın)', 'Change Password (leave blank to keep current)') : tx('كلمة المرور الأولية*', 'Başlangıç Şifresi*', 'Initial Password*')}
                 </label>
                 <input
                   type="password"
@@ -367,14 +368,14 @@ export default function AdminStaffPage() {
                   onClick={closeModal}
                   className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                 >
-                  إلغاء
+                  {tx('إلغاء', 'İptal', 'Cancel')}
                 </button>
                 <button
                   type="submit"
                   disabled={createMutation.isPending}
                   className="px-5 py-2 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow transition disabled:opacity-50"
                 >
-                  {createMutation.isPending ? 'جاري الحفظ...' : 'حفظ الحساب'}
+                  {createMutation.isPending ? tx('جاري الحفظ...', 'Kaydediliyor...', 'Saving...') : tx('حفظ الحساب', 'Hesabı Kaydet', 'Save Account')}
                 </button>
               </div>
             </form>

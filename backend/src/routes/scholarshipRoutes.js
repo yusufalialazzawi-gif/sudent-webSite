@@ -1,6 +1,7 @@
 import express from 'express';
 import prisma from '../config/db.js';
 import { authenticate } from '../middleware/auth.js';
+import { completeTranslations } from '../utils/translations.js';
 import { requireRole, auditLog } from '../middleware/rbac.js';
 
 const router = express.Router();
@@ -8,23 +9,25 @@ const router = express.Router();
 // GET /api/scholarships - Public list
 router.get('/', async (req, res, next) => {
   try {
-    const { lang = 'ar', type } = req.query;
+    const { lang = 'ar', type, limit } = req.query;
     const where = { published: true };
     if (type) {
       where.scholarshipType = type.toUpperCase();
     }
+    const take = Number.isFinite(parseInt(limit)) && parseInt(limit) > 0 ? Math.min(parseInt(limit), 100) : undefined;
 
     const scholarships = await prisma.scholarship.findMany({
       where,
+      ...(take && { take }),
       orderBy: { createdAt: 'desc' },
       include: {
         university: {
           include: {
-            translations: { where: { lang: { in: [lang, 'ar'] } } },
+            translations: { where: { lang: { in: [lang, 'ar', 'tr', 'en'] } } },
           },
         },
         translations: {
-          where: { lang: { in: [lang, 'ar', 'en'] } },
+          where: { lang: { in: [lang, 'ar', 'tr', 'en'] } },
         },
       },
     });
@@ -112,7 +115,7 @@ router.post('/admin', authenticate, requireRole(['SUPER_ADMIN', 'CONTENT_EDITOR'
         imageUrl,
         published: published !== undefined ? Boolean(published) : true,
         translations: {
-          create: translations.map((t) => ({
+          create: completeTranslations(translations, 'title').map((t) => ({
             lang: t.lang,
             title: t.title,
             description: t.description,

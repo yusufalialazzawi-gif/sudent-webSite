@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Award,
@@ -23,6 +24,7 @@ export default function AdminScholarshipsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [activeTab, setActiveTab] = useState('ar');
+  const [validationError, setValidationError] = useState('');
 
   const initialForm = {
     slug: '',
@@ -92,11 +94,13 @@ export default function AdminScholarshipsPage() {
     setEditingId(null);
     setForm(initialForm);
     setActiveTab('ar');
+    setValidationError('');
     setIsModalOpen(true);
   };
 
   const openEditModal = (sch) => {
     setEditingId(sch.id);
+    setValidationError('');
 
     const getTranslation = (lang) => {
       const found = sch.translations?.find(t => t.lang === lang);
@@ -126,6 +130,7 @@ export default function AdminScholarshipsPage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingId(null);
+    setValidationError('');
   };
 
   const handleTransChange = (lang, field, value) => {
@@ -142,6 +147,25 @@ export default function AdminScholarshipsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setValidationError('');
+
+    // Strict 3-Language Validation Check
+    for (const lang of ['ar', 'tr', 'en']) {
+      const trans = form.translations.find(t => t.lang === lang);
+      if (!trans || !trans.title?.trim()) {
+        const langLabel = lang === 'ar' ? 'العربية 🇸🇦' : lang === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧';
+        setValidationError(
+          tx(
+            `يرجى إدخال عنوان المنحة باللغة (${langLabel}). إدخال البيانات بجميع اللغات الثلاث إلزامي لضمان توفير المعلومة للطلاب.`,
+            `Lütfen (${langLabel}) dilinde burs başlığını giriniz. Tüm 3 dilde (Arapça, Türkçe, İngilizce) içerik girilmesi zorunludur.`,
+            `Please enter the scholarship title in (${langLabel}). Entering content in all 3 languages is required.`
+          )
+        );
+        setActiveTab(lang);
+        return;
+      }
+    }
+
     saveMutation.mutate(form);
   };
 
@@ -162,10 +186,10 @@ export default function AdminScholarshipsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-            {currentLanguage === 'ar' ? 'المنح الدراسية والخصومات الجامعية' : 'Scholarships & Tuition Discounts'}
+            tx('المنح الدراسية والفرص الأكاديمية', 'Burslar ve Akademik Fırsatlar', 'Scholarships & Academic Grants')
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            {currentLanguage === 'ar' ? 'إدارة المنح الكاملة والجزئية، نسب الخصم الحصرية، ومواعيد التقديم' : 'Manage partial and full scholarship opportunities, exclusive agency discounts, and application deadlines'}
+            tx('إدارة المنح الكاملة والجزئية، ومواعيد التقديم الرسمية', 'Tam ve kısmi burs fırsatları ile resmi başvuru tarihlerini yönetin', 'Manage partial and full scholarship opportunities and official application deadlines')
           </p>
         </div>
 
@@ -174,7 +198,7 @@ export default function AdminScholarshipsPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 text-white rounded-xl text-xs font-bold shadow-md hover:from-brand-amber-600 hover:to-amber-700 transition"
         >
           <Plus size={16} />
-          <span>{currentLanguage === 'ar' ? 'إضافة منحة جديدة' : 'Add Scholarship'}</span>
+          <span>{tx('إضافة منحة جديدة', 'Yeni Burs Ekle', 'Add Scholarship')}</span>
         </button>
       </div>
 
@@ -183,14 +207,14 @@ export default function AdminScholarshipsPage() {
           <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder={currentLanguage === 'ar' ? 'بحث بالاسم أو المعرف...' : 'Search scholarships...'}
+            placeholder={tx('بحث بالاسم أو المعرف...', 'Burs veya kimlik ara...', 'Search scholarships...')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-amber-500/50"
           />
         </div>
         <div className="text-xs font-semibold text-slate-500">
-          إجمالي المنح: {scholarships.length}
+          {tx('إجمالي المنح:', 'Toplam Burs:', 'Total Scholarships:')} {scholarships.length}
         </div>
       </div>
 
@@ -198,25 +222,25 @@ export default function AdminScholarshipsPage() {
         {isLoading ? (
           <div className="p-12 text-center text-slate-400">
             <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <span>جاري تحميل المنح...</span>
+            <span>{ta("جاري تحميل المنح...")}</span>
           </div>
         ) : filtered.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-start">
               <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-4 text-start">المنحة</th>
-                  <th className="px-4 py-4 text-start">الجامعة المرتبطة</th>
-                  <th className="px-4 py-4 text-start">نسبة الخصم</th>
-                  <th className="px-4 py-4 text-start">الموعد النهائي</th>
-                  <th className="px-4 py-4 text-start">الحالة</th>
-                  <th className="px-6 py-4 text-end">إجراءات</th>
+                  <th className="px-6 py-4 text-start">{ta("المنحة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("الجامعة المرتبطة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("نسبة الخصم")}</th>
+                  <th className="px-4 py-4 text-start">{ta("الموعد النهائي")}</th>
+                  <th className="px-4 py-4 text-start">{ta("الحالة")}</th>
+                  <th className="px-6 py-4 text-end">{ta("إجراءات")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filtered.map((sch) => {
                   const arTitle = sch.translations?.find(t => t.lang === 'ar')?.title || sch.slug;
-                  const uniName = sch.university?.translations?.[0]?.name || sch.university?.slug || 'كافة الجامعات الشريكة';
+                  const uniName = sch.university?.translations?.[0]?.name || sch.university?.slug || ta('كافة الجامعات الشريكة');
                   return (
                     <tr key={sch.id} className="hover:bg-slate-50/80 transition">
                       <td className="px-6 py-4">
@@ -231,20 +255,20 @@ export default function AdminScholarshipsPage() {
                       </td>
                       <td className="px-4 py-4">
                         <span className="px-2.5 py-1 rounded-full text-xs font-black bg-amber-100 text-amber-800">
-                          {sch.discountPercentage ? `خصم ${sch.discountPercentage}%` : 'منحة كاملة 100%'}
+                          {sch.discountPercentage ? `خصم ${sch.discountPercentage}%` : ta('منحة كاملة 100%')}
                         </span>
                       </td>
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-1 text-slate-600">
                           <Calendar size={13} className="text-slate-400" />
-                          <span>{sch.deadline ? new Date(sch.deadline).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US') : 'مستمر'}</span>
+                          <span>{sch.deadline ? new Date(sch.deadline).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : currentLanguage === 'tr' ? 'tr-TR' : 'en-US') : 'مستمر'}</span>
                         </div>
                       </td>
                       <td className="px-4 py-4">
                         {sch.published ? (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">متاحة</span>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">{ta("متاحة")}</span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">مسودة</span>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">{ta("مسودة")}</span>
                         )}
                       </td>
                       <td className="px-6 py-4 text-end">
@@ -257,7 +281,7 @@ export default function AdminScholarshipsPage() {
                           </button>
                           <button
                             onClick={() => {
-                              if (confirm(`هل أنت متأكد من حذف منحة ${arTitle}؟`)) {
+                              if (confirm(tx(`هل أنت متأكد من حذف منحة ${arTitle}؟`, `${arTitle} bursunu silmek istediğinize emin misiniz?`, `Are you sure you want to delete scholarship ${arTitle}?`))) {
                                 deleteMutation.mutate(sch.id);
                               }
                             }}
@@ -275,7 +299,7 @@ export default function AdminScholarshipsPage() {
           </div>
         ) : (
           <div className="p-12 text-center text-slate-400 text-sm">
-            لا توجد منح مسجلة
+            {ta("لا توجد منح مسجلة")}
           </div>
         )}
       </div>
@@ -287,10 +311,10 @@ export default function AdminScholarshipsPage() {
             <div className="p-6 bg-brand-navy-950 text-white flex items-center justify-between">
               <div>
                 <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">
-                  {editingId ? 'تعديل بيانات المنحة' : 'إضافة فرصة منحة جديدة'}
+                  {editingId ? ta('تعديل بيانات المنحة') : ta('إضافة فرصة منحة جديدة')}
                 </span>
                 <h2 className="text-xl font-bold mt-0.5">
-                  {currentTrans.title || form.slug || 'المنحة الدراسية'}
+                  {currentTrans.title || form.slug || ta('المنحة الدراسية')}
                 </h2>
               </div>
               <button onClick={closeModal} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white">
@@ -301,7 +325,7 @@ export default function AdminScholarshipsPage() {
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المعرف الفريد (Slug)*</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المعرف الفريد (Slug)*")}</label>
                   <input
                     type="text"
                     required
@@ -312,13 +336,13 @@ export default function AdminScholarshipsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">الجامعة المانحة</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("الجامعة المانحة")}</label>
                   <select
                     value={form.universityId}
                     onChange={(e) => setForm({ ...form, universityId: e.target.value })}
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                   >
-                    <option value="">كافة الجامعات الشريكة</option>
+                    <option value="">{ta("كافة الجامعات الشريكة")}</option>
                     {universities.map(u => (
                       <option key={u.id} value={u.id}>
                         {u.translations?.find(t => t.lang === 'ar')?.name || u.slug}
@@ -327,7 +351,7 @@ export default function AdminScholarshipsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">نسبة الخصم (%)</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("نسبة الخصم (%)")}</label>
                   <input
                     type="number"
                     min="1"
@@ -338,7 +362,7 @@ export default function AdminScholarshipsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">الموعد النهائي للتقديم</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("الموعد النهائي للتقديم")}</label>
                   <input
                     type="date"
                     value={form.deadline}
@@ -348,30 +372,57 @@ export default function AdminScholarshipsPage() {
                 </div>
               </div>
 
+              {/* 3-Language Enforcement Alert & Validation */}
+              {validationError && (
+                <div className="p-3.5 bg-rose-50 border border-rose-300 text-rose-800 rounded-xl text-xs font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+                  <span>{validationError}</span>
+                </div>
+              )}
+
               {/* Multilingual Tabs */}
               <div className="border border-slate-200 rounded-2xl overflow-hidden">
-                <div className="bg-slate-100 p-2 flex items-center gap-2 border-b border-slate-200">
-                  <span className="text-xs font-bold text-slate-600 px-3 flex items-center gap-1.5">
-                    <Globe size={14} className="text-brand-amber-500" />
-                    <span>محتوى اللغات:</span>
+                <div className="bg-slate-100 p-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 px-2 flex items-center gap-1.5">
+                      <Globe size={14} className="text-brand-amber-500" />
+                      <span>{tx('اللغات الإلزامية الثلاث:', 'Zorunlu 3 Dil:', 'Mandatory 3 Languages:')}</span>
+                    </span>
+                    {['ar', 'tr', 'en'].map((lng) => {
+                      const trObj = form.translations.find((t) => t.lang === lng);
+                      const isComplete = Boolean(trObj?.title?.trim());
+                      return (
+                        <button
+                          key={lng}
+                          type="button"
+                          onClick={() => {
+                            setActiveTab(lng);
+                            setValidationError('');
+                          }}
+                          className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition flex items-center gap-1.5 ${
+                            activeTab === lng
+                              ? 'bg-white text-brand-navy-950 shadow-sm border border-slate-200'
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}</span>
+                          {isComplete ? (
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" title={ta("مكتمل / Tamamlandı")} />
+                          ) : (
+                            <span className="w-2 h-2 rounded-full bg-rose-500" title={ta("مطلوب / Gerekli")} />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-500 hidden sm:inline-block">
+                    tx('يجب ملء البيانات باللغات الثلاث', '3 dilde veri girişi zorunludur', 'Data entry required in all 3 languages')
                   </span>
-                  {['ar', 'tr', 'en'].map((lng) => (
-                    <button
-                      key={lng}
-                      type="button"
-                      onClick={() => setActiveTab(lng)}
-                      className={`px-4 py-1.5 text-xs font-bold rounded-lg transition ${
-                        activeTab === lng ? 'bg-white text-brand-navy-950 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      {lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}
-                    </button>
-                  ))}
                 </div>
 
                 <div className="p-4 space-y-4 text-xs">
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">عنوان المنحة ({activeTab.toUpperCase()})*</label>
+                    <label className="block font-bold text-slate-700 mb-1">{tx('عنوان المنحة', 'Burs Başlığı', 'Scholarship Title')} ({activeTab.toUpperCase()})*</label>
                     <input
                       type="text"
                       required={activeTab === 'ar'}
@@ -383,10 +434,10 @@ export default function AdminScholarshipsPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">وصف المنحة والتغطية المالية</label>
+                    <label className="block font-bold text-slate-700 mb-1">{ta("وصف المنحة والتغطية المالية")}</label>
                     <textarea
                       rows={3}
-                      placeholder="تغطي المنحة نصف القسط السنوي طوال سنوات الدراسة الأكاديمية..."
+                      placeholder={ta("تغطي المنحة نصف القسط السنوي طوال سنوات الدراسة الأكاديمية...")}
                       value={currentTrans.description || ''}
                       onChange={(e) => handleTransChange(activeTab, 'description', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -394,10 +445,10 @@ export default function AdminScholarshipsPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">شروط الاستحقاق والقبول</label>
+                    <label className="block font-bold text-slate-700 mb-1">{ta("شروط الاستحقاق والقبول")}</label>
                     <textarea
                       rows={2}
-                      placeholder="معدل ثانوية عامة لا يقل عن 80%، تقديم قبل تاريخ 15 أغسطس..."
+                      placeholder={ta("معدل ثانوية عامة لا يقل عن 80%، تقديم قبل تاريخ 15 أغسطس...")}
                       value={currentTrans.eligibilityCriteria || ''}
                       onChange={(e) => handleTransChange(activeTab, 'eligibilityCriteria', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -412,14 +463,14 @@ export default function AdminScholarshipsPage() {
                   onClick={closeModal}
                   className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                 >
-                  إلغاء
+                  {ta("إلغاء")}
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
                   className="px-6 py-2.5 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow-md transition disabled:opacity-50"
                 >
-                  {saveMutation.isPending ? 'جاري الحفظ...' : 'حفظ المنحة'}
+                  {saveMutation.isPending ? ta('جاري الحفظ...') : ta('حفظ المنحة')}
                 </button>
               </div>
             </form>

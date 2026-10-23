@@ -42,59 +42,88 @@ export default function ServiceCard({ service }) {
     }
   };
 
+  // High-resolution photography mapping for educational consulting services
+  const serviceImages = {
+    'admission-consulting': 'https://images.unsplash.com/photo-1507842229451-7f01be837a2b?w=800&auto=format&fit=crop&q=80',
+    'sworn-translation-equivalency': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&auto=format&fit=crop&q=80',
+    'student-residence-permit': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop&q=80',
+    'airport-pickup-housing': 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&auto=format&fit=crop&q=80',
+  };
+
+  const coverImage =
+    serviceImages[service.slug] ||
+    'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop&q=80';
+
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative overflow-hidden">
-      <div className="absolute top-0 start-0 w-full h-1 bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative overflow-hidden">
+      {/* Photo Header */}
+      <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+        <img
+          src={coverImage}
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent"></div>
 
-      <div>
-        {/* Icon & Policy Badge */}
-        <div className="flex items-center justify-between mb-5">
-          <div className="w-14 h-14 rounded-2xl bg-brand-amber-50 border border-brand-amber-100 flex items-center justify-center group-hover:bg-brand-amber-500 group-hover:text-white transition-colors duration-300">
-            {getIcon(service.icon)}
-          </div>
+        {/* Icon Floating Badge */}
+        <div className="absolute top-3 start-3 w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center border border-white/40">
+          {getIcon(service.icon)}
+        </div>
 
-          {service.pricePolicy === 'FREE_CONSULTATION' && (
-            <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-              {currentLang === 'ar' ? 'مجاني 100%' : currentLang === 'tr' ? 'Tamamen Ücretsiz' : '100% Free'}
+        {/* Policy / Trust Badge */}
+        <div className="absolute top-3 end-3">
+          {service.pricePolicy === 'FREE_CONSULTATION' ? (
+            <span className="px-3 py-1 rounded-full bg-emerald-500/90 text-white text-[11px] font-bold shadow backdrop-blur-md">
+              {currentLang === 'ar' ? 'استشارة أولية مجانية' : currentLang === 'tr' ? 'Ücretsiz Ön Değerlendirme' : 'Free Consultation'}
+            </span>
+          ) : (
+            <span className="px-3 py-1 rounded-full bg-brand-navy-900/90 text-brand-amber-300 text-[11px] font-bold shadow border border-brand-amber-400/30 backdrop-blur-md">
+              {currentLang === 'ar' ? 'خدمة رسمية موثقة' : currentLang === 'tr' ? 'Resmi Onaylı Hizmet' : 'Official Service'}
             </span>
           )}
         </div>
 
-        {/* Title */}
-        <h3 className="text-lg font-bold text-brand-navy-950 font-cairo mb-2 group-hover:text-brand-amber-600 transition-colors">
-          {title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
-          {description}
-        </p>
-
+        {/* Duration Badge */}
         {service.estimatedDuration && (
-          <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-4 bg-slate-50 p-2 rounded-lg">
-            <Clock className="w-3.5 h-3.5 text-slate-400" />
-            <span>{t('services.duration')}:</span>
-            <span className="font-semibold text-slate-700">{service.estimatedDuration}</span>
+          <div className="absolute bottom-3 start-3 flex items-center gap-1.5 text-white text-xs font-semibold drop-shadow">
+            <Clock className="w-3.5 h-3.5 text-brand-amber-400" />
+            <span>{service.estimatedDuration}</span>
           </div>
         )}
       </div>
 
-      {/* Action CTA */}
-      <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-        <Link
-          to={`/services/${service.slug}`}
-          className="text-xs font-bold text-brand-navy-900 group-hover:text-brand-amber-600 flex items-center gap-1 transition-colors"
-        >
-          <span>{t('universities.viewDetails')}</span>
-          <ArrowRight className="w-3.5 h-3.5 flip-in-rtl" />
-        </Link>
+      {/* Body Content */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          {/* Title */}
+          <h3 className="text-lg font-bold text-brand-navy-950 font-cairo mb-2 group-hover:text-brand-amber-600 transition-colors line-clamp-1">
+            {title}
+          </h3>
 
-        <Link
-          to={`/contact?service=${encodeURIComponent(title)}`}
-          className="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-amber-500 hover:text-white text-slate-800 text-xs font-bold transition-all"
-        >
-          {t('services.requestService')}
-        </Link>
+          {/* Description */}
+          <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
+            {description}
+          </p>
+        </div>
+
+        {/* Action CTA */}
+        <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+          <Link
+            to={`/services/${service.slug}`}
+            className="text-xs font-bold text-brand-navy-900 group-hover:text-brand-amber-600 flex items-center gap-1 transition-colors"
+          >
+            <span>{t('universities.viewDetails')}</span>
+            <ArrowRight className="w-3.5 h-3.5 flip-in-rtl" />
+          </Link>
+
+          <Link
+            to={`/contact?service=${encodeURIComponent(title)}`}
+            className="px-3.5 py-1.5 rounded-lg bg-brand-amber-50 hover:bg-brand-amber-500 text-brand-amber-700 hover:text-white text-xs font-bold transition-all"
+          >
+            {t('services.requestService')}
+          </Link>
+        </div>
       </div>
     </div>
   );

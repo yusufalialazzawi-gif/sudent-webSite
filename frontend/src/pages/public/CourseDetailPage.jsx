@@ -101,7 +101,7 @@ export default function CourseDetailPage() {
       {/* Banner */}
       <div className="relative rounded-3xl overflow-hidden h-72 bg-brand-navy-950 text-white shadow-xl flex items-end p-8 sm:p-10 border border-brand-amber-500/30">
         <img
-          src={course.imageUrl || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&auto=format&fit=crop&q=80'}
+          src={course.imageUrl || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&auto=format&fit=crop&q=80'}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />

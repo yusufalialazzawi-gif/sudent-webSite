@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ta, tx } from '../../i18n/adminText';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Layers,
@@ -32,7 +33,7 @@ export default function AdminCoursesPage() {
     slug: '',
     studyMode: 'ONLINE',
     durationWeeks: 12,
-    schedule: 'سبت - اثنين - أربعاء (مسائي)',
+    schedule: ta('سبت - اثنين - أربعاء (مسائي)'),
     price: 350,
     currency: 'USD',
     capacity: 25,
@@ -86,15 +87,19 @@ export default function AdminCoursesPage() {
     }
   });
 
+  const [validationError, setValidationError] = useState('');
+
   const openCreateModal = () => {
     setEditingId(null);
     setForm(initialForm);
     setActiveTab('ar');
+    setValidationError('');
     setIsModalOpen(true);
   };
 
   const openEditModal = (crs) => {
     setEditingId(crs.id);
+    setValidationError('');
 
     const getTranslation = (lang) => {
       const found = crs.translations?.find(t => t.lang === lang);
@@ -126,6 +131,7 @@ export default function AdminCoursesPage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingId(null);
+    setValidationError('');
   };
 
   const handleTransChange = (lang, field, value) => {
@@ -142,6 +148,25 @@ export default function AdminCoursesPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setValidationError('');
+
+    // Strict 3-Language Validation Check
+    for (const lang of ['ar', 'tr', 'en']) {
+      const trans = form.translations?.find(t => t.lang === lang);
+      if (!trans || !trans.title?.trim()) {
+        const langLabel = lang === 'ar' ? 'العربية 🇸🇦' : lang === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧';
+        setValidationError(
+          tx(
+            `يرجى إدخال عنوان الدورة باللغة (${langLabel}). إدخال الدورات بجميع اللغات الثلاث إلزامي.`,
+            `Lütfen (${langLabel}) dilinde kurs başlığını giriniz. Tüm 3 dilde kurs adı zorunludur.`,
+            `Please enter the course title in (${langLabel}). Entering content in all 3 languages is required.`
+          )
+        );
+        setActiveTab(lang);
+        return;
+      }
+    }
+
     saveMutation.mutate(form);
   };
 
@@ -174,7 +199,7 @@ export default function AdminCoursesPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-amber-500 to-amber-600 text-white rounded-xl text-xs font-bold shadow-md hover:from-brand-amber-600 hover:to-amber-700 transition"
         >
           <Plus size={16} />
-          <span>{currentLanguage === 'ar' ? 'إضافة دورة جديدة' : 'Add Course'}</span>
+          <span>{tx('إضافة دورة جديدة', 'Yeni Kurs Ekle', 'Add Course')}</span>
         </button>
       </div>
 
@@ -183,14 +208,14 @@ export default function AdminCoursesPage() {
           <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder={currentLanguage === 'ar' ? 'بحث بالاسم أو المعرف...' : 'Search courses...'}
+            placeholder={tx('بحث بالاسم أو المعرف...', 'Kurs veya kimlik ara...', 'Search courses...')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-amber-500/50"
           />
         </div>
         <div className="text-xs font-semibold text-slate-500">
-          إجمالي الدورات: {courses.length}
+          {tx('إجمالي الدورات:', 'Toplam Kurs:', 'Total Courses:')} {courses.length}
         </div>
       </div>
 
@@ -198,19 +223,18 @@ export default function AdminCoursesPage() {
         {isLoading ? (
           <div className="p-12 text-center text-slate-400">
             <div className="w-8 h-8 border-4 border-brand-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <span>جاري تحميل الدورات...</span>
+            <span>{ta("جاري تحميل الدورات...")}</span>
           </div>
         ) : filteredCourses.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-start">
               <thead className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-4 text-start">الدورة</th>
-                  <th className="px-4 py-4 text-start">نمط الدراسة والمدة</th>
-                  <th className="px-4 py-4 text-start">الرسوم</th>
-                  <th className="px-4 py-4 text-start">السعة والتسجيلات</th>
-                  <th className="px-4 py-4 text-start">الحالة</th>
-                  <th className="px-6 py-4 text-end">إجراءات</th>
+                  <th className="px-6 py-4 text-start">{ta("الدورة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("نمط الدراسة والمدة")}</th>
+                  <th className="px-4 py-4 text-start">{ta("السعة والتسجيلات")}</th>
+                  <th className="px-4 py-4 text-start">{ta("الحالة")}</th>
+                  <th className="px-6 py-4 text-end">{ta("إجراءات")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -227,13 +251,9 @@ export default function AdminCoursesPage() {
                       </td>
                       <td className="px-4 py-4">
                         <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-700">
-                          {crs.studyMode === 'ONLINE' ? 'أونلاين (Online)' : crs.studyMode === 'IN_PERSON' ? 'حضوري' : 'هجين (Hybrid)'}
+                          {crs.studyMode === 'ONLINE' ? ta('أونلاين (Online)') : crs.studyMode === 'IN_PERSON' ? ta('حضوري') : ta('هجين (Hybrid)')}
                         </span>
-                        <div className="text-[11px] text-slate-500 mt-1">{crs.durationWeeks} أسابيع مكثفة</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="font-bold text-slate-900 text-sm">${crs.price}</div>
-                        <div className="text-[10px] text-slate-400">{crs.currency} شامل المواد</div>
+                        <div className="text-[11px] text-slate-500 mt-1">{crs.durationWeeks} {tx('أسابيع مكثفة', 'hafta yoğun', 'weeks intensive')}</div>
                       </td>
                       <td className="px-4 py-4">
                         <button
@@ -241,14 +261,14 @@ export default function AdminCoursesPage() {
                           className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-brand-amber-700 rounded-lg font-bold text-xs transition"
                         >
                           <Users size={13} />
-                          <span>{regCount} / {crs.capacity || '∞'} طالب</span>
+                          <span>{regCount} / {crs.capacity || '∞'} {tx('طالب', 'öğrenci', 'students')}</span>
                         </button>
                       </td>
                       <td className="px-4 py-4">
                         {crs.published ? (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">متاحة</span>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">{ta("متاحة")}</span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">مسودة</span>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">{ta("مسودة")}</span>
                         )}
                       </td>
                       <td className="px-6 py-4 text-end">
@@ -261,7 +281,7 @@ export default function AdminCoursesPage() {
                           </button>
                           <button
                             onClick={() => {
-                              if (confirm(`هل أنت متأكد من حذف دورة ${arTitle}؟`)) {
+                              if (confirm(tx(`هل أنت متأكد من حذف دورة ${arTitle}؟`, `${arTitle} kursunu silmek istediğinize emin misiniz?`, `Are you sure you want to delete course ${arTitle}?`))) {
                                 deleteMutation.mutate(crs.id);
                               }
                             }}
@@ -279,7 +299,7 @@ export default function AdminCoursesPage() {
           </div>
         ) : (
           <div className="p-12 text-center text-slate-400 text-sm">
-            لا توجد دورات مسجلة
+            {ta("لا توجد دورات مسجلة")}
           </div>
         )}
       </div>
@@ -290,7 +310,7 @@ export default function AdminCoursesPage() {
           <div className="w-full max-w-xl bg-white h-full shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-right duration-200">
             <div className="p-6 bg-brand-navy-950 text-white flex items-center justify-between">
               <div>
-                <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">سجل المسجلين بالدورة</span>
+                <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">{ta("سجل المسجلين بالدورة")}</span>
                 <h2 className="text-lg font-bold mt-1">
                   {selectedCourseForRegs.translations?.find(t => t.lang === 'ar')?.title || selectedCourseForRegs.slug}
                 </h2>
@@ -310,21 +330,21 @@ export default function AdminCoursesPage() {
                     <div className="flex items-center justify-between font-bold text-slate-900 text-sm">
                       <span>{reg.fullName}</span>
                       <span className="text-[10px] text-slate-400 font-normal">
-                        {new Date(reg.createdAt).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US')}
+                        {new Date(reg.createdAt).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : currentLanguage === 'tr' ? 'tr-TR' : 'en-US')}
                       </span>
                     </div>
                     <div className="text-slate-600">{reg.email}</div>
                     <div className="text-emerald-700 font-semibold ltr text-start">{reg.phone}</div>
                     {reg.notes && (
                       <div className="text-[11px] text-slate-500 bg-white p-2 rounded border border-slate-100 mt-2">
-                        ملاحظة الطالب: {reg.notes}
+                        {tx('ملاحظة الطالب:', 'Öğrenci Notu:', 'Student Note:')} {reg.notes}
                       </div>
                     )}
                   </div>
                 ))
               ) : (
                 <div className="p-12 text-center text-slate-400 text-sm">
-                  لا توجد طلبات تسجيل مسجلة لهذه الدورة حتى الآن.
+                  {ta("لا توجد طلبات تسجيل مسجلة لهذه الدورة حتى الآن.")}
                 </div>
               )}
             </div>
@@ -339,10 +359,10 @@ export default function AdminCoursesPage() {
             <div className="p-6 bg-brand-navy-950 text-white flex items-center justify-between">
               <div>
                 <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">
-                  {editingId ? 'تعديل بيانات الدورة' : 'إضافة دورة تدريبية جديدة'}
+                  {editingId ? ta('تعديل بيانات الدورة') : ta('إضافة دورة تدريبية جديدة')}
                 </span>
                 <h2 className="text-xl font-bold mt-0.5">
-                  {currentTrans.title || form.slug || 'الدورة التحضيرية'}
+                  {currentTrans.title || form.slug || ta('الدورة التحضيرية')}
                 </h2>
               </div>
               <button onClick={closeModal} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white">
@@ -353,7 +373,7 @@ export default function AdminCoursesPage() {
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المعرف الفريد (Slug)*</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المعرف الفريد (Slug)*")}</label>
                   <input
                     type="text"
                     required
@@ -364,19 +384,19 @@ export default function AdminCoursesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">نمط الحضور</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("نمط الحضور")}</label>
                   <select
                     value={form.studyMode}
                     onChange={(e) => setForm({ ...form, studyMode: e.target.value })}
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
                   >
-                    <option value="ONLINE">أونلاين (Online)</option>
-                    <option value="IN_PERSON">حضوري (In Person)</option>
-                    <option value="HYBRID">هجين (Hybrid)</option>
+                    <option value="ONLINE">{ta("أونلاين (Online)")}</option>
+                    <option value="IN_PERSON">{ta("حضوري (In Person)")}</option>
+                    <option value="HYBRID">{ta("هجين (Hybrid)")}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المدة (بالأسابيع)</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المدة (بالأسابيع)")}</label>
                   <input
                     type="number"
                     value={form.durationWeeks}
@@ -385,16 +405,7 @@ export default function AdminCoursesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">الرسوم ($)</label>
-                  <input
-                    type="number"
-                    value={form.price}
-                    onChange={(e) => setForm({ ...form, price: e.target.value })}
-                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-slate-700 mb-1">السعة القصوى (طالب)</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("السعة القصوى (طالب)")}</label>
                   <input
                     type="number"
                     value={form.capacity}
@@ -403,10 +414,10 @@ export default function AdminCoursesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">المواعيد</label>
+                  <label className="block font-bold text-slate-700 mb-1">{ta("المواعيد")}</label>
                   <input
                     type="text"
-                    placeholder="سبت - اثنين - أربعاء"
+                    placeholder={ta("سبت - اثنين - أربعاء")}
                     value={form.schedule}
                     onChange={(e) => setForm({ ...form, schedule: e.target.value })}
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -414,30 +425,57 @@ export default function AdminCoursesPage() {
                 </div>
               </div>
 
+              {/* 3-Language Enforcement Alert & Validation */}
+              {validationError && (
+                <div className="p-3.5 bg-rose-50 border border-rose-300 text-rose-800 rounded-xl text-xs font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+                  <span>{validationError}</span>
+                </div>
+              )}
+
               {/* Multilingual Tabs */}
               <div className="border border-slate-200 rounded-2xl overflow-hidden">
-                <div className="bg-slate-100 p-2 flex items-center gap-2 border-b border-slate-200">
-                  <span className="text-xs font-bold text-slate-600 px-3 flex items-center gap-1.5">
-                    <Globe size={14} className="text-brand-amber-500" />
-                    <span>محتوى اللغات:</span>
+                <div className="bg-slate-100 p-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 px-2 flex items-center gap-1.5">
+                      <Globe size={14} className="text-brand-amber-500" />
+                      <span>{tx('اللغات الإلزامية الثلاث:', 'Zorunlu 3 Dil:', 'Mandatory 3 Languages:')}</span>
+                    </span>
+                    {['ar', 'tr', 'en'].map((lng) => {
+                      const trObj = form.translations?.find((t) => t.lang === lng);
+                      const isComplete = Boolean(trObj?.title?.trim());
+                      return (
+                        <button
+                          key={lng}
+                          type="button"
+                          onClick={() => {
+                            setActiveTab(lng);
+                            setValidationError('');
+                          }}
+                          className={`px-3.5 py-1.5 text-xs font-bold rounded-lg transition flex items-center gap-1.5 ${
+                            activeTab === lng
+                              ? 'bg-white text-brand-navy-950 shadow-sm border border-slate-200'
+                              : 'text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          <span>{lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}</span>
+                          {isComplete ? (
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" title={ta("مكتمل / Tamamlandı")} />
+                          ) : (
+                            <span className="w-2 h-2 rounded-full bg-rose-500" title={ta("مطلوب / Gerekli")} />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-500 hidden sm:inline-block">
+                    tx('يجب ملء اسم الدورة باللغات الثلاث', '3 dilde kurs adı girişi zorunludur', 'Course title required in all 3 languages')
                   </span>
-                  {['ar', 'tr', 'en'].map((lng) => (
-                    <button
-                      key={lng}
-                      type="button"
-                      onClick={() => setActiveTab(lng)}
-                      className={`px-4 py-1.5 text-xs font-bold rounded-lg transition ${
-                        activeTab === lng ? 'bg-white text-brand-navy-950 shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      {lng === 'ar' ? 'العربية 🇸🇦' : lng === 'tr' ? 'Türkçe 🇹🇷' : 'English 🇬🇧'}
-                    </button>
-                  ))}
                 </div>
 
                 <div className="p-4 space-y-4 text-xs">
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">عنوان الدورة ({activeTab.toUpperCase()})*</label>
+                    <label className="block font-bold text-slate-700 mb-1">{tx('عنوان الدورة', 'Kurs Başlığı', 'Course Title')} ({activeTab.toUpperCase()})*</label>
                     <input
                       type="text"
                       required={activeTab === 'ar'}
@@ -449,10 +487,10 @@ export default function AdminCoursesPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">اسم المحاضر / المدرب</label>
+                    <label className="block font-bold text-slate-700 mb-1">{ta("اسم المحاضر / المدرب")}</label>
                     <input
                       type="text"
-                      placeholder="د. أحمد الأحمد - خبير الرياضيات والذكاء IQ"
+                      placeholder={ta("د. أحمد الأحمد - خبير الرياضيات والذكاء IQ")}
                       value={currentTrans.instructor || ''}
                       onChange={(e) => handleTransChange(activeTab, 'instructor', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -460,10 +498,10 @@ export default function AdminCoursesPage() {
                   </div>
 
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">وصف الدورة والمخرجات</label>
+                    <label className="block font-bold text-slate-700 mb-1">{ta("وصف الدورة والمخرجات")}</label>
                     <textarea
                       rows={3}
-                      placeholder="شرح متكامل لأسئلة الذكاء والهندسة والجبر وحل نماذج السنوات السابقة..."
+                      placeholder={ta("شرح متكامل لأسئلة الذكاء والهندسة والجبر وحل نماذج السنوات السابقة...")}
                       value={currentTrans.description || ''}
                       onChange={(e) => handleTransChange(activeTab, 'description', e.target.value)}
                       className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-amber-500/50"
@@ -478,14 +516,14 @@ export default function AdminCoursesPage() {
                   onClick={closeModal}
                   className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                 >
-                  إلغاء
+                  {ta("إلغاء")}
                 </button>
                 <button
                   type="submit"
                   disabled={saveMutation.isPending}
                   className="px-6 py-2.5 bg-brand-amber-500 hover:bg-brand-amber-600 text-white rounded-xl text-xs font-bold shadow-md transition disabled:opacity-50"
                 >
-                  {saveMutation.isPending ? 'جاري الحفظ...' : 'حفظ الدورة'}
+                  {saveMutation.isPending ? ta('جاري الحفظ...') : ta('حفظ الدورة')}
                 </button>
               </div>
             </form>

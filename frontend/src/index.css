@@ -8,6 +8,36 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Arabic Typography */
+  html[lang="ar"],
+  html[lang="ar"] body {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    letter-spacing: normal;
+    line-height: 1.6;
+  }
+
+  /* Turkish & English Typography with proper Latin & Latin-ext kerning */
+  html[lang="tr"],
+  html[lang="tr"] body,
+  html[lang="en"],
+  html[lang="en"] body {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.011em;
+    line-height: 1.5;
+  }
+
+  /* Adaptive font-cairo override for non-Arabic locales */
+  html[lang="tr"] .font-cairo,
+  html[lang="en"] .font-cairo {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    letter-spacing: -0.02em;
+  }
+
+  html[lang="ar"] .font-cairo {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif !important;
+    letter-spacing: normal;
+  }
+
   body {
     overflow-x: hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";

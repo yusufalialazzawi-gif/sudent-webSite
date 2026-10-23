@@ -1,0 +1,14 @@
+{
+  "name": "sora-education-platform",
+  "version": "1.0.0",
+  "description": "Premium Multilingual Turkey Education Platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend install && npm --prefix backend run prisma:generate",
+    "start": "npm --prefix backend start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

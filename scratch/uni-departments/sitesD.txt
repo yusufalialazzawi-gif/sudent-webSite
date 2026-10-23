@@ -1,0 +1,13 @@
+mersin-check|https://www.mersin.edu.tr/akademik-birimler
+kocaeli-universitesi|https://www.kocaeli.edu.tr/akademik.php
+sanko-akademik|https://www.sanko.edu.tr/akademik/
+alparslan-birimler|https://www.alparslan.edu.tr/tr/page/menu/akademik-birimler-60
+mugla-birimler|https://www.mu.edu.tr/tr/birimler
+metu-programs|https://www.metu.edu.tr/undergraduate-programs-and-degrees
+kstu-lisans|https://aday.kstu.edu.tr/programlar/lisans-programlari/
+sakarya-akad|https://www.sakarya.edu.tr/aboutus/akademikbirimler
+selcuk-akad|https://www.selcuk.edu.tr/Anasayfa/Akademik
+yyu-birimler|https://www.yyu.edu.tr/Birimler
+sinop-birimler|https://www.sinop.edu.tr/wp-test/akademik-birimler/
+ostim-home|https://www.ostimteknik.edu.tr
+gidatarim-home|https://www.gidatarim.edu.tr/tr/sayfa/akademik-birimler

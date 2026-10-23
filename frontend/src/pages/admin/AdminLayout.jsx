@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ta } from '../../i18n/adminText';
+import { useQuery } from '@tanstack/react-query';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -20,17 +22,28 @@ import {
   ChevronRight,
   Globe,
   Bell,
-  Search
+  Search,
+  MessageSquare,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { api } from '../../services/api';
 
 export default function AdminLayout() {
   const { user, logout, isSuperAdmin, isAdmissionsStaff, isContentEditor } = useAuth();
-  const { currentLanguage, changeLanguage, isRtl } = useLanguage();
+  const { currentLanguage, changeLanguage, isRtl, tx } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { data: publicSettings } = useQuery({
+    queryKey: ['publicSettings'],
+    queryFn: async () => {
+      const res = await api.getPublicSettings();
+      return res.data || {};
+    },
+  });
+  const siteLogo = publicSettings?.site_logo_url || '/logo.jpg';
 
   const navSections = [
     {
@@ -44,6 +57,7 @@ export default function AdminLayout() {
       title: currentLanguage === 'ar' ? 'الجامعات والبرامج' : currentLanguage === 'tr' ? 'Üniversiteler & Programlar' : 'Academics',
       items: [
         { path: '/admin/universities', label: currentLanguage === 'ar' ? 'الجامعات التركية' : currentLanguage === 'tr' ? 'Türk Üniversiteleri' : 'Universities', icon: GraduationCap },
+        { path: '/admin/reviews', label: currentLanguage === 'ar' ? 'آراء وتقييمات الطلاب' : currentLanguage === 'tr' ? 'Öğrenci Değerlendirmeleri' : 'Student Reviews', icon: MessageSquare },
         { path: '/admin/programs', label: currentLanguage === 'ar' ? 'البرامج والتخصصات' : currentLanguage === 'tr' ? 'Programlar & Bölümler' : 'Programs & Majors', icon: BookOpen },
         { path: '/admin/courses', label: currentLanguage === 'ar' ? 'الدورات والاختبارات' : currentLanguage === 'tr' ? 'Kurslar & Sınavlar' : 'Courses & Exams', icon: Layers },
         { path: '/admin/scholarships', label: currentLanguage === 'ar' ? 'المنح والخصومات' : currentLanguage === 'tr' ? 'Burslar & İndirimler' : 'Scholarships', icon: Award },
@@ -67,6 +81,29 @@ export default function AdminLayout() {
       ]
     }
   ];
+
+  const itemRoles = {
+    '/admin': null,
+    '/admin/applications': ['SUPER_ADMIN', 'ADMISSIONS_STAFF', 'ADMISSIONS_OFFICER', 'ADMIN'],
+    '/admin/settings': ['SUPER_ADMIN', 'ADMIN'],
+    '/admin/staff': ['SUPER_ADMIN', 'ADMIN'],
+  };
+  const contentRoles = ['SUPER_ADMIN', 'ADMIN', 'CONTENT_EDITOR'];
+  const visibleSections = navSections
+    .map((s) => ({
+      ...s,
+      items: s.items.filter((i) => {
+        const allowed = i.path in itemRoles ? itemRoles[i.path] : contentRoles;
+        return !allowed || !user?.role || allowed.includes(user.role);
+      }),
+    }))
+    .filter((s) => s.items.length > 0);
+
+  const currentPageLabel =
+    navSections
+      .flatMap((s) => s.items)
+      .filter((i) => location.pathname === i.path || (i.path !== '/admin' && location.pathname.startsWith(i.path)))
+      .sort((a, b) => b.path.length - a.path.length)[0]?.label || tx('لوحة التحكم', 'Kontrol Paneli', 'Dashboard');
 
   const getRoleBadge = (role) => {
     switch (role) {
@@ -97,12 +134,12 @@ export default function AdminLayout() {
           </button>
           <div className="flex items-center gap-2">
             <img
-              src="/logo.jpg"
-              alt="المجد للقبولات الجامعية"
+              src={siteLogo}
+              alt="Site Logo"
               className="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow border border-brand-amber-500/40"
             />
             <span className="font-bold text-sm text-white tracking-wide font-cairo">
-              {currentLanguage === 'ar' ? 'المجد للقبولات' : 'Al-Majd Admin'}
+              {tx('المجد للقبولات', 'El-Mecd Yönetim', 'Al-Majd Admin')}
             </span>
           </div>
         </div>
@@ -111,14 +148,14 @@ export default function AdminLayout() {
             to="/"
             target="_blank"
             className="p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-white/10"
-            title="View Public Site"
+            title={tx('عرض الموقع العام', 'Siteyi Görüntüle', 'View Public Site')}
           >
             <ExternalLink size={18} />
           </Link>
           <button
             onClick={logout}
             className="p-1.5 text-red-300 hover:text-red-200 rounded-lg hover:bg-red-500/20"
-            title="Logout"
+            title={tx('تسجيل الخروج', 'Çıkış Yap', 'Logout')}
           >
             <LogOut size={18} />
           </button>
@@ -139,15 +176,15 @@ export default function AdminLayout() {
         <div className="p-6 border-b border-brand-navy-800/80 flex items-center justify-between">
           <Link to="/admin" className="flex items-center gap-3">
             <img
-              src="/logo.jpg"
-              alt="المجد للقبولات الجامعية"
+              src={siteLogo}
+              alt="Site Logo"
               className="w-10 h-10 rounded-xl object-contain bg-white p-0.5 shadow-md border border-brand-amber-500/40"
             />
             <div>
               <div className="font-extrabold text-base text-white leading-tight tracking-wide font-cairo">
-                {currentLanguage === 'ar' ? 'المجد للقبولات' : 'Al-Majd Portal'}
+                {tx('المجد للقبولات', 'El-Mecd Portalı', 'Al-Majd Portal')}
               </div>
-              <div className="text-[11px] text-amber-400 font-medium">Control Portal 2026</div>
+              <div className="text-[11px] text-amber-400 font-medium">{tx('بوابة التحكم 2026', 'Kontrol Portalı 2026', 'Control Portal 2026')}</div>
             </div>
           </Link>
           <button
@@ -161,7 +198,7 @@ export default function AdminLayout() {
         {/* User Card */}
         <div className="px-6 py-4 border-b border-brand-navy-800/60 bg-brand-navy-900/40">
           <div className="flex items-center justify-between mb-2">
-            <div className="font-semibold text-white text-sm truncate max-w-[150px]">{user?.name || 'Administrator'}</div>
+            <div className="font-semibold text-white text-sm truncate max-w-[150px]">{user?.name || tx('مدير', 'Yönetici', 'Administrator')}</div>
             {getRoleBadge(user?.role)}
           </div>
           <div className="text-xs text-slate-400 truncate">{user?.email}</div>
@@ -169,7 +206,7 @@ export default function AdminLayout() {
 
         {/* Nav Links */}
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-6 scrollbar-thin">
-          {navSections.map((section, idx) => (
+          {visibleSections.map((section, idx) => (
             <div key={idx} className="space-y-1">
               <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
                 {section.title}
@@ -226,7 +263,7 @@ export default function AdminLayout() {
         <header className="hidden md:flex items-center justify-between h-16 px-8 bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20">
           <div className="flex items-center gap-4">
             <div className="text-slate-400 text-xs">
-              <span className="font-semibold text-slate-700 font-cairo">المجد للقبولات الجامعية</span> / {location.pathname.replace('/admin', '') || 'Dashboard'}
+              <span className="font-semibold text-slate-700 font-cairo">{tx('المجد للقبولات الجامعية', 'El-Mecd Üniversite Kabulleri', 'Al-Majd Admissions')}</span> / {currentPageLabel}
             </div>
           </div>
 
@@ -239,7 +276,7 @@ export default function AdminLayout() {
                   currentLanguage === 'ar' ? 'bg-white text-brand-navy-950 shadow-sm' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                عربي
+                {ta("عربي")}
               </button>
               <button
                 onClick={() => changeLanguage('tr')}
@@ -266,7 +303,7 @@ export default function AdminLayout() {
               className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-brand-navy-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition"
             >
               <ExternalLink size={14} />
-              <span>{currentLanguage === 'ar' ? 'الموقع' : 'Site'}</span>
+              <span>{tx('الموقع', 'Site', 'Site')}</span>
             </Link>
 
             {/* Profile snippet */}

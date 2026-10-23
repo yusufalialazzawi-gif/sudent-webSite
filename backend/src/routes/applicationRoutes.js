@@ -18,6 +18,12 @@ router.post(
     { name: 'passport', maxCount: 1 },
     { name: 'transcript', maxCount: 1 },
     { name: 'diploma', maxCount: 1 },
+    { name: 'cv', maxCount: 1 },
+    { name: 'sop', maxCount: 1 },
+    { name: 'recommendation', maxCount: 1 },
+    { name: 'equivalence', maxCount: 1 },
+    { name: 'languageCert', maxCount: 1 },
+    { name: 'researchProposal', maxCount: 1 },
     { name: 'otherDoc', maxCount: 1 },
   ]),
   async (req, res, next) => {
@@ -86,6 +92,12 @@ router.post(
           if (fieldName === 'passport') docType = 'PASSPORT';
           else if (fieldName === 'transcript') docType = 'TRANSCRIPT';
           else if (fieldName === 'diploma') docType = 'DIPLOMA';
+          else if (fieldName === 'cv') docType = 'CV';
+          else if (fieldName === 'sop') docType = 'STATEMENT_OF_PURPOSE';
+          else if (fieldName === 'recommendation') docType = 'RECOMMENDATION_LETTER';
+          else if (fieldName === 'equivalence') docType = 'EQUIVALENCE_CERTIFICATE';
+          else if (fieldName === 'languageCert') docType = 'LANGUAGE_CERTIFICATE';
+          else if (fieldName === 'researchProposal') docType = 'RESEARCH_PROPOSAL';
 
           documentRecords.push({
             applicationId: application.id,

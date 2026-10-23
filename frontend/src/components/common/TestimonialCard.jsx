@@ -35,7 +35,7 @@ export default function TestimonialCard({ testimonial }) {
         <img
           src={
             testimonial.avatarUrl ||
-            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'
+            'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=200&auto=format&fit=crop&q=80'
           }
           alt={testimonial.studentName}
           className="w-12 h-12 rounded-full object-cover border-2 border-brand-amber-500/30"
