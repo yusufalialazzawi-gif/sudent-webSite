@@ -51,111 +51,120 @@ export function HomeHero() {
   )}`;
 
   return (
-    <section className="relative overflow-hidden bg-brand-navy-950 text-white pt-10 pb-16 lg:pt-24 lg:pb-32 lg:min-h-[720px] flex flex-col justify-center">
-      <HeroBackground videoReady={videoReady} />
+    <>
+      <section className="relative overflow-hidden bg-brand-navy-950 text-white pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-24 lg:pb-32 min-h-[460px] sm:min-h-[520px] lg:min-h-[720px] flex flex-col justify-center">
+        <HeroBackground videoReady={videoReady} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-start flex flex-col items-center lg:items-start">
-            {/* Accessible SEO H1 */}
-            <h1 className="sr-only">شركة المجد للقبولات الجامعية - قبولك الجامعي في تركيا بأسهل وأسرع الطرق</h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-start flex flex-col items-center lg:items-start my-auto">
+              {/* Accessible SEO H1 */}
+              <h1 className="sr-only">شركة المجد للقبولات الجامعية - قبولك الجامعي في تركيا بأسهل وأسرع الطرق</h1>
 
-            {/* Desktop-only balanced brand header */}
-            <div className="hidden lg:block space-y-3 mb-2 text-start w-full max-w-2xl lg:max-w-3xl">
-              <div className="inline-flex items-center gap-2 bg-brand-amber-500/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-brand-amber-400/40 text-brand-amber-300 text-xs sm:text-sm font-bold shadow-inner">
-                <Sparkles className="w-4 h-4 text-brand-amber-400" />
-                <span>شركة المجد للقبولات الجامعية 🇹🇷</span>
+              {/* Desktop-only balanced brand header */}
+              <div className="hidden lg:block space-y-3 mb-2 text-start w-full max-w-2xl lg:max-w-3xl">
+                <div className="inline-flex items-center gap-2 bg-brand-amber-500/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-brand-amber-400/40 text-brand-amber-300 text-xs sm:text-sm font-bold shadow-inner">
+                  <Sparkles className="w-4 h-4 text-brand-amber-400" />
+                  <span>شركة المجد للقبولات الجامعية 🇹🇷</span>
+                </div>
+                <h2 className="text-3xl xl:text-4xl font-black font-cairo text-white leading-snug">
+                  بوابتك المعتمدة للقبول في{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber-400 via-amber-300 to-brand-amber-500">
+                    أفضل الجامعات التركية
+                  </span>
+                </h2>
               </div>
-              <h2 className="text-3xl xl:text-4xl font-black font-cairo text-white leading-snug">
-                بوابتك المعتمدة للقبول في{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-amber-400 via-amber-300 to-brand-amber-500">
-                  أفضل الجامعات التركية
+
+              {/* 4 Quick Action Buttons - تصميم شبه شفاف وأنيق وبدون أي أيقونات */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3 lg:gap-4 w-full max-w-3xl pt-2 sm:pt-4">
+                {/* 1. جامعات حكومية */}
+                <Link
+                  to="/universities?type=PUBLIC"
+                  className="flex flex-col items-center justify-center py-3.5 sm:py-4 lg:py-5 px-1.5 sm:px-3 lg:px-4 bg-slate-950/45 hover:bg-slate-900/75 backdrop-blur-md border border-white/25 hover:border-brand-amber-400 rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-xl shadow-black/40 hover:shadow-brand-amber-500/25"
+                >
+                  <span className="text-xs sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">
+                    جامعات حكومية
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] sm:text-xs text-brand-amber-300 font-bold mt-1.5 opacity-90 group-hover:opacity-100">
+                    <span>اضغط هنا</span>
+                    <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
+                  </span>
+                </Link>
+
+                {/* 2. جامعات خاصة */}
+                <Link
+                  to="/universities?type=PRIVATE"
+                  className="flex flex-col items-center justify-center py-3.5 sm:py-4 lg:py-5 px-1.5 sm:px-3 lg:px-4 bg-slate-950/45 hover:bg-slate-900/75 backdrop-blur-md border border-white/25 hover:border-brand-amber-400 rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-xl shadow-black/40 hover:shadow-brand-amber-500/25"
+                >
+                  <span className="text-xs sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">
+                    جامعات خاصة
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] sm:text-xs text-brand-amber-300 font-bold mt-1.5 opacity-90 group-hover:opacity-100">
+                    <span>اضغط هنا</span>
+                    <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
+                  </span>
+                </Link>
+
+                {/* 3. التخصصات والمنح */}
+                <Link
+                  to="/programs"
+                  className="flex flex-col items-center justify-center py-3.5 sm:py-4 lg:py-5 px-1.5 sm:px-3 lg:px-4 bg-slate-950/45 hover:bg-slate-900/75 backdrop-blur-md border border-white/25 hover:border-brand-amber-400 rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-xl shadow-black/40 hover:shadow-brand-amber-500/25"
+                >
+                  <span className="text-xs sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">
+                    التخصصات والمنح
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] sm:text-xs text-brand-amber-300 font-bold mt-1.5 opacity-90 group-hover:opacity-100">
+                    <span>اضغط هنا</span>
+                    <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
+                  </span>
+                </Link>
+
+                {/* 4. تواصل واتساب */}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center py-3.5 sm:py-4 lg:py-5 px-1.5 sm:px-3 lg:px-4 bg-emerald-950/45 hover:bg-emerald-900/70 backdrop-blur-md border border-emerald-400/40 hover:border-emerald-300 rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-xl shadow-emerald-950/50 hover:shadow-emerald-500/25"
+                >
+                  <span className="text-xs sm:text-sm lg:text-base font-black text-emerald-300 font-cairo leading-tight">
+                    تواصل واتساب
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[10px] sm:text-xs text-emerald-200 font-bold mt-1.5 opacity-90 group-hover:opacity-100">
+                    <span>اضغط هنا</span>
+                    <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
+                  </span>
+                </a>
+              </div>
+
+              {/* إرشاد أسفل الأزرار */}
+              <div className="w-full max-w-2xl text-center pt-2 sm:pt-4">
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-slate-950/45 backdrop-blur-md px-4 py-1.5 sm:px-5 sm:py-2 rounded-full border border-white/20 text-xs sm:text-sm text-brand-amber-300 font-bold shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span>👇 اضغط على أي قسم للبدء أو ابحث بالأسفل</span>
                 </span>
-              </h2>
+              </div>
             </div>
 
-            {/* 4 Quick Action Buttons - 4 أزرار متجاورة وشفافة مع إزالة الأيقونات في الجوال لتظهر الخلفية بوضوح */}
-            <div className="grid grid-cols-4 gap-1.5 sm:gap-3 lg:gap-4 pt-2 sm:pt-3 w-full max-w-3xl">
-              {/* 1. جامعات حكومية */}
-              <Link
-                to="/universities?type=PUBLIC"
-                className="flex flex-col items-center justify-center py-2.5 px-1 sm:py-4 sm:px-3 lg:py-5 lg:px-4 bg-slate-950/40 hover:bg-slate-900/70 backdrop-blur-md border border-white/20 hover:border-brand-amber-400 rounded-xl sm:rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-lg shadow-black/40 hover:shadow-brand-amber-500/25"
-              >
-                <div className="hidden sm:flex w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-white/10 group-hover:bg-brand-amber-500 items-center justify-center mb-2.5 transition-colors">
-                  <Building2 className="w-5 h-5 lg:w-6 lg:h-6 text-brand-amber-400 group-hover:text-slate-950 transition-colors" />
-                </div>
-                <span className="text-[11px] sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">جامعات حكومية</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] lg:text-xs text-brand-amber-300 font-extrabold bg-brand-amber-500/20 px-2.5 py-0.5 rounded-full border border-brand-amber-500/30 mt-2 group-hover:bg-brand-amber-500 group-hover:text-slate-950 transition-all">
-                  <span>اضغط هنا</span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
-                </span>
-              </Link>
-
-              {/* 2. جامعات خاصة */}
-              <Link
-                to="/universities?type=PRIVATE"
-                className="flex flex-col items-center justify-center py-2.5 px-1 sm:py-4 sm:px-3 lg:py-5 lg:px-4 bg-slate-950/40 hover:bg-slate-900/70 backdrop-blur-md border border-white/20 hover:border-brand-amber-400 rounded-xl sm:rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-lg shadow-black/40 hover:shadow-brand-amber-500/25"
-              >
-                <div className="hidden sm:flex w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-white/10 group-hover:bg-brand-amber-500 items-center justify-center mb-2.5 transition-colors">
-                  <Building2 className="w-5 h-5 lg:w-6 lg:h-6 text-brand-amber-400 group-hover:text-slate-950 transition-colors" />
-                </div>
-                <span className="text-[11px] sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">جامعات خاصة</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] lg:text-xs text-brand-amber-300 font-extrabold bg-brand-amber-500/20 px-2.5 py-0.5 rounded-full border border-brand-amber-500/30 mt-2 group-hover:bg-brand-amber-500 group-hover:text-slate-950 transition-all">
-                  <span>اضغط هنا</span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
-                </span>
-              </Link>
-
-              {/* 3. التخصصات والمنح */}
-              <Link
-                to="/programs"
-                className="flex flex-col items-center justify-center py-2.5 px-1 sm:py-4 sm:px-3 lg:py-5 lg:px-4 bg-slate-950/40 hover:bg-slate-900/70 backdrop-blur-md border border-white/20 hover:border-brand-amber-400 rounded-xl sm:rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-lg shadow-black/40 hover:shadow-brand-amber-500/25"
-              >
-                <div className="hidden sm:flex w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-white/10 group-hover:bg-brand-amber-500 items-center justify-center mb-2.5 transition-colors">
-                  <GraduationCap className="w-5 h-5 lg:w-6 lg:h-6 text-brand-amber-400 group-hover:text-slate-950 transition-colors" />
-                </div>
-                <span className="text-[11px] sm:text-sm lg:text-base font-black text-white font-cairo leading-tight">التخصصات والمنح</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] lg:text-xs text-brand-amber-300 font-extrabold bg-brand-amber-500/20 px-2.5 py-0.5 rounded-full border border-brand-amber-500/30 mt-2 group-hover:bg-brand-amber-500 group-hover:text-slate-950 transition-all">
-                  <span>اضغط هنا</span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
-                </span>
-              </Link>
-
-              {/* 4. تواصل واتساب */}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center py-2.5 px-1 sm:py-4 sm:px-3 lg:py-5 lg:px-4 bg-emerald-950/40 hover:bg-emerald-900/60 backdrop-blur-md border border-emerald-400/40 hover:border-emerald-300 rounded-xl sm:rounded-2xl text-center transition-all group hover:scale-[1.04] shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/25"
-              >
-                <div className="hidden sm:flex w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-emerald-500/20 group-hover:bg-emerald-500 items-center justify-center mb-2.5 transition-colors">
-                  <svg className="w-5 h-5 lg:w-6 lg:h-6 fill-emerald-400 group-hover:fill-white transition-colors" viewBox="0 0 24 24">
-                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
-                  </svg>
-                </div>
-                <span className="text-[11px] sm:text-sm lg:text-base font-black text-emerald-300 font-cairo leading-tight">تواصل واتساب</span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] lg:text-xs text-emerald-200 font-extrabold bg-emerald-500/20 px-2.5 py-0.5 rounded-full border border-emerald-400/30 mt-2 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <span>اضغط هنا</span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">👈</span>
-                </span>
-              </a>
+            {/* Desktop-only QuickSearch inside Hero grid */}
+            <div className="hidden lg:block lg:col-span-5">
+              <QuickSearch />
             </div>
-
-            {/* إرشاد أسفل الأزرار */}
-            <div className="w-full max-w-2xl text-center pt-2 sm:pt-3">
-              <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-slate-950/40 backdrop-blur-md px-3.5 py-1 sm:px-5 sm:py-2 rounded-full border border-white/15 text-[10px] sm:text-sm text-brand-amber-300 font-bold shadow-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>👇 اضغط هنا على أي قسم أو ابحث بالأسفل</span>
-              </span>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 mt-6 sm:mt-10 lg:mt-0">
-            <QuickSearch />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Mobile-only Search Section with Clean White Background (خلفية بيضاء نظيفة لمحرك البحث بالجوال) */}
+      <section className="block lg:hidden bg-white py-8 px-4 border-b border-slate-200 relative z-20">
+        <div className="max-w-md mx-auto">
+          <div className="text-center mb-3">
+            <span className="inline-block text-xs font-bold text-brand-amber-700 bg-brand-amber-50 px-3.5 py-1.5 rounded-full border border-brand-amber-200 font-cairo">
+              🔍 ابحث عن جامعتك المناسبة
+            </span>
+          </div>
+          <QuickSearch isEmbedded={true} />
+        </div>
+      </section>
+    </>
   );
 }
 
