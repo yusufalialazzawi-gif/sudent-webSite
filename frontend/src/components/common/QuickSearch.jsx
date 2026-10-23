@@ -112,10 +112,10 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
 
   return (
     <div
-      className={`rounded-3xl transition-all duration-300 ${
+      className={`rounded-2xl sm:rounded-3xl transition-all duration-300 ${
         isEmbedded
           ? 'bg-white p-5 border border-slate-200 shadow-sm'
-          : 'bg-[#182a4d]/95 backdrop-blur-xl p-5 sm:p-7 rounded-3xl shadow-2xl border-2 border-brand-amber-500/40 text-white'
+          : 'bg-slate-950/45 hover:bg-slate-950/60 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 hover:border-brand-amber-500/40 text-white'
       }`}
     >
       {/* Top Green WhatsApp Direct Button */}
