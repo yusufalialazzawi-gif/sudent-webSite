@@ -145,12 +145,14 @@ const TURKISH_UNIVERSITIES_HERO = [
   },
 ];
 
-// Hero arka planı: her 1 saniyede bir değişen gerçek Türk üniversiteleri slaytı
+// Hero arka planı: Yavaş yavaş şeffaflaşma ve diğerinin yavaşça belirmesi (Smooth Cinematic Cross-Dissolve)
 export default function HeroBackground() {
-  const { num, json, currentLang } = useSiteText();
+  const { json, currentLang } = useSiteText();
 
-  // Kesin olarak 1 saniye (1000ms) aralık
-  const interval = Math.max(1, num('hero_slider_interval', 1)) * 1000;
+  // Fotoğrafın ekranda kalma süresi: 4800ms
+  // Geçiş süresi (biri yavaşça şeffaflaşırken diğerinin yavaşça belirmesi): 2000ms (2 saniye)
+  const DISSOLVE_DURATION = 2000;
+  const DISPLAY_INTERVAL = 4800;
 
   const images = useMemo(() => {
     const list = json('hero_background_images', []);
@@ -161,8 +163,19 @@ export default function HeroBackground() {
   }, [json]);
 
   const [active, setActive] = useState(0);
+  const [prevActive, setPrevActive] = useState(null);
 
-  // Görselleri önceden belleğe yükle (pre-fetch) ki 1 saniyelik geçişlerde hiç takılma olmasın
+  // prefers-reduced-motion tespiti
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(media.matches);
+    const listener = (e) => setReducedMotion(e.matches);
+    media.addEventListener?.('change', listener);
+    return () => media.removeEventListener?.('change', listener);
+  }, []);
+
+  // Pre-load images for seamless cross dissolve
   useEffect(() => {
     images.forEach((img) => {
       const preload = new Image();
@@ -170,14 +183,17 @@ export default function HeroBackground() {
     });
   }, [images]);
 
-  // Her 1 saniyede bir sonraki Türk üniversitesi fotoğrafına geç
+  // Yavaşça şeffaflaşıp diğerinin yavaşça belirmesi için interval döngüsü
   useEffect(() => {
-    if (images.length < 2) return undefined;
+    if (reducedMotion || images.length < 2) return undefined;
     const id = setInterval(() => {
-      setActive((i) => (i + 1) % images.length);
-    }, interval);
+      setActive((current) => {
+        setPrevActive(current);
+        return (current + 1) % images.length;
+      });
+    }, DISPLAY_INTERVAL);
     return () => clearInterval(id);
-  }, [images.length, interval]);
+  }, [images.length, reducedMotion]);
 
   const current = images[active] || images[0];
   const isAr = currentLang === 'ar';
@@ -186,47 +202,52 @@ export default function HeroBackground() {
 
   return (
     <>
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-        {/* Üst Karartma Geçişi - Navbar ile uyum */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-brand-navy-950/90 via-brand-navy-950/40 to-transparent pointer-events-none z-10" />
-
-        {/* Gerçek Üniversite Fotoğrafları - Her 1 saniyede yumuşak Zoom-In / Zoom-Out geçişi */}
+      {/* 1) Fotoğraflar Katmanı — Biri yavaş yavaş şeffaf olurken diğeri yavaş yavaş belirir */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
         {images.map((img, idx) => {
           const isActive = idx === active;
-          const isEven = idx % 2 === 0;
+          const isPrev = idx === prevActive;
+          const isVisible = isActive || isPrev;
+
           return (
             <img
               key={`${img.url}-${idx}`}
               src={img.url}
               alt={img.nameTr || img.nameAr || 'Turkish University Campus'}
               decoding="async"
-              loading="eager"
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform ${
-                isActive
-                  ? isEven
-                    ? 'opacity-85 scale-108 z-[1]'
-                    : 'opacity-85 scale-100 z-[1]'
-                  : isEven
-                  ? 'opacity-0 scale-98 z-0 pointer-events-none'
-                  : 'opacity-0 scale-110 z-0 pointer-events-none'
-              }`}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none will-change-[opacity,transform]"
+              style={{
+                zIndex: isActive ? 2 : isPrev ? 1 : 0,
+                opacity: isActive ? 1 : 0,
+                transform: isActive ? 'scale(1.02)' : 'scale(1.0)',
+                transition: `opacity ${DISSOLVE_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${DISPLAY_INTERVAL}ms ease-out`,
+                visibility: isVisible ? 'visible' : 'hidden',
+              }}
             />
           );
         })}
-
-        {/* Canlı Üniversite İsim Rozeti - Sağ veya Sol altta şık görünüm */}
-        {universityName && (
-          <div className="absolute bottom-3 end-3 sm:bottom-6 sm:end-6 z-20 flex items-center gap-1.5 sm:gap-2 bg-brand-navy-950/85 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/20 text-[11px] sm:text-xs text-brand-navy-100 shadow-lg pointer-events-none transition-all duration-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-semibold text-white">{universityName}</span>
-            {cityName && <span className="text-brand-amber-300">({cityName})</span>}
-          </div>
-        )}
       </div>
 
-      {/* Şeffaf ve canlı Koyu Katman — Üniversite binalarının net görünmesini sağlar */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-navy-950/80 via-brand-navy-950/65 to-brand-navy-950/50 pointer-events-none z-[2]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-950 via-transparent to-brand-navy-950/30 pointer-events-none z-[2]" />
+      {/* 2) Sabit Karartma Katmanı — Fotoğrafların net ve tüm detaylarıyla görünmesi için hafif gradyan */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[3]"
+        style={{
+          background: 'linear-gradient(180deg, rgba(11, 37, 69, 0.30) 0%, rgba(11, 37, 69, 0.62) 100%)',
+        }}
+      />
+
+      {/* 3) Canlı Üniversite İsim Rozeti — Sağ-alt / Sol-alt */}
+      {universityName && (
+        <div
+          className="absolute bottom-3 end-3 sm:bottom-6 sm:end-6 z-10 flex items-center gap-1.5 sm:gap-2 bg-[#14171D]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 text-[11px] sm:text-xs text-[#9AA4B2] shadow-lg pointer-events-none"
+          style={{ transition: 'opacity 600ms ease-in-out' }}
+        >
+          <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
+          <span className="font-semibold text-white">{universityName}</span>
+          {cityName && <span className="text-[#E9B949]">({cityName})</span>}
+        </div>
+      )}
     </>
   );
 }

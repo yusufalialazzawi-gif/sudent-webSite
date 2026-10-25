@@ -66,9 +66,9 @@ export default function Header() {
                 href={waApplyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-md shadow-emerald-500/20 btn-hover-lift transition-all"
+                className="hidden sm:inline-flex items-center justify-center gap-2 bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-[12px] shadow-[0_8px_24px_rgba(34,197,94,0.35)] min-h-[44px] transition-colors"
               >
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-4 h-4 text-white" />
                 <span>{ctaLabel}</span>
               </a>
             )}

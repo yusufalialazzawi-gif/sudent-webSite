@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { MessageCircle, Sparkles } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import useSiteText from '../../hooks/useSiteText';
 
 // Üst duyuru çubuğu: rozet metni, açıklama, WhatsApp ve admin bağlantısı — hepsi admin ayarından.
@@ -20,11 +20,7 @@ export default function TopBar() {
     <div className="bg-brand-navy-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-navy-800">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <span className="inline-flex items-center gap-1.5 bg-brand-amber-500/20 text-brand-amber-400 px-2.5 py-0.5 rounded-full font-semibold text-[11px] border border-brand-amber-500/30">
-            <Sparkles className="w-3 h-3 text-brand-amber-400 animate-pulse shrink-0" />
-            {text('nav_topbar_badge', '')}
-          </span>
-          {note && <span className="hidden md:inline text-slate-400 truncate">{note}</span>}
+          {/* En üstteki duyuru yazısı kaldırıldı */}
         </div>
 
         <div className="flex items-center gap-4 text-slate-400 shrink-0">

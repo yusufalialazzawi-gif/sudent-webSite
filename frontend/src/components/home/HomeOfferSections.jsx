@@ -104,34 +104,29 @@ export function HomeScholarshipsPreview() {
 
   const { data } = useQuery({
     queryKey: ['home-scholarships', currentLang],
-    queryFn: () => api.getScholarships({ limit: 8, lang: currentLang }),
+    queryFn: () => api.getScholarships({ limit: 4, lang: currentLang }),
   });
 
   if (!data?.data || data.data.length === 0) return null;
 
   return (
-    <HomeSection>
-      <ScrollReveal>
-        <div className="bg-gradient-to-br from-brand-navy-950 via-brand-navy-900 to-brand-navy-950 rounded-3xl p-8 sm:p-12 border border-brand-amber-500/30 text-white">
-          <SectionHeading
-            dark
-            kicker={t('scholarships.title')}
-            title={text('home_scholarships_title', () => t('scholarships.title'))}
-            subtitle={t('scholarships.subtitle')}
-            to="/scholarships"
-            linkLabel={SCHOLARSHIPS_VIEW_ALL[currentLang]}
-          />
+    <HomeSection className="py-12 sm:py-16">
+      <div className="bg-[#14171D] rounded-[22px] p-6 sm:p-10 border border-white/10 text-white shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+        <SectionHeading
+          dark
+          kicker={t('scholarships.title')}
+          title={text('home_scholarships_title', () => t('scholarships.title'))}
+          subtitle={t('scholarships.subtitle')}
+          to="/scholarships"
+          linkLabel={SCHOLARSHIPS_VIEW_ALL[currentLang]}
+        />
 
-          <SectionCardCarousel
-            items={data.data}
-            renderItem={(sch) => <ScholarshipCard scholarship={sch} />}
-            desktopItems={2}
-            tabletItems={2}
-            mobileItems={1}
-            interval={3500}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {data.data.slice(0, 4).map((sch) => (
+            <ScholarshipCard key={sch.id || sch.slug} scholarship={sch} />
+          ))}
         </div>
-      </ScrollReveal>
+      </div>
     </HomeSection>
   );
 }

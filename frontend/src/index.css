@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --sf-ink: #0B0F16;
+  --sf-card: #14171D;
+  --sf-card-green: #0E2B20;
+  --sf-green: #22C55E;
+  --sf-green-deep: #16A34A;
+  --sf-gold: #E9B949;
+  --sf-gold-soft: #F6E3B4;
+  --sf-amber: #E8930C;
+  --sf-light-btn: #EEF2F7;
+  --sf-paper: #FFFFFF;
+  --sf-text-dim: #9AA4B2;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

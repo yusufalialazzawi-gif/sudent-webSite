@@ -112,35 +112,35 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
 
   return (
     <div
-      className={`rounded-2xl sm:rounded-3xl transition-all duration-300 ${
+      className={`transition-all duration-150 ${
         isEmbedded
-          ? 'bg-white p-5 border border-slate-200 shadow-sm'
-          : 'bg-slate-950/45 hover:bg-slate-950/60 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 hover:border-brand-amber-500/40 text-white'
+          ? 'bg-white p-4 sm:p-5 border border-slate-200 rounded-[20px] shadow-sm'
+          : 'bg-[#0F2E59] p-3.5 sm:p-5 rounded-[22px] border border-blue-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.45)] text-white w-full'
       }`}
     >
-      {/* Top Green WhatsApp Direct Button */}
-      <div className="mb-4">
+      {/* (a) "تواصل عبر واتساب اب" — #22C55E dolgu, beyaz metin, WhatsApp ikonu */}
+      <div className="mb-2.5 sm:mb-3">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base py-3 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all hover:scale-[1.02]"
+          className="w-full min-h-[48px] flex items-center justify-center gap-2.5 bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold text-sm sm:text-base py-3 px-4 rounded-[12px] shadow-[0_8px_24px_rgba(34,197,94,0.35)] transition-colors active:scale-[0.99]"
         >
           {/* Authentic WhatsApp SVG Icon */}
           <svg className="w-5 h-5 fill-white shrink-0" viewBox="0 0 24 24">
             <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.15c-.24.68-1.39 1.3-1.92 1.38-.5.08-1.12.11-1.8-.11-.42-.14-.96-.32-1.66-.62-2.93-1.27-4.85-4.25-5-4.45-.14-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.11.94 2.26.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.31.31-.13.62.18.31.79 1.3 1.7 2.11 1.17 1.04 2.15 1.36 2.46 1.51.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.79.84 2.1 1 .31.15.51.23.59.36.08.13.08.75-.16 1.43z" />
           </svg>
-          <span className="font-cairo">تواصل عبر الواتس اب</span>
+          <span className="font-cairo">تواصل عبر واتساب اب</span>
         </a>
       </div>
 
-      <form onSubmit={handleDirectSearch} className="space-y-3.5">
-        {/* 1. Dropdown: ابحث عن مدينة */}
+      <form onSubmit={handleDirectSearch} className="space-y-2.5 sm:space-y-3">
+        {/* (b) Dropdown: "ابحث عن مدينة" — #EEF2F7 dolgu, koyu metin, konum ikonu */}
         <div className="relative">
           <select
             value={selectedCity}
             onChange={handleCityChange}
-            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
+            className="w-full min-h-[48px] px-4 py-3 bg-[#EEF2F7] hover:bg-white text-[#0B0F16] rounded-[12px] font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#E8930C] cursor-pointer pe-10 transition-colors"
           >
             <option value="">ابحث عن مدينة</option>
             {cities.map((c) => (
@@ -149,15 +149,15 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
               </option>
             ))}
           </select>
-          <MapPin className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
+          <MapPin className="w-5 h-5 absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
         </div>
 
-        {/* 2. Dropdown: ابحث عن الجامعات المتاح التقديم عليها */}
+        {/* (c) Dropdown: "ابحث عن الجامعات المتاح التقديم عليها" — #EEF2F7 dolgu, koyu metin, belge ikonu */}
         <div className="relative">
           <select
             value={selectedUniSlug}
             onChange={handleUniChange}
-            className="w-full px-4 py-3.5 bg-slate-100 hover:bg-white text-slate-900 rounded-xl font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-brand-amber-500 shadow-sm cursor-pointer pe-10 transition-colors"
+            className="w-full min-h-[48px] px-4 py-3 bg-[#EEF2F7] hover:bg-white text-[#0B0F16] rounded-[12px] font-bold font-cairo text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#E8930C] cursor-pointer pe-10 transition-colors"
           >
             <option value="">ابحث عن الجامعات المتاح التقديم عليها</option>
             {universities.map((u) => {
@@ -173,19 +173,18 @@ export default function QuickSearch({ initialValues = {}, onSearch = null, isEmb
               );
             })}
           </select>
-          <Building2 className="w-5 h-5 absolute end-3 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
+          <Building2 className="w-5 h-5 absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-600 pointer-events-none" />
         </div>
 
-
-        {/* Action Button: بحث مباشر */}
-        <div className="pt-1">
+        {/* (d) Action Button: "بحث مباشر في الجامعات" — #E8930C dolgu, beyaz metin, arama ikonu */}
+        <div className="pt-0.5">
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-brand-amber-500 to-amber-600 hover:from-brand-amber-600 hover:to-amber-700 text-white font-black font-cairo py-3.5 px-6 rounded-xl shadow-lg shadow-brand-amber-500/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+            className="w-full min-h-[48px] bg-[#E8930C] hover:bg-[#d08309] text-white font-black font-cairo py-3 px-6 rounded-[12px] flex items-center justify-center gap-2 transition-colors active:scale-[0.99]"
           >
-            <Search className="w-4 h-4" />
+            <Search className="w-4 h-4 shrink-0" />
             <span>بحث مباشر في الجامعات</span>
-            <ArrowRight className="w-4 h-4 flip-in-rtl" />
+            <ArrowRight className="w-4 h-4 flip-in-rtl shrink-0" />
           </button>
         </div>
       </form>

@@ -89,11 +89,9 @@ export function HomeFaqSection() {
   if (!data?.data || data.data.length === 0) return null;
 
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6">
-      <ScrollReveal>
-        <SectionHeading center kicker={t('faq.title')} title={t('faq.subtitle')} />
-        <FAQAccordion items={data.data} />
-      </ScrollReveal>
+    <section className="py-14 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6">
+      <SectionHeading center kicker={t('faq.title')} title={t('faq.subtitle')} />
+      <FAQAccordion items={data.data} />
     </section>
   );
 }

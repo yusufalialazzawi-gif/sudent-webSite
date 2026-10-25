@@ -1,34 +1,31 @@
-import { HomeHero, HomeStats, HomeAdmissionSlider } from './HomeHeroSections';
-import { HomeUniversitiesPreview, HomeGraduateSpotlight } from './HomeUniversitySections';
+import { HomeHero, HomeStats, HomeQuickSearchSection } from './HomeHeroSections';
 import {
-  HomeProgramsPreview,
-  HomeServicesPreview,
-  HomeNotarySection,
-  HomeScholarshipsPreview,
-} from './HomeOfferSections';
-import {
-  HomeTestimonials,
-  HomeBlogPreview,
-  HomeFaqSection,
-  HomeBottomCta,
-} from './HomeSocialSections';
+  HomeServicesSection,
+  HomeUniversitiesSection,
+  HomeMajorsSection,
+  HomeArticlesSection,
+  HomeTestimonialsSection,
+  HomeFinalCtaSection,
+} from './HomeStudyFansSections';
+import { HomeGraduateSpotlight } from './HomeUniversitySections';
+import { HomeScholarshipsPreview } from './HomeOfferSections';
+import { HomeFaqSection } from './HomeSocialSections';
 
-// Ana sayfa bölüm kaydı: sıralama ve görünürlük admin panelindeki "Sayfa Bölümleri"nden gelir.
-// Bu listedeki sıra yalnızca admin sıralaması yüklenemediğinde kullanılır.
+// STUDYFANS — 100% TÜRK ÜNİVERSİTELERİ ODAKLI SIRALAMA
+// (Kıbrıs ve Malezya kaldırıldı, mavi-beyaz logo teması, dinamik sayaçlar, bayraklı buton ve öğrenci yorumları)
 export const HOME_SECTIONS = [
   { key: 'hero', Component: HomeHero },
   { key: 'stats', Component: HomeStats },
-  { key: 'universities_preview', Component: HomeUniversitiesPreview },
-  { key: 'admission_slider', Component: HomeAdmissionSlider },
-  { key: 'programs_preview', Component: HomeProgramsPreview },
-  { key: 'services_preview', Component: HomeServicesPreview },
+  { key: 'quick_search', Component: HomeQuickSearchSection },
+  { key: 'services', Component: HomeServicesSection },
+  { key: 'universities', Component: HomeUniversitiesSection },
   { key: 'graduate_spotlight', Component: HomeGraduateSpotlight },
-  { key: 'notary_equivalency', Component: HomeNotarySection },
+  { key: 'majors', Component: HomeMajorsSection },
   { key: 'scholarships_preview', Component: HomeScholarshipsPreview },
-  { key: 'testimonials', Component: HomeTestimonials },
-  { key: 'blog_preview', Component: HomeBlogPreview },
+  { key: 'articles', Component: HomeArticlesSection },
+  { key: 'testimonials', Component: HomeTestimonialsSection },
   { key: 'faq', Component: HomeFaqSection },
-  { key: 'bottom_cta', Component: HomeBottomCta },
+  { key: 'final_cta', Component: HomeFinalCtaSection },
 ];
 
 export default HOME_SECTIONS;

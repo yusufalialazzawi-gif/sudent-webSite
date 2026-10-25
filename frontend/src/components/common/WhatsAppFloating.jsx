@@ -36,7 +36,7 @@ export default function WhatsAppFloating() {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3 rounded-full shadow-2xl animate-pulse-glow group border-2 border-white/90"
+        className="flex items-center gap-2.5 bg-[#22C55E] hover:bg-[#16A34A] text-white px-4 py-3 rounded-full shadow-[0_8px_24px_rgba(34,197,94,0.35)] min-h-[44px] transition-colors group border-2 border-white/90"
         aria-label="Contact us on WhatsApp"
       >
         <svg className="w-6 h-6 fill-white group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24">
