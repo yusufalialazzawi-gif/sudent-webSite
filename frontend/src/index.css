@@ -14,6 +14,31 @@
   --sf-light-btn: #EEF2F7;
   --sf-paper: #FFFFFF;
   --sf-text-dim: #9AA4B2;
+  --color-catalina-blue: #002d74;
+  --color-metallic-blue: #234a71;
+  --color-main-color: #0a2240;
+  --color-beer: #ff9015;
+  --color-vivid-tangelo: #f36c25;
+  --color-mango-tango: #ff8b44;
+  --color-azure: #007bff;
+  --color-whatsapp: #25d366;
+
+  /* StudyFans layout chrome */
+  --sf-page: #fafafa;
+  --sf-band: #f7f5f2;
+  --sf-tabs-bg: #f8f9fa;
+  --sf-hairline: #dee2e6;
+  --sf-crumb: #707070;
+  --sf-crumb-active: #0071ce;
+  --sf-discount: #67b98a;
+  --sf-slab: #005b94a6;
+  --sf-header-h: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --sf-header-h: 6.5rem;
+  }
 }
 
 @layer base {
@@ -86,6 +111,68 @@
   }
   .btn-hover-lift:hover {
     transform: translateY(-2px);
+  }
+
+  /* StudyFans page shell: container capped at 1400px from xl up */
+  .sf-container {
+    @apply container mx-auto xl:max-w-[1400px];
+  }
+
+  /* StudyFans article typography. Replaces @tailwindcss/typography, which is not installed. */
+  .sf-prose {
+    @apply text-main-color text-base font-light leading-[1.9];
+  }
+  .sf-prose > * + * {
+    @apply mt-4;
+  }
+  .sf-prose h1 {
+    @apply text-2xl font-bold text-main-color mt-8 mb-3;
+  }
+  .sf-prose h2 {
+    @apply text-xl sm:text-[1.375rem] font-bold text-main-color mt-8 mb-3;
+  }
+  .sf-prose h3 {
+    @apply text-lg font-bold text-metallic-blue mt-6 mb-2;
+  }
+  .sf-prose h4 {
+    @apply text-base font-bold text-metallic-blue mt-5 mb-2;
+  }
+  .sf-prose p {
+    @apply text-base font-light leading-[1.9];
+  }
+  .sf-prose a {
+    @apply text-azure underline underline-offset-2 hover:text-beer transition-colors;
+  }
+  .sf-prose strong,
+  .sf-prose b {
+    @apply font-bold text-main-color;
+  }
+  .sf-prose ul {
+    @apply list-disc space-y-2 ps-6;
+  }
+  .sf-prose ol {
+    @apply list-decimal space-y-2 ps-6;
+  }
+  .sf-prose li {
+    @apply text-base font-light leading-[1.9];
+  }
+  .sf-prose blockquote {
+    @apply border-s-4 border-beer bg-[#f7f5f2] px-4 py-3 rounded-e-lg font-light;
+  }
+  .sf-prose img {
+    @apply rounded-lg max-w-full h-auto;
+  }
+  .sf-prose table {
+    @apply w-full text-base border-collapse;
+  }
+  .sf-prose th {
+    @apply bg-[#f7f5f2] font-bold text-main-color p-3 border border-[#dee2e6] text-start;
+  }
+  .sf-prose td {
+    @apply p-3 border border-[#dee2e6] font-light;
+  }
+  .sf-prose hr {
+    @apply border-[#dee2e6] my-8;
   }
 }
 

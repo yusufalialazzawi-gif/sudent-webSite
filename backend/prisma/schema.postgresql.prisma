@@ -43,6 +43,7 @@ model University {
   establishedYear Int?
   campusType      String?                 // URBAN, SUBURBAN, MULTI_CAMPUS
   ranking         Int?
+  globalRanking   String?
   websiteUrl      String?
   logoUrl         String?
   coverImageUrl   String?

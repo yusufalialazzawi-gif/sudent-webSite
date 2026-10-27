@@ -8,13 +8,13 @@ import SiteBrand from './SiteBrand';
 import TopBar from './TopBar';
 import NavbarDesktop from './NavbarDesktop';
 import NavbarMobile from './NavbarMobile';
-import LanguageSwitcher from './LanguageSwitcher';
 
-// Site header'ı: üst duyuru çubuğu + marka + menü + dil seçici + başvuru butonu.
-// Menü içeriği, logo ve butonlar admin panelindeki ayarlardan gelir.
+// Site header'ı: StudyFans 1:1 yapısı
+// Mobilde: Sadece Turuncu Hamburger Menü Butonu [ ≡ ] + Temiz Marka Logosu
+// Masaüstünde: Marka + Masaüstü Menü + [ابحث عن جامعتك] + [سجل الآن]
 export default function Header() {
   const { t } = useTranslation();
-  const { text, bool, str } = useSiteText();
+  const { text, bool, str, currentLang } = useSiteText();
   const navItems = useNavItems();
   const location = useLocation();
 
@@ -22,15 +22,6 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sticky = bool('nav_sticky', true);
-  const showLang = bool('nav_show_lang_switcher', true);
-  const showCta = bool('nav_show_cta', true);
-  const ctaUrl = str('nav_cta_url', '/apply');
-  const ctaLabel = text('nav_cta_label', () => t('nav.applyNow'));
-
-  const whatsappNumber = str('whatsapp_number', '') || str('contact_whatsapp', '905313971022');
-  const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'مرحباً، أود التقديم للحصول على قبول جامعي في تركيا عبر شركة المجد للقبولات الجامعية.'
-  )}`;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -49,40 +40,58 @@ export default function Header() {
       <header
         className={`${sticky ? 'sticky top-0' : 'relative'} z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md py-2 sm:py-2.5 border-b border-slate-200'
-            : 'bg-white py-2.5 sm:py-3 border-b border-slate-100'
+            ? 'bg-white/95 backdrop-blur-md shadow-md py-2.5 sm:py-3 border-b border-slate-200'
+            : 'bg-white py-3 sm:py-4 border-b border-slate-100'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
-          <SiteBrand />
-
-          <NavbarDesktop items={navItems} pathname={location.pathname} />
-
-          <div className="flex items-center gap-2 sm:gap-3">
-            {showLang && <LanguageSwitcher />}
-
-            {showCta && (
-              <a
-                href={waApplyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center justify-center gap-2 bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-[12px] shadow-[0_8px_24px_rgba(34,197,94,0.35)] min-h-[44px] transition-colors"
-              >
-                <Sparkles className="w-4 h-4 text-white" />
-                <span>{ctaLabel}</span>
-              </a>
-            )}
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4" dir="ltr">
+          
+          {/* Mobil Görünüm: Sol tarafta StudyFans Stili Büyük Turuncu Hamburger Butonu [ ≡ ] */}
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
+              className="w-12 h-12 rounded-xl bg-[#ff7900] hover:bg-[#e66c00] active:scale-95 text-white flex items-center justify-center shadow-md transition-all cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-slate-900" /> : <Menu className="w-6 h-6 text-slate-900" />}
+              {mobileMenuOpen ? (
+                <X className="w-7 h-7 text-white stroke-[2.5]" />
+              ) : (
+                <Menu className="w-7 h-7 text-white stroke-[2.5]" />
+              )}
             </button>
           </div>
+
+          {/* Marka Logosu (Masaüstü ve Mobil) */}
+          <div className="flex items-center" dir={currentLang === 'ar' ? 'rtl' : 'ltr'}>
+            <SiteBrand />
+          </div>
+
+          {/* Masaüstü Navigasyon Menüsü */}
+          <div className="hidden lg:flex items-center flex-1 justify-center px-4" dir={currentLang === 'ar' ? 'rtl' : 'ltr'}>
+            <NavbarDesktop items={navItems} pathname={location.pathname} />
+          </div>
+
+          {/* Masaüstü Aksiyon Butonları (StudyFans 1:1) */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              to="/universities"
+              className="hidden xl:inline-flex items-center justify-center border border-slate-300 hover:border-[#ff7900] text-[#0a2240] hover:text-[#ff7900] font-bold font-cairo text-sm px-4 py-2.5 rounded-xl transition-colors min-h-[42px]"
+            >
+              <span>{currentLang === 'tr' ? 'Üniversitenizi Bulun' : currentLang === 'en' ? 'Find University' : 'ابحث عن جامعتك'}</span>
+            </Link>
+
+            <Link
+              to="/apply"
+              className="inline-flex items-center justify-center gap-2 bg-[#ff7900] hover:bg-[#e66c00] text-white font-bold font-cairo text-sm px-6 py-2.5 rounded-xl shadow-md min-h-[42px] transition-all active:scale-95"
+            >
+              <Sparkles className="w-4 h-4 text-white" />
+              <span>{currentLang === 'tr' ? 'Hemen Başvur' : currentLang === 'en' ? 'Register Now' : 'سجل الآن'}</span>
+            </Link>
+          </div>
+
         </div>
 
+        {/* Mobil Menü Çekmecesi */}
         {mobileMenuOpen && (
           <NavbarMobile items={navItems} pathname={location.pathname} onNavigate={() => setMobileMenuOpen(false)} />
         )}

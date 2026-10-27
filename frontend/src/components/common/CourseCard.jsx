@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Clock, Users, Calendar, ArrowRight, Video, MapPin } from 'lucide-react';
+import { Clock, Users, Calendar, ArrowRight, Video, MapPin, Award } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function CourseCard({ course }) {
@@ -27,9 +27,9 @@ export default function CourseCard({ course }) {
       : t('courses.hybrid');
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+    <div className="bg-white rounded-2xl border border-[#dee2e6] overflow-hidden drop-shadow-sm hover:drop-shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
       {/* Course Banner */}
-      <div className="relative h-40 bg-slate-100 overflow-hidden">
+      <div className="relative h-44 bg-[#f7f5f2] overflow-hidden">
         <img
           src={
             course.imageUrl ||
@@ -39,56 +39,65 @@ export default function CourseCard({ course }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
         {/* Study Mode Badge */}
         <div className="absolute top-3 start-3">
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-navy-950/80 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5">
-            {course.studyMode === 'ONLINE' ? <Video className="w-3 h-3 text-brand-amber-400" /> : <MapPin className="w-3 h-3 text-brand-amber-400" />}
+          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#0a2240]/85 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5 shadow-sm">
+            {course.studyMode === 'ONLINE' ? (
+              <Video className="w-3.5 h-3.5 text-beer" />
+            ) : (
+              <MapPin className="w-3.5 h-3.5 text-beer" />
+            )}
             <span>{modeLabel}</span>
           </span>
         </div>
 
         {/* Certified Badge */}
-        <div className="absolute bottom-3 end-3 bg-brand-navy-950/90 text-brand-amber-300 border border-brand-amber-400/30 px-3 py-1 rounded-lg text-xs font-black shadow-md backdrop-blur-md">
-          {currentLang === 'ar' ? 'شهادة معتمدة' : currentLang === 'tr' ? 'Onaylı Sertifika' : 'Certified'}
+        <div className="absolute bottom-3 end-3 bg-beer text-white px-2.5 py-1 rounded-full text-[11px] font-bold shadow-md flex items-center gap-1">
+          <Award className="w-3 h-3" />
+          <span>{currentLang === 'ar' ? 'شهادة معتمدة' : currentLang === 'tr' ? 'Onaylı Sertifika' : 'Certified'}</span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          <h3 className="text-base font-bold text-brand-navy-950 font-cairo mb-2 group-hover:text-brand-amber-600 transition-colors line-clamp-1">
+          <h3 className="text-base font-bold text-main-color font-cairo mb-2 group-hover:text-beer transition-colors line-clamp-1">
             {title}
           </h3>
 
-          <p className="text-slate-600 text-xs leading-relaxed line-clamp-2 mb-4">
+          <p className="text-text-color text-xs leading-relaxed line-clamp-2 mb-4">
             {description}
           </p>
 
-          <div className="space-y-1.5 mb-4 text-xs text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <div className="space-y-1.5 mb-2 text-xs text-text-color bg-[#f7f5f2] p-3 rounded-xl border border-[#dee2e6]">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-brand-amber-500" />
-                <span>المدة:</span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <Clock className="w-3.5 h-3.5 text-beer" />
+                <span>{currentLang === 'ar' ? 'المدة:' : currentLang === 'tr' ? 'Süre:' : 'Duration:'}</span>
               </span>
-              <span className="font-semibold text-slate-800">{course.durationWeeks} أسابيع</span>
+              <span className="font-bold text-main-color">
+                {course.durationWeeks} {currentLang === 'ar' ? 'أسابيع' : currentLang === 'tr' ? 'Hafta' : 'Weeks'}
+              </span>
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-brand-amber-500" />
-                <span>المقاعد المسجلة:</span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <Users className="w-3.5 h-3.5 text-beer" />
+                <span>{currentLang === 'ar' ? 'المقاعد المتاحة:' : currentLang === 'tr' ? 'Kayıt Durumu:' : 'Seats:'}</span>
               </span>
-              <span className="font-semibold text-slate-800">{course.registeredCount} / {course.capacity}</span>
+              <span className="font-bold text-main-color">
+                {course.registeredCount || 0} / {course.capacity || 25}
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+        <div className="pt-3 border-t border-[#dee2e6] flex items-center justify-between">
           <Link
             to={`/courses/${course.slug}`}
-            className="text-xs font-bold text-brand-navy-900 group-hover:text-brand-amber-600 flex items-center gap-1 transition-colors"
+            className="text-xs font-bold text-main-color hover:text-beer flex items-center gap-1 transition-colors"
           >
             <span>{t('universities.viewDetails')}</span>
             <ArrowRight className="w-3.5 h-3.5 flip-in-rtl" />
@@ -96,7 +105,7 @@ export default function CourseCard({ course }) {
 
           <Link
             to={`/courses/${course.slug}#register`}
-            className="px-3.5 py-1.5 rounded-lg bg-brand-amber-50 text-brand-amber-700 hover:bg-brand-amber-500 hover:text-white text-xs font-bold transition-all"
+            className="px-3.5 py-1.5 rounded-xl bg-beer hover:bg-[#e07b09] text-white text-xs font-bold transition-all shadow-sm"
           >
             {t('courses.registerCourse')}
           </Link>

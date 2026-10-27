@@ -51,6 +51,15 @@ export default {
             600: '#0f766e',
           },
         },
+        // StudyFans Original Design Tokens
+        'catalina-blue': '#002d74',
+        'metallic-blue': '#234a71',
+        'main-color': '#0a2240',
+        beer: '#ff9015',
+        'vivid-tangelo': '#f36c25',
+        'mango-tango': '#ff8b44',
+        azure: '#007bff',
+        whatsapp: '#25d366',
       },
       fontFamily: {
         sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'],

@@ -15,11 +15,14 @@ import {
   ArrowRight,
   BookOpen,
   MessageCircle,
+  Building2,
+  PhoneCall,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
 import { api } from '../../services/api';
+import SfBreadcrumb from '../../components/common/SfBreadcrumb';
 import TestimonialCard from '../../components/common/TestimonialCard';
 
 export default function AboutPage() {
@@ -35,14 +38,14 @@ export default function AboutPage() {
   // Dynamic texts from backend settings with fallbacks
   const title =
     currentLang === 'ar'
-      ? settings.about_hero_title_ar || 'من نحن؟ | شركة المجد للقبولات الجامعية'
+      ? settings.about_hero_title_ar || 'من نحن | شركة المجد للخدمات والاستشارات الجامعية'
       : currentLang === 'tr'
-      ? settings.about_hero_title_tr || 'Biz Kimiz? | El-Mecd Öğrenci Hizmetleri'
+      ? settings.about_hero_title_tr || 'Biz Kimiz | El-Mecd Öğrenci Hizmetleri'
       : settings.about_hero_title_en || 'About Us | Al-Majd Student Services';
 
   const tagline =
     currentLang === 'ar'
-      ? settings.about_tagline_ar || 'سنوات من الخبرة، ومئات الطلاب، وهدف واحد: مساعدتك في تحقيق حلمك الدراسي.'
+      ? settings.about_tagline_ar || 'سنوات من الخبرة ومئات الطلاب وهدف واحد: مساعدتك في تحقيق حلمك الدراسي في تركيا.'
       : currentLang === 'tr'
       ? settings.about_tagline_tr || 'Yılların tecrübesi, yüzlerce öğrenci ve tek bir hedef: Üniversite hayalinizi gerçeğe dönüştürmek.'
       : settings.about_tagline_en || 'Years of experience, hundreds of students, and one shared goal: Helping you achieve your academic dreams.';
@@ -89,14 +92,14 @@ export default function AboutPage() {
 
   const whyTitle =
     currentLang === 'ar'
-      ? settings.about_why_title_ar || 'لماذا تختار شركة المجد؟'
+      ? settings.about_why_title_ar || 'لماذا يختار الطلاب شركة المجد؟'
       : currentLang === 'tr'
       ? settings.about_why_title_tr || 'Neden El-Mecd Öğrenci Hizmetleri?'
       : settings.about_why_title_en || 'Why Choose Al-Majd Student Services?';
 
   const closingText =
     currentLang === 'ar'
-      ? settings.about_closing_ar || 'شركة المجد للقبولات الجامعية — مستقبلك الدراسي يبدأ بخطوة، ونحن هنا لمساعدتك على اتخاذها.'
+      ? settings.about_closing_ar || 'شركة المجد للقبولات الجامعية — مستقبلك الدراسي يبدأ بخطوة، ونحن هنا لمساعدتك على اتخاذها بكل ثقة.'
       : currentLang === 'tr'
       ? settings.about_closing_tr || 'El-Mecd Öğrenci Hizmetleri — Üniversite geleceğiniz bir adımla başlar, o adımı güvenle atmanız için biz buradayız.'
       : settings.about_closing_en || 'Al-Majd Student Services — Your academic future begins with a single step, and we are right beside you to make it happen.';
@@ -104,241 +107,348 @@ export default function AboutPage() {
   const features = [
     {
       icon: Award,
-      color: 'text-brand-amber-500 bg-brand-amber-500/10 border-brand-amber-500/20',
       title:
         currentLang === 'ar'
-          ? 'خبرة تمتد لسنوات'
+          ? 'خبرة واعتمادات رسمية'
           : currentLang === 'tr'
-          ? 'Yıllara Dayanan Tecrübe'
-          : 'Years of Proven Expertise',
+          ? 'Yıllara Dayanan Resmî Yetki'
+          : 'Certified Official Expertise',
       desc:
         currentLang === 'ar'
-          ? 'معرفة عميقة وخبرة متراكمة في مجال الخدمات الطلابية والتعليم في الجامعات التركية.'
+          ? 'وكيل رسمي ومسجل لأفضل الجامعات التركية الخاصة والحكومية، مع فهم كامل لشروط القبول والمعادلات.'
           : currentLang === 'tr'
-          ? 'Türkiye’de yükseköğretim ve uluslararası öğrenci danışmanlığında köklü uzmanlık.'
-          : 'Deep-rooted knowledge and extensive background in Turkish university admissions.',
+          ? 'Türkiye’nin önde gelen üniversitelerinin yetkili temsilcisi, tam denklik ve kayıt rehberliği.'
+          : 'Official authorized agent for premier Turkish universities with comprehensive equivalency guidance.',
     },
     {
       icon: Globe2,
-      color: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
       title:
         currentLang === 'ar'
-          ? 'خدمة طلاب من دول متعددة'
+          ? 'خدمة طلاب دوليون متعددو الجنسيات'
           : currentLang === 'tr'
           ? 'Çok Uluslu Öğrenci Portföyü'
-          : 'Students Across Nations',
+          : 'International Student Network',
       desc:
         currentLang === 'ar'
-          ? 'ساعدنا بنجاح مئات الطلاب من العراق ومصر والجزائر والعديد من الدول الأخرى.'
+          ? 'ساعدنا بنجاح آلاف الطلاب من العراق ومصر وسوريا والجزائر ودول الخليج في تحقيق القبول الجامعي.'
           : currentLang === 'tr'
-          ? 'Irak, Mısır, Cezayir ve onlarca ülkeden yüzlerce yabancı öğrenciye başarıyla kabul aldık.'
-          : 'Proudly guided hundreds of students from Iraq, Egypt, Algeria, and worldwide.',
+          ? 'Irak, Mısır, Suriye, Cezayir ve Körfez ülkelerinden binlerce öğrenciye başarıyla rehberlik ettik.'
+          : 'Successfully guided thousands of students from the MENA region and worldwide to their dream universities.',
     },
     {
       icon: GraduationCap,
-      color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
       title:
         currentLang === 'ar'
-          ? 'خدمات طلابية متكاملة'
+          ? 'خدمات متكاملة من الألف إلى الياء'
           : currentLang === 'tr'
           ? 'Uçtan Uca Entegre Hizmetler'
-          : 'Comprehensive Student Services',
+          : 'End-to-End Comprehensive Support',
       desc:
         currentLang === 'ar'
-          ? 'من اختيار الجامعة والتخصص المناسبين إلى متابعة إجراءات التقديم، القبول، والتسجيل.'
+          ? 'من اختيار الجامعة والتخصص والمنحة إلى القبول المبدئي والنهائي، ترجمة الأوراق، وتثبيت القيد.'
           : currentLang === 'tr'
-          ? 'Doğru bölüm seçiminden resmî kabul, kayıt ve denklik işlemlerine kadar tam refakat.'
-          : 'From selecting the right university and major to tracking application, acceptance, and enrollment.',
+          ? 'Doğru bölüm seçiminden resmî kabul mektubuna, yeminli tercümeden kesin kayıt ve ikamete kadar.'
+          : 'From university and major selection to acceptance letters, certified translations, and campus registration.',
     },
     {
       icon: HeartHandshake,
-      color: 'text-purple-500 bg-purple-500/10 border-purple-500/20',
       title:
         currentLang === 'ar'
-          ? 'اهتمام باحتياجاتك الفردية'
+          ? 'استشارات مجانية 100%'
           : currentLang === 'tr'
-          ? 'Öğrenci Odaklı Yaklaşım'
-          : 'Personalized Student Care',
+          ? '%100 Ücretsiz Danışmanlık'
+          : '100% Free Consultation',
       desc:
         currentLang === 'ar'
-          ? 'نحرص على فهم ظروف كل طالب وتقديم المعلومات الدقيقة التي تساعده في بناء مستقبله.'
+          ? 'لا نتقاضى أي أتعاب من الطالب مقابل التقديم للجامعات الخاصة الشريكة والحصول على الخصومات الحصرية.'
           : currentLang === 'tr'
-          ? 'Her öğrencinin bütçesini, hedeflerini ve akademik durumunu dinleyerek en doğru planı sunuyoruz.'
-          : 'Dedicated to understanding each student’s circumstances and providing tailored insights.',
+          ? 'Anlaşmalı vakıf üniversitelerine başvurularda ve özel burs indirimlerinde öğrenciden hiçbir ücret alınmaz.'
+          : 'No service fees charged to students for admissions to our partner private universities with exclusive discounts.',
     },
     {
       icon: Compass,
-      color: 'text-teal-500 bg-teal-500/10 border-teal-500/20',
       title:
         currentLang === 'ar'
-          ? 'متابعة وإرشاد مستمر'
+          ? 'مرافقة مستمرة طوال سنوات الدراسة'
           : currentLang === 'tr'
-          ? 'Kesintisiz Rehberlik ve Takip'
-          : 'Continuous Mentorship & Tracking',
+          ? 'Eğitim Hayatı Boyunca Yanınızda'
+          : 'Continuous Mentorship',
       desc:
         currentLang === 'ar'
-          ? 'نرافقك بالإرشادات اللازمة والاستشارات الصادقة خلال كافة خطوات رحلتك التعليمية.'
+          ? 'لا تنتهي علاقتنا بالطالب بعد التسجيل، بل نبقى على تواصل للإجابة على استفساراته وتسهيل مسيرته الأكاديمية.'
           : currentLang === 'tr'
-          ? 'İlk başvurudan mezuniyete kadar tüm adımlarda şeffaf ve güvenilir rehberlik.'
-          : 'Accompanying you with trusted advice and transparent guidance across every milestone.',
+          ? 'İlişkimiz kayıtla bitmez; konaklama, vize, denklik ve üniversite hayatında kesintisiz iletişim.'
+          : 'Our relationship extends beyond admission; providing continuous guidance on housing, visas, and academic life.',
+    },
+    {
+      icon: ShieldCheck,
+      title:
+        currentLang === 'ar'
+          ? 'شفافية ومصداقية كاملة'
+          : currentLang === 'tr'
+          ? 'Şeffaflık ve Güvenilirlik'
+          : 'Absolute Transparency & Trust',
+      desc:
+        currentLang === 'ar'
+          ? 'معلومات واضحة ومحدثة عن الرسوم الدراسية، شروط الاعتراف، والمنح بدون وعود غير واقعية أو رسوم مخفية.'
+          : currentLang === 'tr'
+          ? 'Net ve güncel harç bilgileri, akreditasyon koşulları ve gizli maliyetsiz resmî kabul garantisi.'
+          : 'Clear and updated tuition fees, accreditation status, and official acceptance letters without hidden fees.',
     },
   ];
 
+  const breadcrumbItems = [
+    { label: currentLang === 'ar' ? 'الرئيسية' : currentLang === 'tr' ? 'Ana Sayfa' : 'Home', to: '/' },
+    { label: currentLang === 'ar' ? 'من نحن' : currentLang === 'tr' ? 'Biz Kimiz' : 'About Us' },
+  ];
+
   return (
-    <div className="space-y-16 py-12">
-      {/* Hero Header */}
-      <section className="max-w-5xl mx-auto px-4 text-center space-y-5">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-amber-500/10 border border-brand-amber-500/20 text-brand-amber-600 text-xs font-bold tracking-wide">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>
-            {currentLang === 'ar'
-              ? 'التعريف المؤسسي والهوية الرسمية'
-              : currentLang === 'tr'
-              ? 'Kurumsal Tanıtım ve Vizyon'
-              : 'Institutional Identity & Vision'}
-          </span>
-        </div>
+    <div className="bg-[#fafafa] min-h-screen pb-16">
+      {/* StudyFans Breadcrumb Strip */}
+      <SfBreadcrumb
+        items={breadcrumbItems}
+        title={title}
+      />
 
-        <h1 className="text-3xl sm:text-5xl font-black text-brand-navy-950 font-cairo leading-tight">
-          {title}
-        </h1>
-
-        <p className="text-slate-700 text-base sm:text-xl font-bold font-cairo max-w-3xl mx-auto text-brand-amber-600 leading-relaxed">
-          {tagline}
-        </p>
-
-        {/* Stats Strip */}
-        <div className="pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
-            <span className="text-2xl sm:text-3xl font-black text-brand-navy-950 block">10+</span>
-            <span className="text-xs text-slate-500 font-semibold">
-              {currentLang === 'ar' ? 'سنوات من الخبرة' : currentLang === 'tr' ? 'Yıllık Deneyim' : 'Years Experience'}
-            </span>
-          </div>
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
-            <span className="text-2xl sm:text-3xl font-black text-brand-amber-500 block">800+</span>
-            <span className="text-xs text-slate-500 font-semibold">
-              {currentLang === 'ar' ? 'طالب تمت خدمتهم' : currentLang === 'tr' ? 'Öğrenci Kabulü' : 'Students Enrolled'}
-            </span>
-          </div>
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
-            <span className="text-2xl sm:text-3xl font-black text-emerald-600 block">+120</span>
-            <span className="text-xs text-slate-500 font-semibold">
-              {currentLang === 'ar' ? 'جامعة تركية معتمدة' : currentLang === 'tr' ? 'Anlaşmalı Üniversite' : 'Partner Universities'}
-            </span>
-          </div>
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
-            <span className="text-2xl sm:text-3xl font-black text-blue-600 block">%100</span>
-            <span className="text-xs text-slate-500 font-semibold">
-              {currentLang === 'ar' ? 'استشارات مجانية' : currentLang === 'tr' ? 'Ücretsiz Danışmanlık' : 'Free Guidance'}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Narrative Sections */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 space-y-6">
-        {/* Paragraph 1 Card */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-          <div className="absolute top-0 start-0 w-2 h-full bg-brand-amber-500"></div>
-          <p className="text-slate-800 text-sm sm:text-base leading-relaxed font-normal">
-            {p1}
-          </p>
-        </div>
-
-        {/* Paragraph 2 Card */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-          <div className="absolute top-0 start-0 w-2 h-full bg-brand-navy-900"></div>
-          <p className="text-slate-800 text-sm sm:text-base leading-relaxed font-normal">
-            {p2}
-          </p>
-        </div>
-
-        {/* Paragraph 3 & 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-brand-navy-950 to-brand-navy-900 text-white rounded-3xl p-6 sm:p-8 shadow-lg space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-white/10 text-brand-amber-400 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5" />
+      <div className="sf-container mx-auto px-4 space-y-12">
+        {/* Intro Highlight Banner */}
+        <div className="bg-white rounded-2xl border border-[#dee2e6] p-6 sm:p-10 drop-shadow-sm space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#dee2e6] pb-6">
+            <div className="space-y-2">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#ff9015]/10 text-beer">
+                {currentLang === 'ar' ? 'منظومة القبول الجامعي المعتمدة' : currentLang === 'tr' ? 'Onaylı Üniversite Kabul Merkezi' : 'Certified University Admissions'}
+              </span>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-main-color font-cairo leading-tight">
+                {tagline}
+              </h2>
             </div>
-            <h3 className="text-base font-bold text-brand-amber-400 font-cairo">
-              {currentLang === 'ar' ? 'معك في كل خطوة' : currentLang === 'tr' ? 'Her Adımda Yanınızda' : 'With You Every Step'}
-            </h3>
-            <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
-              {p3}
-            </p>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <a
+                href={`https://wa.me/${settings.whatsapp_number || settings.contact_whatsapp || '905313971022'}?text=${encodeURIComponent(
+                  currentLang === 'ar'
+                    ? 'مرحباً، أود استشارة مجانية حول الدراسة في تركيا'
+                    : 'Merhaba, Türkiye’de üniversite eğitimi hakkında ücretsiz danışmanlık almak istiyorum'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm transition-all"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>{currentLang === 'ar' ? 'استشارة واتساب فورية' : currentLang === 'tr' ? 'Hemen WhatsApp’tan Yazın' : 'Chat on WhatsApp'}</span>
+              </a>
+              <Link
+                to="/apply"
+                className="px-5 py-3 rounded-xl bg-beer hover:bg-[#e07b09] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm transition-all"
+              >
+                <span>{currentLang === 'ar' ? 'سجل الآن مجاناً' : currentLang === 'tr' ? 'Hemen Başvur' : 'Apply Now'}</span>
+                <ArrowRight className="w-4 h-4 flip-in-rtl" />
+              </Link>
+            </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 text-brand-navy-950 rounded-3xl p-6 sm:p-8 shadow-sm border border-brand-amber-500/20 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-amber-500 text-slate-950 flex items-center justify-center">
-              <Users className="w-5 h-5" />
+          {/* Stats Bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-[#f7f5f2] p-4 rounded-xl border border-[#dee2e6] text-center">
+              <span className="text-2xl sm:text-3xl font-black text-main-color block">10+</span>
+              <span className="text-xs text-text-color font-semibold">
+                {currentLang === 'ar' ? 'سنوات من الخبرة' : currentLang === 'tr' ? 'Yıllık Deneyim' : 'Years Experience'}
+              </span>
             </div>
-            <h3 className="text-base font-bold text-brand-navy-950 font-cairo">
-              {currentLang === 'ar' ? 'ثقة طلابنا هي دافعنا' : currentLang === 'tr' ? 'Öğrencilerimizin Güveni' : 'Our Students’ Trust'}
-            </h3>
-            <p className="text-slate-700 text-xs sm:text-sm leading-relaxed">
-              {p4}
-            </p>
+            <div className="bg-[#f7f5f2] p-4 rounded-xl border border-[#dee2e6] text-center">
+              <span className="text-2xl sm:text-3xl font-black text-beer block">+1,500</span>
+              <span className="text-xs text-text-color font-semibold">
+                {currentLang === 'ar' ? 'طالب تمت خدمتهم' : currentLang === 'tr' ? 'Kayıtlı Öğrenci' : 'Students Enrolled'}
+              </span>
+            </div>
+            <div className="bg-[#f7f5f2] p-4 rounded-xl border border-[#dee2e6] text-center">
+              <span className="text-2xl sm:text-3xl font-black text-[#0071CE] block">+120</span>
+              <span className="text-xs text-text-color font-semibold">
+                {currentLang === 'ar' ? 'جامعة تركية معتمدة' : currentLang === 'tr' ? 'Anlaşmalı Üniversite' : 'Partner Universities'}
+              </span>
+            </div>
+            <div className="bg-[#f7f5f2] p-4 rounded-xl border border-[#dee2e6] text-center">
+              <span className="text-2xl sm:text-3xl font-black text-emerald-600 block">%100</span>
+              <span className="text-xs text-text-color font-semibold">
+                {currentLang === 'ar' ? 'استشارات مجانية' : currentLang === 'tr' ? 'Ücretsiz Danışmanlık' : 'Free Guidance'}
+              </span>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Why Choose Us Section */}
-      <section className="bg-slate-100/70 py-16 border-y border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-brand-amber-600 uppercase tracking-wider block">
-              {currentLang === 'ar' ? 'المزايا والقيم' : currentLang === 'tr' ? 'Avantajlarımız' : 'Our Strengths'}
+        {/* Story Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#dee2e6] p-6 sm:p-8 drop-shadow-sm space-y-4">
+              <h3 className="text-lg sm:text-xl font-bold text-main-color font-cairo flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-beer" />
+                <span>{currentLang === 'ar' ? 'قصتنا ورؤيتنا' : currentLang === 'tr' ? 'Hikayemiz ve Vizyonumuz' : 'Our Story & Vision'}</span>
+              </h3>
+              <p className="text-text-color text-sm sm:text-base leading-relaxed font-normal">
+                {p1}
+              </p>
+              <p className="text-text-color text-sm sm:text-base leading-relaxed font-normal">
+                {p2}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white rounded-2xl border border-[#dee2e6] p-6 drop-shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-[#ff9015]/10 text-beer flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-base text-main-color font-cairo">
+                  {currentLang === 'ar' ? 'معك في كل خطوة' : currentLang === 'tr' ? 'Her Adımda Yanınızda' : 'With You Every Step'}
+                </h4>
+                <p className="text-text-color text-xs sm:text-sm leading-relaxed">
+                  {p3}
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl border border-[#dee2e6] p-6 drop-shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-[#0071CE]/10 text-[#0071CE] flex items-center justify-center font-bold">
+                  <Users className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-base text-main-color font-cairo">
+                  {currentLang === 'ar' ? 'ثقة طلابنا هي دافعنا' : currentLang === 'tr' ? 'Öğrencilerimizin Güveni' : 'Our Students’ Trust'}
+                </h4>
+                <p className="text-text-color text-xs sm:text-sm leading-relaxed">
+                  {p4}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Contact & Action Box */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="bg-[#f7f5f2] rounded-2xl border border-[#dee2e6] p-6 drop-shadow-sm space-y-5">
+              <h4 className="font-bold text-base text-main-color font-cairo border-b border-[#dee2e6] pb-3">
+                {currentLang === 'ar' ? 'تواصل مباشر مع مستشارينا' : currentLang === 'tr' ? 'Danışmanlarımızla İletişim' : 'Contact Our Advisors'}
+              </h4>
+              <p className="text-xs text-text-color leading-relaxed">
+                {currentLang === 'ar'
+                  ? 'فريقنا المتخصص متواجد طوال أيام الأسبوع لتقديم الإرشاد الأكاديمي المجاني ومساعدتك في اختيار تخصصك وجامعتك.'
+                  : currentLang === 'tr'
+                  ? 'Uzman eğitim danışmanlarımız haftanın her günü size en uygun üniversiteyi seçmeniz için hazır.'
+                  : 'Our advisors are available all week to assist you in choosing the right university and major.'}
+              </p>
+
+              <div className="space-y-3 pt-1">
+                <a
+                  href={`https://wa.me/${settings.whatsapp_number || settings.contact_whatsapp || '905313971022'}?text=${encodeURIComponent(
+                    currentLang === 'ar'
+                      ? 'مرحباً، أود استشارة حول الدراسة في تركيا'
+                      : 'Merhaba, Türkiye’de eğitim için bilgi almak istiyorum'
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{currentLang === 'ar' ? 'محادثة واتساب سريعة' : currentLang === 'tr' ? 'WhatsApp Hızlı İletişim' : 'Quick WhatsApp Chat'}</span>
+                </a>
+
+                <a
+                  href={`tel:${settings.phone_number || '+905313971022'}`}
+                  className="w-full py-3 px-4 rounded-xl bg-white hover:bg-slate-50 text-main-color border border-[#dee2e6] font-bold text-xs flex items-center justify-center gap-2 transition-all"
+                >
+                  <PhoneCall className="w-4 h-4 text-beer" />
+                  <span>{settings.phone_number || '+90 531 397 10 22'}</span>
+                </a>
+              </div>
+
+              <div className="pt-2 border-t border-[#dee2e6] space-y-2 text-xs text-text-color">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{currentLang === 'ar' ? 'استشارات مجانية 100%' : currentLang === 'tr' ? '%100 Ücretsiz Danışmanlık' : '100% Free Guidance'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{currentLang === 'ar' ? 'خصومات ومنح جامعية حصرية' : currentLang === 'tr' ? 'Özel Burs ve İndirimler' : 'Exclusive Scholarships'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{currentLang === 'ar' ? 'متابعة شاملة حتى التثبيت' : currentLang === 'tr' ? 'Kesin Kayda Kadar Tam Takip' : 'Complete Admission Support'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us Grid */}
+        <div className="space-y-6 pt-6">
+          <div className="text-start space-y-1">
+            <span className="text-xs font-bold text-beer uppercase tracking-wider block">
+              {currentLang === 'ar' ? 'قيمنا وخدماتنا' : currentLang === 'tr' ? 'Değerlerimiz ve Avantajlarımız' : 'Our Core Strengths'}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-brand-navy-950 font-cairo">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-main-color font-cairo">
               {whyTitle}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((feat, idx) => {
               const Icon = feat.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4"
+                  className="bg-white p-6 rounded-2xl border border-[#dee2e6] drop-shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4"
                 >
                   <div className="space-y-3">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${feat.color}`}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#ff9015]/10 text-beer border border-[#ff9015]/20">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="font-bold text-base text-brand-navy-950 font-cairo">
+                    <h3 className="font-bold text-base text-main-color font-cairo">
                       {feat.title}
                     </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-text-color text-xs sm:text-sm leading-relaxed">
                       {feat.desc}
                     </p>
                   </div>
-                  <div className="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-brand-amber-600">
+                  <div className="pt-2 border-t border-[#dee2e6] flex items-center gap-1.5 text-xs font-bold text-beer">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{currentLang === 'ar' ? 'ضمان رسمي موثق' : currentLang === 'tr' ? 'Resmî Yetki ve Destek' : 'Official Representation'}</span>
+                    <span>{currentLang === 'ar' ? 'ضمان رسمي موثق' : currentLang === 'tr' ? 'Resmî Temsilcilik' : 'Official Representation'}</span>
                   </div>
                 </div>
               );
             })}
           </div>
         </div>
-      </section>
 
-      {/* Closing Callout Banner */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="bg-gradient-to-br from-brand-navy-950 via-brand-navy-900 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-brand-amber-500/30 text-center space-y-6">
-          <div className="w-14 h-14 rounded-2xl bg-brand-amber-500/20 text-brand-amber-400 flex items-center justify-center mx-auto border border-brand-amber-500/30">
+        {/* Testimonials */}
+        {testimonialsData?.data && testimonialsData.data.length > 0 && (
+          <div className="space-y-6 pt-6">
+            <div className="text-start space-y-1">
+              <span className="text-xs font-bold text-beer uppercase tracking-wider block">
+                {currentLang === 'ar' ? 'تجارب طلابنا' : currentLang === 'tr' ? 'Öğrenci Deneyimleri' : 'Student Stories'}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-main-color font-cairo">
+                {t('testimonials.title')}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {testimonialsData.data.map((item) => (
+                <TestimonialCard key={item.id} testimonial={item} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Callout Banner StudyFans 1:1 */}
+        <div className="bg-[#f7f5f2] rounded-2xl border border-[#dee2e6] p-8 sm:p-12 drop-shadow-sm text-center space-y-6">
+          <div className="w-14 h-14 rounded-2xl bg-[#ff9015]/10 text-beer flex items-center justify-center mx-auto border border-[#ff9015]/20">
             <Sparkles className="w-7 h-7" />
           </div>
 
-          <h3 className="text-xl sm:text-3xl font-black font-cairo text-white max-w-3xl mx-auto leading-relaxed">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-cairo text-main-color max-w-3xl mx-auto leading-relaxed">
             {closingText}
           </h3>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link
               to="/apply"
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-amber-500 to-brand-amber-600 hover:from-brand-amber-600 hover:to-brand-amber-700 text-white font-black text-sm rounded-2xl shadow-xl shadow-brand-amber-500/25 transition-all hover:scale-105 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 bg-beer hover:bg-[#e07b09] text-white font-bold text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-2"
             >
               <span>
                 {currentLang === 'ar' ? 'ابدأ خطوتك الأولى مجاناً' : currentLang === 'tr' ? 'İlk Adımı Ücretsiz Atın' : 'Start Your First Step'}
@@ -349,42 +459,19 @@ export default function AboutPage() {
             <a
               href={`https://wa.me/${settings.whatsapp_number || settings.contact_whatsapp || '905313971022'}?text=${encodeURIComponent(
                 currentLang === 'ar'
-                  ? settings.whatsapp_message_ar || 'مرحباً شركة المجد للقبولات الجامعية، أود استشارة حول الدراسة في تركيا'
-                  : currentLang === 'tr'
-                  ? settings.whatsapp_message_tr || 'Merhaba El-Mecd Öğrenci Hizmetleri, Türkiye’de eğitim için danışmanlık almak istiyorum'
-                  : settings.whatsapp_message_en || 'Hello Al-Majd Student Services, I would like guidance on studying in Turkey'
+                  ? settings.whatsapp_message_ar || 'مرحباً شركة المجد، أود استشارة حول الدراسة في تركيا'
+                  : settings.whatsapp_message_tr || 'Merhaba El-Mecd, Türkiye’de eğitim için danışmanlık almak istiyorum'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-main-color font-bold text-sm rounded-xl border border-[#dee2e6] shadow-sm transition-all flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>{currentLang === 'ar' ? 'تحدث مع مستشارنا عبر واتساب' : currentLang === 'tr' ? 'WhatsApp ile Danışmanla Görüş' : 'Chat on WhatsApp'}</span>
             </a>
           </div>
         </div>
-      </section>
-
-      {/* Testimonials */}
-      {testimonialsData?.data && testimonialsData.data.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-          <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-brand-amber-600 uppercase tracking-wider block">
-              {currentLang === 'ar' ? 'تجارب طلابنا' : currentLang === 'tr' ? 'Öğrenci Deneyimleri' : 'Student Stories'}
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-brand-navy-950 font-cairo">
-              {t('testimonials.title')}
-            </h2>
-            <p className="text-slate-600 text-xs sm:text-sm">{t('testimonials.subtitle')}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonialsData.data.map((item) => (
-              <TestimonialCard key={item.id} testimonial={item} />
-            ))}
-          </div>
-        </section>
-      )}
+      </div>
     </div>
   );
 }

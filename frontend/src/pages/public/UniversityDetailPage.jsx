@@ -1,158 +1,204 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   MapPin,
   Calendar,
-  Trophy,
+  Building2,
   Globe,
   Languages,
-  Building2,
-  GraduationCap,
-  CheckCircle2,
-  ExternalLink,
-  FileText,
-  DollarSign,
-  Clock,
-  Sparkles,
+  Check,
   ChevronDown,
-  ChevronUp,
   MessageCircle,
   AlertCircle,
-  Check,
-  FileCheck,
-  BookOpen,
-  Award,
-  HelpCircle,
-  Video,
-  ShieldCheck,
-  Layers,
-  PhoneCall,
+  ExternalLink,
   Search,
+  Trophy,
   ArrowRight,
-  ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
+  Award,
   Users,
+  BookOpen,
+  Building,
+  FileText,
+  Clock,
+  ShieldCheck,
+  Sparkles,
+  Percent,
+  Plane,
+  HeartHandshake,
+  CheckCircle2,
+  Microscope,
+  Home,
+  GraduationCap,
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { api } from '../../services/api';
-import UniversityCard from '../../components/common/UniversityCard';
-import UniversityVideoPlayer from '../../components/common/UniversityVideoPlayer';
+import UniversityCard, {
+  resolveUniversityName,
+  resolveUniversityPricing,
+} from '../../components/common/UniversityCard';
+import SfBreadcrumb from '../../components/common/SfBreadcrumb';
 import NotaryTranslationEquivalencySection from '../../components/common/NotaryTranslationEquivalencySection';
+import { generateUniversityGuide } from '../../utils/universityGuideGenerator';
+
+const WHATSAPP_NUMBER = '905313971022';
+const FALLBACK_COVER = '/uploads/universities/istanbul-universitesi.webp';
+
+const L = (ar, tr, en) => ({ ar, tr, en });
+
+const COPY = {
+  home: L('الرئيسية', 'Ana Sayfa', 'Home'),
+  universities: L('الجامعات', 'Üniversiteler', 'Universities'),
+  notFound: L('لم يتم العثور على الجامعة المطلوبة', 'İstenen Üniversite Bulunamadı', 'University Not Found'),
+  notFoundHint: L(
+    'تأكد من صحة الرابط أو تصفح قائمة الجامعات التركية المعتمدة.',
+    'Lütfen bağlantıyı kontrol edin veya üniversiteler listesine göz atın.',
+    'Please check the link or browse the full list of universities.'
+  ),
+  browseAll: L('تصفح قائمة الجامعات', 'Tüm Üniversiteler', 'Browse Universities'),
+  private: L('جامعة خاصة', 'Vakıf Üniversitesi', 'Private University'),
+  public: L('جامعة حكومية', 'Devlet Üniversitesi', 'State University'),
+  tabAbout: L('التعريف بالجامعة', 'Üniversite Tanıtımı', 'About'),
+  tabPrograms: L('البرامج الدراسية', 'Bölümler', 'Programs'),
+  tabAdmission: L('القبول والتسجيل', 'Başvuru ve Kayıt', 'Admissions'),
+  tabCampus: L('الحرم الجامعي', 'Kampüs', 'Campus'),
+  tabAccreditation: L('الاعترافات والاعتماد', 'Akreditasyonlar', 'Accreditation'),
+  tabFaqs: L('الأسئلة الشائعة', 'Sıkça Sorulan Sorular', 'FAQs'),
+  city: L('المدينة', 'Şehir', 'City'),
+  founded: L('سنة التأسيس', 'Kuruluş Yılı', 'Founded'),
+  type: L('نوع الجامعة', 'Üniversite Türü', 'Type'),
+  ranking: L('الترتيب المحلي', 'Yerel Sıralama', 'National Ranking'),
+  faculties: L('عدد الكليات', 'Fakülte Sayısı', 'Faculties'),
+  departments: L('عدد الأقسام', 'Bölüm Sayısı', 'Departments'),
+  website: L('الموقع الرسمي', 'Resmî Web Sitesi', 'Official Website'),
+  languages: L('لغات التدريس', 'Eğitim Dili', 'Instruction Languages'),
+  campusType: L('نوع الحرم الجامعي', 'Kampüs Tipi', 'Campus Type'),
+  address: L('العنوان', 'Adres', 'Address'),
+  searchProgram: L('ابحث عن تخصص...', 'Bölüm ara...', 'Search a program...'),
+  allDegrees: L('كل الدرجات العلمية', 'Tüm Dereceler', 'All Degrees'),
+  noPrograms: L('لا توجد تخصصات مطابقة لبحثك.', 'Aramanızla eşleşen bölüm bulunamadı.', 'No programs match your search.'),
+  years: L('سنوات', 'Yıl', 'Years'),
+  admissionOpen: L('المفاضلات مفتوحة حالياً', 'Başvurular Aktif', 'Applications Open'),
+  officialPortal: L('بوابة التقديم الرسمية', 'Resmî Başvuru Sayfası', 'Official Application Portal'),
+  acceptedExams: L('الشهادات والاختبارات المقبولة', 'Kabul Edilen Sınav ve Belgeler', 'Accepted Exams & Documents'),
+  graduate: L('الدراسات العليا (ماجستير ودكتوراه)', 'Lisansüstü (Yüksek Lisans & Doktora)', 'Graduate Studies'),
+  contactWhatsapp: L('تواصل معنا عبر واتساب', 'WhatsApp ile İletişime Geçin', 'Contact Us on WhatsApp'),
+  applyNow: L('سجّل الآن عبر واتساب', 'WhatsApp ile Başvur', 'Apply via WhatsApp'),
+  discount: L('خصم', 'İndirim', 'Discount'),
+  relatedTitle: L('جامعات مشابهة', 'Benzer Üniversiteler', 'Similar Universities'),
+  otherTitle: L('جامعات أخرى قد تهمك', 'Diğer Üniversiteler', 'Other Universities'),
+  seeAll: L('عرض الكل', 'Tümü', 'See all'),
+  yokApproved: L('معتمدة من YÖK', 'YÖK Onaylı', 'YÖK Approved'),
+};
+
+const DEGREE_LABELS = {
+  ASSOCIATE: L('دبلوم', 'Ön Lisans', 'Associate'),
+  BACHELOR: L('بكالوريوس', 'Lisans', 'Bachelor'),
+  MASTER_WITH_THESIS: L('ماجستير بأطروحة', 'Tezli Yüksek Lisans', "Master's (Thesis)"),
+  MASTER_NON_THESIS: L('ماجستير بدون أطروحة', 'Tezsiz Yüksek Lisans', "Master's (Non-Thesis)"),
+  PHD: L('دكتوراه', 'Doktora', 'PhD'),
+};
+
+const LANGUAGE_LABELS = {
+  ENGLISH: L('إنجليزي 100%', '%100 İngilizce', '100% English'),
+  TURKISH: L('تركي', 'Türkçe', 'Turkish'),
+  MIXED: L('إنجليزي 30%', '%30 İngilizce', '30% English'),
+};
+
+const CAMPUS_TYPE_LABELS = {
+  URBAN: L('حرم داخل المدينة', 'Şehir İçi Kampüs', 'Urban Campus'),
+  SUBURBAN: L('حرم في ضواحي المدينة', 'Şehir Dışı Kampüs', 'Suburban Campus'),
+  MULTI_CAMPUS: L('عدة حرم جامعية', 'Çok Kampüslü', 'Multi-Campus'),
+};
+
+const ACCEPTED_EXAMS = [
+  { label: 'TR-YÖS 2026', note: L('اختبار اليوس', 'Sınav Puanı', 'Entrance Exam') },
+  { label: 'SAT 1', note: L('1000+ نقطة', '1000+ Puan', '1000+ Score') },
+  { label: 'ABITUR', note: L('الشهادة الألمانية', 'Alman Diploması', 'German Diploma') },
+  { label: 'IB Diploma', note: L('البكالوريا الدولية', 'Uluslararası Bakalorya', 'Intl. Baccalaureate') },
+  { label: 'GCE A-Levels', note: L('النظام البريطاني', 'İngiliz Sistemi', 'British System') },
+  { label: 'High School', note: L('الشهادة الثانوية', 'Lise Diploması', 'High School Diploma') },
+];
+
+const TAB_PANEL = 'bg-white px-4 py-5 sm:px-6 sm:py-6 rounded-lg shadow-lg';
+const STAT_ROW = 'flex items-center justify-between gap-3 py-3 border-b border-[#dee2e6] last:border-b-0';
+const STAT_LABEL = 'text-base font-light text-[#707070]';
+const STAT_VALUE = 'text-base font-bold text-main-color text-end';
+const PANEL_TITLE = 'text-xl sm:text-[1.375rem] font-bold text-main-color';
+const SF_BTN = 'py-3 px-5 rounded-lg bg-beer hover:bg-vivid-tangelo text-white text-base font-normal text-center transition-colors inline-flex items-center justify-center gap-2';
+
+function waLink(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
 export default function UniversityDetailPage() {
   const { slug } = useParams();
-  const { t } = useTranslation();
-  const { currentLang, isRtl } = useLanguage();
-  const navigate = useNavigate();
+  const { currentLang } = useLanguage();
 
-  // Active sticky tab state
-  const [activeTab, setActiveTab] = useState('overview');
-  // Programs search & filter
+  const [activeTab, setActiveTab] = useState('about');
   const [progSearch, setProgSearch] = useState('');
   const [selectedDegree, setSelectedDegree] = useState('');
-  // FAQ accordion active item
   const [openFaq, setOpenFaq] = useState(null);
+
+  const loc = (entry) => (entry ? entry[currentLang] || entry.ar : '');
+  const t = (key) => loc(COPY[key]);
+  const label = (map, value) => loc(map[value]) || value;
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['university', slug, currentLang],
     queryFn: () => api.getUniversityBySlug(slug, currentLang),
   });
 
-  // Fetch all universities for the card slider
   const { data: allUnisData } = useQuery({
-    queryKey: ['all-unis-detail-slider', currentLang],
-    queryFn: () => api.getUniversities({ limit: 12, lang: currentLang }),
+    queryKey: ['all-unis-detail', currentLang],
+    queryFn: () => api.getUniversities({ limit: 6, lang: currentLang }),
   });
-
-  // Track active section on scroll for sticky tabs
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['overview', 'programs', 'undergraduate', 'graduate', 'faq'];
-      const scrollPos = window.scrollY + 200;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveTab(sectionId);
-            break;
-          }
-        }
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id) => {
-    setActiveTab(id);
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -90;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 animate-pulse">
-          <div className="h-64 rounded-3xl bg-slate-200" />
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 space-y-6">
-              <div className="h-32 bg-slate-200 rounded-3xl" />
-              <div className="h-96 bg-slate-200 rounded-3xl" />
-            </div>
-            <div className="lg:col-span-4 space-y-6">
-              <div className="h-64 bg-slate-200 rounded-3xl" />
-            </div>
+      <main className="w-full bg-[#fafafa] mb-16">
+        <div className="bg-[#f7f5f2] py-4 sm:py-6 mb-8 drop-shadow-sm">
+          <div className="sf-container px-4 flex flex-col gap-3 animate-pulse">
+            <div className="h-5 w-56 rounded bg-gray-200" />
+            <div className="h-7 w-80 rounded bg-gray-200" />
           </div>
         </div>
-      </div>
+        <div className="sf-container px-4 flex flex-col md:flex-row md:gap-4 lg:gap-10 gap-4 animate-pulse">
+          <div className="w-full md:basis-[65.4%] flex flex-col gap-4">
+            <div className="hidden md:block h-[343px] rounded-lg bg-gray-200" />
+            <div className="h-14 rounded-lg bg-gray-200" />
+            <div className="h-[480px] rounded-lg bg-gray-200" />
+          </div>
+          <div className="w-full md:basis-[34.6%] flex flex-col gap-4">
+            <div className="h-[430px] rounded-lg bg-gray-200" />
+            <div className="h-[260px] rounded-lg bg-gray-200" />
+          </div>
+        </div>
+      </main>
     );
   }
 
   if (isError || !data?.data) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center py-20 px-4">
-        <div className="max-w-lg w-full bg-white rounded-3xl p-8 border border-slate-200 text-center shadow-lg space-y-5">
-          <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 mx-auto flex items-center justify-center">
+      <main className="w-full bg-[#fafafa] min-h-[60vh] flex items-center justify-center px-4 py-20">
+        <div className="max-w-lg w-full bg-white rounded-lg drop-shadow-xl p-8 text-center flex flex-col items-center gap-4">
+          <span className="w-16 h-16 rounded-full bg-[#f7f5f2] text-vivid-tangelo flex items-center justify-center">
             <AlertCircle className="w-8 h-8" />
-          </div>
-          <h2 className="text-2xl font-black text-slate-800 font-cairo">
-            {currentLang === 'ar'
-              ? 'لم يتم العثور على الجامعة المطلوبة'
-              : currentLang === 'tr'
-              ? 'İstenen Üniversite Bulunamadı'
-              : 'University Not Found'}
-          </h2>
-          <p className="text-slate-500 text-sm">
-            {error?.message ||
-              (currentLang === 'ar'
-                ? 'تأكد من صحة الرابط أو تصفح قائمة الجامعات التركية المعتمدة.'
-                : 'Lütfen bağlantıyı kontrol edin veya üniversiteler listesine göz atın.')}
-          </p>
-          <Link
-            to="/universities"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#0B2545] hover:bg-[#163b6a] text-white font-bold text-sm shadow-md transition-colors"
-          >
-            <span>{currentLang === 'ar' ? 'تصفح قائمة الجامعات' : 'Tüm Üniversiteler'}</span>
+          </span>
+          <h1 className="text-xl sm:text-[1.625rem] font-bold text-main-color">{t('notFound')}</h1>
+          <p className="text-base font-light text-[#707070]">{error?.message || t('notFoundHint')}</p>
+          <Link to="/universities" className={SF_BTN}>
+            <span>{t('browseAll')}</span>
             <ArrowRight className="w-4 h-4 flip-in-rtl" />
           </Link>
         </div>
-      </div>
+      </main>
     );
   }
 
   const university = data.data;
   const related = data.related || [];
-  const allUniversities = allUnisData?.data || related || [];
+  const otherUniversities = (allUnisData?.data || []).filter((u) => u.slug !== university.slug);
 
   const translation =
     university.translations?.find((tr) => tr.lang === currentLang) ||
@@ -162,897 +208,1313 @@ export default function UniversityDetailPage() {
 
   const name = translation.name || university.slug;
   const overview = translation.overview || '';
-  const isPrivate = university.type === 'PRIVATE';
+  const typeLabel = university.type === 'PRIVATE' ? t('private') : t('public');
+  const cityName = university.city || (currentLang === 'ar' ? 'تركيا' : 'Türkiye');
+  const guide = generateUniversityGuide(university, currentLang);
 
-  const whatsappNumber = '905313971022';
-  const waApplyUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم والحصول على قبول جامعي معتمد في (${name}) 2026.`
-  )}`;
+  const { annual, discounted, currency } = resolveUniversityPricing(university);
+  const hasDiscount = annual !== null && discounted < annual;
+  const discountPercent = hasDiscount ? Math.round(((annual - discounted) / annual) * 100) : 0;
 
-  // Default fallback programs if none populated (No price numbers displayed)
-  const defaultPrograms = [
-    { nameAr: 'طب بشري', nameTr: 'Tıp (İngilizce/Türkçe)', degreeLevel: 'BACHELOR', studyLanguage: 'MIXED', durationYears: 6 },
-    { nameAr: 'طب الأسنان', nameTr: 'Diş Hekimliği', degreeLevel: 'BACHELOR', studyLanguage: 'TURKISH', durationYears: 5 },
-    { nameAr: 'صيدلة', nameTr: 'Eczacılık Fakültesi', degreeLevel: 'BACHELOR', studyLanguage: 'ENGLISH', durationYears: 5 },
-    { nameAr: 'هندسة حاسوب وذكاء اصطناعي', nameTr: 'Bilgisayar Mühendisliği (AI)', degreeLevel: 'BACHELOR', studyLanguage: 'ENGLISH', durationYears: 4 },
-    { nameAr: 'هندسة مدنية', nameTr: 'İnşaat Mühendisliği', degreeLevel: 'BACHELOR', studyLanguage: 'TURKISH', durationYears: 4 },
-    { nameAr: 'إدارة أعمال دولية', nameTr: 'Uluslararası İşletme', degreeLevel: 'BACHELOR', studyLanguage: 'ENGLISH', durationYears: 4 },
-    { nameAr: 'العلاج الطبيعي والتأهيل', nameTr: 'Fizyoterapi ve Rehabilitasyon', degreeLevel: 'BACHELOR', studyLanguage: 'TURKISH', durationYears: 4 },
-    { nameAr: 'هندسة برمجيات', nameTr: 'Yazılım Mühendisliği', degreeLevel: 'BACHELOR', studyLanguage: 'ENGLISH', durationYears: 4 },
-  ];
+  const waApplyUrl = waLink(
+    currentLang === 'ar'
+      ? `مرحباً شركة المجد للقبولات الجامعية، أرغب بالتقديم والحصول على قبول جامعي معتمد في (${name}) 2026.`
+      : `Merhaba, ${name} 2026 kabul başvurusu hakkında bilgi almak istiyorum.`
+  );
 
-  const rawPrograms = university.programs && university.programs.length > 0 ? university.programs : defaultPrograms;
+  const rawPrograms = university.programs || [];
+  const degreeOptions = [...new Set(rawPrograms.map((p) => p.degreeLevel).filter(Boolean))];
 
-  // Filter programs in this university
   const filteredPrograms = rawPrograms.filter((prog) => {
-    const pt = prog.translations?.find((t) => t.lang === currentLang) || prog.translations?.[0] || {};
-    const pName = (pt.name || prog.nameAr || prog.nameTr || prog.slug || '').toLowerCase();
+    const pt = prog.translations?.find((tr) => tr.lang === currentLang) || prog.translations?.[0] || {};
+    const pName = (pt.name || prog.slug || '').toLowerCase();
     const matchesSearch = !progSearch || pName.includes(progSearch.toLowerCase());
     const matchesDegree = !selectedDegree || prog.degreeLevel === selectedDegree;
     return matchesSearch && matchesDegree;
   });
 
-  // 10 Detailed FAQ items with thematic icons
+  const rankingText = university.ranking ? `#${university.ranking}` : null;
+
   const faqItems = [
     {
-      icon: '📍',
-      qAr: `ما هو موقع وحرم ${name} في تركيا؟`,
-      qTr: `${name} konumu ve kampüs özellikleri nelerdir?`,
-      qEn: `Where is ${name} located and what are campus facilities like?`,
-      aAr: `تقع الجامعة في مدينة ${university.city || 'تركيا'}، وتتميز بحرم جامعي متكامل يضم مكتبات بحثية ضخمة، مختبرات حديثة، ملاعب رياضية، وسكن جامعي متكامل ومحطات مواصلات عامة مباشرة.`,
-      aTr: `Üniversite ${university.city || 'Türkiye'} merkezinde yer almakta olup, zengin araştırma kütüphaneleri, modern laboratuvarları, spor tesisleri ve kolay ulaşım ağıyla öğrencilere tam donanımlı bir kampüs yaşamı sunmaktadır.`,
-      aEn: `Located in ${university.city || 'Turkey'}, the university features state-of-the-art research laboratories, extensive central libraries, athletics facilities, and on-campus student housing with direct transit access.`,
+      q: L(
+        `ما هو موقع وحرم ${name} في تركيا؟`,
+        `${name} konumu ve kampüs özellikleri nelerdir?`,
+        `Where is ${name} located and what are its campus facilities?`
+      ),
+      a: L(
+        `تقع الجامعة في مدينة ${cityName}، وتتميز بحرم جامعي متكامل يضم مكتبات بحثية، مختبرات حديثة، ملاعب رياضية، وسكن جامعي ومحطات مواصلات عامة مباشرة.`,
+        `Üniversite ${cityName} içinde yer alır; araştırma kütüphaneleri, modern laboratuvarlar, spor tesisleri, öğrenci yurtları ve kolay ulaşım ağıyla donatılmıştır.`,
+        `Located in ${cityName}, the campus offers research libraries, modern laboratories, athletics facilities, student housing and direct public transit access.`
+      ),
     },
     {
-      icon: '📅',
-      qAr: `ما هي سنة تأسيس ${name} ومدى عراقتها الأكاديمية؟`,
-      qTr: `${name} kuruluş yılı ve tarihi nedir?`,
-      qEn: `What is the foundation year and heritage of ${name}?`,
-      aAr: `تأسست الجامعة عام ${university.establishedYear || '1993'} وتعتبر من أعرق الجامعات المعتمدة في تركيا، حيث تخرج منها آلاف العلماء والقادة والمهنيين على مر العقود.`,
-      aTr: `Üniversite ${university.establishedYear || '1993'} yılında kurulmuş olup, Türkiye'nin en köklü ve saygın yükseköğretim kurumları arasında öncü bir konuma sahiptir.`,
-      aEn: `Established in ${university.establishedYear || '1993'}, the university is among Turkey's most prestigious and established public/private higher education institutions.`,
+      q: L(`ما هي سنة تأسيس ${name}؟`, `${name} hangi yıl kurulmuştur?`, `When was ${name} founded?`),
+      a: L(
+        `تأسست الجامعة عام ${university.establishedYear || '—'} وتعد من المؤسسات التعليمية المعتمدة من مجلس التعليم العالي التركي (YÖK).`,
+        `Üniversite ${university.establishedYear || '—'} yılında kurulmuş olup YÖK tarafından tanınan bir yükseköğretim kurumudur.`,
+        `The university was established in ${university.establishedYear || '—'} and is recognised by the Turkish Council of Higher Education (YÖK).`
+      ),
     },
     {
-      icon: '📊',
-      qAr: `ما هو الترتيب المحلي والعالمي لجامعة ${name}؟`,
-      qTr: `${name} yerel ve uluslararası başarı sıralaması nedir?`,
-      qEn: `What is the national and global ranking of ${name}?`,
-      aAr: `تحتل الجامعة المرتبة #${university.localRank || 5} محلياً على مستوى تركيا وتصنف ضمن أفضل الجامعات العالمية وفق تصنيفات QS و THE و URAP العالمية المعتمدة.`,
-      aTr: `Üniversite Türkiye genelinde #${university.localRank || 5}. sırada yer almakta ve QS, THE ve URAP gibi uluslararası sıralamalarda ön sıralarda temsil edilmektedir.`,
-      aEn: `The university ranks #${university.localRank || 5} nationally in Turkey and is featured among world top universities across QS, THE, and URAP global rankings.`,
+      q: L(
+        `ما هو الترتيب المحلي لجامعة ${name}؟`,
+        `${name} yerel sıralamada kaçıncı sırada?`,
+        `What is the national ranking of ${name}?`
+      ),
+      a: rankingText
+        ? L(
+            `تحتل الجامعة المرتبة ${rankingText} محلياً على مستوى تركيا، وتُصنف ضمن تصنيفات QS و THE و URAP العالمية.`,
+            `Üniversite Türkiye genelinde ${rankingText}. sırada yer almakta ve QS, THE ile URAP sıralamalarında temsil edilmektedir.`,
+            `The university ranks ${rankingText} nationally in Turkey and features in the QS, THE and URAP global rankings.`
+          )
+        : L(
+            'لمعرفة الترتيب المحلي والعالمي المحدّث للجامعة يرجى التواصل معنا عبر واتساب.',
+            'Güncel yerel ve uluslararası sıralama bilgisi için WhatsApp üzerinden bize ulaşabilirsiniz.',
+            'Please contact us on WhatsApp for the latest national and global ranking data.'
+          ),
     },
     {
-      icon: '🗣️',
-      qAr: `ما هي لغات الدراسة المعتمدة في ${name} وهل يتوفر سنة تحضيرية؟`,
-      qTr: `Eğitim dili nedir ve hazırlık sınıfı imkânı var mı?`,
-      qEn: `What is the instruction language and is there a prep year?`,
-      aAr: `تعتمد الجامعة اللغتين التركية والإنجليزية بنسبة (100% إنجليزي أو 30% أو تركي كامل بحسب التخصص). يتوفر معهد لغات رسمي لتدريس السنة التحضيرية للطلاب الجدد.`,
-      aTr: `Bölümlere göre %100 İngilizce, %30 İngilizce ve Türkçe eğitim seçenekleri bulunmaktadır. Dil yeterliliği olmayan öğrenciler için hazırlık dil okulu mevcuttur.`,
-      aEn: `Programs are offered in 100% English, 30% English, and Turkish depending on the faculty. A preparatory language school is available for students without language scores.`,
+      q: L(
+        'ما هي لغات الدراسة وهل تتوفر سنة تحضيرية؟',
+        'Eğitim dili nedir ve hazırlık sınıfı var mı?',
+        'What are the instruction languages and is there a prep year?'
+      ),
+      a: L(
+        'تعتمد الجامعة اللغتين التركية والإنجليزية (100% إنجليزي أو 30% أو تركي كامل بحسب التخصص)، ويتوفر معهد لغات رسمي لتدريس السنة التحضيرية للطلاب الجدد.',
+        'Bölümlere göre %100 İngilizce, %30 İngilizce ve Türkçe eğitim seçenekleri bulunur. Dil yeterliliği olmayan öğrenciler için hazırlık okulu mevcuttur.',
+        'Programs are taught in 100% English, 30% English or Turkish depending on the faculty, and a preparatory language school is available.'
+      ),
     },
     {
-      icon: '🧾',
-      qAr: `ما هي شروط القبول للطلاب الدوليين والشهادات المقبولة؟`,
-      qTr: `Uluslararası öğrenci kabul şartları ve kabul edilen sınavlar nelerdir?`,
-      qEn: `What are international admission requirements and accepted exams?`,
-      aAr: `تقبل الجامعة اختبار TR-YÖS المركزي، واختبارات SAT 1، والشهادات الدولية مثل IB و Abitur، بالإضافة إلى الشهادة الثانوية العامة بمعدلات متفاوتة بحسب التخصص.`,
-      aTr: `Üniversite TR-YÖS, SAT 1, ABITUR, IB, GCE ve lise diploması not ortalaması ile uluslararası öğrenci kabul etmektedir.`,
-      aEn: `The university accepts TR-YÖS, SAT 1, International Baccalaureate (IB), Abitur, GCE A-Levels, and national high school diplomas based on faculty cut-offs.`,
+      q: L(
+        'ما هي شروط القبول للطلاب الدوليين والشهادات المقبولة؟',
+        'Uluslararası öğrenci kabul şartları ve kabul edilen sınavlar nelerdir?',
+        'What are the admission requirements and accepted exams?'
+      ),
+      a: translation.admissionRequirements
+        ? L(translation.admissionRequirements, translation.admissionRequirements, translation.admissionRequirements)
+        : L(
+            'تقبل الجامعة اختبار TR-YÖS، واختبار SAT 1، والشهادات الدولية مثل IB و Abitur و GCE A-Levels، بالإضافة إلى الشهادة الثانوية بمعدلات متفاوتة بحسب التخصص.',
+            'Üniversite TR-YÖS, SAT 1, ABITUR, IB, GCE A-Levels ve lise diploması not ortalaması ile uluslararası öğrenci kabul etmektedir.',
+            'The university accepts TR-YÖS, SAT 1, IB, Abitur, GCE A-Levels and national high school diplomas, with cut-offs varying by faculty.'
+          ),
     },
     {
-      icon: '💬',
-      qAr: `كيف يمكن معرفة الرسوم الدراسية والخصومات المتاحة في ${name}؟`,
-      qTr: `${name} öğrenim ücretleri ve indirimler hakkında nasıl bilgi alabilirim?`,
-      qEn: `How can I inquire about tuition fees and discounts at ${name}?`,
-      aAr: `تختلف الرسوم باختلاف الكلية والتخصص ولغة الدراسة، كما تتوفر منح جزئية وخصومات حصرية للطلاب المسجلين عن طريق شركة المجد. لمعرفة الرسوم الدقيقة وتقديم طلبك، يرجى التواصل معنا مباشرة عبر واتساب.`,
-      aTr: `Öğrenim ücretleri seçilen fakülte, bölüm ve eğitim diline göre farklılık göstermektedir. Şirketimize özel indirim ve burslu kontenjanlar hakkında bilgi almak için doğrudan WhatsApp danışmanlarımıza yazabilirsiniz.`,
-      aEn: `Tuition fees vary by program and instruction language. Exclusive scholarship quotas and institutional discounts are available through our agency. Please contact us via WhatsApp for precise details.`,
+      q: L(
+        `كيف أعرف الرسوم الدراسية والخصومات المتاحة في ${name}؟`,
+        `${name} öğrenim ücretleri ve indirimleri nasıl öğrenebilirim?`,
+        `How can I find out tuition fees and available discounts at ${name}?`
+      ),
+      a: L(
+        'تختلف الرسوم باختلاف الكلية والتخصص ولغة الدراسة، وتتوفر منح جزئية وخصومات حصرية للطلاب المسجلين عن طريقنا. لمعرفة الرسوم الدقيقة تواصل معنا عبر واتساب.',
+        'Ücretler fakülte, bölüm ve eğitim diline göre değişir. Acentemize özel indirim ve burslu kontenjanlar için WhatsApp danışmanlarımıza yazabilirsiniz.',
+        'Fees vary by program and instruction language, and exclusive scholarship quotas are available through our agency. Contact us on WhatsApp for exact figures.'
+      ),
     },
     {
-      icon: '🏛️',
-      qAr: `ما هي أبرز الكليات والتخصصات المتاحة في ${name}؟`,
-      qTr: `${name} bünyesinde hangi fakülteler ve bölümler öne çıkar?`,
-      qEn: `What are the prominent faculties and majors available at ${name}?`,
-      aAr: `تضم الجامعة كليات متميزة كالطب البشري، طب الأسنان، الصيدلة، الهندسة، الحقوق، والذكاء الاصطناعي، وتوفر أكثر من 18 كلية وعشرات برامج البكالوريوس والدبلوم.`,
-      aTr: `Tıp, Diş Hekimliği, Eczacılık, Mühendislik, Hukuk ve İktisat başta olmak üzere 18'den fazla fakülte ve yüzlerce lisans programı bulunmaktadır.`,
-      aEn: `Top faculties include Medicine, Dentistry, Pharmacy, Engineering, Law, and Economics, encompassing 18+ faculties and hundreds of degree programs.`,
+      q: L(
+        'هل تتوفر برامج ماجستير ودكتوراه للطلاب الدوليين؟',
+        'Yüksek lisans ve doktora programları yabancı öğrencilere açık mı?',
+        "Are Master's and PhD programs open to international students?"
+      ),
+      a: L(
+        'نعم، تفتح معاهد الدراسات العليا مفاضلات دورية للفصلين الخريفي والربيعي لبرامج الماجستير بأطروحة وبدون أطروحة وبرامج الدكتوراه.',
+        'Evet, fen, sağlık ve sosyal bilimler enstitüleri güz ve bahar dönemlerinde tezli/tezsiz yüksek lisans ve doktora başvurusu kabul eder.',
+        'Yes, the graduate institutes accept international candidates for thesis and non-thesis master programs and PhDs each fall and spring.'
+      ),
     },
     {
-      icon: '🎓',
-      qAr: `هل يتوفر برامج دراسات عليا (ماجستير ودكتوراه) للطلاب الدوليين؟`,
-      qTr: `Yüksek lisans ve doktora programları yabancı öğrencilere açık mı?`,
-      qEn: `Are Master's and PhD programs open to international students?`,
-      aAr: `نعم، تفتح الجامعة مفاضلات دورية للفصلين الخريفي والربيعي لبرامج الماجستير بأطروحة وبدون أطروحة، وبرامج الدكتوراه في مختلف المعاهد العلمية والصحية.`,
-      aTr: `Evet, fen, sağlık ve sosyal bilimler enstitüleri bünyesinde tezli/tezsiz yüksek lisans ve doktora programlarına güz ve bahar dönemlerinde başvuru kabul edilir.`,
-      aEn: `Yes, graduate institutes accept international candidates for thesis and non-thesis Master's and PhD programs across fall and spring application cycles.`,
+      q: L(
+        'هل تدعم الجامعة برامج التبادل الطلابي مثل Erasmus+؟',
+        'Erasmus+ değişim programları mevcut mu?',
+        'Does the university take part in Erasmus+ exchange programs?'
+      ),
+      a: L(
+        'نعم، تشترك الجامعة في اتفاقيات التبادل الطلابي الأوروبي Erasmus+، مما يتيح للطلاب دراسة فصل أو فصلين في جامعات أوروبية شريكة.',
+        'Üniversite Avrupa’daki partner kurumlarla aktif Erasmus+ anlaşmalarına sahiptir ve öğrencilere değişim dönemi imkânı sunar.',
+        'Yes, the university maintains active Erasmus+ partnerships, offering exchange semesters at partner institutions across Europe.'
+      ),
     },
     {
-      icon: '🔁',
-      qAr: `هل تدعم الجامعة برامج التبادل الطلابي الأوروبي مثل Erasmus+؟`,
-      qTr: `Erasmus+ ve uluslararası öğrenci değişim programları mevcut mu?`,
-      qEn: `Does the university participate in Erasmus+ and exchange programs?`,
-      aAr: `نعم، تشترك الجامعة في اتفاقيات التبادل الطلابي الأوروبي Erasmus+ مع أكثر من 100 جامعة أوروبية، مما يتيح للطلاب دراسة فصل أو فصلين في أوروبا.`,
-      aTr: `Üniversite 100'den fazla Avrupa üniversitesiyle aktif Erasmus+ değişim anlaşmalarına sahiptir ve öğrencilere Avrupa'da eğitim imkânı sunar.`,
-      aEn: `The university maintains active Erasmus+ partnerships with over 100 European universities, offering exchange semesters across Europe.`,
+      q: L(
+        'كيف يمكن للطالب الدولي تأمين السكن الجامعي؟',
+        'Yabancı öğrenciler için yurt imkânları nasıl sağlanır?',
+        'How can international students secure accommodation?'
+      ),
+      a: translation.accommodationInfo
+        ? L(translation.accommodationInfo, translation.accommodationInfo, translation.accommodationInfo)
+        : L(
+            'توفر الجامعة مساكن طلابية داخل الحرم أو قريبة منه، كما تتوفر مساكن حكومية وخاصة. يساعد فريقنا الطلاب المقبولين في إجراءات السكن فور وصولهم.',
+            'Kampüs içi ve çevresinde öğrenci yurtları ile devlet ve özel yurt seçenekleri mevcuttur. Danışmanlarımız kayıt sonrası yerleşimde rehberlik eder.',
+            'On-campus dormitories as well as state and private residences are available nearby, and our team assists accepted students on arrival.'
+          ),
     },
     {
-      icon: '🏠',
-      qAr: `كيف يمكن للطالب الدولي تأمين السكن والإقامة الجامعية؟`,
-      qTr: `Yabancı öğrenciler için yurt ve barınma olanakları nasıl sağlanır?`,
-      qEn: `How can international students secure university dorms and housing?`,
-      aAr: `توفر الجامعة مساكن طلابية داخل الحرم أو قريبة منه، كما تتوفر مساكن حكومية وخاصة. يساعد فريق شركة المجد الطلاب المقبولين في إجراءات السكن فور وصولهم.`,
-      aTr: `Kampüs içi ve yakınında modern öğrenci yurtları mevcuttur. Danışmanlarımız kayıt sonrası yurt yerleşiminde rehberlik eder.`,
-      aEn: `Both on-campus dormitories and private student residences are situated nearby. Our advisory team assists accepted students with accommodation upon arrival.`,
+      q: L(
+        `هل شهادة ${name} معترف بها دولياً؟`,
+        `${name} diploması uluslararası geçerli mi?`,
+        `Is the ${name} diploma internationally recognised?`
+      ),
+      a: translation.accreditationInfo
+        ? L(translation.accreditationInfo, translation.accreditationInfo, translation.accreditationInfo)
+        : L(
+            'الجامعة معتمدة من مجلس التعليم العالي التركي (YÖK) وشهاداتها معترف بها في تركيا ومعظم الدول العربية والأوروبية بعد إجراءات المعادلة المعتادة.',
+            'Üniversite YÖK tarafından tanınmakta olup diplomaları Türkiye’de ve denklik işlemleri sonrası birçok ülkede geçerlidir.',
+            'The university is recognised by YÖK and its diplomas are valid in Turkey and, following standard equivalency procedures, in many other countries.'
+          ),
     },
   ];
 
+  const tabs = [
+    { id: 'about', label: t('tabAbout') },
+    ...(university.showProgramsSection !== false ? [{ id: 'programs', label: t('tabPrograms') }] : []),
+    { id: 'admission', label: t('tabAdmission') },
+    { id: 'campus', label: t('tabCampus') },
+    { id: 'accreditation', label: t('tabAccreditation') },
+    ...(university.showFaqSection !== false ? [{ id: 'faqs', label: t('tabFaqs') }] : []),
+  ];
+
+  const facts = [
+    { label: t('city'), value: university.city },
+    { label: t('founded'), value: university.establishedYear },
+    { label: t('type'), value: typeLabel },
+    { label: t('ranking'), value: rankingText },
+    { label: t('faculties'), value: university.facultyCount },
+    { label: t('departments'), value: university.departmentCount },
+    { label: t('campusType'), value: university.campusType ? label(CAMPUS_TYPE_LABELS, university.campusType) : null },
+    { label: t('languages'), value: 'Türkçe / English' },
+  ].filter((row) => row.value !== null && row.value !== undefined && row.value !== '');
+
+  const sidebarStats = [
+    { label: t('ranking'), value: rankingText || t('yokApproved') },
+    { label: t('faculties'), value: university.facultyCount || '—' },
+    { label: t('departments'), value: university.departmentCount || '—' },
+    { label: t('founded'), value: university.establishedYear || '—' },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans pb-24">
-      {/* =========================================================
-          A. ÜST HERO & HIZLI GEZİNME ALANI (Bento EdTech Hero)
-          (Kullanıcının istediği: 3 sembol kaldırıldı, foto avatarı kaldırıldı, ferah başlık)
-          ========================================================= */}
-      <div className="bg-[#0B2545] text-white relative overflow-hidden border-b border-blue-900/50">
-        {/* Cover Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <img
-            src={university.coverImageUrl || `/uploads/universities/${university.slug}.webp`}
-            alt={name}
-            className="w-full h-full object-cover object-center opacity-30"
-            onError={(e) => {
-              e.currentTarget.src = '/uploads/universities/istanbul-universitesi.webp';
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545] via-[#0B2545]/85 to-transparent" />
-        </div>
+    <main className="w-full bg-[#fafafa] text-main-color mb-16">
+      <SfBreadcrumb
+        items={[
+          { label: t('home'), to: '/' },
+          { label: t('universities'), to: '/universities' },
+          { label: name },
+        ]}
+        title={name}
+      />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-6 pb-10 sm:pt-8 sm:pb-14">
-          {/* Breadcrumb & Geri Dönüş */}
-          <div className="flex flex-wrap items-center justify-between gap-3 text-xs mb-5 font-cairo">
-            <div className="flex items-center gap-2 text-blue-200">
-              <Link to="/" className="hover:text-white transition-colors">
-                {currentLang === 'ar' ? 'الرئيسية' : 'Ana Sayfa'}
-              </Link>
-              <span>/</span>
-              <Link to="/universities" className="hover:text-white transition-colors">
-                {currentLang === 'ar' ? 'الجامعات التركية' : 'Türk Üniversiteleri'}
-              </Link>
-              <span>/</span>
-              <span className="text-[#E9B949] font-bold truncate max-w-xs">{name}</span>
-            </div>
+      <section className="sf-container px-4 flex flex-col md:flex-row md:items-start md:gap-4 lg:gap-10 gap-4">
+        {/* ANA İÇERİK — StudyFans: md:basis-[65.4%] */}
+        <div className="w-full md:basis-[65.4%] flex flex-col gap-4">
+          {/* Üniversite Künye Başlığı — StudyFans 1:1 Büyük ve Görkemli Kapak Bannerı */}
+          <header className="relative min-h-[260px] sm:min-h-[300px] md:min-h-[343px] rounded-xl overflow-hidden bg-[#1e293b] drop-shadow-md">
+            <img
+              src={university.coverImageUrl || FALLBACK_COVER}
+              alt={name}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover brightness-[0.9]"
+              onError={(e) => {
+                e.currentTarget.src = FALLBACK_COVER;
+              }}
+            />
+            {/* Lüks degrade katmanı: mobilde alttan üste, masaüstünde sağdan sola */}
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#0f172a]/95 via-[#0f172a]/75 md:from-[#f7f5f2] md:via-[#f7f5f2]/90 md:to-transparent" />
 
-            <Link
-              to="/universities"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs backdrop-blur-md transition-all border border-white/15"
-            >
-              {isRtl ? <ArrowRight className="w-3.5 h-3.5" /> : <ArrowLeft className="w-3.5 h-3.5" />}
-              <span>{currentLang === 'ar' ? 'العودة لكافة الجامعات' : 'Üniversitelere Dön'}</span>
-            </Link>
-          </div>
-
-          {/* Hero Header Content: 3 Sembol ve Fotoğraf Kutusu Kaldırıldı, Temiz ve Güçlü Başlık */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
-            <div className="space-y-2.5 max-w-3xl">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black font-cairo text-white leading-tight">
-                {name} {currentLang === 'ar' ? '2026 | المفاضلات، المقاعد ورابط التقديم' : '2026 | Kontenjanlar, Belgeler ve Başvuru Linki'}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-3 text-xs text-blue-200/95 font-cairo pt-1">
-                <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                  <MapPin className="w-3.5 h-3.5 text-[#E9B949]" />
-                  <span>{university.city || 'Türkiye'}</span>
+            <div className="relative z-10 w-full h-full flex flex-col justify-end md:justify-center gap-4 sm:gap-5 p-4 sm:p-6 lg:p-8">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <span className="w-[75px] h-[75px] sm:w-[90px] sm:h-[90px] md:w-[100px] md:h-[100px] shrink-0 rounded-xl bg-white drop-shadow-xl p-2 flex items-center justify-center overflow-hidden border-2 border-white/80">
+                  <img
+                    src={university.logoUrl || university.coverImageUrl || FALLBACK_COVER}
+                    alt={name}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_COVER;
+                    }}
+                  />
                 </span>
-                {university.establishedYear && (
-                  <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                    <Calendar className="w-3.5 h-3.5 text-[#E9B949]" />
-                    <span>{currentLang === 'ar' ? `تأسست عام ${university.establishedYear}` : `Kuruluş: ${university.establishedYear}`}</span>
-                  </span>
-                )}
-                <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15 backdrop-blur-md">
-                  <Trophy className="w-3.5 h-3.5 text-[#E9B949]" />
-                  <span>{currentLang === 'ar' ? `الترتيب المحلي: #${university.localRank || 5}` : `Sıralama: #${university.localRank || 5}`}</span>
-                </span>
+                <div className="flex flex-col gap-1.5 min-w-0">
+                  <h1 className="text-xl sm:text-2xl lg:text-[1.625rem] font-black text-white md:text-main-color leading-tight">
+                    {name}
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs sm:text-sm font-bold text-white bg-beer px-2.5 py-0.5 rounded-md shadow-sm">
+                      {typeLabel}
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-white md:text-[#707070] inline-flex items-center gap-1 bg-black/25 md:bg-transparent px-2 md:px-0 py-0.5 rounded-md">
+                      <MapPin className="w-3.5 h-3.5 text-beer shrink-0" />
+                      {cityName}
+                    </span>
+                    {rankingText && (
+                      <span className="text-xs sm:text-sm font-bold text-white md:text-metallic-blue bg-black/30 md:bg-white border border-white/20 md:border-[#dee2e6] px-2 py-0.5 rounded-md">
+                        {rankingText}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* WhatsApp İle İletişim Butonu */}
-            <div className="shrink-0 w-full sm:w-auto">
-              <a
-                href={waApplyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black font-cairo text-sm shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95"
-              >
-                <MessageCircle className="w-5 h-5 fill-white shrink-0" />
-                <span>{currentLang === 'ar' ? 'تواصل معنا عبر واتساب' : 'WhatsApp ile Bizimle İletişime Geçin'}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* =========================================================
-          YAPIŞKAN HIZLI GEÇİŞ SEKME BARI (Sticky Anchor Nav)
-          ========================================================= */}
-      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-2 sm:gap-3 py-2.5 overflow-x-auto no-scrollbar font-cairo">
-            {[
-              { id: 'overview', labelAr: '🏛️ معلومات عامة', labelTr: '🏛️ Genel Bilgiler', labelEn: 'Overview' },
-              { id: 'programs', labelAr: '📚 كروت تخصصات الجامعة', labelTr: '📚 Üniversite Kartları & Bölümler', labelEn: 'University Cards' },
-              { id: 'undergraduate', labelAr: '🎓 مفاضلات البكالوريوس', labelTr: '🎓 Lisans Başvuruları', labelEn: 'Undergraduate' },
-              { id: 'graduate', labelAr: '📜 الدراسات العليا', labelTr: '📜 Lisansüstü Başvuruları', labelEn: 'Graduate' },
-              { id: 'faq', labelAr: '❓ الأسئلة الشائعة', labelTr: '❓ Sıkça Sorulan Sorular', labelEn: 'FAQ' },
-            ].map((tab) => {
-              const label = currentLang === 'ar' ? tab.labelAr : currentLang === 'tr' ? tab.labelTr : tab.labelEn;
-              const isSelected = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => scrollToSection(tab.id)}
-                  className={`min-h-[38px] px-4 py-1.5 rounded-full text-xs font-extrabold whitespace-nowrap transition-all ${
-                    isSelected
-                      ? 'bg-[#0B2545] text-white shadow-md'
-                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-                  }`}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* =========================================================
-          ANA İÇERİK DÜZENİ (12 Sütun: %70 Ana İçerik + %30 Yapışkan Sağ Panel)
-          ========================================================= */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* =========================================================
-              SOL / ANA İÇERİK ALANI (8 Sütun - ~%70)
-              ========================================================= */}
-          <main className="lg:col-span-8 space-y-8">
-            
-            {/* =========================================================
-                B. ÜNİVERSİTE KÜNYESİ (Quick Facts Bento Grid)
-                ========================================================= */}
-            <section className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-7 shadow-sm">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 font-cairo">
-                {currentLang === 'ar' ? '📋 بطاقة بيانات الجامعة' : '📋 Üniversite Künyesi & Temel Bilgiler'}
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
-                {/* 1. Şehir */}
-                <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 flex flex-col justify-between">
-                  <span className="text-[11px] font-bold text-slate-400 font-cairo block mb-1">
-                    📍 {currentLang === 'ar' ? 'المدينة' : 'Şehir'}
+              <ul className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/20 md:border-[#dee2e6] pt-4">
+                <li className="flex flex-col gap-0.5">
+                  <span className="flex items-center gap-1.5 text-xs sm:text-sm font-light text-gray-200 md:text-[#707070]">
+                    <MapPin className="w-3.5 h-3.5 text-beer" />
+                    {t('city')}
                   </span>
-                  <strong className="text-sm font-extrabold text-[#0B2545] font-cairo truncate">
-                    {university.city || 'Türkiye'}
-                  </strong>
-                </div>
-
-                {/* 2. Kuruluş Yılı */}
-                <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 flex flex-col justify-between">
-                  <span className="text-[11px] font-bold text-slate-400 font-cairo block mb-1">
-                    🏛️ {currentLang === 'ar' ? 'سنة التأسيس' : 'Kuruluş Yılı'}
+                  <strong className="text-sm sm:text-base font-bold text-white md:text-main-color">{cityName}</strong>
+                </li>
+                <li className="flex flex-col gap-0.5">
+                  <span className="flex items-center gap-1.5 text-xs sm:text-sm font-light text-gray-200 md:text-[#707070]">
+                    <Building2 className="w-3.5 h-3.5 text-beer" />
+                    {t('type')}
                   </span>
-                  <strong className="text-sm font-extrabold text-[#0B2545] font-cairo">
-                    {university.establishedYear || '1993'}
-                  </strong>
-                </div>
-
-                {/* 3. Yerel Sıralama */}
-                <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 flex flex-col justify-between">
-                  <span className="text-[11px] font-bold text-slate-400 font-cairo block mb-1">
-                    🏆 {currentLang === 'ar' ? 'الترتيب المحلي' : 'Yerel Sıralama'}
-                  </span>
-                  <strong className="text-sm font-extrabold text-[#E8930C] font-cairo">
-                    #{university.localRank || 5}
-                  </strong>
-                </div>
-
-                {/* 4. Resmi Web Sitesi */}
-                <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 flex flex-col justify-between">
-                  <span className="text-[11px] font-bold text-slate-400 font-cairo block mb-1">
-                    🌐 {currentLang === 'ar' ? 'الموقع الرسمي' : 'Resmi Web'}
-                  </span>
-                  {university.websiteUrl ? (
+                  <strong className="text-sm sm:text-base font-bold text-white md:text-main-color">{typeLabel}</strong>
+                </li>
+                {university.establishedYear && (
+                  <li className="flex flex-col gap-0.5">
+                    <span className="flex items-center gap-1.5 text-xs sm:text-sm font-light text-gray-200 md:text-[#707070]">
+                      <Calendar className="w-3.5 h-3.5 text-beer" />
+                      {t('founded')}
+                    </span>
+                    <strong className="text-sm sm:text-base font-bold text-white md:text-main-color">{university.establishedYear}</strong>
+                  </li>
+                )}
+                {university.websiteUrl && (
+                  <li className="flex flex-col gap-0.5">
+                    <span className="flex items-center gap-1.5 text-xs sm:text-sm font-light text-gray-200 md:text-[#707070]">
+                      <Globe className="w-3.5 h-3.5 text-beer" />
+                      {t('website')}
+                    </span>
                     <a
                       href={university.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold text-[#1E3A8A] hover:underline flex items-center gap-1 truncate"
+                      className="text-sm sm:text-base font-bold text-beer md:text-azure hover:underline transition-colors inline-flex items-center gap-1"
                     >
-                      <span className="truncate">{university.websiteUrl.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}</span>
-                      <ExternalLink className="w-3 h-3 shrink-0" />
+                      <span>{university.websiteUrl.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                     </a>
-                  ) : (
-                    <span className="text-xs font-bold text-slate-500">YÖK Onaylı</span>
-                  )}
-                </div>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </header>
 
-                {/* 5. Eğitim Dilleri */}
-                <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-100 flex flex-col justify-between col-span-2 sm:col-span-1">
-                  <span className="text-[11px] font-bold text-slate-400 font-cairo block mb-1">
-                    🗣️ {currentLang === 'ar' ? 'لغات التدريس' : 'Eğitim Dili'}
-                  </span>
-                  <div className="flex flex-wrap gap-1">
-                    <span className="px-2 py-0.5 rounded-md bg-blue-100/80 text-[#0B2545] font-bold text-[10px]">Türkçe</span>
-                    <span className="px-2 py-0.5 rounded-md bg-emerald-100/80 text-emerald-800 font-bold text-[10px]">English</span>
-                  </div>
-                </div>
-              </div>
-            </section>
+          {/* StudyFans yapışkan sekme şeridi */}
+          <nav className="sticky top-[var(--sf-header-h)] z-20 bg-[#f8f9fa] rounded-lg flex overflow-x-auto no-scrollbar drop-shadow-sm">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative py-4 px-5 text-base whitespace-nowrap transition-colors before:content-[''] before:absolute before:bottom-0 before:start-0 before:w-full before:h-[3px] before:bg-beer before:transition-transform before:duration-300 ltr:before:origin-left rtl:before:origin-right hover:before:scale-x-100 ${
+                    isActive
+                      ? 'font-bold text-main-color before:scale-x-100'
+                      : 'font-light text-[#707070] hover:text-main-color before:scale-x-0'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </nav>
 
-            {/* =========================================================
-                KULLANICININ İSTEDİĞİ: "BÜTÜN CARDLAR GEZ VE ÜNİVERSİTENİN CARDLERİ KOY"
-                (Üniversitenin Tüm Bölüm & Program Kartları ve Gezinme Alanı)
-                ========================================================= */}
-            <section id="programs" className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-                <div>
-                  <span className="text-xs font-bold text-[#E8930C] uppercase tracking-wider block mb-1 font-cairo">
-                    🎓 {currentLang === 'ar' ? 'تصفح كروت تخصصات ومقاعد الجامعة' : 'Üniversitenin Bölüm ve Program Kartları'}
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                    <Layers className="w-6 h-6 text-[#1E3A8A]" />
-                    <span>{currentLang === 'ar' ? `كافة كروت وتخصصات ${name}` : `${name} Bölüm Kartları`}</span>
-                  </h2>
-                </div>
-
-                {/* Arama Kutusu */}
-                <div className="relative w-full sm:w-64">
-                  <input
-                    type="text"
-                    value={progSearch}
-                    onChange={(e) => setProgSearch(e.target.value)}
-                    placeholder={currentLang === 'ar' ? 'ابحث عن كرت تخصص...' : 'Bölüm kartı ara...'}
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-cairo focus:outline-none focus:ring-2 focus:ring-[#0B2545] pe-8"
-                  />
-                  <Search className="w-4 h-4 text-slate-400 absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Üniversitenin Kartları Grid — Her Bölüm İçin Şık Kart */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {filteredPrograms.map((prog, idx) => {
-                  const pt = prog.translations?.find((t) => t.lang === currentLang) || prog.translations?.[0] || {};
-                  const title = pt.name || prog.nameAr || prog.nameTr || prog.slug;
-                  const lang = prog.studyLanguage === 'ENGLISH' ? 'English %100' : prog.studyLanguage === 'MIXED' ? 'Mixed (%30 İngilizce)' : 'Türkçe';
-
-                  return (
-                    <div
-                      key={idx}
-                      className="bg-slate-50 hover:bg-white rounded-2xl border border-slate-200/90 hover:border-emerald-300 hover:shadow-lg transition-all p-4 flex flex-col justify-between group"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-1 mb-2">
-                          <span className="px-2 py-0.5 rounded-md bg-blue-100 text-[#0B2545] text-[10px] font-black font-cairo">
-                            {prog.degreeLevel === 'MASTER_WITH_THESIS' ? 'Yüksek Lisans' : 'Lisans (Bakalorya)'}
-                          </span>
-                          <span className="text-[10px] font-bold text-slate-500 font-cairo">
-                            {prog.durationYears || 4} {currentLang === 'ar' ? 'سنوات' : 'Yıl'}
-                          </span>
-                        </div>
-
-                        <h4 className="text-sm font-black text-[#0B2545] font-cairo leading-snug group-hover:text-blue-700 transition-colors mb-2">
-                          {title}
-                        </h4>
-
-                        <div className="text-[11px] text-slate-600 font-cairo flex items-center gap-1.5 mb-3">
-                          <Languages className="w-3.5 h-3.5 text-[#E8930C] shrink-0" />
-                          <span>{lang}</span>
-                        </div>
-                      </div>
-
-                      {/* KULLANICININ İSTEDİĞİ: Fiyat koyma, başvurmak ve fiyat bilgisi için WhatsApp ile iletişime geçin */}
-                      <div className="pt-3 border-t border-slate-200/60 flex flex-col gap-2">
-                        <div className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/70 flex items-center justify-between font-cairo">
-                          <span>{currentLang === 'ar' ? '🏷️ استفسار عن الرسوم والمنح' : '🏷️ Fiyat & İndirim Bilgisi'}</span>
-                          <span className="text-[10px] text-emerald-600 font-semibold">{currentLang === 'ar' ? 'عبر واتساب' : 'WhatsApp'}</span>
-                        </div>
-
-                        <a
-                          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                            `مرحباً شركة المجد، أود الاستفسار عن رسوم وخصومات تخصص (${title}) والتقديم في جامعة (${name}).`
-                          )}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black font-cairo text-xs shadow-sm flex items-center justify-center gap-1.5 transition-transform active:scale-95"
-                        >
-                          <MessageCircle className="w-4 h-4 fill-white shrink-0" />
-                          <span>{currentLang === 'ar' ? 'تواصل عبر واتساب للتقديم' : 'WhatsApp ile Başvur'}</span>
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-
-            {/* =========================================================
-                TÜM TÜRK ÜNİVERSİTELERİNİN KARTLARI (KULLANICININ İSTEDİĞİ: "BÜTÜN CARDLAR GEZ")
-                ========================================================= */}
-            {allUniversities.length > 0 && (
-              <section className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                  <div>
-                    <span className="text-xs font-bold text-[#E8930C] uppercase tracking-wider block mb-1 font-cairo">
-                      🏛️ دليل الجامعات في تركيا
-                    </span>
-                    <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                      <Building2 className="w-6 h-6 text-[#1E3A8A]" />
-                      <span>{currentLang === 'ar' ? 'تصفح كروت الجامعات التركية المعتمدة' : 'Bütün Üniversite Kartlarını Gezin'}</span>
-                    </h2>
-                  </div>
-                  <Link
-                    to="/universities"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 font-cairo"
-                  >
-                    <span>{currentLang === 'ar' ? 'عرض كافة الجامعات (+120 جامعة)' : 'Tüm Üniversiteler (+120)'}</span>
-                    <ArrowRight className="w-4 h-4 flip-in-rtl" />
-                  </Link>
-                </div>
-
-                {/* Üniversite Kartları Grid — 60fps temiz akış */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                  {allUniversities.slice(0, 6).map((u) => (
-                    <UniversityCard key={u.id || u.slug} university={u} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* =========================================================
-                C. ÜNİVERSİTE HAKKINDA BİLGİ & VİDEO
-                ========================================================= */}
-            <section id="overview" className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-6">
-              <div className="border-b border-slate-100 pb-4">
-                <span className="text-xs font-bold text-[#E8930C] uppercase tracking-wider block mb-1 font-cairo">
-                  {currentLang === 'ar' ? 'نظرة عامة على الجامعة' : 'Üniversite Hakkında & Akademik Güç'}
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                  <Building2 className="w-6 h-6 text-[#1E3A8A]" />
-                  <span>{currentLang === 'ar' ? `عن ${name}` : `${name} Tanıtımı ve Tarihçesi`}</span>
+          {activeTab === 'about' && (
+            <div className="flex flex-col gap-4">
+              {/* 1. نبذة عامة وجدول البيانات الأساسية */}
+              <article className={TAB_PANEL}>
+                <h2 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                  <BookOpen className="w-6 h-6 text-beer shrink-0" />
+                  <span>{loc(L(`عن ${name}`, `${name} Hakkında`, `About ${name}`))}</span>
                 </h2>
-              </div>
 
-              {/* Hakkında Metni */}
-              <div className="text-slate-700 text-sm leading-relaxed font-cairo space-y-3 whitespace-pre-line">
-                <p>
-                  {overview ||
-                    (currentLang === 'ar'
-                      ? `تعتبر ${name} من الصروح الأكاديمية الرائدة في الجمهورية التركية. تقدم الجامعة بيئة تعليمية وبحثية بمعايير أوروبية متقدمة (نظام بولونيا ECTS)، وتضم نخبة من الكوادر التدريسية المتميزة وتفتح أبوابها للطلاب الدوليين من شتى أنحاء العالم.`
-                      : `${name}, köklü akademik birikimi, modern araştırma laboratuvarları ve uluslararası akreditasyonları ile Türkiye’nin önde gelen üniversiteleri arasındadır.`)}
-                </p>
-              </div>
+                <div className="sf-prose whitespace-pre-line text-base font-light leading-[1.9] text-[#2b2b2b]">
+                  {overview || guide.history?.content}
+                </div>
 
-              {/* Tanıtım Videosu Alanı */}
-              {university.videoUrl ? (
-                <div className="pt-4 border-t border-slate-100">
-                  <h3 className="text-sm font-black text-[#0B2545] font-cairo mb-3 flex items-center gap-2">
-                    <Video className="w-4 h-4 text-[#E8930C]" />
-                    <span>{currentLang === 'ar' ? 'جولة مصورة في الحرم الجامعي' : 'Resmi Tanıtım Videosu'}</span>
+                <ul className="mt-6 pt-2 border-t border-[#dee2e6] grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                  {facts.map((row) => (
+                    <li key={row.label} className={STAT_ROW}>
+                      <span className={STAT_LABEL}>{row.label}</span>
+                      <strong className={STAT_VALUE}>{row.value}</strong>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              {/* 2. نشأة الجامعة وتاريخها */}
+              {guide.history && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Building2 className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.history.title}</span>
                   </h3>
-                  <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                    <UniversityVideoPlayer
-                      videoUrl={university.videoUrl}
-                      thumbnailUrl={university.videoThumbnailUrl || university.coverImageUrl}
-                      title={university.videoTitle || name}
-                      description={university.videoDescription}
-                    />
+                  <p className="sf-prose text-base font-light leading-[1.9] text-[#4a4a4a]">
+                    {guide.history.content}
+                  </p>
+                </article>
+              )}
+
+              {/* 3. تواريخ ومحطات هامة في مسيرة الجامعة */}
+              {guide.milestones?.items?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-5 flex items-center gap-2`}>
+                    <Clock className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.milestones.title}</span>
+                  </h3>
+                  <div className="relative border-s-2 border-beer/30 ms-3 ps-5 flex flex-col gap-6">
+                    {guide.milestones.items.map((item, idx) => (
+                      <div key={idx} className="relative group">
+                        <span className="absolute -start-[29px] top-1 w-4 h-4 rounded-full bg-beer border-4 border-white shadow-sm" />
+                        <span className="inline-block py-0.5 px-2.5 rounded-full bg-[#f7f5f2] text-sm font-bold text-main-color border border-[#dee2e6] mb-1">
+                          {item.year}
+                        </span>
+                        <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                </div>
-              ) : null}
-            </section>
+                </article>
+              )}
 
-            {/* =========================================================
-                D. LİSANS BAŞVURULARI BÖLÜMÜ (Undergraduate Admissions)
-                ========================================================= */}
-            <section id="undergraduate" className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-                <div>
-                  <span className="text-xs font-bold text-[#E8930C] uppercase tracking-wider block mb-1 font-cairo">
-                    {currentLang === 'ar' ? 'مواعيد وشروط التسجيل' : 'Lisans Kayıt ve Tercih Dönemleri'}
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                    <GraduationCap className="w-6 h-6 text-[#1E3A8A]" />
-                    <span>{currentLang === 'ar' ? 'مفاضلات البكالوريوس 2026' : 'Lisans Başvuru Takvimi'}</span>
-                  </h2>
-                </div>
-                <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-bold font-cairo w-fit">
-                  🟢 {currentLang === 'ar' ? 'المفاضلات مفتوحة رسمياً' : 'Başvurular Aktif'}
-                </span>
-              </div>
-
-              {/* KULLANICININ İSTEDİĞİ: "fotoğraftaki lisans başvuru zamanları nerde olduğunu ve ne zaman olduğunu söyleme, bilgi almak için whatsapp'tan gönderin bir buton yap" */}
-              <div className="rounded-2xl p-6 sm:p-7 bg-gradient-to-br from-blue-50/80 via-slate-50 to-blue-50/40 border border-blue-200/80 space-y-4 text-start font-cairo">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span>{currentLang === 'ar' ? 'مفاضلات 2026 مفتوحة ومتاحة حالياً' : '2026 Başvuruları Aktif'}</span>
+              {/* 4. الجامعة في أرقام (إحصائيات دقيقة) */}
+              {guide.stats && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-5 flex items-center gap-2`}>
+                    <Trophy className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.stats.title}</span>
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <GraduationCap className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-2xl font-bold text-main-color">{guide.stats.facultiesCount}</strong>
+                      <span className="text-xs font-light text-[#707070]">{t('faculties')}</span>
                     </div>
-                    <h3 className="text-base sm:text-lg font-black text-[#0B2545]">
-                      {currentLang === 'ar'
-                        ? `معرفة مواعيد مفاضلات وشروط التسجيل في ${name}`
-                        : `${name} Güncel Başvuru Tarihleri ve Şartları`}
-                    </h3>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <BookOpen className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-2xl font-bold text-main-color">{guide.stats.departmentsCount}</strong>
+                      <span className="text-xs font-light text-[#707070]">{t('departments')}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <Users className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-2xl font-bold text-main-color">{guide.stats.totalStudents}</strong>
+                      <span className="text-xs font-light text-[#707070]">{loc(L('إجمالي الطلاب', 'Toplam Öğrenci', 'Total Students'))}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <Award className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-2xl font-bold text-main-color">{guide.stats.academicStaff}</strong>
+                      <span className="text-xs font-light text-[#707070]">{loc(L('الكادر الأكاديمي', 'Akademik Kadro', 'Academic Staff'))}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <Microscope className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-2xl font-bold text-main-color">+{guide.stats.labsCount}</strong>
+                      <span className="text-xs font-light text-[#707070]">{loc(L('مختبر ومعمل', 'Uygulama Lab.', 'Laboratories'))}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <Globe className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-xl font-bold text-main-color">{guide.stats.nationalitiesCount}</strong>
+                      <span className="text-xs font-light text-[#707070]">{loc(L('تنوع دولي', 'Uluslararası Çeşitlilik', 'Intl. Diversity'))}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <ShieldCheck className="w-5 h-5 text-[#67b98a] mb-1" />
+                      <strong className="text-xl font-bold text-[#67b98a]">YÖK</strong>
+                      <span className="text-xs font-light text-[#707070]">{t('yokApproved')}</span>
+                    </div>
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 text-center flex flex-col items-center justify-center gap-1 border border-[#dee2e6]/50">
+                      <Sparkles className="w-5 h-5 text-beer mb-1" />
+                      <strong className="text-xl font-bold text-main-color">ECTS</strong>
+                      <span className="text-xs font-light text-[#707070]">{loc(L('الساعات الأوروبية', 'Avrupa Kredi Sistemi', 'European Credits'))}</span>
+                    </div>
                   </div>
+                </article>
+              )}
 
+              {/* 5. ترتيب الجامعة عالمياً ومحلياً */}
+              {guide.rankings && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Award className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.rankings.title}</span>
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-[#f7f5f2] rounded-lg p-4 flex items-center gap-4 border border-[#dee2e6]/50">
+                      <span className="w-12 h-12 rounded-full bg-beer/10 text-beer flex items-center justify-center shrink-0">
+                        <Trophy className="w-6 h-6" />
+                      </span>
+                      <div>
+                        <span className="text-xs font-light text-[#707070] block">{t('ranking')}</span>
+                        <strong className="text-2xl font-black text-main-color">#{guide.rankings.local}</strong>
+                        <span className="text-xs text-[#707070] block">{loc(L('على مستوى الجامعات التركية', 'Türkiye genelinde', 'Nationally in Turkey'))}</span>
+                      </div>
+                    </div>
+                    {guide.rankings.global && guide.rankings.global !== '-' && (
+                      <div className="bg-[#f7f5f2] rounded-lg p-4 flex items-center gap-4 border border-[#dee2e6]/50">
+                        <span className="w-12 h-12 rounded-full bg-azure/10 text-azure flex items-center justify-center shrink-0">
+                          <Globe className="w-6 h-6" />
+                        </span>
+                        <div>
+                          <span className="text-xs font-light text-[#707070] block">{loc(L('الترتيب العالمي', 'Dünya Sıralaması', 'Global Ranking'))}</span>
+                          <strong className="text-2xl font-black text-main-color">
+                            {String(guide.rankings.global).startsWith('#') ? guide.rankings.global : `#${guide.rankings.global}`}
+                          </strong>
+                          <span className="text-xs text-[#707070] block">{loc(L('تصنيف THE / QS و Webometrics', 'THE / QS ve Webometrics', 'THE / QS & Webometrics'))}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                    {guide.rankings.desc}
+                  </p>
+                </article>
+              )}
+
+              {/* 6. رؤية وقيم الجامعة */}
+              {guide.visionValues && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Sparkles className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.visionValues.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed mb-4">
+                    {guide.visionValues.vision}
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    {guide.visionValues.values?.map((val, idx) => (
+                      <div key={idx} className="p-2.5 rounded-lg bg-[#f7f5f2] border border-[#dee2e6]/60 text-sm font-medium text-main-color flex items-center gap-2">
+                        <Check className="w-4 h-4 text-beer shrink-0" />
+                        <span>{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              )}
+
+              {/* 7. هل الجامعة معترف بها دولياً؟ */}
+              {guide.recognitions && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-3 flex items-center gap-2`}>
+                    <ShieldCheck className="w-6 h-6 text-[#67b98a] shrink-0" />
+                    <span>{guide.recognitions.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed mb-4">
+                    {guide.recognitions.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {guide.recognitions.countries?.map((c, i) => (
+                      <span
+                        key={i}
+                        className="py-1.5 px-3 rounded-lg bg-[#f7f5f2] text-sm font-medium text-main-color border border-[#dee2e6] inline-flex items-center gap-1.5"
+                      >
+                        <Check className="w-4 h-4 text-[#67b98a]" />
+                        <span>{c}</span>
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              )}
+
+              {/* 8. مميزات الدراسة في الجامعة */}
+              {guide.advantages?.items?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <CheckCircle2 className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.advantages.title}</span>
+                  </h3>
+                  <ul className="flex flex-col gap-3">
+                    {guide.advantages.items.map((adv, i) => (
+                      <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[#f7f5f2] border border-[#dee2e6]/40">
+                        <CheckCircle2 className="w-5 h-5 text-beer shrink-0 mt-0.5" />
+                        <span className="text-base font-light text-[#2b2b2b] leading-relaxed">{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {/* 9. أهم التخصصات والبرامج */}
+              {guide.keyMajors?.list?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <h3 className={`${PANEL_TITLE} flex items-center gap-2`}>
+                      <GraduationCap className="w-6 h-6 text-beer shrink-0" />
+                      <span>{guide.keyMajors.title}</span>
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('programs')}
+                      className="text-sm font-medium text-azure hover:text-beer transition-colors"
+                    >
+                      {loc(L('عرض جميع التخصصات والرسوم ▾', 'Tüm Bölümleri ve Ücretleri Gör ▾', 'View All Programs & Fees ▾'))}
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {guide.keyMajors.list.map((m, i) => (
+                      <div key={i} className="p-3.5 rounded-lg bg-[#f7f5f2] border border-[#dee2e6] flex flex-col gap-1.5">
+                        <strong className="text-base font-bold text-metallic-blue">{m.name}</strong>
+                        <div className="flex items-center justify-between text-xs text-[#707070]">
+                          <span>{m.lang}</span>
+                          <span className="bg-white px-2 py-0.5 rounded border border-[#dee2e6]">{m.years}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              )}
+
+              {/* 10. المستشفيات والمراكز التطبيقية أو المعامل */}
+              {guide.facilities?.items?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Building className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.facilities.title}</span>
+                  </h3>
+                  <ul className="flex flex-col gap-2.5">
+                    {guide.facilities.items.map((fac, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-base font-light text-[#4a4a4a] leading-relaxed">
+                        <span className="w-2 h-2 rounded-full bg-beer shrink-0 mt-2" />
+                        <span>{fac}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {/* 11. مراكز الأبحاث والتطوير */}
+              {guide.researchCenters?.list?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Microscope className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.researchCenters.title}</span>
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {guide.researchCenters.list.map((center, i) => (
+                      <li key={i} className="p-3 rounded-lg bg-[#f7f5f2] border border-[#dee2e6]/50 text-sm font-light text-[#2b2b2b] flex items-center gap-2">
+                        <Check className="w-4 h-4 text-beer shrink-0" />
+                        <span>{center}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {/* 12. السكن الجامعي والخدمات */}
+              {guide.housing && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-3 flex items-center gap-2`}>
+                    <Home className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.housing.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                    {guide.housing.content}
+                  </p>
+                </article>
+              )}
+
+              {/* 13. الأوراق المطلوبة للتسجيل والقبول */}
+              {guide.requirements?.documents?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <FileText className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.requirements.title}</span>
+                  </h3>
+                  <ul className="flex flex-col gap-2.5">
+                    {guide.requirements.documents.map((doc, i) => (
+                      <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[#f7f5f2] border border-[#dee2e6]/50">
+                        <Check className="w-5 h-5 text-[#67b98a] shrink-0 mt-0.5" />
+                        <span className="text-base font-light text-[#2b2b2b] leading-relaxed">{doc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {/* 14. المنح والخصومات الحصرية */}
+              {guide.discounts?.points?.length > 0 && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-4 flex items-center gap-2`}>
+                    <Percent className="w-6 h-6 text-[#67b98a] shrink-0" />
+                    <span>{guide.discounts.title}</span>
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {guide.discounts.points.map((disc, i) => (
+                      <div key={i} className="p-3.5 rounded-lg bg-[#67b98a]/10 border border-[#67b98a]/30 flex items-start gap-2.5">
+                        <span className="w-2 h-2 rounded-full bg-[#67b98a] shrink-0 mt-2" />
+                        <span className="text-sm font-medium text-[#1e293b] leading-relaxed">{disc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              )}
+
+              {/* 15. برنامج التبادل الطلابي الدولي (Erasmus+) */}
+              {guide.erasmus && (
+                <article className={TAB_PANEL}>
+                  <h3 className={`${PANEL_TITLE} mb-3 flex items-center gap-2`}>
+                    <Plane className="w-6 h-6 text-beer shrink-0" />
+                    <span>{guide.erasmus.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                    {guide.erasmus.content}
+                  </p>
+                </article>
+              )}
+
+              {/* 16. ضمان خدمات شركة المجد مجاناً */}
+              {guide.companySupport?.items?.length > 0 && (
+                <article className="rounded-lg bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white p-6 shadow-xl flex flex-col gap-5">
+                  <div className="flex items-center gap-3">
+                    <span className="w-12 h-12 rounded-full bg-beer text-white flex items-center justify-center shrink-0">
+                      <HeartHandshake className="w-6 h-6" />
+                    </span>
+                    <div>
+                      <h3 className="text-xl font-bold text-white">{guide.companySupport.title}</h3>
+                      <p className="text-sm font-light text-gray-300">
+                        {loc(L('وكيلك المعتمد والرسمي للتقديم والقبول الفوري بدون أي أتعاب', 'Resmi yetkili acente olarak tüm danışmanlık hizmetlerimiz ücretsizdir', 'Official authorized agency with 100% free guidance and admission'))}
+                      </p>
+                    </div>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-white/10">
+                    {guide.companySupport.items.map((serv, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm font-light text-gray-200">
+                        <Check className="w-4 h-4 text-beer shrink-0 mt-0.5" />
+                        <span>{serv}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <a
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                      `مرحباً شركة المجد، أود الاستفسار عن مواعيد مفاضلات البكالوريوس وشروط التسجيل المتاحة حالياً في (${name}).`
-                    )}`}
+                    href={waApplyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-xs sm:text-sm shadow-md shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 shrink-0"
+                    className="mt-2 py-3 px-6 rounded-lg bg-beer hover:bg-vivid-tangelo text-white text-base font-bold text-center transition-colors inline-flex items-center justify-center gap-2 self-start"
                   >
-                    <MessageCircle className="w-4 h-4 fill-white shrink-0" />
-                    <span>{currentLang === 'ar' ? 'استفسر عن مواعيد المفاضلات عبر واتساب' : 'Başvuru Tarihleri İçin WhatsApp ile İletişime Geçin'}</span>
+                    <MessageCircle className="w-5 h-5 fill-white" />
+                    <span>{loc(L('احصل على قبولك الجامعي مجاناً الآن', 'Ücretsiz Kabul Belgenizi Alın', 'Get Your Free Admission Now'))}</span>
                   </a>
-                </div>
+                </article>
+              )}
+            </div>
+          )}
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {currentLang === 'ar'
-                    ? `تُصدر رئاسة الجامعة ومجلس التعليم العالي التركي (YÖK) جداول المفاضلات وتحديثات المقاعد المتاحة للطلاب الدوليين تباعاً. لمعرفة جدول المفاضلة الحالية بدقة والتقديم الرسمي الفوري، تواصل مع فريق شركة المجد المتخصص عبر واتساب.`
-                    : `${name} uluslararası öğrenci kontenjanları ve başvuru takvimi periyodik olarak güncellenmektedir. Güncel tercih tarihleri ve kabul şartları hakkında doğrudan WhatsApp üzerinden danışmanlarımızdan anlık bilgi alabilirsiniz.`}
-                </p>
-              </div>
+          {activeTab === 'programs' && (
+            <article className={TAB_PANEL}>
+              <div className="flex flex-col gap-4 pb-4 border-b border-[#dee2e6]">
+                <h2 className={PANEL_TITLE}>
+                  {loc(L(`البرامج والتخصصات في ${name}`, `${name} Bölümleri`, `Programs at ${name}`))}
+                </h2>
 
-              {/* Kabul Edilen Sınav ve Belgeler Listesi */}
-              <div className="pt-2 border-t border-slate-100">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 font-cairo">
-                  {currentLang === 'ar' ? '✓ الشهادات والاختبارات المقبولة في المفاضلة' : '✓ Kabul Edilen Sınav ve Belgeler'}
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
-                  {[
-                    { label: 'TR-YÖS 2026', desc: 'Sınav Puanı' },
-                    { label: 'SAT 1', desc: '1000+ Puan' },
-                    { label: 'ABITUR', desc: 'Alman Diploması' },
-                    { label: 'IB Diploma', desc: 'Uluslararası Bakalorya' },
-                    { label: 'GCE A-Levels', desc: 'İngiliz Sistemi' },
-                    { label: 'Lise Diploması', desc: 'Genel Not Ort.' },
-                  ].map((cert, idx) => (
-                    <div
-                      key={idx}
-                      className="p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-200/70 text-center flex flex-col justify-center items-center"
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="relative flex-1">
+                    <input
+                      type="text"
+                      value={progSearch}
+                      onChange={(e) => setProgSearch(e.target.value)}
+                      placeholder={t('searchProgram')}
+                      className="w-full h-10 px-4 pe-10 rounded-lg border border-[#dee2e6] bg-white text-base font-light outline-none focus:border-beer transition-colors"
+                    />
+                    <Search className="w-4 h-4 text-[#707070] absolute end-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  </div>
+
+                  {degreeOptions.length > 1 && (
+                    <select
+                      value={selectedDegree}
+                      onChange={(e) => setSelectedDegree(e.target.value)}
+                      className="h-10 px-4 rounded-lg border border-[#dee2e6] bg-white text-base font-light outline-none focus:border-beer transition-colors"
                     >
-                      <Check className="w-3.5 h-3.5 text-emerald-600 mb-1" />
-                      <span className="text-xs font-extrabold text-[#0B2545] font-cairo">{cert.label}</span>
-                      <span className="text-[10px] text-emerald-800 font-medium">{cert.desc}</span>
-                    </div>
-                  ))}
+                      <option value="">{t('allDegrees')}</option>
+                      {degreeOptions.map((degree) => (
+                        <option key={degree} value={degree}>
+                          {label(DEGREE_LABELS, degree)}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                 </div>
               </div>
 
-              {/* Başvuru Aksiyon Butonları (WhatsApp ile İletişim) */}
-              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
-                {university.officialApplicationUrl ? (
+              {filteredPrograms.length === 0 ? (
+                <p className="py-10 text-center text-base font-light text-[#707070]">{t('noPrograms')}</p>
+              ) : (
+                <ul className="pt-4 flex flex-col gap-4">
+                  {filteredPrograms.map((prog) => {
+                    const pt =
+                      prog.translations?.find((tr) => tr.lang === currentLang) || prog.translations?.[0] || {};
+                    const title = pt.name || prog.slug;
+                    const sign =
+                      prog.currency === 'USD'
+                        ? '$'
+                        : prog.currency === 'EUR'
+                        ? '€'
+                        : prog.currency === 'TRY'
+                        ? '₺'
+                        : prog.currency;
+                    const progPrice = prog.discountedTuition ?? prog.annualTuition;
+                    const progDiscount = prog.discountedTuition && prog.discountedTuition < prog.annualTuition;
+
+                    return (
+                      <li key={prog.id || prog.slug} className="bg-white rounded-lg drop-shadow-xl p-4 flex flex-col gap-4">
+                        <div className="flex flex-wrap gap-2">
+                          <span className="py-1 px-2 rounded-lg bg-[#f7f5f2] text-sm font-normal text-metallic-blue">
+                            {label(DEGREE_LABELS, prog.degreeLevel)}
+                          </span>
+                          <span className="py-1 px-2 rounded-lg bg-[#f7f5f2] text-sm font-normal text-metallic-blue inline-flex items-center gap-1.5">
+                            <Languages className="w-3.5 h-3.5 text-beer" />
+                            {label(LANGUAGE_LABELS, prog.studyLanguage)}
+                          </span>
+                          <span className="py-1 px-2 rounded-lg bg-[#f7f5f2] text-sm font-normal text-metallic-blue">
+                            {prog.durationYears} {t('years')}
+                          </span>
+                        </div>
+
+                        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+                          <h3 className="text-xl font-bold text-metallic-blue capitalize">{title}</h3>
+
+                          <div className="flex items-center justify-between xl:justify-start gap-4 shrink-0">
+                            {prog.annualTuition ? (
+                              <div className="flex items-baseline gap-2">
+                                {progDiscount && (
+                                  <span className="line-through text-gray-500 text-lg font-bold">
+                                    {prog.annualTuition.toLocaleString('en-US')}
+                                    {sign}
+                                  </span>
+                                )}
+                                <span className="text-lg font-bold text-main-color">
+                                  {progPrice.toLocaleString('en-US')}
+                                  {sign}
+                                </span>
+                              </div>
+                            ) : null}
+
+                            <a
+                              href={waLink(
+                                currentLang === 'ar'
+                                  ? `مرحباً شركة المجد، أود الاستفسار عن رسوم وخصومات تخصص (${title}) والتقديم في جامعة (${name}).`
+                                  : `Merhaba, ${name} - ${title} bölümü ücret ve indirim bilgisi almak istiyorum.`
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="py-[6px] px-4 rounded-lg bg-beer hover:bg-vivid-tangelo text-white text-base font-normal transition-colors inline-flex items-center gap-2 shrink-0"
+                            >
+                              <MessageCircle className="w-4 h-4 fill-white shrink-0" />
+                              <span>{t('applyNow')}</span>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </article>
+          )}
+
+          {activeTab === 'admission' && (
+            <article className={TAB_PANEL}>
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#dee2e6]">
+                <h2 className={PANEL_TITLE}>
+                  {loc(L('مفاضلات البكالوريوس 2026', '2026 Lisans Başvuruları', '2026 Undergraduate Admissions'))}
+                </h2>
+                <span className="py-1 px-3 rounded-lg bg-[#67b98a] text-white text-sm font-bold inline-flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-white" />
+                  {t('admissionOpen')}
+                </span>
+              </div>
+
+              <div className="pt-4 sf-prose whitespace-pre-line">
+                {translation.admissionRequirements ||
+                  loc(
+                    L(
+                      'تُصدر رئاسة الجامعة ومجلس التعليم العالي التركي (YÖK) جداول المفاضلات وتحديثات المقاعد المتاحة للطلاب الدوليين تباعاً. لمعرفة جدول المفاضلة الحالية بدقة والتقديم الرسمي الفوري تواصل مع فريقنا عبر واتساب.',
+                      `${name} uluslararası öğrenci kontenjanları ve başvuru takvimi periyodik olarak güncellenir. Güncel tercih tarihleri ve kabul şartları için WhatsApp üzerinden danışmanlarımıza ulaşabilirsiniz.`,
+                      'International quotas and application calendars are updated periodically. Contact our advisors on WhatsApp for the current application window and admission requirements.'
+                    )
+                  )}
+              </div>
+
+              <h3 className="mt-6 mb-3 text-lg font-bold text-metallic-blue">{t('acceptedExams')}</h3>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {ACCEPTED_EXAMS.map((exam) => (
+                  <li key={exam.label} className="bg-[#f7f5f2] rounded-lg p-3 flex flex-col items-center text-center gap-1">
+                    <Check className="w-4 h-4 text-[#67b98a]" />
+                    <strong className="text-base font-bold text-main-color">{exam.label}</strong>
+                    <span className="text-sm font-light text-[#707070]">{loc(exam.note)}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {guide.requirements?.documents?.length > 0 && (
+                <div className="mt-6 pt-4 border-t border-[#dee2e6]">
+                  <h3 className="mb-3 text-lg font-bold text-metallic-blue flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-beer" />
+                    <span>{guide.requirements.title}</span>
+                  </h3>
+                  <ul className="flex flex-col gap-2.5">
+                    {guide.requirements.documents.map((doc, i) => (
+                      <li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[#f7f5f2] border border-[#dee2e6]/50">
+                        <Check className="w-5 h-5 text-[#67b98a] shrink-0 mt-0.5" />
+                        <span className="text-base font-light text-[#2b2b2b] leading-relaxed">{doc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                {university.officialApplicationUrl && (
                   <a
                     href={university.officialApplicationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:flex-1 min-h-[46px] px-5 py-2.5 rounded-xl bg-[#0B2545] hover:bg-[#163b6a] text-white font-black font-cairo text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md"
+                    className="flex-1 py-3 px-5 rounded-lg bg-catalina-blue hover:bg-metallic-blue text-white text-base font-normal text-center transition-colors inline-flex items-center justify-center gap-2"
                   >
-                    <span>{currentLang === 'ar' ? 'الذهاب إلى بوابة المفاضلة الرسمية' : 'Resmi Başvuru Sayfasına Git'}</span>
-                    <ExternalLink className="w-4 h-4" />
+                    <span>{t('officialPortal')}</span>
+                    <ExternalLink className="w-4 h-4 shrink-0" />
                   </a>
-                ) : null}
-
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                    `مرحباً شركة المجد، أود التقديم والحصول على قبول بكالوريوس في (${name}) 2026.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:flex-1 min-h-[46px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black font-cairo text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-500/20"
-                >
-                  <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>{currentLang === 'ar' ? 'تواصل معنا عبر واتساب للتسجيل 💬' : 'WhatsApp ile Bizimle İletişime Geçin 💬'}</span>
+                )}
+                <a href={waApplyUrl} target="_blank" rel="noopener noreferrer" className={`flex-1 ${SF_BTN}`}>
+                  <MessageCircle className="w-4 h-4 fill-white shrink-0" />
+                  <span>{t('contactWhatsapp')}</span>
                 </a>
               </div>
-            </section>
 
-            {/* =========================================================
-                E. LİSANSÜSTÜ BAŞVURULARI BÖLÜMÜ (Graduate Admissions)
-                ========================================================= */}
-            <section id="graduate" className="bg-white rounded-3xl border border-indigo-100 p-6 sm:p-8 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-indigo-50 pb-4">
-                <div>
-                  <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1 font-cairo">
-                    {currentLang === 'ar' ? 'ماجستير ودكتوراه (Yüksek Lisans & Doktora)' : 'Lisansüstü Eğitim Programları'}
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                    <Award className="w-6 h-6 text-indigo-600" />
-                    <span>{currentLang === 'ar' ? 'مفاضلات الدراسات العليا 2026' : 'Lisansüstü Başvuruları'}</span>
-                  </h2>
-                </div>
-                <span className="px-3 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full text-xs font-bold font-cairo w-fit">
-                  📜 {currentLang === 'ar' ? 'متاح للطلاب الدوليين' : 'Yabancı Öğrenciye Açık'}
-                </span>
-              </div>
-
-              {/* Lisansüstü Bilgilendirme ve WhatsApp Butonu */}
-              <div className="rounded-2xl p-6 sm:p-7 bg-gradient-to-br from-indigo-50/70 via-slate-50 to-indigo-50/40 border border-indigo-100 space-y-4 text-start font-cairo">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-black">
-                      <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-                      <span>{currentLang === 'ar' ? 'برامج الماجستير والدكتوراه' : 'Tezli / Tezsiz Yüksek Lisans'}</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-black text-[#0B2545]">
-                      {currentLang === 'ar'
-                        ? `شروط ومواعيد الدراسات العليا في ${name}`
-                        : `${name} Lisansüstü Başvuru Bilgisi`}
-                    </h3>
+              {university.graduateAdmissionOpen !== false && (
+                <div className="mt-8 pt-6 border-t border-[#dee2e6]">
+                  <h3 className="text-lg font-bold text-metallic-blue mb-3">{t('graduate')}</h3>
+                  <div className="sf-prose">
+                    {loc(
+                      L(
+                        'تفتح معاهد الدراسات العليا أبواب القبول للفصلين الخريفي والربيعي وفق معايير كل معهد. لمعرفة البرامج المتاحة باللغة الإنجليزية أو التركية وشروط المقابلة ومعادلة الشهادات تواصل معنا عبر واتساب.',
+                        'Sosyal, Fen ve Sağlık Bilimleri enstitüleri güz ve bahar dönemlerinde başvuru kabul eder. Kontenjanlar, mülakat şartları ve denklik süreci için WhatsApp hattımızdan bilgi alabilirsiniz.',
+                        'Graduate institutes open applications for fall and spring intakes. Contact us on WhatsApp for available English or Turkish programs, interview requirements and diploma equivalency.'
+                      )
+                    )}
                   </div>
-
                   <a
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                      `مرحباً شركة المجد، أود الاستفسار عن برامج الدراسات العليا (ماجستير/دكتوراه) وشروط التقديم في (${name}).`
-                    )}`}
+                    href={waLink(
+                      currentLang === 'ar'
+                        ? `مرحباً شركة المجد، أود الاستفسار عن برامج الدراسات العليا (ماجستير/دكتوراه) وشروط التقديم في (${name}).`
+                        : `Merhaba, ${name} lisansüstü programları ve başvuru şartları hakkında bilgi almak istiyorum.`
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-xs sm:text-sm shadow-md shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 shrink-0"
+                    className={`mt-4 w-full ${SF_BTN}`}
                   >
                     <MessageCircle className="w-4 h-4 fill-white shrink-0" />
-                    <span>{currentLang === 'ar' ? 'استفسر عن مواعيد الماجستير والدكتوراه عبر واتساب' : 'Lisansüstü Bilgisi İçin WhatsApp ile İletişime Geçin'}</span>
+                    <span>{t('contactWhatsapp')}</span>
                   </a>
                 </div>
+              )}
+            </article>
+          )}
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {currentLang === 'ar'
-                    ? `تفتح معاهد الدراسات العليا أبواب القبول للفصلين الخريفي والربيعي وفق معايير كل معهد. لمعرفة البرامج المتاحة باللغة الإنجليزية أو التركية وشروط المقابلة ومعادلة الشهادات، تواصل معنا مباشرة عبر واتساب.`
-                    : `Sosyal, Fen ve Sağlık Bilimleri enstitüleri bünyesindeki kontenjanlar ve başvuru takvimleri hakkında detaylı bilgi ve resmî danışmanlık almak için WhatsApp hattımızdan bize ulaşabilirsiniz.`}
-                </p>
+          {activeTab === 'campus' && (
+            <article className={TAB_PANEL}>
+              <h2 className={`${PANEL_TITLE} mb-4`}>
+                {loc(
+                  L(
+                    `الحرم الجامعي والسكن في ${name}`,
+                    `${name} Kampüsü ve Barınma`,
+                    `Campus & Accommodation at ${name}`
+                  )
+                )}
+              </h2>
+
+              <div className="relative h-[220px] sm:h-[280px] rounded-lg overflow-hidden mb-5">
+                <img
+                  src={university.coverImageUrl || FALLBACK_COVER}
+                  alt={name}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = FALLBACK_COVER;
+                  }}
+                />
               </div>
 
-              {/* Lisansüstü CTA Bar */}
-              <div className="pt-2 border-t border-indigo-50">
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                    `مرحباً شركة المجد، أرغب بالتقديم على برامج الدراسات العليا في (${name}) 2026.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[48px] px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black font-cairo text-sm flex items-center justify-center gap-2.5 transition-all shadow-md shadow-emerald-500/25"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white shrink-0" />
-                  <span>{currentLang === 'ar' ? 'تواصل معنا عبر واتساب للاستفسار والقبول' : 'WhatsApp ile Bizimle İletişime Geçin'}</span>
-                </a>
-              </div>
-            </section>
-
-            {/* =========================================================
-                F. SIKÇA SORULAN SORULAR (Interactive FAQ Accordion - 10 Soru)
-                ========================================================= */}
-            <section id="faq" className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-5">
-              <div className="border-b border-slate-100 pb-4">
-                <span className="text-xs font-bold text-[#E8930C] uppercase tracking-wider block mb-1 font-cairo">
-                  {currentLang === 'ar' ? 'كل ما تحتاج معرفته' : 'Sorular ve Yanıtlar'}
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-[#0B2545] font-cairo flex items-center gap-2">
-                  <HelpCircle className="w-6 h-6 text-[#1E3A8A]" />
-                  <span>{currentLang === 'ar' ? `الأسئلة الشائعة حول ${name}` : `${name} Sıkça Sorulan Sorular`}</span>
-                </h2>
+              <div className="sf-prose whitespace-pre-line">
+                {translation.accommodationInfo ||
+                  loc(
+                    L(
+                      `يقع الحرم الجامعي في مدينة ${cityName}، ويضم مكتبات بحثية، مختبرات حديثة، مرافق رياضية ومساحات دراسية مشتركة. تتوفر مساكن طلابية داخل الحرم أو قريبة منه، إضافة إلى مساكن حكومية وخاصة، ويقوم فريقنا بمساعدة الطلاب المقبولين في إجراءات السكن فور وصولهم.`,
+                      `Kampüs ${cityName} içinde yer alır; araştırma kütüphaneleri, modern laboratuvarlar, spor tesisleri ve ortak çalışma alanları bulunur. Kampüs içi ve çevresinde öğrenci yurtları ile devlet ve özel yurt seçenekleri mevcuttur.`,
+                      `The campus is located in ${cityName} and includes research libraries, modern laboratories, athletics facilities and shared study spaces. On-campus dormitories as well as state and private residences are available nearby.`
+                    )
+                  )}
               </div>
 
-              <div className="space-y-3 font-cairo">
+              {guide.housing && (
+                <div className="mt-6 pt-4 border-t border-[#dee2e6]">
+                  <h3 className="text-lg font-bold text-metallic-blue mb-2 flex items-center gap-2">
+                    <Home className="w-5 h-5 text-beer" />
+                    <span>{guide.housing.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                    {guide.housing.content}
+                  </p>
+                </div>
+              )}
+
+              {guide.facilities?.items?.length > 0 && (
+                <div className="mt-6 pt-4 border-t border-[#dee2e6]">
+                  <h3 className="text-lg font-bold text-metallic-blue mb-2 flex items-center gap-2">
+                    <Building className="w-5 h-5 text-beer" />
+                    <span>{guide.facilities.title}</span>
+                  </h3>
+                  <ul className="flex flex-col gap-2">
+                    {guide.facilities.items.map((fac, i) => (
+                      <li key={i} className="text-sm font-light text-[#4a4a4a] flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-beer" />
+                        <span>{fac}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <ul className="mt-6 pt-2 border-t border-[#dee2e6] flex flex-col">
+                <li className={STAT_ROW}>
+                  <span className={STAT_LABEL}>{t('city')}</span>
+                  <strong className={STAT_VALUE}>{cityName}</strong>
+                </li>
+                {university.campusType && (
+                  <li className={STAT_ROW}>
+                    <span className={STAT_LABEL}>{t('campusType')}</span>
+                    <strong className={STAT_VALUE}>{label(CAMPUS_TYPE_LABELS, university.campusType)}</strong>
+                  </li>
+                )}
+                {translation.address && (
+                  <li className={STAT_ROW}>
+                    <span className={STAT_LABEL}>{t('address')}</span>
+                    <strong className={STAT_VALUE}>{translation.address}</strong>
+                  </li>
+                )}
+              </ul>
+            </article>
+          )}
+
+          {activeTab === 'accreditation' && (
+            <article className={TAB_PANEL}>
+              <h2 className={`${PANEL_TITLE} mb-4`}>
+                {loc(L(`اعترافات واعتمادات ${name}`, `${name} Akreditasyonları`, `Accreditations of ${name}`))}
+              </h2>
+
+              <div className="sf-prose whitespace-pre-line">
+                {translation.accreditationInfo ||
+                  loc(
+                    L(
+                      'الجامعة معتمدة من مجلس التعليم العالي التركي (YÖK)، وشهاداتها معترف بها في تركيا ومعظم الدول العربية والأوروبية بعد إجراءات المعادلة المعتادة. كما تشترك الجامعة في اتفاقيات التبادل الطلابي الأوروبي Erasmus+ وتعتمد نظام النقاط الأوروبي ECTS.',
+                      'Üniversite YÖK tarafından tanınmaktadır; diplomaları Türkiye’de ve denklik işlemleri sonrası birçok ülkede geçerlidir. Avrupa Kredi Transfer Sistemi (ECTS) uygulanır ve Erasmus+ değişim anlaşmaları mevcuttur.',
+                      'The university is recognised by the Turkish Council of Higher Education (YÖK); its diplomas are valid in Turkey and, after standard equivalency procedures, in many other countries. It applies the ECTS credit system and holds Erasmus+ exchange agreements.'
+                    )
+                  )}
+              </div>
+
+              {guide.recognitions && (
+                <div className="mt-6 pt-4 border-t border-[#dee2e6]">
+                  <h3 className="text-lg font-bold text-metallic-blue mb-3 flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-[#67b98a]" />
+                    <span>{guide.recognitions.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed mb-4">
+                    {guide.recognitions.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {guide.recognitions.countries?.map((c, i) => (
+                      <span
+                        key={i}
+                        className="py-1.5 px-3 rounded-lg bg-[#f7f5f2] text-sm font-medium text-main-color border border-[#dee2e6] inline-flex items-center gap-1.5"
+                      >
+                        <Check className="w-4 h-4 text-[#67b98a]" />
+                        <span>{c}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {guide.erasmus && (
+                <div className="mt-6 pt-4 border-t border-[#dee2e6]">
+                  <h3 className="text-lg font-bold text-metallic-blue mb-2 flex items-center gap-2">
+                    <Plane className="w-5 h-5 text-beer" />
+                    <span>{guide.erasmus.title}</span>
+                  </h3>
+                  <p className="text-base font-light text-[#4a4a4a] leading-relaxed">
+                    {guide.erasmus.content}
+                  </p>
+                </div>
+              )}
+
+              {university.showNotarySection !== false && (
+                <div className="mt-6 pt-6 border-t border-[#dee2e6]">
+                  <NotaryTranslationEquivalencySection />
+                </div>
+              )}
+            </article>
+          )}
+
+          {activeTab === 'faqs' && (
+            <article className={TAB_PANEL}>
+              <h2 className={`${PANEL_TITLE} mb-4`}>
+                {loc(
+                  L(
+                    `الأسئلة الشائعة حول ${name}`,
+                    `${name} Sıkça Sorulan Sorular`,
+                    `Frequently Asked Questions about ${name}`
+                  )
+                )}
+              </h2>
+
+              <ul className="flex flex-col gap-3">
                 {faqItems.map((item, idx) => {
                   const isOpen = openFaq === idx;
-                  const q = currentLang === 'ar' ? item.qAr : currentLang === 'tr' ? item.qTr : item.qEn;
-                  const a = currentLang === 'ar' ? item.aAr : currentLang === 'tr' ? item.aTr : item.aEn;
-
                   return (
-                    <div
-                      key={idx}
-                      className={`rounded-2xl border transition-all overflow-hidden ${
-                        isOpen
-                          ? 'border-blue-300 bg-blue-50/20 shadow-sm'
-                          : 'border-slate-200/80 bg-white hover:bg-slate-50'
-                      }`}
-                    >
+                    <li key={idx} className="bg-[#f7f5f2] rounded-lg overflow-hidden">
                       <button
                         type="button"
                         onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        className="w-full p-4 sm:p-5 text-start flex items-center justify-between gap-3 font-cairo cursor-pointer"
+                        className="w-full py-4 px-4 flex items-center justify-between gap-3 text-start"
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="text-lg shrink-0">{item.icon}</span>
-                          <span className="text-xs sm:text-sm font-extrabold text-[#0B2545]">
-                            {q}
-                          </span>
-                        </div>
+                        <span className={`text-base ${isOpen ? 'font-bold text-main-color' : 'font-normal text-metallic-blue'}`}>
+                          {loc(item.q)}
+                        </span>
                         <ChevronDown
-                          className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
-                            isOpen ? 'rotate-180 text-[#0B2545]' : ''
+                          className={`w-4 h-4 shrink-0 text-[#707070] transition-transform duration-300 ${
+                            isOpen ? 'rotate-180 text-beer' : ''
                           }`}
                         />
                       </button>
-
                       {isOpen && (
-                        <div className="px-5 pb-5 text-xs sm:text-sm text-slate-700 leading-relaxed font-cairo border-t border-blue-100/60 pt-3">
-                          {a}
+                        <div className="px-4 pb-4 pt-3 text-base font-light leading-[1.9] text-main-color border-t border-[#dee2e6] whitespace-pre-line">
+                          {loc(item.a)}
                         </div>
                       )}
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
-            </section>
+              </ul>
+            </article>
+          )}
+        </div>
 
+        {/* YAPIŞKAN YAN PANEL — StudyFans: md:basis-[34.6%] */}
+        <aside className="w-full md:basis-[34.6%] flex flex-col gap-4 md:sticky md:top-[var(--sf-header-h)]">
+          {/* Üniversite fotoğrafı + logosu (video yerine) */}
+          <div className="bg-white rounded-lg drop-shadow-xl overflow-hidden">
+            <div className="relative h-[200px] overflow-hidden group">
+              <img
+                src={university.coverImageUrl || FALLBACK_COVER}
+                alt={name}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover brightness-[0.8] transition-transform duration-300 group-hover:scale-110"
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_COVER;
+                }}
+              />
+              <span className="absolute w-[60%] h-[200%] -top-[50px] -left-[33px] rotate-[-30deg] bg-[#005b94a6] z-0 pointer-events-none" />
 
-            {university.showNotarySection !== false && (
-              <section className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm">
-                <NotaryTranslationEquivalencySection />
-              </section>
-            )}
+              <h2 className="absolute top-4 end-4 z-10 max-w-[65%] text-white font-bold text-xl text-end capitalize">
+                {name}
+              </h2>
 
-            {/* EN ALT BÖLÜM: KULLANICININ İSTEDİĞİ: "en altta whatsapp ile bizimle iletişime geçin deyin" */}
-            <section className="bg-gradient-to-br from-[#0B2545] to-[#0F2E59] rounded-3xl p-6 sm:p-8 text-white shadow-xl text-center space-y-4 font-cairo">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
-                <MessageCircle className="w-8 h-8 fill-emerald-400" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-black text-white">
-                {currentLang === 'ar' ? 'هل لديك أي استفسار حول الجامعة؟' : 'Sorularınız mı var?'}
-              </h3>
-              <p className="text-xs sm:text-sm text-blue-100 max-w-xl mx-auto">
-                {currentLang === 'ar'
-                  ? 'فريق شركة المجد جاهز لمساعدتك في الحصول على قبول جامعي معتمد والرد على كافة استفساراتك فوراً.'
-                  : 'Uzman danışmanlarımız üniversite kabul şartları ve kayıt süreçleri hakkında sizi bilgilendirmek için hazır.'}
-              </p>
-              <div className="pt-2">
-                <a
-                  href={waApplyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105 active:scale-95"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white shrink-0" />
-                  <span>{currentLang === 'ar' ? 'تواصل معنا عبر واتساب الآن' : 'WhatsApp ile Bizimle İletişime Geçin'}</span>
-                </a>
-              </div>
-            </section>
-          </main>
+              <span className="absolute bottom-4 start-4 z-10 w-[70px] h-[70px] rounded-full bg-white p-1.5 drop-shadow-lg flex items-center justify-center overflow-hidden">
+                <img
+                  src={university.logoUrl || university.coverImageUrl || FALLBACK_COVER}
+                  alt={name}
+                  loading="lazy"
+                  className="w-full h-full object-contain rounded-full"
+                  onError={(e) => {
+                    e.currentTarget.src = FALLBACK_COVER;
+                  }}
+                />
+              </span>
+            </div>
 
-          {/* =========================================================
-              G. SAĞ YAPIŞKAN YAN PANEL (Sticky Sidebar - 4 Sütun - ~%30)
-              (Telegram kaldırıldı, sadece WhatsApp ile iletişime geçin)
-              ========================================================= */}
-          <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-16">
-            
-            {/* 1. Hızlı Başvuru / Danışmanlık Kartı */}
-            <div className="bg-gradient-to-br from-[#0B2545] to-[#0F2E59] text-white p-6 sm:p-7 rounded-3xl border border-blue-900/50 shadow-xl space-y-4 font-cairo relative overflow-hidden">
-              <div className="absolute top-0 end-0 w-28 h-28 bg-[#E9B949]/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="p-4 flex flex-col gap-4">
+              {annual !== null && (
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-baseline gap-2">
+                    {hasDiscount && (
+                      <span className="line-through text-gray-500 text-lg font-bold">
+                        {annual.toLocaleString('en-US')}
+                        {currency}
+                      </span>
+                    )}
+                    <span className="text-lg font-bold text-main-color">
+                      {discounted.toLocaleString('en-US')}
+                      {currency}
+                    </span>
+                  </div>
+                  {hasDiscount && (
+                    <span className="py-1 px-2 rounded bg-[#67b98a] text-white text-sm font-bold">
+                      {t('discount')} %{discountPercent}
+                    </span>
+                  )}
+                </div>
+              )}
 
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#E9B949] text-xs font-bold border border-white/15">
-                <Sparkles className="w-3.5 h-3.5 text-[#E9B949]" />
-                <span>{currentLang === 'ar' ? 'شركة المجد للقبولات الجامعية' : 'Yetkili Başvuru Merkezi'}</span>
-              </div>
+              <ul className="flex flex-col">
+                {sidebarStats.map((row) => (
+                  <li key={row.label} className={STAT_ROW}>
+                    <span className={STAT_LABEL}>{row.label}</span>
+                    <strong className={STAT_VALUE}>{row.value}</strong>
+                  </li>
+                ))}
+              </ul>
 
-              <h3 className="text-xl font-black text-white leading-snug">
-                {currentLang === 'ar'
-                  ? 'تريد ضمان قبولك الجامعي الرسمي 2026؟'
-                  : 'Kabul Almak İster Misiniz?'}
-              </h3>
+              <a href={waApplyUrl} target="_blank" rel="noopener noreferrer" className={`w-full ${SF_BTN}`}>
+                <MessageCircle className="w-5 h-5 fill-white shrink-0" />
+                <span>{t('contactWhatsapp')}</span>
+              </a>
+            </div>
+          </div>
 
-              <p className="text-xs text-blue-100/90 leading-relaxed">
-                {currentLang === 'ar'
-                  ? `يقوم مستشارونا الأكاديميون بمتابعة ملفك والتقديم المباشر في ${name} حتى صدور القبول النهائي مجاناً وبأعلى دقة.`
-                  : 'Uzman eğitim danışmanlarımız resmî kabul mektubunuz onaylanana kadar tüm süreci doğrudan takip eder.'}
-              </p>
-
-              <div className="pt-2">
-                {/* WhatsApp ile Bizimle İletişime Geçin Butonu */}
-                <a
-                  href={waApplyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[48px] flex items-center justify-center gap-2.5 bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all hover:scale-102 active:scale-98"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white shrink-0" />
-                  <span>{currentLang === 'ar' ? 'تواصل معنا عبر واتساب' : 'WhatsApp ile Bizimle İletişime Geçin'}</span>
-                </a>
-              </div>
-
-              {/* Social Proof */}
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-blue-200">
-                <span className="flex items-center gap-1 font-bold text-blue-100">
-                  <span>✓ {currentLang === 'ar' ? 'قبول جامعي رسمي معتمد' : 'Resmî Üniversite Kabulü'}</span>
+          {/* StudyFans Style Free Consultation Card */}
+          <div className="bg-white rounded-lg drop-shadow-xl p-5 flex flex-col gap-3 border border-[#dee2e6]/60">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-full bg-beer/10 text-beer flex items-center justify-center shrink-0">
+                <HeartHandshake className="w-5 h-5" />
+              </span>
+              <div>
+                <h3 className="text-base font-bold text-main-color">
+                  {loc(L('استشارة وقبول مجاني 100%', 'Ücretsiz Danışmanlık ve Kabul', '100% Free Advice & Admission'))}
+                </h3>
+                <span className="text-xs text-[#707070]">
+                  {loc(L('وكيل رسمي معتمد في تركيا', 'Türkiye Resmi Yetkili Acentesi', 'Official Authorized Agency'))}
                 </span>
-                <span className="text-emerald-400 font-bold">✓ {currentLang === 'ar' ? 'استشارة مجانية' : 'Ücretsiz Danışmanlık'}</span>
               </div>
             </div>
+            <p className="text-sm font-light text-[#4a4a4a] leading-relaxed">
+              {loc(
+                L(
+                  'نقدم لك استشارة تعليمية كاملة، ونضمن لك الحصول على قبولك الجامعي وخصم خاص على الأقساط مجاناً وبدون أي أتعاب.',
+                  'Uzman kadromuzla ücretsiz üniversite tercih danışmanlığı, garantili kabul ve harç indirimi sağlıyoruz.',
+                  'We provide complete guidance, guaranteed official admission and exclusive tuition discounts free of charge.'
+                )
+              )}
+            </p>
+            <a
+              href={waApplyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2.5 px-4 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-bold text-center transition-colors inline-flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-4 h-4 fill-white" />
+              <span>{loc(L('تواصل مع المستشار التعليمي', 'Danışmanla Görüş', 'Chat with an Advisor'))}</span>
+            </a>
+          </div>
+        </aside>
+      </section>
 
-            {/* 2. Başvuru ve Kayıt Durumu */}
-            <div className="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm space-y-3.5 font-cairo">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                {currentLang === 'ar' ? '⏳ مواعيد وشروط التسجيل' : '⏳ Başvuru ve Kayıt Bilgisi'}
-              </h4>
-
-              <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200/70 text-start space-y-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-black text-emerald-800">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>{currentLang === 'ar' ? 'المفاضلات والمقاعد متاحة حالياً' : 'Başvurular Aktif'}</span>
-                </div>
-                <p className="text-[11px] text-slate-600 leading-relaxed">
-                  {currentLang === 'ar'
-                    ? `لمعرفة آخر تحديث للمواعيد الرسمية وشروط القبول والمقاعد المتبقية في ${name}:`
-                    : `${name} güncel başvuru takvimi ve kontenjan durumu için danışmanlarımızla iletişime geçin:`}
-                </p>
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                    `مرحباً شركة المجد، أود الاستفسار عن مواعيد التسجيل والمقاعد المتاحة في جامعة (${name}).`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                  <span>{currentLang === 'ar' ? 'استعلم عبر واتساب الآن' : 'WhatsApp ile Bilgi Alın'}</span>
-                </a>
-              </div>
+      {/* جامعات مشابهة — En Altta */}
+      {related.length > 0 && (
+        <section className="sf-container px-4 mt-12">
+          <div className="bg-white rounded-lg drop-shadow-xl p-5 sm:p-6 flex flex-col gap-4">
+            <div className="flex items-center justify-between gap-2 pb-3 border-b border-[#dee2e6]">
+              <h2 className="text-xl sm:text-[1.375rem] font-bold text-main-color">{t('relatedTitle')}</h2>
+              <Link to="/universities" className="text-base font-light text-azure hover:text-beer transition-colors">
+                {t('seeAll')}
+              </Link>
             </div>
 
-            {/* 3. Benzer Üniversiteler */}
-            {related.length > 0 && (
-              <div className="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4 font-cairo">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                  <h4 className="text-xs font-black uppercase tracking-wider text-[#0B2545]">
-                    🏛️ {currentLang === 'ar' ? 'جامعات مشابهة ومقترحة' : 'Benzer Üniversiteler'}
-                  </h4>
-                  <Link to="/universities" className="text-[11px] font-bold text-blue-600 hover:underline">
-                    {currentLang === 'ar' ? 'عرض الكل' : 'Tümü'}
-                  </Link>
-                </div>
-
-                <div className="space-y-3">
-                  {related.slice(0, 4).map((relUni) => {
-                    const relTrans =
-                      relUni.translations?.find((t) => t.lang === currentLang) ||
-                      relUni.translations?.find((t) => t.lang === 'ar') ||
-                      relUni.translations?.[0] ||
-                      {};
-                    const relName = relTrans.name || relUni.slug;
-
-                    return (
-                      <Link
-                        key={relUni.id}
-                        to={`/universities/${relUni.slug}`}
-                        className="p-2.5 rounded-2xl border border-slate-100 hover:border-blue-200 hover:bg-slate-50 transition-all flex items-center gap-3 group"
-                      >
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {related.slice(0, 6).map((relUni) => {
+                const relName = resolveUniversityName(relUni, currentLang);
+                return (
+                  <li key={relUni.id || relUni.slug} className="p-2.5 rounded-lg bg-[#f7f5f2] hover:bg-[#eae6e1] transition-colors border border-[#dee2e6]/60">
+                    <Link to={`/universities/${relUni.slug}`} className="flex items-center gap-3 group">
+                      <span className="w-[75px] h-[75px] shrink-0 rounded-lg bg-white p-1.5 flex items-center justify-center overflow-hidden border border-[#dee2e6]/50">
                         <img
-                          src={relUni.coverImageUrl || `/uploads/universities/${relUni.slug}.webp`}
+                          src={relUni.logoUrl || relUni.coverImageUrl || FALLBACK_COVER}
                           alt={relName}
-                          className="w-12 h-12 rounded-xl object-cover shrink-0 border border-slate-200"
+                          loading="lazy"
+                          className="w-full h-full object-contain"
                           onError={(e) => {
-                            e.currentTarget.src = '/uploads/universities/istanbul-universitesi.webp';
+                            e.currentTarget.src = FALLBACK_COVER;
                           }}
                         />
-                        <div className="flex-1 min-w-0 text-start">
-                          <h5 className="text-xs font-black text-[#0B2545] truncate group-hover:text-blue-600 transition-colors">
-                            {relName}
-                          </h5>
-                          <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mt-0.5">
-                            <MapPin className="w-3 h-3 text-[#E8930C]" />
-                            <span>{relUni.city}</span>
-                            <span>•</span>
-                            <span>{relUni.type === 'PRIVATE' ? (currentLang === 'ar' ? 'خاصة' : 'Vakıf') : (currentLang === 'ar' ? 'حكومية' : 'Devlet')}</span>
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </aside>
+                      </span>
+                      <div className="min-w-0 flex flex-col gap-1">
+                        <h3 className="text-base sm:text-lg font-bold text-metallic-blue capitalize truncate group-hover:text-beer transition-colors">
+                          {relName}
+                        </h3>
+                        <span className="inline-flex items-center gap-1.5 text-sm font-light text-[#707070]">
+                          <MapPin className="w-3.5 h-3.5 text-beer shrink-0" />
+                          {relUni.city}
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {otherUniversities.length > 0 && (
+        <section className="sf-container px-4 mt-12 flex flex-col gap-6">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-xl sm:text-[1.625rem] font-bold text-main-color">{t('otherTitle')}</h2>
+            <Link
+              to="/universities"
+              className="inline-flex items-center gap-1.5 text-base font-light text-azure hover:text-beer transition-colors"
+            >
+              <span>{t('seeAll')}</span>
+              <ArrowRight className="w-4 h-4 flip-in-rtl" />
+            </Link>
+          </div>
+
+          <div className="grid gap-8 px-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto w-full">
+            {otherUniversities.slice(0, 3).map((u) => (
+              <UniversityCard key={u.id || u.slug} university={u} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="sf-container px-4 mt-12">
+        <div className="bg-white rounded-lg drop-shadow-xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-xl sm:text-[1.625rem] font-bold text-main-color">
+              {loc(
+                L(
+                  'هل لديك أي استفسار حول الجامعة؟',
+                  'Üniversite hakkında sorularınız mı var?',
+                  'Any questions about this university?'
+                )
+              )}
+            </h2>
+            <p className="text-base font-light text-[#707070] max-w-2xl leading-[1.9]">
+              {loc(
+                L(
+                  'فريقنا جاهز لمساعدتك في الحصول على قبول جامعي معتمد والرد على كافة استفساراتك فوراً ومجاناً.',
+                  'Uzman danışmanlarımız kabul şartları ve kayıt süreçleri hakkında ücretsiz olarak sizi bilgilendirir.',
+                  'Our advisors are ready to help you secure an official acceptance letter and answer every question, free of charge.'
+                )
+              )}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-stretch gap-3 shrink-0">
+            <a href={waApplyUrl} target="_blank" rel="noopener noreferrer" className={SF_BTN}>
+              <MessageCircle className="w-5 h-5 fill-white shrink-0" />
+              <span>{t('contactWhatsapp')}</span>
+            </a>
+            <Link
+              to="/universities"
+              className="py-3 px-7 rounded-lg border border-[#dee2e6] hover:border-beer text-main-color text-base font-normal text-center transition-colors inline-flex items-center justify-center gap-2"
+            >
+              <Trophy className="w-4 h-4 text-beer shrink-0" />
+              <span>{t('browseAll')}</span>
+            </Link>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

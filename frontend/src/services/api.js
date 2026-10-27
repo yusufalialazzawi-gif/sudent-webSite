@@ -125,7 +125,8 @@ export const api = {
   moderateReview: (id, data) => request(`/reviews/admin/${id}`, { method: 'PATCH', body: data }),
   deleteReview: (id) => request(`/reviews/admin/${id}`, { method: 'DELETE' }),
 
-  // Admin Student Testimonials (with Photos & Multi-language Quotes)
+  // Student Testimonials (with Photos & Multi-language Quotes)
+  getTestimonials: () => request('/reviews/testimonials'),
   getAdminTestimonials: () => request('/reviews/testimonials/admin'),
   createAdminTestimonial: (data) => request('/reviews/testimonials/admin', { method: 'POST', body: data }),
   updateAdminTestimonial: (id, data) => request(`/reviews/testimonials/admin/${id}`, { method: 'PUT', body: data }),

@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppFloating from './components/common/WhatsAppFloating';
+import MobileBottomBar from './components/layout/MobileBottomBar';
 
 // Public Pages
 import HomePage from './pages/public/HomePage';
@@ -67,13 +68,14 @@ function ProtectedAdminRoute() {
 // Public Layout Wrapper
 function PublicLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-brand-amber-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#ff9015] selection:text-white pb-14 md:pb-0">
       <Header />
       <main className="flex-1">
         <Outlet />
       </main>
       <Footer />
       <WhatsAppFloating />
+      <MobileBottomBar />
     </div>
   );
 }

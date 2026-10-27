@@ -9,10 +9,8 @@ export const FALLBACK_NAV_ITEMS = [
     url: '/universities',
     enabled: true,
     children: [
-      { id: 'uni-all', labelAr: 'جميع الجامعات (+120)', labelTr: 'Tüm Üniversiteler (+120)', labelEn: 'All Universities (+120)', url: '/universities', enabled: true },
-      { id: 'uni-public', labelAr: '🏛️ الجامعات الحكومية', labelTr: '🏛️ Devlet Üniversiteleri', labelEn: '🏛️ Public Universities', url: '/universities?type=PUBLIC', enabled: true },
-      { id: 'uni-private', labelAr: '🏢 الجامعات الخاصة', labelTr: '🏢 Vakıf Üniversiteleri', labelEn: '🏢 Private Universities', url: '/universities?type=PRIVATE', enabled: true },
-      { id: 'uni-grad', labelAr: '🎓 برامج الماجستير والدكتوراه', labelTr: '🎓 Yüksek Lisans & Doktora', labelEn: '🎓 Graduate Programs', url: '/universities?graduateAdmissionOpen=true', enabled: true },
+      { id: 'uni-private', labelAr: '🏢 الجامعات الخاصة في تركيا', labelTr: '🏢 Vakıf Üniversiteleri', labelEn: '🏢 Private Universities', url: '/universities?type=PRIVATE', enabled: true },
+      { id: 'uni-public', labelAr: '🏛️ الجامعات الحكومية في تركيا', labelTr: '🏛️ Devlet Üniversiteleri', labelEn: '🏛️ Public Universities', url: '/universities?type=PUBLIC', enabled: true },
     ],
   },
   { id: 'programs', labelAr: 'التخصصات', labelTr: 'Bölümler', labelEn: 'Programs', url: '/programs', enabled: true },

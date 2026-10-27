@@ -1,30 +1,26 @@
-import { HomeHero, HomeStats, HomeQuickSearchSection } from './HomeHeroSections';
+import { HomeHero, HomeStats } from './HomeHeroSections';
 import {
   HomeServicesSection,
   HomeUniversitiesSection,
+  HomeScholarshipsSection,
+  HomeGraduateSection,
   HomeMajorsSection,
   HomeArticlesSection,
   HomeTestimonialsSection,
   HomeFinalCtaSection,
 } from './HomeStudyFansSections';
-import { HomeGraduateSpotlight } from './HomeUniversitySections';
-import { HomeScholarshipsPreview } from './HomeOfferSections';
-import { HomeFaqSection } from './HomeSocialSections';
 
-// STUDYFANS — 100% TÜRK ÜNİVERSİTELERİ ODAKLI SIRALAMA
-// (Kıbrıs ve Malezya kaldırıldı, mavi-beyaz logo teması, dinamik sayaçlar, bayraklı buton ve öğrenci yorumları)
+// STUDYFANS.COM 1:1 EXACT ORDER & DESIGN SYSTEM (Focus on Turkey Admissions)
 export const HOME_SECTIONS = [
   { key: 'hero', Component: HomeHero },
   { key: 'stats', Component: HomeStats },
-  { key: 'quick_search', Component: HomeQuickSearchSection },
   { key: 'services', Component: HomeServicesSection },
   { key: 'universities', Component: HomeUniversitiesSection },
-  { key: 'graduate_spotlight', Component: HomeGraduateSpotlight },
   { key: 'majors', Component: HomeMajorsSection },
-  { key: 'scholarships_preview', Component: HomeScholarshipsPreview },
   { key: 'articles', Component: HomeArticlesSection },
+  { key: 'scholarships', Component: HomeScholarshipsSection },
+  { key: 'graduate', Component: HomeGraduateSection },
   { key: 'testimonials', Component: HomeTestimonialsSection },
-  { key: 'faq', Component: HomeFaqSection },
   { key: 'final_cta', Component: HomeFinalCtaSection },
 ];
 

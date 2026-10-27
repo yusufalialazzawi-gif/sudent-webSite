@@ -231,7 +231,7 @@ router.get('/:slug', async (req, res, next) => {
         published: true,
         OR: [{ city: university.city }, { type: university.type }],
       },
-      take: 4,
+      take: 5,
       include: {
         translations: { where: { lang: { in: [lang, 'ar', 'tr', 'en'] } } },
       },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function BlogCard({ article }) {
@@ -18,9 +18,9 @@ export default function BlogCard({ article }) {
   const excerpt = translation.excerpt || '';
 
   return (
-    <article className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+    <article className="bg-white rounded-lg border border-[#dee2e6] overflow-hidden drop-shadow-md hover:drop-shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
       {/* Cover Image */}
-      <div className="relative h-48 bg-slate-100 overflow-hidden">
+      <div className="relative h-48 bg-[#f7f5f2] overflow-hidden">
         <img
           src={
             article.featuredImageUrl ||
@@ -33,46 +33,48 @@ export default function BlogCard({ article }) {
             e.currentTarget.src = '/uploads/universities/bilkent-university.webp';
           }}
         />
-        <div className="absolute top-3 start-3">
-          <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-brand-navy-950/80 backdrop-blur-md text-white border border-white/20">
-            {article.category}
-          </span>
-        </div>
+        {article.category && (
+          <div className="absolute top-3 start-3">
+            <span className="px-3 py-1 rounded-md text-xs font-bold bg-beer text-white shadow-sm">
+              {article.category}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Body */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="p-5 flex-1 flex flex-col justify-between gap-4">
         <div>
           {/* Metadata */}
-          <div className="flex items-center gap-3 text-[11px] text-slate-400 mb-2.5">
+          <div className="flex items-center gap-3 text-xs text-[#707070] mb-2.5">
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-brand-amber-500" />
+              <Calendar className="w-3.5 h-3.5 text-beer" />
               <span>{new Date(article.publishedAt || article.createdAt).toLocaleDateString()}</span>
             </span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
-              <span>{article.readTimeMinutes} {t('blog.minRead')}</span>
+              <Clock className="w-3.5 h-3.5 text-[#707070]" />
+              <span>{article.readTimeMinutes || 4} {t('blog.minRead')}</span>
             </span>
           </div>
 
-          <h3 className="text-base font-bold text-brand-navy-950 font-cairo mb-2 group-hover:text-brand-amber-600 transition-colors line-clamp-2">
+          <h3 className="text-base sm:text-lg font-bold text-main-color font-cairo mb-2 group-hover:text-beer transition-colors line-clamp-2">
             {title}
           </h3>
 
-          <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
+          <p className="text-[#4a4a4a] text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
             {excerpt}
           </p>
         </div>
 
-        <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-          <span className="text-[11px] text-slate-500 font-medium truncate max-w-[150px]">
-            {article.authorName}
+        <div className="pt-3 border-t border-[#dee2e6] flex items-center justify-between">
+          <span className="text-xs text-[#707070] font-medium truncate max-w-[150px]">
+            {article.authorName || (currentLang === 'ar' ? 'فريق التحرير' : 'Editör')}
           </span>
 
           <Link
             to={`/blog/${article.slug}`}
-            className="text-xs font-bold text-brand-amber-600 hover:text-brand-amber-700 flex items-center gap-1 transition-colors"
+            className="text-xs sm:text-sm font-bold text-beer hover:text-vivid-tangelo flex items-center gap-1.5 transition-colors"
           >
             <span>{t('blog.readMore')}</span>
             <ArrowRight className="w-3.5 h-3.5 flip-in-rtl" />

@@ -213,7 +213,21 @@ router.delete('/admin/:id', authenticate, requireRole(['SUPER_ADMIN']), async (r
   }
 });
 
-// ================= ADMIN TESTIMONIALS (STUDENT REVIEWS WITH PHOTOS) ================= //
+// ================= STUDENT TESTIMONIALS (STUDENT REVIEWS WITH PHOTOS) ================= //
+
+// GET /api/reviews/testimonials - Fetch published student testimonials for public display
+router.get('/testimonials', async (req, res, next) => {
+  try {
+    const testimonials = await prisma.testimonial.findMany({
+      where: { published: true },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+    });
+    res.json({ success: true, data: testimonials });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // GET /api/reviews/testimonials/admin - Fetch all student testimonials
 router.get('/testimonials/admin', authenticate, requireRole(['SUPER_ADMIN', 'CONTENT_EDITOR']), async (req, res, next) => {

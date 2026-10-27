@@ -22,8 +22,8 @@ export default function NavbarDesktop({ items, pathname }) {
                 to={item.url || '/'}
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                   isOpen
-                    ? 'text-brand-amber-600 bg-brand-amber-50'
-                    : 'text-slate-700 hover:text-brand-navy-900 hover:bg-slate-100'
+                    ? 'text-[#ff9015] bg-orange-50'
+                    : 'text-[#0a2240] hover:text-[#ff9015] hover:bg-slate-50'
                 }`}
               >
                 <span>{item.label}</span>
@@ -37,7 +37,7 @@ export default function NavbarDesktop({ items, pathname }) {
                       <Link
                         key={child.id}
                         to={child.url}
-                        className="block px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-amber-600 hover:bg-brand-amber-50/50 transition-colors"
+                        className="block px-4 py-2.5 text-xs sm:text-sm font-medium text-[#0a2240] hover:text-[#ff9015] hover:bg-orange-50/60 transition-colors"
                       >
                         {child.label}
                       </Link>
@@ -56,13 +56,13 @@ export default function NavbarDesktop({ items, pathname }) {
             to={item.url || '/'}
             className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 ${
               isActive
-                ? 'text-brand-amber-600 bg-brand-amber-50 shadow-sm'
+                ? 'text-[#ff9015] bg-orange-50/80 shadow-xs'
                 : item.highlight
-                ? 'text-brand-amber-700 hover:text-brand-amber-800 bg-brand-amber-500/10 hover:bg-brand-amber-500/20 font-bold border border-brand-amber-400/30'
-                : 'text-slate-700 hover:text-brand-navy-900 hover:bg-slate-100'
+                ? 'text-[#ff9015] hover:text-[#e05e00] bg-orange-500/10 hover:bg-orange-500/20 font-bold border border-orange-300/40'
+                : 'text-[#0a2240] hover:text-[#ff9015] hover:bg-slate-50'
             }`}
           >
-            {item.highlight && <Award className="w-3.5 h-3.5 text-brand-amber-600 animate-pulse" />}
+            {item.highlight && <Award className="w-3.5 h-3.5 text-[#ff9015] animate-pulse" />}
             <span>{item.label}</span>
           </Link>
         );

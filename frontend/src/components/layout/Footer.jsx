@@ -43,16 +43,50 @@ export default function Footer() {
   const showSocial = bool('footer_show_social', true);
 
   return (
-    <footer className="bg-brand-navy-950 text-slate-300 pt-16 pb-8 border-t border-brand-navy-800">
+    <footer className="bg-[#0a2240] text-white pt-12 pb-8 border-t border-blue-900/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-brand-navy-800">
-          {/* Marka */}
-          <div className="space-y-4">
+        {/* Studyfans Top Brand & Dual Action Buttons */}
+        <div className="pb-10 border-b border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-start">
+          <div className="max-w-xl">
             <SiteBrand variant="on-dark" compact />
-            <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3 font-cairo">
+              {description}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <Link
+              to="/apply"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-7 rounded-xl bg-[#ff9015] hover:bg-[#f36c25] text-white font-bold text-xs sm:text-sm shadow-sm transition-colors text-center"
+            >
+              <span>{currentLang === 'tr' ? 'Hemen Kayıt Ol' : currentLang === 'en' ? 'Register Now' : 'سجل الآن'}</span>
+            </Link>
+
+            <Link
+              to="/universities"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl border border-slate-400 hover:border-white text-white font-medium text-xs sm:text-sm transition-colors text-center"
+            >
+              <span>{currentLang === 'tr' ? 'Üniversitenizi Bulun' : currentLang === 'en' ? 'Find University' : 'ابحث عن جامعتك'}</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-10 border-b border-white/10">
+          {/* Accreditation & Trust */}
+          <div className="space-y-4">
+            <h4 className="text-white font-bold text-base font-cairo">
+              {currentLang === 'tr' ? 'Hakkımızda & Akreditasyon' : currentLang === 'en' ? 'About & Accreditation' : 'عن الشركة والاعتمادات'}
+            </h4>
+            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-cairo">
+              {currentLang === 'tr'
+                ? "120'den fazla akredite Türk üniversitesinin resmi yetkili acentesi olarak, öğrencilere baştan sona profesyonel danışmanlık sağlıyoruz."
+                : currentLang === 'en'
+                ? 'Authorized representative for 120+ accredited Turkish universities, providing comprehensive guidance for international students.'
+                : 'وكيل رسمي معتمد لأكثر من 120 جامعة تركية حكومية وخاصة، نقدم لطلابنا إرشاداً أكاديمياً متكاملاً وقبولات مضمونة.'}
+            </p>
             {accreditation && (
-              <div className="flex items-center gap-2 text-xs text-brand-amber-400 font-semibold pt-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-[#ff9015] font-semibold pt-1">
+                <ShieldCheck className="w-4 h-4 text-[#25d366] shrink-0" />
                 <span>{accreditation}</span>
               </div>
             )}
